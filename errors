@@ -1,0 +1,6 @@
+on logout
+
+Notice: Undefined index: current_region in /var/www/staging/Application/Command/User/Logout.php on line 10
+
+Warning: Cannot modify header information - headers already sent by (output started at /var/www/staging/Application/Command/User/Logout.php:10) in /var/www/staging/Application/Command/User/Logout.php on line 17
+

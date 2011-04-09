@@ -1,4 +1,43 @@
 Cogster::Application.routes.draw do
+
+  resource :account, :only => [ :show, :edit, :update ]
+
+  match "community/:community_id" => "communities#show", :as => "community", :via => :get
+
+  resources :community_requests, :only => [:new, :create]
+
+  resources :businesses, :only => [ :show, :index ] do
+    resources :redemptions
+    resources :projects
+    resource :purchase, :only => [ :new, :create ]
+  end
+
+  scope :path => "/admin", :as => "admin" do
+    resources :businesses, :except => [ :create, :new ]
+    resources :project_options
+    resources :users
+    resources :communities
+  end
+
+  controller :information do
+    %w(merchant_agreement member_purchase_agreement terms faq privacy local swag contact how_it_works).each do |page|
+      get page, :as => page
+    end
+  end
+
+  devise_for :users
+
+  as :user do
+    get "/register" => "registrations#new", :as => 'register'
+    post "/register" => "registrations#create", :as => 'register'
+    get "/login" => "devise/sessions#new", :as => 'login'
+    get "/lost_password" => "devise/passwords#new", :as => 'lost_password'
+    post "/lost_password" => "devise/passwords#create", :as => 'lost_password'
+    post "/logout" => "devise/sessions#destroy", :as => 'logout'
+  end
+
+  root :to => "home#index"
+  match '/account' => "accounts#show", :as => 'user_root'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

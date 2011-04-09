@@ -46,4 +46,13 @@ Cogster::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :production
+    ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+      :login => 'chris_api1.cogster.com',#from api key
+      :password => '4929RCZXD247X5FQ', #ditto
+      :signature =>'ARnr1B7zyTW-GnPsQyeq1OlHOUOpAaYyHrRwiti2liIHXowz9rTCR9uQ'
+    )
+  end
 end

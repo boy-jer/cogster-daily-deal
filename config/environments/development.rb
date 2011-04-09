@@ -14,6 +14,7 @@ Cogster::Application.configure do
   config.action_view.debug_rjs             = true
   config.action_controller.perform_caching = false
 
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
 
@@ -22,5 +23,14 @@ Cogster::Application.configure do
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
+
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+      :login => 'chris_1248755694_biz_api1.cogster.com',#from api key
+      :password =>'1248755704', #ditto, and should be a signature I think
+      :signature =>'AEiYAq53vzWqRq6Q4s61u4YUD0KTABvBijoyM8fqFXnG.fEkqmaXmc-S' 
+    )
+  end
 end
 
