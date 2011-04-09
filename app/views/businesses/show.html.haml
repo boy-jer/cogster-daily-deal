@@ -4,7 +4,7 @@
   .main.full
     #business_details.business
       %h2=@business.name
-      %h3 Test Project: for Zach
+      %h3=@business.current_project.name 
       =render :partial => "shared/progress_bar", :locals => { :project => @business.current_project, :social => true }
       .campaign_details
         #biz_logo_img.img_container{:style => "height: 150px; width: 150px;"}
