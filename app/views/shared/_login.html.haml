@@ -1,0 +1,12 @@
+#account
+  %ul
+    -if user_signed_in?
+      %li#hello_msg
+        =link_to current_user.first_name, account_path
+      %li
+        =button_to "Log out", logout_path, :title => "Log Out", :id => "logout"
+    -else
+      %li
+        =link_to "Sign In", login_path, :title => "Sign In"
+      %li
+        =link_to "Sign Up", register_path 

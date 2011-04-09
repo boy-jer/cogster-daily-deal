@@ -1,0 +1,19 @@
+#content
+  =notice_or_alert
+  .main.narrow
+    %h2 Sign In
+    =form_for @user, :url => user_session_path do |f|
+      %fieldset
+        .field
+          =f.label :email
+          =f.text_field :email, :class => "title text"
+        .field
+          =f.label :password 
+          =f.password_field :password, :class => "title text"
+        .field.right_align
+          =f.submit "Sign In"
+    %p
+      New User?
+      =link_to "Click here to sign up.", register_path
+      Forgot your password?
+      =link_to "Click here to reset it.", lost_password_path

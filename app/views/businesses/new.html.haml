@@ -1,0 +1,40 @@
+-content_for :menu do
+  =admin_menu
+
+= form_for @business, :url => admin_businesses_path do |f|
+  %fieldset
+    .field.split
+    .field
+      = f.label :name, nil, :class => "required"
+      = f.text_field :name,  :class => "text"
+    .field
+      = f.label :description, nil, :class => "required"
+      = f.text_area :description, :class => "text"
+    .field
+      = f.label :email, :class => "required"
+      = f.email_field :email, :class => "text"
+    .field.split
+      = f.label :password, :class => "required"
+      = f.password_field :password, :class => "text"
+      %span (6-25 characters)
+    .field
+      = f.label :password_confirmation, "Confirm Password", :class => "required"
+      = f.password_field :password_confirmation, :class => "text"
+    .field.split
+      = f.label :community_id, "Community:", :class => "required"
+      = f.select :community_id, options_for_select(@options)
+    .field
+      = f.label :gender
+      .gender
+        = f.radio_button :gender, "m"
+        = f.label :gender_male, "Male"
+      .gender
+        = f.radio_button :gender, "f"
+        = f.label :gender_female, "Female", :class => "male_female_label"
+  %h4
+  .field
+    %p#registration_agreement
+      =f.check_box :terms
+      By clicking "Sign Up" I hereby agree to the
+      =link_to "Terms and Conditions.", terms_path, :id => "terms_link"
+    =submit_tag "Sign Up", :class => "submit", :id => "submit"

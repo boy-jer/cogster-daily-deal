@@ -1,0 +1,15 @@
+#content
+  %h2 Project Options
+  %table
+    %thead
+      %tr
+        %th Description
+        %th Duration
+        %th Projects (Active)
+        %th{ :colspan => 2}Actions
+    %tfoot
+      %tr
+        %th=link_to 'Add New Project Option', new_admin_project_option_path
+    %tbody
+      = render :partial => 'project_option', :collection => @project_options
+

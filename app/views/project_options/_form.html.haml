@@ -1,0 +1,17 @@
+%fieldset.field
+  =form.label :description, nil, :class => "required"
+  =form.text_field :description, :class => "text"
+  %table
+    %thead
+      %tr
+        %th Duration
+        %th Return Rate
+    %tfoot
+      %tr
+        %td{ :colspan => 2 }
+          %a#add-new-increment.right{:href => "#"} Add New
+    %tbody
+      =render :partial => "interval", :collection => @project_option.redemption_schedule
+.field
+  %input.submit{:name => "submit", :type => "submit", :value => @project_option.persisted?? "Update" : "Create"}/
+  

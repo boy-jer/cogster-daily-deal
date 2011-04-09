@@ -1,0 +1,9 @@
+#content
+  .main.full
+    %h3 
+      Edit the 
+      =@project_option.description
+      Project Option
+    =form_for @project_option, :url => admin_project_option_path(@project_option) do |f|
+      = render :partial => 'form', :object => f
+  #rightbar

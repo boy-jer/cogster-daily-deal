@@ -1,0 +1,39 @@
+#content
+  .main.full
+    %h2 Contact Information
+    Phone: (814) 861 - 5351
+    %BR
+      Email:
+      %a{:href => "mailto:support@cogster.com"} support@cogster.com
+      %BR
+        %hr/
+        Otherwise, please fill out the
+        %strong contact form
+        below:
+        %hr/
+        %form{:action => "/contact", :method => "post"}
+          .field
+            %label Name:
+            %input.title.text{:name => "name", :type => "text"}/
+          .field
+            %label Email:
+            %input.title.text{:name => "email", :type => "text", :value => ""}/
+          .field
+            %label Phone
+            %input.text{:name => "phone", :type => "text"}/
+          .field
+            %label Question/Comment
+            %textarea.text{:name => "comment"}
+          .field
+            %label Validation
+            %script{:src => "http://api.recaptcha.net/challenge?k=6LcEVwsAAAAAAAvRcX2q4lCOmemLlhJg_Zy3WdjJ", :type => "text/javascript"}
+            %noscript
+              %iframe{:frameborder => "0", :height => "300", :src => "http://api.recaptcha.net/noscript?k=6LcEVwsAAAAAAAvRcX2q4lCOmemLlhJg_Zy3WdjJ", :width => "500"}
+              %br/
+              %textarea{:cols => "40", :name => "recaptcha_challenge_field", :rows => "3"}
+              %input{:name => "recaptcha_response_field", :type => "hidden", :value => "manual_challenge"}/
+          .field
+            %label
+            %input.submit{:name => "submit", :type => "submit", :value => "Contact Us"}/
+          %input#action{:name => "action", :type => "hidden", :value => "contact"}/
+  #rightbar

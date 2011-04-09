@@ -1,0 +1,28 @@
+-content_for :menu do
+  =menu_without_business_filters
+#content
+  .main.narrow
+    .static_single_column
+      %h2
+        Swag: your individual impact on local projects in your town
+        %br/
+        %p Swag is the cumulative measure of the economic impact you are making in your town as you support local projects, relative to everyone else.  The more you spend to fund local projects, the faster your Swag Rating will increase.
+        %br/
+        %h4 Things You Should Know:
+        %ul
+          %li
+            %p Each Cogster receives a Swag Rating.
+            %li
+              %p
+                It measures your percentile ranking within the community based on the
+                = succeed "," do
+                  %u economic activity you generate by funding projects
+                relative to other Cogsters.  The Top Cogs board displays the highest-ranking Cogsters for the impact they are making, in real time.
+              %li
+                %p
+                  Components of Swag:  Cogster adds up the local economic value you help to create by assigning points to the actions you take that benefit your town.  You accumulate Swag when you pay to fund projects.  The more dollars you spend to fund projects, the more swag you earn.
+                  %a{:href => "/page/view/how-it-works"} How it Works
+                %li
+                  %p
+                    Why Swag:  Making an impact on your local economy is cool.  Seeing your name on a list of Top Cogs because of the impact you are making…, well, that’s pretty cool too.  And, imagine the collective impact you all are making.
+                    %a{:href => "local"} About Local

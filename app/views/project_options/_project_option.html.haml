@@ -1,0 +1,7 @@
+%tr{ :id => dom_id(project_option) }
+  %td=project_option.description
+  %td=project_option.duration
+  %td=link_to "#{project_option.projects.count} (#{project_option.projects.active.count})", admin_project_option_path(project_option)
+
+  %td=link_to 'Edit', edit_admin_project_option_path(project_option)
+  %td=button_to('Delete', admin_project_option_path(project_option), :method => :delete, :class => "button") 

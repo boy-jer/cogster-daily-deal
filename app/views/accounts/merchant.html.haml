@@ -1,0 +1,44 @@
+#content
+  .main.full
+    %h1 
+      Welcome Back, 
+      =current_user.first_name
+    %h2 My Current Project
+    -if @current_project.nil?
+      %p 
+        Looks like you don't have a project set up yet. 
+        =link_to "Click here to set up your first project", new_merchant_project_path(current_user)
+    -else
+      %h4 0 Supporters
+      %div
+        = render 'shared/progress_bar'
+        %dl.list
+          %dt Campaign Goal
+          %dd.value
+            =@current_project.goal
+          %dt Percent Reached
+          %dd.value 
+            =@current_project.percent_reached
+            
+          %li
+            %span.value 03/23/2011
+            Start Date
+          %li
+            %span.value 07/12/2011
+            End Date
+          %li
+            %span.value $30
+            Max Purchase Amount
+        =link_to "Edit Current Project", edit_merchant_project_path(current_user, @current_project), :title => "Click to change any of the parameters of your current Cogster project", :class => "right"
+        =link_to "Add a Project", new_merchant_project_path(current_user), :title => "Click to add your next project (note - you can have only one Cogster project running at a time)", :class => "right"
+  %table
+    %thead
+      %tr
+        %th{ :colspan => 2}Customer
+        %th{ :colspan => 7}Date
+      %tr
+        %th Name
+        %th Cogster ID
+        -
+  #rightbar
+    = render :partial => 'shared/business_navigation'

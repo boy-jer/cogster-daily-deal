@@ -1,0 +1,13 @@
+%h3.seo_hide.top_cogs Top Cogs
+%ol.top_cogs
+  = render :partial => 'shared/cog', :collection => @cogs
+/ using my_swag_hide class to hide a and a:hover styling
+/ <a href="/page/view/aboutswag" class="my_swag_hide">
+-if user_signed_in?
+  =render 'shared/personal_swag'
+#my_swag_options
+  -if user_signed_in?
+    =link_to "What is swag?", swag_path, :id => "smaller"
+  -else
+    What's your Swag Rating?
+    =link_to "Sign In", login_path

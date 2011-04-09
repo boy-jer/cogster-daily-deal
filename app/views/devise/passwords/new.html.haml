@@ -1,0 +1,12 @@
+#content
+  .main.full
+    =notice_or_alert
+    %p
+      =link_to "Back to Login", login_path
+    %h2 Forgot Your Password? Reset it!
+    %h4 Enter your e-mail below to request a new password:
+    =form_for @user, :url => lost_password_path do |f|
+      %fieldset
+        =f.label :email, "Your Cogster email", :class => 'required'
+        =f.text_field :email, :class => "text"
+      =f.submit "Reset Password"

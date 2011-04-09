@@ -1,0 +1,17 @@
+#content
+  %h3 My Transactions
+  %h4 Transaction History
+  %table{ :summary => "List of all of my transactions with Cogster businesses"}
+    %thead
+      %tr
+        %th{ :scope => "col" } Business Name
+        %th.date{ :scope => "col" } Transaction Date
+        %th.points{ :scope => "col" } Amount
+    %tbody#achievements
+      %tr#transaction_
+        %td
+          %span.title='transaction.name'
+        %td.date='transaction.date'
+        %td.points='transaction.amount'
+  %ul#campaigns
+    %li You do not have any recorded transactions.

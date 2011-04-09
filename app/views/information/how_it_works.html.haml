@@ -1,0 +1,38 @@
+-content_for :menu do
+  =menu_without_business_filters
+#content
+  .main.narrow
+    .static_single_column
+      %h2 How Cogster Works
+      %p
+        Use Cogster to Double your Money and add a little
+        =link_to "swag", swag_path
+        to your town.
+      %br/
+      %br/
+      =image_tag("how_it_works_1-2-3.png", :width => "100%")
+      %h4
+        That's right,
+        = succeed "..." do
+          %span.bold_italic double your money  
+      %ul
+        %li
+          %p Cogster Cash is a virtual local currency you get for supporting a local merchant's project.
+        %li
+          %p
+            Find a local merchant you like and check out its project.  When you pay to help fund the project,
+            %u you receive double the amount of Cogster Cash in return
+            to use at that merchant!   Just print and redeem your Cash at the merchant over the assigned periods, since you will receive it in increments.
+        %li
+          %p
+            Cogster Cash is as good as the real thing.  No black-out dates or fine print.  Just be sure to use it within the assigned periods.
+            =link_to "FAQs", faq_path
+        %li
+          %p
+            What's Swag?  It is a cumulative measure of the great impact you are making in your town as you support local projects, relative to everyone else.  Every time you fund a project, watch your swag rating go up.
+            =link_to "About Swag", swag_path
+      .center
+        %em Fund a project and print cash like this with your name on it:
+        %br/
+        %br/
+        =image_tag "images8/cogster_sample_cash.png"

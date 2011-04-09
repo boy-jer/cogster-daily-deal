@@ -1,0 +1,36 @@
+#content
+  .main.full
+    %h2 My Business
+    %h3 List of Projects (Current and Past)
+    %h3
+      =link_to "Manage Redemptions", merchant_transactions_path(current_user), :title => "View and Manage all of my campaign supporters."
+      %br
+        %a{:href => "/control_panel/user/transactions"}
+          Transaction History
+    %h4
+      %a.right{:href => "/control_panel/campaign/report/61"} View Report
+      =link_to "Edit", edit_merchant_project_path(current_user, @project), :class => "right"
+      Current Project
+    .business.campaign
+      .status
+        .cover{:style => "width:100%"}
+      .clear
+    %dd
+      %dt Status
+      %dd=@project.active?? 'Active' : "Inactive"
+      %dt Project Goal
+      %dd=@project.goal
+      %dt Start Date
+      %dd=@project.created_at.strftime("%m/%d/%Y")
+      %dt End Date
+      %dd=@project.expiration_date.strftime("%m/%d/%Y")
+      %dt Percent Reached
+      %dd 0% ($0)
+      %dt Max Individual Purchase
+      %dd=@project.max_amount
+      %dt Project Type
+      %dd=@project.campaign.description
+      %dt Supporters
+      %dd=@project.supporters.length
+  #rightbar
+    =render "shared/business_navigation"

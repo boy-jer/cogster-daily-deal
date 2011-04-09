@@ -1,0 +1,80 @@
+-content_for :menu do
+  =menu
+#content
+  .main.full
+    %h2 DOUBLE YOUR MONEY!
+    %h3#double_your_money_desc JUST FOLLOW THE FEW SHORT STEPS BELOW:
+    .purchase_select
+      .header
+        .counter 1
+        %h3 Select the Amount "You Pay" to Fund this Project
+      #box_top
+        .left
+          .box_side
+            %h4 YOU PAY
+            =select_tag :investment_amount, options_for_select(purchase_options(@project)), :class => "dropdown text"
+        .equal 
+        .right
+          .box_side
+            %h4 YOU GET
+            #investment_amount_received.amount_received
+              =number_to_currency(@project.min_amount * @project.redemption_total)
+            %div
+              .below_amount_received in Cogster Cash
+        .clear
+      .header
+        .counter 2
+        %h3 How You Double Your Money
+      #box_bottom
+        #purchase_values
+          %table#purchase_values_table
+            %tbody
+              =render :partial => 'return_rate', :collection => @project.redemption_schedule
+              %tr
+                %td#investment_amount_received_lower.non_return_rate_period
+                  %span=number_to_currency(@project.min_amount * @project.redemption_total) 
+                %td.description
+                  %span TOTAL
+        .purchase_description
+          Details:
+          %br
+            The first round of Cogster Cash will appear in your account as soon as your payment is processed below.
+        .clear
+    -if user_signed_in?
+      =render 'form' 
+    -else
+      =login_link
+  #rightbar
+    .business_small
+      #img_area
+        =link_to image_tag(@business.medium_image), @business  
+      #business_small_details
+        %h4
+          =link_to @business.name, @business
+        %p=@project.name 
+        %div
+          %b=number_to_percentage(@project.percent_funded, :precision => 0) 
+          FUNDED of
+          %b=number_to_currency(@project.goal, :precision => 0)
+          GOAL
+      .clear
+    %div
+      #purchase_text
+        %h5 Support the Project:
+        %p 
+          Choose the amount you wish to pay to support this project.  The minimum you can pay is 
+          ="#{number_to_currency(@project.min_amount, :precision => 0)}."
+          The maximum amount appears as the last choice on the dropdown menu.  Maximum payment amounts may differ between merchants.
+        %h5 Double Your Money:
+        %p Notice the amounts that appear in the boxes, based on the amount you select from the dropdown.  When you pay, you will receive Cogster Cash in your account corresponding to the timing and amounts in these boxes.  Timing and amounts may differ between merchants.
+        %h5 Access Your Cogster Cash:
+        %p As soon as you pay by credit card, the first round of your Cogster Cash will appear in your “My Account” page.  Print it out and give it to the Merchant when you go.  You do not have to use all your Cogster Cash in one visit, but be sure to redeem the Cash during the time period listed.
+        %h5 We’ll Notify You When You Have More Cash:
+        %p Cogster will send you email updates to notify you when additional Cogster Cash is ready in your account.  Just sign-in, print it out, and enjoy it during the suggested dates!  Each project you support may imply different redemption dates.  We’ll keep track of it all and email you accordingly.
+        %h5 Paying by Credit Card is Safe:
+        %p Your card is processed using Paypal.  Paypal is a highly trusted e-commerce provider with top-tier security.
+        %h5 Your Payment Goes to the Merchant:
+        %p Cogster collects your payment from Paypal and passes it directly to the merchant. The merchant uses your funds to support its project.
+      .purchase_amount_box
+        Your Credit Card Will Be Charged:
+        #amount_charged_to_user=number_to_currency @project.min_amount

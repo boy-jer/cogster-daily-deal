@@ -1,0 +1,6 @@
+-content_for :menu do
+  =admin_menu
+%h1 Edit Community
+
+= form_for @community, :url => admin_community_path(@community) do |f|
+  = render :partial => 'form', :object => f

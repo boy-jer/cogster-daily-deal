@@ -1,0 +1,8 @@
+.business
+  %h4
+    =link_to business.name, business
+  .business_listing_details
+    =link_to business_image(business), business
+    .description
+      =link_to render(:partial => 'shared/progress_bar', :locals => { :project => business.current_project }), business
+      %p=business.description 

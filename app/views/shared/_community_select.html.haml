@@ -1,0 +1,9 @@
+#current_region_dropdown
+  %div Town:
+  #region_selection
+    %strong#active_region_selected_s
+      =current_community_link(@community)
+    %ul
+      -@communities.each do |community|
+        %li=link_to community.name, community
+      %li=link_to "Don't see your community?", new_community_request_path

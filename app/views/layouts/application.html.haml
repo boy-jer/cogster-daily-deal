@@ -1,0 +1,28 @@
+= render 'layouts/header'
+%body
+  /[if lt IE 7]
+    .error
+    You are currently using an outdated browser that does not support many of the features on Cogster.  Please download a faster, more modern browser like: <a href="http://www.google.com/chrome" target="_blank">Google Chrome</a>, <a href="http://www.getfirefox.com" target="_blank">Mozilla Firefox</a>, or <a href="http://www.opera.com" target="_blank">Opera</a>.
+  #header.clearfix
+    %div
+      %h1
+        =link_to image_tag("logo.png", :alt => "Cogster", 
+                :class => "main_logo"), root_path, :title => "Cogster"
+      #links
+        %ul
+          %li#nav3
+            %a{:href => "#{how_it_works_path}"}
+              %span See
+              %strong How it Works
+          %li#nav2
+            %a{:href => "#{local_path}"}
+              %span It's All
+              %strong About Local
+      =render :partial => 'shared/login'
+  #menu_container
+    #menu
+      =yield :menu
+  #container
+    =yield
+    #sticky_footer
+  = render 'layouts/footer'

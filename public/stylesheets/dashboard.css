@@ -1,0 +1,383 @@
+ul#user-navigation {
+    background: #e7e7e7 url(/images/user_nav_bg.gif) repeat-x bottom;
+    height: 47px;
+    line-height:33px;
+}
+
+ul#user-navigation li {
+    display: inline;
+    text-align: left;
+    border: none;
+    margin: 0 0.2em 0 0.9em;
+    padding: 0 0.5em 0 0.5em;
+    font-size: 0.87em;
+}
+
+#business-navigation ul#user-navigation li {
+	margin-left: 0.3em;
+}
+
+ul#user-navigation a:link {
+    color: #000;
+}
+
+ul#user-navigation a:hover {
+    text-decoration: underline;
+}
+
+ul#user-navigation a:visited {
+    color: #000;
+}
+
+ul#user-navigation li#active {
+    background: #01a1dd;
+    padding-bottom: 9px;
+    padding-top: 9px;
+    border-top: 6px solid #3bb9ff;
+    color: #FFF;
+    font-weight: bold;
+    text-shadow: 0 1px #0e6493;
+    text-align: left;
+}
+
+.main h3 {
+    border: none;
+    background: url(/assets/images/h3_deal.gif) no-repeat left;
+    margin: 0;
+    padding: 0 0 0 26px;
+    line-height: inherit;
+    height: inherit;
+}
+
+
+
+ul#campaigns li, ul#follow li, .main ul.list li {
+    background: #e7e7e7;
+    border: 1px solid #a7a7a7;
+    margin: 0 0 5px 0;
+    padding: 0;
+    width: 96%;
+    padding:2%;
+    clear: both;
+}
+
+ul#campaigns, ul#follow, .main ul.list {
+    margin: 0;
+    padding: 0;
+}
+
+.main ul.list li#header {
+    background: #FFF;
+    color: #000;
+    margin:0;
+    padding: 2%;
+    width: 96%;
+    margin-bottom: 4px;
+    font-weight: bold;
+}
+
+.main ul.list li#header .right {
+    float: right;
+    margin:0;
+    padding:0;
+    color: #000;
+}
+
+.main ul.list li .points {
+    color: #499113;
+    font-weight: bold;
+    float: right;
+}
+
+ul#follow li:after, ul#campaigns li:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+ul#follow li img {
+    float: left;
+    padding: 4px;
+    margin: 0 10px 0 0;
+    background: #fff;
+    border: 1px solid #a7a7a7;
+}
+
+ul#follow li .date {
+    float: right;
+    margin: 0;
+    padding: 0;
+    color: #505050;
+    font-size: 0.7em;
+}
+
+ul#follow li .entry {
+    text-align: left;
+}
+
+ul#follow li .entry a {
+    color: #000;
+}
+
+ul#follow li .entry a:hover {
+    text-decoration: underline;
+}
+
+ul#follow li .entry a:visited {
+    color: #000;
+}
+
+.main h4 .right {
+    float: right;
+    margin-right: 5px;
+    color: #fff;
+}
+
+.main h4 {
+    border: 1px solid #0e6493;
+    float: none;
+    background: #01a1dd;
+    display: block;
+    height: 35px;
+    line-height: 35px;
+    font-size: 1.0em;
+    font-weight: bold;
+    color: #FFF;
+    text-indent: 10px;
+    text-shadow: 0 1px #0e6493;
+}
+
+.main h4 a:hover {
+    text-decoration:underline;
+}
+
+.main table { border-collapse: collapse; width: 100%; }
+
+.main thead th {
+    background: #FFF;
+    color: #000;
+    font-size: 0.9em;
+    text-transform: none;
+    text-indent: 10px;
+    text-align: center;
+
+}
+
+table#business_hours
+{
+    width: 70%;
+    font-size: 12px;
+}
+
+table#business_hours td
+{
+	background: #fff;
+	border: none;
+}
+
+table#business_hours tr
+{
+	background: #fff;
+	border: none;
+}
+
+
+
+
+.main thead tr  {
+    border: 1px solid #a7a7a7;
+}
+
+.main tbody tr {
+    border: 1px solid #a7a7a7;
+    background: #e7e7e7;
+}
+
+.main tbody td {
+    padding: 10px;
+    vertical-align: middle;
+}
+
+.main tbody td.pointc {
+	vertical-align: middle;
+	border: none;
+	text-align:center;
+}
+
+.main tbody td p {
+	text-align: left;
+}
+
+.main table span.title {
+    color: #000;
+    font-weight: bold;
+}
+
+.main .points, .main .date {
+    text-align: right;
+}
+
+.main tbody .points {
+    color: #499113;
+    font-weight: bold;
+}
+
+.main thead .points {
+	text-align: center;
+}
+
+.main tbody .date {
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.main thead .date {
+	text-align:center;
+}
+
+/* need symmetry */
+.half {
+    float: left;
+    margin-right: 0;
+    width: 49%;
+}
+
+.adjust {
+    margin-left: 2%;
+}
+
+p.center {
+	text-align: center;
+}
+
+table
+{
+    background:none;
+}
+
+
+/* are you going to scarborough fair? */
+
+#business div.stats { border-bottom: none; }
+
+select.birthdate {
+    width: auto;
+}
+
+.stat {
+    text-align: center;
+    background: #e7e7e7;
+    border: 1px solid #a7a7a7;
+    display: inline;
+    width: 45.1%;
+    margin-right: 10px;
+    padding: 20px 5px 20px 5px;
+    margin: 10px 4px 0 0;
+    float: left;
+    font-size: 1.4em;
+}
+
+div.stat span {
+    font-size:1.4em;
+    color: #449900;
+    display: block;
+}
+
+ul.list span.value {
+    float: right;
+    font-weight: normal;
+    color: #000;
+}
+
+ul.list {
+    font-weight: bold;
+    text-align: left;
+}
+
+.clear {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+dl#checkout {
+    margin: 0;
+}
+
+dl#checkout dt, dl#checkout dd {
+    font-size: 0.875em;
+    padding: 2%;
+    margin: 0;
+    display: block
+}
+
+dl#checkout dt {
+    background: #e7e7e7;
+    border: 1px solid #a7a7a7;
+    width: 44%;
+    float: left;
+    clear: both;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+dl#checkout dd {
+    width: 47%;
+    margin-left: 49%;
+    vertical-align: top;
+    border: 1px solid #a7a7a7;
+    margin-bottom: 5px;
+}
+
+dl#checkout dd input {
+    margin:0;
+    padding: 0;
+    border: none;
+    text-align: right;
+    width: 85%;
+}
+
+.main input[type="submit"] {
+    font-size: 1.02em;
+    font-family: inherit;
+}
+
+.main .campaign {
+    border:1px solid #000;
+}
+
+.actions {
+    text-align: right;
+}
+
+h4 span.rank {
+    font-size: 0.8em;
+}
+
+hr {
+    clear: both;
+    height: 1px;
+    width: 100%;
+    background: #DDD;
+    margin: 18px 0;
+    border: none;
+}
+
+h5 a {
+	display: block;
+	width: 350px;
+	height: 61px;
+	margin: 0 auto;
+	background: url(/images/buttons/register-today.png) no-repeat;
+	text-indent: -9999px;
+}
+
+.landing {
+	width: 100%;
+	background: #fff;
+}
+

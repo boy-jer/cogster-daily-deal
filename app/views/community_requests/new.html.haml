@@ -1,0 +1,28 @@
+#content
+  .main.narrow
+    %h2 If you want Cogster in your community, contact us!
+    %hr/
+    %h2 Contact Information
+    Phone: (814) 861 - 5351
+    %BR
+      Email:
+      =mail_to "support@cogster.com"
+      %hr/
+      =form_for @community_request do |f|
+        -unless @community_request.errors.empty?
+          %ul
+            -@community_request.errors.full_messages.each do |msg|
+              %li=msg
+        .field
+          =f.label :email, :class => 'bodyNoBkgdRed'
+          =f.text_field :email, :class => "title text"
+        .field
+          =f.label :zip_code, :class => 'bodyNoBkgdRed'
+          =f.text_field :zip_code, :class => "title text"
+        .field
+          =f.label :comment, "Tell us a little bit about your community"
+          =f.text_area :comment
+        .field
+          =recaptcha_tags
+        .field
+          =submit_tag "Send Request"

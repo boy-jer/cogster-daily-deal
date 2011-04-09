@@ -1,0 +1,17 @@
+#footer
+  %div
+    #links
+      %ul
+        %li.no_border
+          =link_to "FAQ", faq_path, :title => "Frequently Asked Questions"
+        %li
+          =link_to "Terms of Use", terms_path, :title => "Terms of Use"
+        %li
+          =link_to "Privacy Policy", privacy_path, :title => "Privacy Policy"
+        %li
+          =link_to "Contact", contact_path, :title => "Contact"
+    #copyright &copy; 2011 Cogster Inc.
+    
+/[if lt IE 7 ]
+/  =javascript_include_tag "/html5-boilerplate/dd_belatedpng"
+/  %script DD_belatedPNG.fix('img, .png_bg')

@@ -1,0 +1,33 @@
+-social ||= nil
+.progress
+  .progress_bar_background
+    .progress_bar{:style => "width:#{project.percent_funded}%;"}
+  .progress_bar_score
+    %strong="#{project.percent_funded}%"
+    %br/
+    %span FUNDED
+  -if social
+    .progress_share
+      %span Share This:
+      =link_to image_tag('buttons/share-facebook.png', :alt => "Share this business on Facebook"), '/business/share/facebook/56', :title => "Share this Business on Facebook", :class => 'new_window'
+      =link_to image_tag('buttons/share-twitter.png', :alt => "Share this business on Twitter"), '/business/share/twitter/56', :title => "Share this Business on Twitter", :class => 'new_window'
+  -else
+    .clear
+.progress_data_container
+  .progress_data
+    %strong=project.supporters.count 
+    = succeed "COGS" do
+      %br/
+  .progress_data
+    %strong=number_to_currency(project.amount_funded, :precision => 0)
+    = succeed "FUNDED" do
+      %br/
+  .progress_data
+    %strong=number_to_currency(project.goal, :precision => 0)
+    = succeed "TARGET" do
+      %br/
+    GOAL
+  -if project.percent_funded < 100 && social != true
+    .progress_data
+      %strong=link_to "Fund This Project", new_business_purchase_path(project.business)
+  .clear

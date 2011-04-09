@@ -1,0 +1,18 @@
+-content_for :menu do
+  =admin_menu
+#content
+  .main.full
+    %h1 Communities
+    %table
+      %thead
+        %tr
+          %th Name
+          %th Businesses (Active)
+          %th Cogsters
+          %th{ :colspan => 2 }
+      %tfoot
+        %tr
+          %th{ :colspan => 4 }=link_to "Add New", new_admin_community_path
+      %tbody
+        = render @communities
+

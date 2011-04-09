@@ -1,0 +1,6 @@
+%tr
+  %td{ :class => "return_rate_period", :id => ['return_rate_', return_rate_counter ]}
+    =redemption_amount(@project, return_rate_counter)
+  %td.description
+    in Cogster Cash from 
+    =redemption_schedule(@project, return_rate_counter)

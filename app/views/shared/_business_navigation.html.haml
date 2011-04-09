@@ -1,0 +1,8 @@
+#business-navigation
+  %ul#user-navigation
+    %li
+      =link_to_unless_current "My Business", account_path, :title => "Click to see an overview of the business"
+    %li
+      =link_to_unless_current "Raise Money Here", merchant_projects_path(current_user), :title => "Click here to run targeted fundraising campaigns in which Cogsters pledge their patronage in order to improve specific aspects of your business"
+    %li
+      =link_to_unless_current "Tell Cogsters About My Business", edit_merchant_path(current_user), :title => "Let Cogster users know about you - anything from your hours to your logo to links to your website or social networks like Facebook"

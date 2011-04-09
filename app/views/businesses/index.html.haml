@@ -1,0 +1,18 @@
+-content_for :menu do
+  =admin_menu
+#content
+  .main.full
+    #business_region_list
+      %h2.seo_hide The Buzz In Town. Discover great local businesses below
+      #business_controls
+        #business_sort
+          #sort_by_text Sort By:
+          #business_sort_selection{:style => "background: url(/images/images8/business_sort_arrow_left.png) no-repeat scroll 95% 50% transparent;"}
+            %strong{:style => "color: rgb(83, 83, 91);"} Popularity
+            %ul{:style => "display: none;"}
+              %li=link_to "Name (A-Z)", businesses_path(:sort => :name)
+              %li=link_to "Newest", businesses_path(:sort => :date)
+        .clear
+      #businesses
+          =render :partial => "business", :collection => @businesses
+  #rightbar

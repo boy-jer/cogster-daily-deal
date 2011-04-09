@@ -1,0 +1,9 @@
+#content
+  .main.narrow
+    %div
+      %h2 Sign Up for Cogster and join your community.
+      %p 
+        Please take a minute to fill out the information below. Already A User? 
+        = link_to "Click here to login.", "/login"
+      %p
+        = render 'devise/registrations/form'

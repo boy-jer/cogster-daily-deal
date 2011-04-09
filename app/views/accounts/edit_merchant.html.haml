@@ -1,0 +1,195 @@
+#content
+  .main.full
+    =render "shared/business_navigation"
+    %h3 Edit Profile
+    %h4 Edit Business/Group Profile
+    %p Provide some basic information about your business/group here. You can edit your hours and add links to your website and other popular social networks as well.
+    %p This information will be displayed publicly on the profile page of your business.  Provide any information you would like Cogster supporters (or potential supporters) to see!
+    .span-18.prepend-1
+      =form_for @merchant do |f|
+        %fieldset
+          .field
+            =f.label :name
+            =f.text_field :name, :class => "text"
+          .field
+            =f.label :business_type, "Business Type"
+            %select{:name => "business_type"}
+              %option{:value => ""} Please Select
+              %option{:selected => "selected", :value => "Bars & Restaurants"} Food/Bars
+              %option{:value => "Health and Fitness"} Health/Fitness
+              %option{:value => "Services"} Services
+              %option{:value => "Clubs and Non-Profits"} Clubs
+          .field
+            =f.label :region_id, "Preferred Region"
+            %select#region_id{:name => "region_id"}
+              %option{:value => "1"} Happy Valley
+              %option{:selected => "selected", :value => "3"} Susq Valley
+          .field
+            =f.label :about, "About the Business"
+            %textarea{:cols => "30", :name => "about", :onKeyDown => "check__about_length(this);", :onKeyPress => "check__about_length(this);", :rows => "5"}
+              :preserve
+                
+                
+                            	This is only a test.  This is not the real BJs.  BJs place for Ribs is a great local restaurant located on Market Street in Selinsgrove, PA.                        %em Description limited to 300 characters.
+          .field
+            %label{:for => "about"} Our Story:
+            %textarea{:cols => "30", :name => "story", :rows => "5"}
+          .field
+            / To Do:  Change from loop to static
+            %label{:for => "business_hours"} Business Hours
+            %table#business_hours
+              %tr
+                %td Day
+                %td Opening Hour
+                %td Closing Hour
+                %td Closed
+                %tr
+                  %td Sunday
+                  %td
+                    %select{:style => "width:100px"}
+                      %option 12 a.m.
+                      %option 1 a.m.
+                      %option 12 p.m.
+                      %option 10 p.m.
+                  %td
+                    %select{:style => "width:100px"}
+                      %option 12 a.m.
+                      %option 1 p.m.
+                      %option 10 p.m.
+                  %td
+                    %input{:type => "checkbox"}/
+                  %tr
+                    %td Monday
+                    %td
+                      %select{:style => "width:100px"}
+                        %option 12 a.m.
+                        %option 1 a.m.
+                        %option 12 p.m.
+                        %option 10 p.m.
+                    %td
+                      %select{:style => "width:100px"}
+                        %option 12 a.m.
+                        %option 10 p.m.
+                    %td
+                      %input{:type => "checkbox"}/
+                    %tr
+                      %td Tuesday
+                      %td
+                        %select{:style => "width:100px"}
+                          %option 12 a.m.
+                          %option 1 a.m.
+                          %option 12 p.m.
+                          %option 10 p.m.
+                      %td
+                        %select{:style => "width:100px"}
+                          %option 12 a.m.
+                          %option 10 p.m.
+                      %td
+                        %input{:type => "checkbox"}/
+                      %tr
+                        %td Wednesday
+                        %td
+                          %select{:style => "width:100px"}
+                            %option 12 a.m.
+                            %option 12 p.m.
+                            %option 10 p.m.
+                        %td
+                          %select{:style => "width:100px"}
+                            %option 12 a.m.
+                            %option 10 p.m.
+                        %td
+                          %input{:type => "checkbox"}/
+                        %tr
+                          %td Thursday
+                          %td
+                            %select{:style => "width:100px"}
+                              %option 12 a.m.
+                              %option 12 p.m.
+                              %option 10 p.m.
+                          %td
+                            %select{:style => "width:100px"}
+                              %option 12 a.m.
+                              %option 10 p.m.
+                          %td
+                            %input{:type => "checkbox"}/
+                          %tr
+                            %td Friday
+                            %td
+                              %select{:style => "width:100px"}
+                                %option 12 a.m.
+                                %option 1 a.m.
+                                %option 12 p.m.
+                                %option 10 p.m.
+                            %td
+                              %select{:style => "width:100px"}
+                                %option 12 a.m.
+                                %option 10 p.m.
+                            %td
+                              %input{:type => "checkbox"}/
+                            %tr
+                              %td Saturday
+                              %td
+                                %select{:style => "width:100px"}
+                                  %option 12 a.m.
+                                  %option 1 a.m.
+                                  %option 12 p.m.
+                                  %option 10 p.m.
+                              %td
+                                %select{:style => "width:100px"}
+                                  %option 12 a.m.
+                                  %option 10 p.m.
+                              %td
+                                %input{:type => "checkbox"}/
+          .field
+            %label{:for => "twitter"} Member Since
+            %div
+              03/23/2011
+            .clear
+        %fieldset
+          %h4 Website, Facebook & Twitter Links:
+          %p.red Please copy & paste the respective URLs in the fields below. (use this format: 'http://www.example.com')
+          .field
+            %label{:for => "url"} Website
+            %input#url.text{:name => "url", :type => "text", :value => ""}
+          .clear
+          .field
+            %label{:for => "facebook"} Facebook
+            %input#facebook.text{:name => "facebook", :type => "text", :value => ""}
+          .field
+            %label{:for => "twitter"} Twitter
+            %input#twitter.text{:name => "twitter", :type => "text", :value => ""}
+          .field
+            %label{:for => "youtube"} Youtube
+            %input#twitter.text{:name => "youtube", :type => "text", :value => ""}
+          .field
+            %label{:for => "youtube2"} Youtube 2
+            %input#twitter.text{:name => "youtube2", :type => "text", :value => ""}
+        %fieldset
+          %h4 Contact Information
+          %p Update your physical address and phone number information here.
+          .field
+            %label.required{:for => "address_1"} Address 1
+            %input#address_1.text{:name => "address_1", :type => "text", :value => "21 Market St"}/
+          .field
+            %label.required{:for => "address_2"} Address 2
+            %input#address_2.text{:name => "address_2", :type => "text", :value => ""}/
+          .field
+            %label.required{:for => "city"} City
+            %input#city.text{:name => "city", :type => "text", :value => "Selinsgrove"}/
+          .field
+            %label.required{:for => "state"} State
+            %select{:name => "state"}
+              %option{:value => ""}
+              %option{:value => "AL"} AL
+          .field
+            %label.required{:for => "zip"} Zip
+            %input#zip.text{:name => "zip", :type => "text", :value => "17870"}/
+          .field
+            %label.required{:for => "country"} Country
+            %input#country.text{:name => "country", :type => "text", :value => "USA"}/
+          .field
+            %label.required{:for => "phone"} Phone (###-###-####)
+            %input#phone.text{:name => "phone", :type => "text", :value => "570-123-4567"}/
+        %div
+          =f.submit "Update"
+  #rightbar

@@ -1,0 +1,6 @@
+#content
+  .main.full
+    %h3 Add a New Project Option
+    =form_for @project_option, :url => admin_project_options_path do |f|
+      = render :partial => 'form', :object => f
+  #rightbar
