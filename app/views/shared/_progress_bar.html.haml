@@ -27,7 +27,7 @@
     = succeed "TARGET" do
       %br/
     GOAL
-  -if project.percent_funded < 100 && social != true
+  -if project.percent_funded < 100 && social != true && false
     .progress_data
       %strong=link_to "Fund This Project", new_business_purchase_path(project.business)
   .clear

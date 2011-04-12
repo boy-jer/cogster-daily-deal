@@ -1,0 +1,4 @@
+.field.split
+  = f.label :community_id, "Community:", :class => "required"
+  = f.select :community_id, options_for_select(@options)
+.field

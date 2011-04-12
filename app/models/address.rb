@@ -54,4 +54,12 @@ class Address < ActiveRecord::Base
   belongs_to :addressable, :polymorphic => true
   validates_presence_of :line_1, :city
   validates_presence_of :state, :zip, :if => Proc.new{|a| a.country == 'United States' }
+
+  def last_line
+    if state
+      "#{city}, #{state} #{zip}"
+    else
+      city
+    end
+  end
 end

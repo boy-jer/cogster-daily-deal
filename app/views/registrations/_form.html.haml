@@ -1,26 +1,13 @@
-= form_for @user, :url => user_registration_path do |f|
+= form_for @user, :url => register_path do |f|
+  -if @user.errors.any?
+    %ul
+      -@user.errors.full_messages.each do |msg|
+        %li=msg
   %fieldset
     .field.split
-    .field
-      = f.label :first_name, "First Name", :class => "required"
-      = f.text_field :first_name,  :class => "text"
-    .field
-      = f.label :last_name, "Last Name", :class => "required"
-      = f.text_field :last_name, :class => "text"
-    .field
-      = f.label :email, :class => "required"
-      = f.email_field :email, :class => "text"
-    .field.split
-      = f.label :password, :class => "required"
-      = f.password_field :password, :class => "text"
-      %span (6-25 characters)
-    .field
-      = f.label :password_confirmation, "Confirm Password", :class => "required"
-      = f.password_field :password_confirmation, :class => "text"
-    .field.split
-      = f.label :community_id, "Community:", :class => "required"
-      = f.select :community_id, options_for_select(@options)
-    .field
+    = render :partial => 'shared/user_form', :locals => { :f => f }
+    = render :partial => 'shared/user_password_form', :locals => { :f => f }
+    = render :partial => 'shared/user_community_form', :locals => { :f => f}
       = f.label :gender
       .gender
         = f.radio_button :gender, "m"
@@ -28,10 +15,14 @@
       .gender
         = f.radio_button :gender, "f"
         = f.label :gender_female, "Female", :class => "male_female_label"
-  %h4
-  .field
-    %p#registration_agreement
-      =f.check_box :terms
-      By clicking "Sign Up" I hereby agree to the
+    .field
+      -if params[:business]
+        ='business'
+      -else
+        %h3=link_to "Are You a Business Owner?", :business => true
+    .field
+      =f.check_box :terms, :class => "text"
+      I hereby agree to the
       =link_to "Terms and Conditions.", terms_path, :id => "terms_link"
-    =submit_tag "Sign Up", :class => "submit", :id => "submit"
+    .field
+      =submit_tag "Sign Up", :class => "submit", :id => "submit"

@@ -1,0 +1,22 @@
+=f.fields_for :address_attributes, addressable do |a|
+  .field
+    =a.label :line_1, "Address", :class => "required"
+    =a.text_field :line_1, :class => "text"
+  .field
+    =a.label :line_2, "Address (line 2)", :class => "required"
+    =a.text_field :line_2, :class => "text"
+  .field
+    =a.label :city, nil, :class => "required"
+    =a.text_field :city, :class => "text"
+  .field
+    =a.label :state, nil, :class => "required"
+    =a.select :state, Address::STATES, :include_blank => true
+  .field
+    =a.label :zip, "Zip Code"
+    =a.text_field :zip, :class => "text"
+  .field
+    =a.label :country, nil, :class => "required"
+    =a.country_select :country, ["United States"]
+  .field
+    =a.label :phone, "Phone (###-###-####)", :class => "required"
+    =a.text_field :phone, :class => "text"

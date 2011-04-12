@@ -1,3 +1,4 @@
-%tr
+%tr{ :id => "interval_#{interval_counter}" }
   %td=select_tag "project_option[redemption_schedule_duration][]", options_for_select((1..90).to_a, interval[:duration].to_i)
   %td=select_tag "project_option[redemption_schedule_return][]", options_for_select((1..100).to_a, interval[:percentage].to_i)
+  %td=link_to "Remove", :intervals => fewer_intervals

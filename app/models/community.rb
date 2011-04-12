@@ -18,6 +18,14 @@ class Community < ActiveRecord::Base
     end
   end
 
+  def swag_counter
+    510000 - businesses.map(&:projects).flatten.map(&:purchases).flatten.sum(&:amount).to_i
+  end
+
+  def swag_rank(user)
+    users.sort_by(&:earnings).reverse.index(user) / users.count
+  end
+
   def to_param
     "#{id}-#{handle}"
   end

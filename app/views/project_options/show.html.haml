@@ -1,4 +1,18 @@
+-content_for :menu do
+  =admin_menu
 #content
-  %h2
-    Placeholder page for
-    =@project_option.description
+  .main.narrow
+    %h2
+      Active Projects for
+      =@project_option.description
+    %table
+      %thead
+        %tr
+          %th Business
+          %th Project
+          %th Start Date
+          %th End Date
+          %th Goal
+          %th % Funded
+      %tbody
+        =render :partial => 'project', :collection => @project_option.projects

@@ -1,0 +1,31 @@
+#content
+  .main.full
+    %h2 My Cogster
+    %h3 Edit Profile
+    =form_for current_user, :url => edit_account_path do |f|
+      %h4.split General Information
+      %p Here you can edit your email address, password and community.
+      .field
+        =f.label :email, nil, :class => "required"
+        =f.text_field :email, :class => "text"
+      .field
+        =f.label :password, nil, :class => "required"
+        =f.password_field :password, :class => "text"
+      .field
+        =f.label :first_name, "First Name", :class => "required"
+        =f.text_field :first_name, :class => "text"
+      .field
+        =f.label :last_name, "Last Name", :class => "required"
+        =f.text_field :last_name, :class => "text"
+      .field
+        =f.label :community_id, "Preferred Community", :class => "required"
+        =f.select :community_id, options_for_select(@options)
+      .clear
+      %br
+        %h4.split Contact Information
+        %p Store your information below for future purchases.
+        =render :partial => 'shared/address_form', :locals => { :f => f, :addressable => current_user.address }
+        .clear
+        %br
+          .field.split
+            =f.submit "Update", :class => "submit right"

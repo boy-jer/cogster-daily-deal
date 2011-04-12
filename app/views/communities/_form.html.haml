@@ -1,3 +1,4 @@
+=error_messages_for @community
 %fieldset
   .field
     =form.label :name, nil, :class => "required"
@@ -11,4 +12,5 @@
   .field
     =form.label :active, :class => "required"
     =form.check_box :active
-  =submit_tag "#{@community.persisted?? 'Edit' : 'Add'} Community", :class => "submit", :id => "submit"
+  .field
+    =submit_tag "#{@community.persisted?? 'Edit' : 'Add'} Community", :class => "submit", :id => "submit"

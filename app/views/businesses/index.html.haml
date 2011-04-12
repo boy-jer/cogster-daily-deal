@@ -14,5 +14,5 @@
               %li=link_to "Newest", businesses_path(:sort => :date)
         .clear
       #businesses
-          =render :partial => "business", :collection => @businesses
+        =render :partial => "shared/business", :collection => @businesses
   #rightbar

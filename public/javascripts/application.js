@@ -32,63 +32,84 @@ $(document).ready(function() {
     $('#region_listing ul li h2').css('background', 'transparent url("/images/region-arrow_closed.png") no-repeat 290px 6px');
   });
     
-    $('#region_selection').mouseover(function(e) {
-      $(this).children('ul').css('display', 'block');
-      $(this).children('strong').css('background', '#1a1b1b url(/images/images8/current_region_dropdown_arrow_down.png) no-repeat 95% center !important');
-    });
-    $('#region_selection').mouseout(function(e) {
-      $(this).children('ul').css('display', 'none');
-      $(this).children('strong').css('background', 'transparent url(/assets/images/images8/current_region_dropdown_arrow_left.png) no-repeat 95% center !important');
-      $(this).children('strong a').css('color', '#FD9C00');
-    });
-    $('.datepicker').datepicker({
-      showOn: "button",
-      buttonImage: "/images/calendar.gif",
-      buttonImageOnly: true
-    })
-    $('#add-new-increment').click(function(e) {
-      e.preventDefault();
-      var rows = $(this).closest('table').find('tbody tr');
-      var row = rows.last().clone();
-      var length = rows.length;
-      var replacement = $('<tr />').append(row.html().replace(/\[\d\]/, '[' + length + ']'));
-      $(this).closest('table').find('tbody').append(replacement);
-    });
-    $('#business_sort_selection').mouseover(function(e) {
-      $(this).css('background', '#1A1B1B url(/images/images8/business_sort_arrow_down.png) no-repeat 95% 10%');
-      $(this).children('ul').css('display', 'block');
-      $(this).children('strong').css('color', 'white');
-    });
-    $('#business_sort_selection').mouseout(function(e) {
-      $(this).css('background', 'transparent url(/images/images8/business_sort_arrow_left.png) no-repeat 95% 50%');
-      $(this).children('ul').css('display', 'none');
-      $(this).children('strong').css('color', '#53535B');
-    }); 
-        
-    if($('.return_rate_period')) { 
-      var redemption_ratios = [];
-      var redemption_amounts = $('.return_rate_period')
-      var purchase = $('#investment_amount').val();
-      redemption_amounts.each(function(index) {
-        var num = $(redemption_amounts[index]).html().replace(/[^0-9]/g,'');
-        redemption_ratios.push(parseInt(num) / purchase)
-      })
-      var redemption_total = redemption_ratios.reduce(function(a, b) {
-        return a + b;}, 0);
-      console.log(redemption_total);
-    }
-    $('#investment_amount').change(function() {
-      var amount = $(this).val();
-      var total_return = amount * redemption_total / 100;
-      $('#investment_amount_received').html('$' + total_return + '.00');
-      $('#investment_amount_received_lower').html('<span>$' + total_return + '.00</span>');
-      $('#amount_charged_to_user').html('$' + parseInt(amount) + '.00');
+  $('#region_selection').mouseover(function(e) {
+    $(this).children('ul').css('display', 'block');
+    $(this).children('strong').css('background', '#1a1b1b url(/images/images8/current_region_dropdown_arrow_down.png) no-repeat 95% center !important');
+  });
+
+  $('#region_selection').mouseout(function(e) {
+    $(this).children('ul').css('display', 'none');
+    $(this).children('strong').css('background', 'transparent url(/assets/images/images8/current_region_dropdown_arrow_left.png) no-repeat 95% center !important');
+    $(this).children('strong a').css('color', '#FD9C00');
+  });
+
+  $('.datepicker').datepicker({
+    showOn: "button",
+    buttonImage: "/images/calendar.gif",
+    buttonImageOnly: true
+  })
   
-      $('.return_rate_period').each(function(index) {
-        var amt = total_return * redemption_ratios[index] / redemption_total; 
-        $(this).html('$' + amt + '.00');
-      });
+  $('#add-new-increment').click(function(e) {
+    e.preventDefault();
+    var rows = $(this).closest('table').find('tbody tr');
+    var row = rows.last().clone();
+    var length = rows.length;
+    var replacement = $('<tr />').append(row.html().replace(/\[\d\]/, '[' + length + ']'));
+    $(this).closest('table').find('tbody').append(replacement);
+  });
+
+  $('#business_sort_selection').mouseover(function(e) {
+    $(this).css('background', '#1A1B1B url(/images/images8/business_sort_arrow_down.png) no-repeat 95% 10%');
+    $(this).children('ul').css('display', 'block');
+    $(this).children('strong').css('color', 'white');
+  });
+
+  $('#business_sort_selection').mouseout(function(e) {
+    $(this).css('background', 'transparent url(/images/images8/business_sort_arrow_left.png) no-repeat 95% 50%');
+    $(this).children('ul').css('display', 'none');
+    $(this).children('strong').css('color', '#53535B');
+  }); 
+        
+  if($('.return_rate_period')) { 
+    var redemption_ratios = [];
+    var redemption_amounts = $('.return_rate_period')
+    var purchase = $('#purchase_amount').val();
+    redemption_amounts.each(function(index) {
+      var num = $(redemption_amounts[index]).html().replace(/[^0-9]/g,'');
+      redemption_ratios.push(parseInt(num) / purchase)
+    })
+    var redemption_total = redemption_ratios.reduce(function(a, b) {
+      return a + b;}, 0);
+    console.log(redemption_total);
+  }
+
+  $('#purchase_amount').change(function() {
+    var amount = $(this).val();
+    var total_return = amount * redemption_total / 100;
+    $('#investment_amount_received').html('$' + total_return + '.00');
+    $('#investment_amount_received_lower').html('<span>$' + total_return + '.00</span>');
+    $('#amount_charged_to_user').html('$' + parseInt(amount) + '.00');
+
+    $('.return_rate_period').each(function(index) {
+      var amt = total_return * redemption_ratios[index] / redemption_total; 
+      $(this).html('$' + amt + '.00');
     });
+  });
+
+  $('#print_cash').click(function() {
+    window.print();
+    $('button_1').css('display', 'none');
+    $('print_cash').css('display', 'none');
+  });
+
+  $('#user_role').change(function() {
+    if($(this).val() == 'merchant') {
+      $('#new_business').show();
+    }
+    else {
+      $('#new_business').hide();
+    }
+  });
 });
 if (!Array.prototype.reduce)
 {

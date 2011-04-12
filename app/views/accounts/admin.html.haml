@@ -1,0 +1,7 @@
+-content_for :menu do
+  =admin_menu
+#content
+  .main.narrow
+    %p="#{User.count} users"
+    %p="#{Community.count} communities"
+    %p="#{Business.count} businesses (#{@inactives.length} inactive)"

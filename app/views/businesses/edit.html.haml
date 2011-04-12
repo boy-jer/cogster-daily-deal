@@ -1,2 +1,9 @@
 -content_for :menu do
   =admin_menu
+#content
+  .main.narrow
+    %h2 Edit Business
+    =form_for @business, :url => admin_business_path(@business) do |b|
+      =render :partial => 'shared/business_form', :locals => { :b => b }
+      .field
+        =submit_tag "Update", :class => "submit", :id => "submit"

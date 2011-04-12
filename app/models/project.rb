@@ -17,7 +17,7 @@ class Project < ActiveRecord::Base
   end
 
   def percent_funded
-    goal == 0 ? 0 : amount_funded / goal
+    goal == 0 ? 0 : 100 * amount_funded / goal
   end
 
   def redemption_percentage(period)

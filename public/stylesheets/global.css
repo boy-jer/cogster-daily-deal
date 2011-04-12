@@ -71,17 +71,13 @@ body table{
 body th{
   font-weight:bold}
 body thead th{
-  background:#c3d9ff}
+  background:#ffc363}
 body th,body td,body caption{
   padding:4px 10px 4px 5px}
 body tr.even td{
-  background:#e5ecf9}
-body tfoot{
-  font-style:italic}
+  background:#e4e4e4}
 body caption{
   background:#eeeeee}
-body .quiet{
-  color:#666666}
 body .loud{
   color:#111111}
 body .clear{
@@ -100,10 +96,6 @@ body .last{
   margin-right:0;padding-right:0}
 body .top{
   margin-top:0;padding-top:0}
-body .bottom{
-  margin-bottom:0;padding-bottom:0}
-body .showgrid{
-  background:url('/images/grid.png')}
 body .error{
   padding:0.8em;margin-bottom:1em;border:2px solid #dddddd;background:#fbe3e4;color:#8a1f11;border-color:#fbc2c4}
 body .error a{
@@ -112,18 +104,8 @@ body .notice{
   padding:0.8em;margin-bottom:1em;border:2px solid #dddddd;background:#fff6bf;color:#514721;border-color:#ffd324}
 body .notice a{
   color:#514721}
-body .success{
-  padding:0.8em;margin-bottom:1em;border:2px solid #dddddd;background:#e6efc2;color:#264409;border-color:#c6d880}
-body .success a{
-  color:#264409}
 body .hide{
   display:none}
-body .highlight{
-  background:yellow}
-body .added{
-  background:#006600;color:white}
-body .removed{
-  background:#990000;color:white}
 html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{
   margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}
 abbr[title],dfn[title]{
@@ -166,8 +148,6 @@ hr{
   display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}
 ins{
   background-color:#ff9;color:#000;text-decoration:none}
-mark{
-  background-color:#ff9;color:#000;font-style:italic;font-weight:bold}
 nav ul{
   list-style:none}
 input,select{
@@ -184,12 +164,10 @@ pre,code,kbd,samp{
   font-family:monospace,sans-serif}
 body,select,input,textarea{
   color:#444;font:12px normal "Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
-h1,h2,h3,h4,h5,h6{
-  font-weight:bold;margin:0}
 h1 i,h2 i,h3 i,h4 i,h5 i,h6 i{
   color:#000}
 h3{
-  margin-bottom:3px;margin-top:3px}
+  margin-top:3px}
 h6{
   border-bottom:1px dotted #ccc;width:100%;clear:both;margin-top:6px}
 span{
@@ -278,8 +256,6 @@ input,select,textarea{
   margin:0}
 input:invalid,textarea:invalid{
   border-radius:1px;-moz-box-shadow:0px 0px 5px red;-webkit-box-shadow:0px 0px 5px red;box-shadow:0px 0px 5px red}
-.no-boxshadow input:invalid,.no-boxshadow textarea:invalid{
-  background-color:#f0dddd}
 .full{
   padding-left:0;width:630px;float:left;margin-right:50px;margin-top:20px}
 #purchase_values table{
@@ -296,26 +272,20 @@ input:invalid,textarea:invalid{
   color:green}
 #purchases_table .expired{
   color:#666666}
-#purchases_table .column_names{
-  height:24px !important;line-height:24px !important;font-size:12px !important;display:table-row !important;width:528px;color:#fff;background-color:#111111;text-shadow:#000 1px 1px 1px;background-image:-webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #666666), color-stop(100%, #111111));background-image:-moz-linear-gradient(top, #666666 0%, #111111 100%);background-image:linear-gradient(top, #666666 0%, #111111 100%);-moz-border-radius-topleft:10px;-webkit-border-top-left-radius:10px;-o-border-top-left-radius:10px;-ms-border-top-left-radius:10px;-khtml-border-top-left-radius:10px;border-top-left-radius:10px;-moz-border-radius-topright:10px;-webkit-border-top-right-radius:10px;-o-border-top-right-radius:10px;-ms-border-top-right-radius:10px;-khtml-border-top-right-radius:10px;border-top-right-radius:10px}
-#purchases_table .column_names:hover{
+#purchases_table .column_names, #purchases_table .column_names th {
+  height:24px !important;line-height:24px !important;font-size:12px !important;width:528px;color:#fff;background-color:#111111;text-shadow:#000 1px 1px 1px;background-image:-webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #666666), color-stop(100%, #111111));background-image:-moz-linear-gradient(top, #666666 0%, #111111 100%);background-image:linear-gradient(top, #666666 0%, #111111 100%);}
+#purchases_table tr.column_names{
+  -moz-border-radius-topleft:10px;-webkit-border-top-left-radius:10px;-o-border-top-left-radius:10px;-ms-border-top-left-radius:10px;-khtml-border-top-left-radius:10px;border-top-left-radius:10px;-moz-border-radius-topright:10px;-webkit-border-top-right-radius:10px;-o-border-top-right-radius:10px;-ms-border-top-right-radius:10px;-khtml-border-top-right-radius:10px;border-top-right-radius:10px}
+#purchases_table .column_names th:hover{
   background-color:#111111;color:#fff;text-shadow:#000 1px 1px 1px}
 #purchases_table .row{
   height:24px !important;line-height:24px !important;font-size:12px !important;display:table-row !important;width:528px}
 #purchases_table .row:last-child{
   background-color:#fff;-moz-border-radius-bottomleft:10px;-webkit-border-bottom-left-radius:10px;-o-border-bottom-left-radius:10px;-ms-border-bottom-left-radius:10px;-khtml-border-bottom-left-radius:10px;border-bottom-left-radius:10px;-moz-border-radius-bottomright:10px;-webkit-border-bottom-right-radius:10px;-o-border-bottom-right-radius:10px;-ms-border-bottom-right-radius:10px;-khtml-border-bottom-right-radius:10px;border-bottom-right-radius:10px}
-#purchases_table .row:nth-child(odd){
+#purchases_table .even td{
   background-color:#fff}
-#purchases_table .row:nth-child(even){
+#purchases_table .odd td{
   background-color:#eee}
-#purchases_table .cash{
-  display:table-cell !important;width:100px}
-#purchases_table .balance{
-  display:table-cell !important;width:100px}
-#purchases_table .period{
-  display:table-cell !important;width:228px}
-#purchases_table .cash_status{
-  display:table-cell !important;width:100px}
 .narrow{
   margin-top:20px}
 .narrow img{
@@ -454,14 +424,6 @@ h1#title{
   overflow-x:hidden}
 h1#title a{
   height:60px;display:block}
-#ad-frame{
-  display:inline;float:left;margin-right:0;width:340px;display:inline;float:right;display:block;height:120px}
-* html #ad-frame{
-  overflow-x:hidden}
-#ad-frame a#frame{
-  background:transparent url("/images/frame.png") no-repeat top left;display:block;height:60px;width:350px;z-index:2;position:absolute;top:0px;right:0px}
-#old_campaigns_link{
-  clear:both;margin-top:30px}
 .seo_hide{
   text-indent:-9999px}
 #business_region_list h2,#business_purchase_list h2{
@@ -591,11 +553,11 @@ div.text_right{
 #region_point_counter center{
   display:block;margin-bottom:15px}
 #region_point_counter h3{
-  background:url("/images/swag-o-meter.jpg") no-repeat;width:245px;height:26px;margin:20px 0 15px 0;padding:0;border:none}
+  background:url("/images/my_swag.jpg") no-repeat;width:245px;height:26px;margin:20px 0 15px 0;padding:0;border:none}
 #region_point_counter p{
   margin:10px auto 0px auto;color:#ccc;font-size:14px;text-align:center}
 #region_point_counter span{
-  color:#fd9c00;font-weight:bold;font-size:25px;margin-right:3px;border:1px solid gray;padding:0px 3px;-moz-border-radius:6px;-webkit-border-radius:6px;-o-border-radius:6px;-ms-border-radius:6px;-khtml-border-radius:6px;border-radius:6px}
+  color:#fd9c00;font-weight:bold;font-size:25px;margin-right:3px;padding:0px 3px;-moz-border-radius:6px;-webkit-border-radius:6px;-o-border-radius:6px;-ms-border-radius:6px;-khtml-border-radius:6px;border-radius:6px}
 #region_point_counter #counter div{
   background:url("/images/orange_ticker.jpg") no-repeat;height:45px;line-height:45px;float:left;color:#fff;font-size:38px;font-weight:bold;width:35px;text-align:center;margin-right:1px}
 #region_point_counter #counter div.clear{
@@ -629,17 +591,13 @@ a.hidden_link{
 a.hidden_link.hover{
   color:#000}
 a.hidden_link small{
-  color:#22242a;font-size:12px;font-weight:normal}
+  font-size:12px}
 a.hidden_link strong{
   font-size:13px;font-weight:normal}
-a.hidden_link li{
-  font-weight:normal}
 a.hidden_link span{
   color:#fff}
 #content{
   display:block;width:950px;margin:0 auto;overflow:hidden;*zoom:1}
-#map{
-  width:100%;height:250px}
 #rightbar{
   float:left;width:270px;text-align:left;margin-top:10px}
 #rightbar h3{
@@ -662,26 +620,10 @@ a.hidden_link span{
   padding-left:5px;display:inline;float:left;margin-right:0;width:130px;padding-right:5px;padding-top:2px;padding-bottom:1px;background:#fff;border:1px solid #ccc;-moz-box-shadow:3px #999 1px 5px 0;-webkit-box-shadow:3px #999 1px 5px 0;-o-box-shadow:3px #999 1px 5px 0;box-shadow:3px #999 1px 5px 0;-moz-border-radius:6px;-webkit-border-radius:6px;-o-border-radius:6px;-ms-border-radius:6px;-khtml-border-radius:6px;border-radius:6px}
 * html #rightbar input.text{
   overflow-x:hidden}
-#leftbar .tab,#leftbar .field{
-  padding-left:0px;display:inline;float:left;margin-right:10px;width:140px}
-* html #leftbar .tab,* html #leftbar .field{
-  overflow-x:hidden}
-#leftbar input.text{
-  display:inline;float:left;margin-right:10px;width:130px;padding-top:2px;padding-bottom:1px}
-* html #leftbar input.text{
-  overflow-x:hidden}
 #search{
   position:relative}
 #search input.submit{
   display:inline-block;width:11px;height:15px;background:transparent url("/images/search.gif") no-repeat center;position:absolute;top:2px;right:0px}
-#features .field{
-  line-height:1;border-bottom:1px solid #bbb}
-#features a{
-  padding:4px 0px;display:block;font-size:0.75em;color:#494949;line-height:1;text-transform:none}
-#features a:hover strong{
-  color:red}
-#features a strong{
-  font-size:1.2em}
 #connect a{
   display:inline-block;height:36px;width:36px;margin:4px 6px 0px 6px;border:2px solid #fff}
 #connect a#twitter{
@@ -692,14 +634,6 @@ a.hidden_link span{
   background:transparent url("/images/linkedin.gif") no-repeat center}
 #connect a#youtube{
   background:transparent url("/images/youtube.gif") no-repeat center}
-.campaign_option{
-  clear:none}
-.campaign_option .field{
-  margin-bottom:20px}
-.campaign_option input{
-  float:left;margin-right:20px}
-.campaign_option label{
-  width:80px}
 #swag{
   list-style-image:none;list-style-type:none;margin-left:0px;padding:0;margin:0;font-family:Lucida,Arial;font-size:12px;text-align:left}
 #swag li{
@@ -768,8 +702,6 @@ input.half{
   color:#fff !important;display:block;font-weight:normal;text-decoration:none;margin-left:10px;text-shadow:#000 1px 1px 1px}
 #business_controls #business_sort #business_sort_selection ul li a:hover{
   color:#fd9c00 !important}
-#map{
-  margin:6px 0}
 .business label,#business label{
   padding-left:5px;line-height:1.25}
 .business label + strong,#business label + strong{
@@ -810,34 +742,6 @@ input.half{
   overflow-x:hidden}
 .desc p{
   padding-left:5px;padding-right:5px;overflow-y:hidden;height:57px}
-.links{
-  font-size:0.65em;display:inline;float:left;margin-right:10px;width:270px;border-bottom:1px solid #d1d1d1}
-* html .links{
-  overflow-x:hidden}
-.link{
-  background:#e1e2e3 url("/images/links-bg.gif") no-repeat bottom right;display:block;display:inline;float:left}
-.link a{
-  border-top:1px solid #d1d1d1;display:inline;float:left;color:#000;height:18px;line-height:1.8;font-size:1.1em;margin:0 !important}
-.link a:hover{
-  color:#fff}
-.link a.more{
-  border-right:1px solid #d1d1d1;text-align:right;padding-left:10px;display:inline;float:left;margin-right:0;width:70px;padding-right:10px;background-image:url("/images/arrow.png");background-repeat:no-repeat;background-position:-16px center}
-* html .link a.more{
-  overflow-x:hidden}
-.link a.more:hover{
-  text-shadow:4px #39131b 1px 1px}
-.link a.deals{
-  padding:0;padding-left:40px;display:inline;float:left;margin-right:0;width:132px;background-image:url("/images/star.png");background-repeat:no-repeat;background-position:-11px -8px}
-* html .link a.deals{
-  overflow-x:hidden}
-.link a.deals:hover{
-  text-shadow:4px #402e00 1px 1px}
-.link a.join{
-  line-height:1.4;text-align:right;display:inline;float:left;margin-right:0;width:174px;padding-right:5px;background-image:url("/images/join-white.png");background-repeat:no-repeat;background-position:-30px -3px;font-size:1.75em;border:none;border-top:1px solid #d1d1d1;-moz-box-shadow:0px transparent 1px 5px 0;-webkit-box-shadow:0px transparent 1px 5px 0;-o-box-shadow:0px transparent 1px 5px 0;box-shadow:0px transparent 1px 5px 0;-moz-border-radius:0px;-webkit-border-radius:0px;-o-border-radius:0px;-ms-border-radius:0px;-khtml-border-radius:0px;border-radius:0px;color:#000;padding-bottom:0;padding-top:0}
-* html .link a.join{
-  overflow-x:hidden}
-.link a.join:hover{
-  background-color:green;text-shadow:4px #2b442d 1px 1px;-moz-box-shadow:0px transparent 1px 5px 0;-webkit-box-shadow:0px transparent 1px 5px 0;-o-box-shadow:0px transparent 1px 5px 0;box-shadow:0px transparent 1px 5px 0;color:#fff}
 .details{
   display:inline;float:left;margin-right:0;width:180px;font-size:0.8em;padding-top:3px;border-right:1px solid #d1d1d1;border-left:1px solid #d1d1d1}
 * html .details{
@@ -850,28 +754,6 @@ input.half{
   display:inline;float:left;margin-right:0;width:180px;margin:0 !important;padding:0 !important;line-height:1}
 * html .details .stats .field{
   overflow-x:hidden}
-.details .links{
-  display:inline;float:left;margin-right:0;width:180px}
-* html .details .links{
-  overflow-x:hidden}
-.business_details_block{
-  padding-bottom:3px}
-.business_details_block #business_details_header{
-  width:100%}
-.business_details_block #followers{
-  display:inline;float:left;margin-right:10px;width:70px;margin-right:0;float:right}
-* html .business_details_block #followers{
-  overflow-x:hidden}
-.business_details_block #followers a{
-  -moz-box-shadow:3px #666 1px 5px 0;-webkit-box-shadow:3px #666 1px 5px 0;-o-box-shadow:3px #666 1px 5px 0;box-shadow:3px #666 1px 5px 0;-moz-border-radius:9px;-webkit-border-radius:9px;-o-border-radius:9px;-ms-border-radius:9px;-khtml-border-radius:9px;border-radius:9px;border-bottom:0;border-bottom-right-radius:0;-moz-border-radius-bottomright:0;border-bottom-left-radius:0;-moz-border-radius-bottomleft:0;padding:2px 3%;text-align:center;font-size:0.8em;background-color:#fff}
-.business_details_block #become_a_cog{
-  display:inline;float:left;margin-right:10px;width:110px;margin-right:0;float:right}
-* html .business_details_block #become_a_cog{
-  overflow-x:hidden}
-.business_details_block #become_a_cog a,.business_details_block #become_a_cog input{
-  -moz-box-shadow:3px #666 1px 5px 0;-webkit-box-shadow:3px #666 1px 5px 0;-o-box-shadow:3px #666 1px 5px 0;box-shadow:3px #666 1px 5px 0;-moz-border-radius:9px;-webkit-border-radius:9px;-o-border-radius:9px;-ms-border-radius:9px;-khtml-border-radius:9px;border-radius:9px;border-bottom:0;border-bottom-right-radius:0;-moz-border-radius-bottomright:0;border-bottom-left-radius:0;-moz-border-radius-bottomleft:0;padding:2px 3%;text-align:center;font-size:0.8em;background-color:#fff}
-.business_details_block #become_a_cog a:hover,.business_details_block #become_a_cog input:hover{
-  color:#fff}
 #business{
   display:inline;float:left;margin-right:10px;width:710px;width:100%}
 * html #business{
@@ -910,12 +792,6 @@ input.half{
   display:inline;float:right;clear:none;font-size:0.85em;color:#000;background:transparent url("/images/join-gear.gif") no-repeat left 3px;padding:1px 0 2px 40px;margin-top:1px;width:auto;-moz-box-shadow:0px transparent 1px 5px 0;-webkit-box-shadow:0px transparent 1px 5px 0;-o-box-shadow:0px transparent 1px 5px 0;box-shadow:0px transparent 1px 5px 0;-moz-border-radius:0px;-webkit-border-radius:0px;-o-border-radius:0px;-ms-border-radius:0px;-khtml-border-radius:0px;border-radius:0px;border:none}
 #business .stats a.join:hover{
   color:green;background-image:url("/images/join-gear-green.gif")}
-.campaign{
-  display:inline;float:left;margin-right:10px;width:230px;width:100%;margin:3px 0;border-bottom:1px solid #999}
-* html .campaign{
-  overflow-x:hidden}
-.campaign strong{
-  font-size:0.8em}
 .deal_button{
   float:right;font-size:1.2em}
 .deal_listing p{
@@ -1444,29 +1320,29 @@ h3.our_cogs{
   position:relative;float:right;margin-top:15px;margin-right:-75px;color:#cacacc;font-weight:none;font-family:Lucida,Arial;font-size:12px;line-height:25px}
 #business_details div.progress_share img{
   vertical-align:middle}
-#business_details div.campaign_details{
+#business_details div.project_details{
   margin-top:10px;display:block;min-height:220px}
-#business_details div.campaign_details a{
+#business_details div.project_details a{
   color:#fd9c00;text-decoration:none}
-#business_details div.campaign_details a:hover{
+#business_details div.project_details a:hover{
   color:#fbd211}
-#business_details div.campaign_details h3{
+#business_details div.project_details h3{
   color:#ff9c00;padding:7px 0 1px 0}
 #business_details p{
   font-family:Lucida,Arial;color:#4d4c52;line-height:1.5}
-#business_details .campaign_details{
+#business_details .project_details{
   font-size:16px}
-#business_details .campaign_details .img_container{
+#business_details .project_details .img_container{
   margin:0;height:150px;width:150px;padding:0;margin-right:7px;display:table-cell;float:left;border:1px solid #ccc}
-#business_details .campaign_details .img_container img{
+#business_details .project_details .img_container img{
   padding:0;margin:5px}
-#business_details .campaign_details.feedback{
+#business_details .project_details.feedback{
   margin-top:35px;border-bottom:1px dotted #ccc;margin-bottom:10px}
-#business_details .campaign_details.feedback span a{
+#business_details .project_details.feedback span a{
   font-weight:normal;color:#b7b8bd !important;float:right;font-size:12px}
-#business_details .campaign_details.feedback span a:hover{
+#business_details .project_details.feedback span a:hover{
   text-decoration:underline}
-#business_details .campaign_details.feedback p{
+#business_details .project_details.feedback p{
   padding:12px 0 12px 0;color:#4b4a4f}
 #business_details dl{
   font-family:Lucida,Arial;font-size:12px}
@@ -1522,8 +1398,6 @@ body hr{
   background:#cccccc;color:#cccccc;width:100%;height:2px;margin:2em 0;padding:0;border:none}
 body hr.space{
   background:white;color:white}
-body h1,body h2,body h3,body h4,body h5,body h6{
-  font-family:"Helvetica Neue", Arial, Helvetica, sans-serif}
 body code{
   font-size:0.9em;font-family:"andale mono", "lucida console", monospace}
 body a img{
@@ -1538,8 +1412,6 @@ body .small{
   font-size:0.9em}
 body .large{
   font-size:1.1em}
-body .quiet{
-  color:#999999}
 body .hide{
   display:none}
 @media print{
@@ -1699,4 +1571,21 @@ html,body{
 }
 #content #recaptcha_response_field {
   position: relative !important;
+}
+#errorMessages {
+  border: 1px solid #fd4700;
+  background: #eee;
+}
+#errorMessages h3 {
+ background: #fd4700;
+ margin: 0;
+ padding: 6px;
+ color: #fff;
+}
+#errorMessages p {
+  padding: 6px;
+}
+#errorMessages li {
+  border: 0;
+  font-size: 13px;
 }

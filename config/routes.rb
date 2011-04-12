@@ -2,6 +2,8 @@ Cogster::Application.routes.draw do
 
   resource :account, :only => [ :show, :edit, :update ]
 
+  match "certificates/:id" => "accounts#cash", :as => "cash", :via => :get
+
   match "community/:community_id" => "communities#show", :as => "community", :via => :get
 
   resources :community_requests, :only => [:new, :create]
@@ -13,7 +15,7 @@ Cogster::Application.routes.draw do
   end
 
   scope :path => "/admin", :as => "admin" do
-    resources :businesses, :except => [ :create, :new ]
+    resources :businesses
     resources :project_options
     resources :users
     resources :communities

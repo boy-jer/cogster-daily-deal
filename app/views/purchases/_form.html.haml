@@ -5,63 +5,41 @@
     %ul
       -@purchase.errors.full_messages.each do |msg|
         %li=msg
-  =form_for @purchase, :url => business_purchase_path(@business) do |f|
-    .header
-      .counter 3
-      %h3 Payment Information
-    %p 
-      Enter Your Credit Card Information Below
-      .field
-        =f.label :first_name, "First Name On Card"
-        =f.text_field :first_name, :class => "text"
-      .field
-        =f.label :last_name, "Last Name On Card"
-        =f.text_field :last_name, :class => "text"
-      .field
-        =f.label :type, "Card Type"
-        =f.select :type, options_for_select(credit_card_options)
-      .field
-        =f.label :card_number, "Credit Card Number"
-        =f.text_field :card_number, :class => "text"
-      .field
-        =f.label :security_code
-        =f.text_field :security_code, :class => "text"
-      .field
-        =f.label :expiration_month, "Expiration Date"
-        =f.select :expiration_month, options_for_select((1..12).to_a), {}, :class => "xsmall"
-        =f.select :expiration_year, options_for_select((Date.today.year..(Date.today.year + 10)).to_a), {}, :class => "small"
-    .clear
-    .header
-      .counter 4
-      %h3 Billing Address
-    %p 
-      Enter Your Credit Card Billing Address Below
-      =f.fields_for :address_attributes, @purchase.address do |a|
-        .field
-          =a.label :line_1, "Address", :class => "required"
-          =a.text_field :line_1, :class => "text"
-        .field
-          =a.label :line_2, "Address (line 2)", :class => "required"
-          =a.text_field :line_2, :class => "text"
-        .field
-          =a.label :city, nil, :class => "required"
-          =a.text_field :city, :class => "text"
-        .field
-          =a.label :state, nil, :class => "required"
-          =a.select :state, Address::STATES, :include_blank => true
-        .field
-          =a.label :zip, "Zip Code"
-          =a.text_field :zip, :class => "text"
-        .field
-          =a.label :country, nil, :class => "required"
-          =a.country_select :country, ["United States"]
-        .field
-          =a.label :phone, "Phone (###-###-####)", :class => "required"
-          =a.text_field :phone, :class => "text"
-    .clear
-    %p
-      =f.check_box :terms
-      I agree to the
-      =link_to "Cogster Member Purchase Agreement", member_purchase_agreement_path, :class => "new_window"
-      =f.hidden_field :amount
-    =f.submit "Purchase"
+  .header
+    .counter 3
+    %h3 Payment Information
+  %p 
+    Enter Your Credit Card Information Below
+    .field
+      =f.label :first_name, "First Name On Card"
+      =f.text_field :first_name, :class => "text"
+    .field
+      =f.label :last_name, "Last Name On Card"
+      =f.text_field :last_name, :class => "text"
+    .field
+      =f.label :type, "Card Type"
+      =f.select :type, options_for_select(credit_card_options)
+    .field
+      =f.label :card_number, "Credit Card Number"
+      =f.text_field :card_number, :class => "text"
+    .field
+      =f.label :security_code
+      =f.text_field :security_code, :class => "text"
+    .field
+      =f.label :expiration_month, "Expiration Date"
+      =f.select :expiration_month, options_for_select((1..12).to_a), {}, :class => "xsmall"
+      =f.select :expiration_year, options_for_select((Date.today.year..(Date.today.year + 10)).to_a), {}, :class => "small"
+  .clear
+  .header
+    .counter 4
+    %h3 Billing Address
+  %p 
+    Enter Your Credit Card Billing Address Below
+    = render :partial => 'shared/address_form', :locals => { :f => f, :addressable => @purchase.address }
+  .clear
+  %p
+    =f.check_box :terms
+    I agree to the
+    =link_to "Cogster Member Purchase Agreement", member_purchase_agreement_path, :class => "new_window"
+    =f.hidden_field :amount
+  =f.submit "Purchase"

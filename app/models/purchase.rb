@@ -1,6 +1,7 @@
 class Purchase < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
+  has_one :business, :through => :project
   has_many :coupons
   has_many :redemptions, :through => :coupons
   has_one :address
@@ -16,6 +17,16 @@ class Purchase < ActiveRecord::Base
 
   attr_accessor :type, :expiration_year, :expiration_month, :card_number, :security_code, :first_name, :last_name
 
+  def current_balance
+    current_coupon.remainder
+  end
+
+  def current_coupon
+    coupons.detect do |c| 
+      (c.start_date..c.expiration_date).member?(Date.today) 
+    end
+  end
+
   protected
 
     def amount_in_pennies
@@ -25,10 +36,10 @@ class Purchase < ActiveRecord::Base
     def create_coupons
       schedule = project.redemption_schedule
       start = Date.today
-      schedule.each do |duration, percentage|
-        coupon_amount = percentage * amount / 100
-        coupons.create(:start_date => start, :initial_amount => coupon_amount, expiration_date => start + duration, :remainder => coupon_amount)
-        start = start + duration
+      schedule.each do |period|
+        coupon_amount = period[:percentage] * amount / 100
+        coupons.create(:start_date => start, :initial_amount => coupon_amount, :expiration_date => start + period[:duration], :remainder => coupon_amount)
+        start = start + period[:duration]
       end
     end
 
@@ -44,9 +55,6 @@ class Purchase < ActiveRecord::Base
       )
     end
 
-    def current_redemption
-      coupon.detect{|c| (c.start_date..c.expiration_date).member?(Date.today) }.remainder
-    end
     #railscasts has a method like this called in controller
     #conditional on save working, so the #valid? isn't needed
     #also the response (of the method) is simply to set :updated_at for a cart

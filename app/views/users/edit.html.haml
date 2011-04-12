@@ -1,0 +1,16 @@
+-content_for :menu do
+  =menu
+#content
+  .main.narrow
+    %h2 Edit User
+    =form_for @user, :url => admin_user_path(@user) do |f|
+      =render :partial => 'shared/user_form', :locals => { :f => f }
+      .field
+        =f.label :role, nil, :class => "required"
+        =f.select :role, options_for_select(%w(admin merchant cogster))
+      .field
+        =f.submit "Update"
+    .clear
+    =button_to "Delete", admin_user_path(@user), :class => 'left', :method => :delete
+    .clear
+    =link_to "Cancel", admin_users_path

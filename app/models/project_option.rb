@@ -1,4 +1,6 @@
 class ProjectOption < ActiveRecord::Base
+  validates_presence_of :description
+
   serialize :redemption_schedule, Array
   has_many :projects do
     def active
@@ -11,12 +13,13 @@ class ProjectOption < ActiveRecord::Base
   validate :cogsters_get_money_back
   before_destroy :check_for_active_projects
 
-  def self.with_redemption_schedule
-    campaign = new
-    campaign.redemption_schedule = Array.new(4) do |n|
+  def self.with_redemption_schedule(intervals)
+    project = new
+    intervals = 4 if intervals.blank?
+    project.redemption_schedule = Array.new(intervals.to_i) do |n|
       { :percentage => 50, :duration => 7 }
     end
-    campaign
+    project
   end
 
   def duration
@@ -59,8 +62,10 @@ class ProjectOption < ActiveRecord::Base
 
     # ||= instead of = bc I set schedule directly in factories
     def set_redemption_schedule
-      self.redemption_schedule ||= redemption_schedule_duration.zip(redemption_schedule_return).map do |duration, percentage|
-        { :duration => duration.to_i, :percentage => percentage.to_i }
+      if redemption_schedule_duration
+        self.redemption_schedule = redemption_schedule_duration.zip(redemption_schedule_return).map do |duration, percentage|
+          { :duration => duration.to_i, :percentage => percentage.to_i }
+        end
       end
     end
 end

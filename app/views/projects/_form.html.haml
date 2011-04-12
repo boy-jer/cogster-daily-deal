@@ -1,6 +1,6 @@
 =form_for @project do |f|
   %fieldset
-    %legend Campaign Details
+    %legend Project Details
     .legend_field_set
       .field
         =f.label :name
@@ -18,7 +18,7 @@
         =f.text_area :reason
         / add  :onKeyDown => "check__details_length(this);"
       .field
-        =f.label :max_amount, "Maximum Individual Purchase", :title => "This is the maximum dollar amount you will accept from any one purchaser in this loyalty campaign"
+        =f.label :max_amount, "Maximum Individual Purchase", :title => "This is the maximum dollar amount you will accept from any one purchaser in this project"
         =f.select :max_amount, options_for_select((10.step(990, 10).to_a))
   %fieldset
     %legend Supporter Purchase Options
@@ -26,14 +26,14 @@
       %strong Timetable
       %p This is where you set up the schedule on which your supporters can use their Cogster Cash
       .field
-        =f.label :campaign, "Timetable"
-        =f.select :campaign, @campaigns
-      %strong Campaign Kickers:
-      %p What else can you "kick in" to reward your loyal supporters?  Be creative, and give your supporters some extra incentives to join your campaign and show their loyalty to your business/group.
+        =f.label :project_option, "Timetable"
+        =f.select :project_option, @project_options
+      %strong Kickers:
+      %p What else can you "kick in" to reward your loyal supporters?  Be creative, and give your supporters some extra incentives to join your project and show their loyalty to your business/group.
       .field
         =f.label :incentives, "Kicker"
         =f.text_area :incentives
       .field
-        =f.label :terms, "I agree to the #{link_to 'Cogster Merchant Campaign Agreement', merchant_agreement_path, :class => 'new_window'}".html_safe
+        =f.label :terms, "I agree to the #{link_to 'Cogster Merchant Project Agreement', merchant_agreement_path, :class => 'new_window'}".html_safe
         =f.check_box :terms
     =f.submit @project.persisted?? "Update" : "Create"

@@ -6,12 +6,10 @@
       %h2=@business.name
       %h3=@business.current_project.name 
       =render :partial => "shared/progress_bar", :locals => { :project => @business.current_project, :social => true }
-      .campaign_details
+      .project_details
         #biz_logo_img.img_container{:style => "height: 150px; width: 150px;"}
-          %a{:href => "/business/purchase/7"}
-            %img{:alt => "Test:  The Gingerbread Man", :src => "/stream/9/large"}
-        %a{:href => "/business/purchase/7"}
-          %h3 Project Details
+          =link_to image_tag(@business.image, :alt => "Test:  The Gingerbread Man"), new_business_purchase_path(@business)
+        %h3 Project Details
         %p This is a test project so Zach can test out autoemail functionality
         =link_to "Support this Project", new_business_purchase_path(@business), :class => "right"
       .clear
@@ -21,6 +19,10 @@
           %dl
             %dt Phone
             %dd 814-237-0361
+            %dt Email
+            %dd ribs@hotsauce.com
+            %dt Website
+            %dd www.gotyourribsrighthere.com
       .steeple
         %h4 Business Details
         %p=@business.description

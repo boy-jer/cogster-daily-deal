@@ -1,6 +1,10 @@
 module ProjectOptionsHelper
 
-  def menu
+  def fewer_intervals
+    @project_option.redemption_schedule.length - 1
+  end
+
+  def menu          
     if action_name == "index"
       admin_menu
     else
@@ -13,7 +17,7 @@ module ProjectOptionsHelper
     when 'show'
       @project_option.description
     when 'edit', 'update'
-      [link_to(@project_option.description, admin_project_option_path(@project_option)), 'Edit']
+      [link_to(@project_option.description, admin_project_option_path), 'Edit']
     when 'new', 'create'
       'New Project Option'
     end

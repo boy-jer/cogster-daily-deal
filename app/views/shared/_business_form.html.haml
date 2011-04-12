@@ -1,0 +1,12 @@
+.field
+  =b.label :name, nil, :class => "required"
+  =b.text_field :name, :class => "text"
+.field
+  =b.label :description, nil, :class => "required"
+  =b.text_area :description, :class => "text"
+.field
+  =b.label :type, nil, :class => "required"
+  =b.select :type, options_for_select(@business_options)
+.field
+  =b.label :active, "Active?", :class => "required"
+  =b.check_box :active

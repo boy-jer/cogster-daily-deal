@@ -23,7 +23,7 @@ class ProjectOptionsController < ApplicationController
   end
 
   def new
-    @project_option = ProjectOption.with_redemption_schedule
+    @project_option = ProjectOption.with_redemption_schedule(params[:intervals])
   end
 
   def show

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   protected
 
     def find_community
-      @community = current_user ? current_user.community : nil
+      @community = current_user ? current_user.community : Community.first
       @communities = Community.all.reject{|c| c == @community }
     end
 end

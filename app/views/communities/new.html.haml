@@ -1,6 +1,9 @@
 -content_for :menu do
-  =admin_menu
-%h1 New Community
+  =menu
+#content
+  .main.narrow
+    %h2 New Community
 
-= form_for @community, :url => admin_communities_path do |f|
-  = render :partial => 'form', :object => f
+    =form_for @community, :url => admin_communities_path do |f|
+      =render :partial => 'form', :object => f
+    =link_to "Cancel", admin_communities_path

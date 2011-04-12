@@ -26,8 +26,28 @@ module ApplicationHelper
     end
   end
 
+  def error_messages_for(*objects)
+    options = objects.extract_options!
+    object = objects.first
+    options[:header_message] ||= "There was a problem #{involving(object)} this #{object.class.name.underscore.titleize}."
+    messages = objects.compact.map {|o| o.errors.full_messages }.flatten
+    options[:message] ||= "Please correct the following #{number_of messages, 'error'} and try again"
+    unless messages.empty?
+      content_tag :div, :id => "errorMessages" do
+        list_items = messages.map {|msg| content_tag :li, msg }
+        content_tag(:h3, options[:header_message]) + 
+        content_tag(:p, options[:message]) +
+        content_tag(:ul, list_items.join.html_safe)
+      end
+    end
+  end
+
   def featured_tag(business)
     image_tag('images8/featured_overlay.png', :class => "featured_business_img") if business.featured?
+  end
+
+  def involving(object)
+    object.persisted?? 'updating' : 'creating'
   end
 
   def login_link
@@ -52,9 +72,24 @@ module ApplicationHelper
     end
   end
 
-  def swag_counter
-    number_with_delimiter(510000).split('').map do |n|
-      content_tag :div, n
-    end.join.html_safe
+  def number_of(collection, word)
+    collection.count > 1 ? "#{collection.count} #{word.pluralize}" : word
   end
+
+  def swag_counter
+    digits = swag_digits.split('').map do |n|
+      content_tag :div, n
+    end
+    swag_pad(digits).join.html_safe
+  end
+
+  def swag_digits
+    number_with_delimiter current_user.swag_counter
+  end
+
+  def swag_pad(digits)
+    (7 - digits.length).times{|n| digits.unshift content_tag(:div, '') }
+    digits
+  end
+
 end
