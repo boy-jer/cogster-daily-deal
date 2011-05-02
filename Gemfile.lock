@@ -47,8 +47,8 @@ GEM
     capistrano (2.5.20)
       highline
       highline
-      net-scp (>= 1.0.0)
       net-scp
+      net-scp (>= 1.0.0)
       net-sftp
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
@@ -127,6 +127,7 @@ GEM
     net-ssh-gateway (1.0.1)
       net-ssh (>= 1.99.1)
     nokogiri (1.4.4)
+    pg (0.10.1)
     pickle (0.4.7)
       cucumber (>= 0.8)
       rake
@@ -218,6 +219,7 @@ DEPENDENCIES
   haml
   jasmine
   launchy
+  pg
   pickle
   rails (= 3.0.3)
   rails-footnotes (>= 3.7)
