@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :find_business
   before_filter :find_project, :only => [ :destroy, :edit, :update ]
+  before_filter :parse_date, :only => [ :create, :update ]
 
   def create
     @project = @business.projects.new(params[:project])
@@ -60,5 +61,9 @@ class ProjectsController < ApplicationController
 
     def merchant_or_admin_url
       current_user.merchant?? account_url : admin_business_url(@business)
+    end
+
+    def parse_date
+      params[:project][:expiration_date] = Chronic.parse(params[:project][:expiration_date])
     end
 end

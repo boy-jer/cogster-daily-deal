@@ -7,7 +7,6 @@ class Project < ActiveRecord::Base
   has_many :supporters, :through => :purchases, :source => :user, :uniq => true
   has_many :redemptions
   delegate :redemption_schedule, :redemption_period, :redemption_total, :to => :project_option
-  before_save :parse_dates
 
   def accepting_purchases?
     amount_funded < goal
@@ -41,10 +40,4 @@ class Project < ActiveRecord::Base
     min_amount.step(max_for(user), 10)
   end
 
-  protected
-
-    def parse_dates
-      self.expiration_date = Chronic::parse(self.expiration_date_before_type_cast) if attribute_present?('expiration_date') 
-      self.success_date = Chronic::parse(self.success_date_before_type_cast) if attribute_present?('success_date') 
-    end
 end
