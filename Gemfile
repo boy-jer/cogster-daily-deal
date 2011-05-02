@@ -21,6 +21,7 @@ gem 'RedCloth'
 gem 'whenever', :require => false
 gem 'barby'
 gem 'cancan'
+gem 'chronic'
 # Use unicorn as the web server
 # gem 'unicorn'
 
