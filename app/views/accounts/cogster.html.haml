@@ -1,15 +1,19 @@
 -content_for :menu do
   =menu_without_business_filters
 #content
+  =notice_or_alert
   .main.full
     %h3
-      Welcome Back, Steve (
+      Welcome Back, 
+      =current_user.first_name
+      (
       =link_to "edit profile", edit_account_path
       )
     %h2 My Purchases
     #business_purchase_list
       =render :partial => 'purchase', :collection => @purchases
   #rightbar
+    =admin_or_merchant_view_button
     #region_point_counter
       .center
         %a.hidden_link{:href => local_path }

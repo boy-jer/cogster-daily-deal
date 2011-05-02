@@ -1,4 +1,5 @@
-=form_for @project do |f|
+=form_for [@business, @project] do |f|
+  =error_messages_for @project
   %fieldset
     %legend Project Details
     .legend_field_set
@@ -26,8 +27,8 @@
       %strong Timetable
       %p This is where you set up the schedule on which your supporters can use their Cogster Cash
       .field
-        =f.label :project_option, "Timetable"
-        =f.select :project_option, @project_options
+        =f.label :project_option_id, "Timetable"
+        =f.select :project_option_id, @project_options
       %strong Kickers:
       %p What else can you "kick in" to reward your loyal supporters?  Be creative, and give your supporters some extra incentives to join your project and show their loyalty to your business/group.
       .field

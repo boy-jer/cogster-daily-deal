@@ -39,4 +39,5 @@
         %legend Business
         =fields_for @merchant.business do |b|
           = render :partial => 'shared/business_form', :locals => { :b => b }
+            =render :partial => 'shared/address_form', :locals => { :addressable => @merchant.business.build_address }
         =submit_tag "Sign Up", :class => "submit", :id => "submit"

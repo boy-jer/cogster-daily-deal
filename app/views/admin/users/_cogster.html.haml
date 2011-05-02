@@ -1,4 +1,4 @@
-%tr
+%tr.cogster
   %td=link_to cogster.name, edit_admin_user_path(cogster)
   %td=cogster.community.name
-  %td=cogster.last_sign_in_at.strftime("%r %b %d")
+  %td=last_sign_in_for cogster

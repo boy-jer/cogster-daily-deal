@@ -1,5 +1,3 @@
--content_for :menu do
-  =menu_without_business_filters
 #content
   .main.narrow
     .static_single_column
@@ -21,8 +19,8 @@
               %li
                 %p
                   Components of Swag:  Cogster adds up the local economic value you help to create by assigning points to the actions you take that benefit your town.  You accumulate Swag when you pay to fund projects.  The more dollars you spend to fund projects, the more swag you earn.
-                  %a{:href => "/page/view/how-it-works"} How it Works
+                  =link_to "How it Works", how_it_works_path
                 %li
                   %p
                     Why Swag:  Making an impact on your local economy is cool.  Seeing your name on a list of Top Cogs because of the impact you are making…, well, that’s pretty cool too.  And, imagine the collective impact you all are making.
-                    %a{:href => "local"} About Local
+                    =link_to "About Local", local_path

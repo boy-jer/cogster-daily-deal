@@ -7,7 +7,10 @@
       =render :partial => 'shared/user_form', :locals => { :f => f }
       .field
         =f.label :role, nil, :class => "required"
-        =f.select :role, options_for_select(%w(admin merchant cogster))
+        =f.select :role, options_for_select(%w(admin merchant cogster), :selected => @user.role)
+      -if @user.business
+        =f.fields_for @user.business do |b|
+          =render :partial => 'shared/business_form', :locals => { :b => b }
       .field
         =f.submit "Update"
     .clear

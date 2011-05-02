@@ -10,8 +10,8 @@
         #biz_logo_img.img_container{:style => "height: 150px; width: 150px;"}
           =link_to image_tag(@business.image, :alt => "Test:  The Gingerbread Man"), new_business_purchase_path(@business)
         %h3 Project Details
-        %p This is a test project so Zach can test out autoemail functionality
-        =link_to "Support this Project", new_business_purchase_path(@business), :class => "right"
+        %p=@business.current_project.reason 
+        =conditional_purchase_link("Support this Project", :class => "right")
       .clear
       .column
         .contact
@@ -27,10 +27,10 @@
         %h4 Business Details
         %p=@business.description
   #rightbar
-    %h3#double_money.seo_hide=link_to "Double Your Money", new_business_purchase_path(@business)
+    %h3#double_money.seo_hide=conditional_purchase_link("Double Your Money", {}, "We did it!") 
     %h3.seo_hide.our_cogs Our Cogs
     %ol.top_cogs
       =render :partial => "shared/cog", :collection => @business.supporters
     .clear
-    =render "shared/personal_swag"
+    =render "shared/personal_swag" if user_signed_in?
     =link_to "What is swag?", swag_path, :id => "smaller" 

@@ -14,19 +14,17 @@
   -else
     .clear
 .progress_data_container
-  .progress_data
-    %strong=project.supporters.count 
-    = succeed "COGS" do
-      %br/
-  .progress_data
-    %strong=number_to_currency(project.amount_funded, :precision => 0)
-    = succeed "FUNDED" do
-      %br/
-  .progress_data
-    %strong=number_to_currency(project.goal, :precision => 0)
-    = succeed "TARGET" do
-      %br/
-    GOAL
+  %table
+    %tfoot
+      %tr
+        %th COGS
+        %th FUNDED
+        %th TARGET GOAL
+    %tbody
+      %tr
+        %td#supporters=project.supporters.count 
+        %td#funding=number_to_currency(project.amount_funded, :precision => 0)
+        %td=number_to_currency(project.goal, :precision => 0)
   -if project.percent_funded < 100 && social != true && false
     .progress_data
       %strong=link_to "Fund This Project", new_business_purchase_path(project.business)

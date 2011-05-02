@@ -30,13 +30,18 @@ Given /^I don't have a user account$/ do
   true
 end
 
-When /^I register$/ do
-  visit "register"
+When /^I register( as a merchant)?$/ do |merchant|
+  visit merchant.blank?? "register" : "register?business=true"
   fill_in "First Name", :with => "Steve"
   fill_in "Last Name", :with => "Bisbee"
   fill_in "Email", :with => "steve@cogster.com"
   fill_in "Password", :with => "password"
   fill_in "Confirm Password", :with => "password"
+  unless merchant.blank?
+    fill_in "Name", :with => "BJ's"
+    fill_in "Description", :with => "Where The Grove Eats"
+  end
+  check "user_terms"
   click_button "Sign Up"
 end
 
@@ -46,11 +51,6 @@ end
 
 Then /^I should be taken to the home page for my account$/ do
   visit "/"
-end
-
-Given /^I have a user account$/ do
-  user = User.create(:email => "steve@cogster.com", :password => "password", :password_confirmation => "password")
-  user.confirm!
 end
 
 When /^I log in/ do

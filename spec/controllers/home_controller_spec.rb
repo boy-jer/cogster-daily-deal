@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe HomeController do
-  include Devise::TestHelpers
 
   describe "GET 'index'" do
     before :each do

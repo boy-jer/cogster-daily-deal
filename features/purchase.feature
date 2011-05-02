@@ -1,6 +1,6 @@
-Feature: Invest in a Cogster project
+Feature: Purchase a Cogster project
   As a user
-  I want to invest money in a Cogster project
+  I want to make a purchase in a Cogster project
   So I can support local business and get a good deal on their merchandise
 
   Background:
@@ -21,13 +21,17 @@ Feature: Invest in a Cogster project
 
   Scenario: Make purchase
     Given I am logged in
+    And I just checked my email
     When I make a purchase for the "BJ's Ribs" project
-    Then I should be on the account page
-    And I should get an investment confirmation email
-    And I should see a notice about how much Cogster Cash I have available
+    Then I am on the account page
+    And I get a purchase confirmation email
+    And I see a notice about how much Cogster Cash I have available
 
   Scenario: Review purchases
     Given I am logged in
+    And I just checked my email
+    When I have made two purchases
+    Then I get two purchase confirmation emails
     When I visit my account page
     Then I should see a list of all the purchases I have made
     And I should see links to print Cogster Cash for any current spending periods
@@ -36,11 +40,10 @@ Feature: Invest in a Cogster project
     Given I am logged in
     And I have Cogster Cash for a business available today
     When I visit my Cogster Cash page for that business 
-    Then I should see a Cogster Cash coupon
-    And I should see how much money I have available
-    And I should see the duration of the spending period
-    And I should see what business the coupon is for
-    And I should see a unique identifier for myself
-    And I should see the region
-    And it should come out as a pdf
-
+    Then I get a pdf
+    And I see a Cogster Cash coupon
+    And I see how much money I have available
+    And I see the duration of the spending period
+    And I see what business the coupon is for
+    And I see a unique identifier for myself
+    And I see the community

@@ -1,13 +1,11 @@
 = form_for @user, :url => register_path do |f|
-  -if @user.errors.any?
-    %ul
-      -@user.errors.full_messages.each do |msg|
-        %li=msg
+  =error_messages_for @user
   %fieldset
     .field.split
     = render :partial => 'shared/user_form', :locals => { :f => f }
     = render :partial => 'shared/user_password_form', :locals => { :f => f }
     = render :partial => 'shared/user_community_form', :locals => { :f => f}
+    .field
       = f.label :gender
       .gender
         = f.radio_button :gender, "m"
@@ -15,10 +13,11 @@
       .gender
         = f.radio_button :gender, "f"
         = f.label :gender_female, "Female", :class => "male_female_label"
-    .field
-      -if params[:business]
-        ='business'
-      -else
+    -if params[:business]
+      =f.fields_for @user.build_business do |b|
+        =render :partial => 'shared/business_form', :locals => { :b => b }
+    -else
+      .field
         %h3=link_to "Are You a Business Owner?", :business => true
     .field
       =f.check_box :terms, :class => "text"

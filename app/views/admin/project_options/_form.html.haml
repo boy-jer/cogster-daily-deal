@@ -15,5 +15,5 @@
     %tbody
       =render :partial => "interval", :collection => @project_option.redemption_schedule
 .field
-  %input.submit{:name => "submit", :type => "submit", :value => @project_option.persisted?? "Update" : "Create"}/
+  =submit_tag "#{@project_option.persisted?? 'Update' : 'Create'}", :class => "submit"
   

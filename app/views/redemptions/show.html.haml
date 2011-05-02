@@ -1,0 +1,20 @@
+#content
+  .main.narrow
+    %h2 Redeem Coupon
+    %h3 
+      Purchase by 
+      =@user.abbr_name
+      (ID
+      =@user.cogster_id
+      )
+    =form_for @redemption, :url => business_redemptions_path(@business) do |r|
+      %fieldset
+        .field
+          =r.label :date
+          =r.select :date, options_for_select(redemption_date_range)
+        .field
+          =r.label :amount
+          =r.text_field :amount, :class => "text"
+          =r.hidden_field :coupon_id, @coupon.id
+        .clear
+        =r.submit "Save Transaction"

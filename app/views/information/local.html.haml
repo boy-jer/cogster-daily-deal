@@ -1,5 +1,3 @@
-=content_for :menu do
-  =menu_without_business_filters
 #content
   .main.narrow
     %h2 Cogster is all about locally-owned businesses
@@ -33,16 +31,9 @@
     %div
       %small
         Learn More:
-        %br
-          %a{:href => "/page/view/how-it-works"} How Cogster Works
-          %BR
-            %a{:href => "http://www.newpa.com"} http://www.newpa.com
-            %br
-              %a{:href => "http://www.civiceconomics.com"} http://www.civiceconomics.com
-              %br
-                %a{:href => "http://www.preservationnation.org/main-street"} http://www.preservationnation.org/main-street
-                %br
-                  %a{:href => "http://www.cbicc.org"} http://www.cbicc.org
-                  %br
-                    %a{:href => "http://www.the350project.net"} http://www.the350project.net
-                    %br
+        %p=link_to "How Cogster Works", how_it_works_path, :class => "new_window"
+        %p=link_to "http://www.newpa.com", "http://www.newpa.com", :class => "new_window"
+        %p=link_to "http://www.civiceconomics.com", "http://www.civiceconomics.com", :class => "new_window"
+        %p=link_to "http://www.preservationnation.org/main-street", "http://www.preservationnation.org/main-street", :class => "new_window"
+        %p=link_to "http://www.cbicc.org", "http://www.cbicc.org", :class => "new_window"
+        %p=link_to "http://www.the350project.net", "http://www.the350project.net", :class => "new_window"

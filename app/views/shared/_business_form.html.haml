@@ -1,12 +1,18 @@
 .field
+  -if b.object.new_record?
+    %p Enter some information about your business. 
   =b.label :name, nil, :class => "required"
   =b.text_field :name, :class => "text"
 .field
   =b.label :description, nil, :class => "required"
   =b.text_area :description, :class => "text"
 .field
-  =b.label :type, nil, :class => "required"
-  =b.select :type, options_for_select(@business_options)
-.field
-  =b.label :active, "Active?", :class => "required"
-  =b.check_box :active
+  =b.label :business_option_id, "Category", :class => "required"
+  =b.select :business_option_id, options_for_select(@business_options)
+-if can? :create, Business.new
+  .field
+    =b.label :active, "Active?", :class => "required"
+    =b.check_box :active
+  .field
+    =b.label :featured
+    =b.check_box :featured

@@ -14,7 +14,7 @@ Feature: Site access
     When I go to the front page
     And I choose a community
     Then I should be taken to the community page
-    #And I should see "Susquehanna Valley"
+    And I see "Susquehanna Valley"
 
   Scenario: Request a community
     When I go to the front page
@@ -31,12 +31,11 @@ Feature: Site access
     And I don't have a user account
     When I register
     Then I should get a user account
-    And I see "Sign In"
 
   Scenario: Log in
-    Given I have a user account
+    Given I register
     When I log in
-    Then I see "Welcome to Cogster"
+    Then I see "My Purchases"
 
 #  Scenario: Reset password
 #    Given I have a user account

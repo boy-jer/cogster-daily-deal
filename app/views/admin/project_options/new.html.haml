@@ -4,6 +4,7 @@
   .main.full
     %h2 Add a New Project Option
     =form_for @project_option, :url => admin_project_options_path do |f|
+      =error_messages_for @project_option
       = render :partial => 'form', :object => f
     =link_to "Cancel", admin_project_options_path
   #rightbar

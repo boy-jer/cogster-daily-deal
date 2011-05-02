@@ -12,7 +12,7 @@
           %th{ :colspan => 2 }
       %tfoot
         %tr
-          %th{ :colspan => 4 }=link_to "Add New", new_admin_community_path
+          %th{ :colspan => 4 }=link_to "Add New Community", new_admin_community_path
       %tbody
         = render @communities
-
+        = render :partial => 'community', :collection => @inactives

@@ -6,5 +6,5 @@
     .description
       =link_to render(:partial => 'shared/progress_bar', :locals => { :project => business.current_project }), new_business_purchase_path(business)
       %p=business.description 
-      -if current_user.admin? || current_user.owns?(business) 
+      -if user_signed_in? && (current_user.admin? || current_user.owns?(business))
         =link_to "Edit", edit_admin_business_path(business)

@@ -1,0 +1,4 @@
+.toggle_view
+  %h2="#{current_user.role.capitalize} View"
+  %p Click the button to change to Cogster view, so that you can shop for deals and print your Cogster cash.
+  =button_to "User View", account_path(:toggle => true), :method => :put

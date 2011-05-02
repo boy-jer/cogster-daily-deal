@@ -14,6 +14,12 @@ gem 'haml'
 gem 'recaptcha', :require => 'recaptcha/rails'
 
 gem 'activemerchant'
+gem 'carrierwave'
+gem 'will_paginate', '3.0.pre2'
+gem 'RedCloth'
+gem 'whenever', :require => false
+gem 'barby'
+gem 'cancan'
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -32,6 +38,10 @@ gem 'activemerchant'
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
+ group :development do
+   gem 'rails-footnotes', '>= 3.7'
+ end
+
  group :development, :test do
    gem 'webrat'
    gem 'rspec-rails'
@@ -47,4 +57,6 @@ gem 'activemerchant'
    gem 'spork'
    gem 'launchy'
    gem 'pickle'
+   gem 'email_spec'
+   gem 'timecop'
  end

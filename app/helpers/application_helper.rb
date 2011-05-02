@@ -1,10 +1,23 @@
 module ApplicationHelper
 
   def admin_menu
+    if action_name == 'index' || controller_name == 'accounts'
+      admin_menu_front
+    else
+      admin_menu_back
+    end
+  end
+
+  def admin_menu_back
+    breadcrumbs [controller_index_link, action_name.titleize]
+  end
+
+  def admin_menu_front
     [link_to_unless_current('Project Options', admin_project_options_path),
      link_to_unless_current('Communities', admin_communities_path),
      link_to_unless_current('Users', admin_users_path),
-     link_to_unless_current('Businesses', admin_businesses_path)].join(' | ').html_safe
+     link_to_unless_current('Businesses', admin_businesses_path),
+     link_to_unless_current('Business Types', admin_business_options_path)].join(' | ').html_safe
   end
 
   def business_image(business)
@@ -14,8 +27,44 @@ module ApplicationHelper
     end
   end
 
+  def business_search_title
+    capture_haml do
+      haml_tag :h3, "Search for #{params[:search] || params[:filter]}"
+    end
+  end
+
+  def business_sorter
+    selector = {nil => "Popularity", "name" => "Name (A-Z)", "created_at" => "Newest"}
+    capture_haml do
+      haml_tag :strong, selector[params[:sort]]
+      haml_tag :ul do
+        selector.except(params[:sort]).each do |sort, text|
+          haml_tag :li, link_to(text, :sort => sort) 
+        end
+      end
+    end
+  end
+
   def breadcrumbs(elements)
     elements.flatten.join('&rarr;').html_safe
+  end
+
+  def community_name
+    if @businesses.map(&:community_id).uniq.length == 1
+      @businesses.first.community_name
+    end
+  end
+
+  def controller_index_link
+    link_to(controller_title, controller_index_path)
+  end
+
+  def controller_index_path
+    send "#{controller_path.underscore.sub(/\//, '_')}_path"
+  end
+
+  def controller_title
+    controller_name.titleize
   end
 
   def current_community_link(community = nil)
@@ -55,13 +104,27 @@ module ApplicationHelper
   end
 
   def menu
-    menu_without_business_filters + 
-    render('shared/business_selector')
+    if controller_path =~ /admin\//
+      admin_menu
+    elsif controller_path == 'purchases'
+      breadcrumbs [link_to(@community.name, @community), link_to(@business.name, @business), "Make a Purchase"]
+    else
+      menu_without_business_filters + 
+      render('shared/business_selector')
+    end
   end
 
   def menu_without_business_filters
     render('shared/merchant_search') +
     render('shared/community_select') 
+  end
+
+  def none_like
+    if params[:search].present? 
+      "Sorry, no businesses were found with a name like '#{params[:search]}'"
+    elsif params[:filter].present?
+      "Sorry, no businesses of that type were found."
+    end
   end
 
   def notice_or_alert
@@ -77,14 +140,16 @@ module ApplicationHelper
   end
 
   def swag_counter
-    digits = swag_digits.split('').map do |n|
-      content_tag :div, n
+    if @community
+      digits = swag_digits.split('').map do |n|
+        content_tag :div, n
+      end
+      swag_pad(digits).join.html_safe
     end
-    swag_pad(digits).join.html_safe
   end
 
   def swag_digits
-    number_with_delimiter current_user.swag_counter
+    number_with_delimiter @community.swag_counter
   end
 
   def swag_pad(digits)

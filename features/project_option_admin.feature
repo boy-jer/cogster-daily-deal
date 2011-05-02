@@ -24,14 +24,14 @@ Feature: Administer Project Options
     And I see the updated information
 
   Scenario: Delete project option
-    Given I am on the project options page
-    When I delete the first project option
+    When I go to the project options page
+    And I delete the first project option
     Then I see "Project Options"
     And I do not see the deleted option
 
   Scenario: Add a project option
-    Given I am on the project options page
-    When I follow "Add New Project Option"
+    When I go to the project options page
+    And I follow "Add New Project Option"
     And I enter project option details with description "New One"
     And I submit the "create" form
     Then I see "Project Options"

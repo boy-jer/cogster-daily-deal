@@ -1,0 +1,4 @@
+%tr.business_request
+  %td=link_to business_request.name, edit_admin_business_path(business_request)
+  %td=business_request.community.name
+  %td=business_request.created_at.strftime("%r %b %d")

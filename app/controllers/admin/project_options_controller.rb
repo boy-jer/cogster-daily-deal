@@ -1,4 +1,4 @@
-class ProjectOptionsController < ApplicationController
+class Admin::ProjectOptionsController < ApplicationController
   before_filter :find_project_option, :only => [ :destroy, :edit, :update ]
 
   def create

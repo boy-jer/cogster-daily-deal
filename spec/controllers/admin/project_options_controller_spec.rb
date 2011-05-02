@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ProjectOptionsController do
+describe Admin::ProjectOptionsController do
   include Devise::TestHelpers
 
   let(:project_option) { mock_model(ProjectOption) }

@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Admin::UsersController < ApplicationController
   before_filter :find_user, :except => [ :create, :index, :new ]
   before_filter :set_options, :only => [:new, :edit]
 
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       @user.business = nil 
     end
     if @user.save
-      redirect_to admin_users_path, :notice => "An account for #{@user.name} has been created"
+      redirect_to admin_users_path(:type => @user.role), :notice => "An account for #{@user.name} has been created"
     else
       set_options
       render :new
@@ -29,13 +29,20 @@ class UsersController < ApplicationController
   end
 
   def index
-    @merchants = User.where(['role = ?', 'merchant']).includes(:business, :community).sort{|a, b| b.business.active <=> a.business.active }
-    @cogsters = User.where(['role = ?', nil]).includes(:community)
-    @admin = User.where(['role = ?', 'admin'])
+    if params[:type] == 'merchants'
+      @merchants = User.merchant.includes(:business, :community).order('businesses.active').paginate(:per_page => 10, :page => params[:page])
+      render :merchants
+    elsif params[:type] == 'admin'
+      @admin = User.admin.paginate(:per_page => 10, :page => params[:page])
+      render :admin
+    else
+      @cogsters = User.cogster.includes(:community).paginate(:per_page => 10, :page => params[:page])
+    end
   end
 
   def new
     @user = User.new 
+    @business = @user.build_business
   end
 
   def show
@@ -57,10 +64,5 @@ class UsersController < ApplicationController
    
     def find_user
       @user = User.find(params[:id])
-    end
-
-    def set_options
-      @options = Community.all.map{|c| [c.name, c.id] }
-      @business_options = %w(restaurant)
     end
 end

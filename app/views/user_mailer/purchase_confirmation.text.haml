@@ -1,0 +1,20 @@
+Hello
+="#{@name},"
+Congratulations! Your purchase for
+=@business
+was successful. Thanks for helping to make this local project happen.
+
+Purchase amount:
+=number_to_currency(@amount)
+Total Cogster Cash you will receive:
+=number_to_currency(@cogster_cash)
+Click
+=link_to 'here', url_for(:controller => 'devise/sessions', :action => 'new', :only_path => false)
+to print the first round of your Cogster Cash. Redeem the Cash at
+=@business
+between now and
+="#{@expiration_date}."
+Enjoy!
+Thank you,
+The Cogster Team
+Note:In most cases, Cogster Cash is delivered to you over certain time periods (rounds). You will receive email reminders along the way. Print and redeem your Cogster Cash within the suggested dates per round. 

@@ -1,0 +1,13 @@
+Hello
+="#{@name},"
+You've got 
+=number_to_currency(@amount)
+in new Cogster Cash for
+="#{@business}."
+The Cogster Cash will be good until
+=@expiration
+, so get in there and spend it.
+=link_to "Click here to print your cash", url_for(:controller => 'devise/sessions', :action => 'new', :only_path => false)
+
+Thank you, 
+The Cogster Team

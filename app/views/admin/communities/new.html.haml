@@ -5,5 +5,18 @@
     %h2 New Community
 
     =form_for @community, :url => admin_communities_path do |f|
+      -if @community_request
+        =render :partial => 'community_request', :locals => { :f => f }
       =render :partial => 'form', :object => f
-    =link_to "Cancel", admin_communities_path
+      .field
+        =submit_tag "Add Community", :class => "submit", :id => "submit"
+    -if @community_request
+      =form_for @community_request, :url => community_request_path(@community_request), :method => :delete do |f|
+        %fieldset
+          .field
+            =label_tag :message, "Negative Response to Request"
+            =text_area_tag :message
+          .field 
+            =submit_tag "Decline Request", :class => "submit"
+    -else
+      =link_to "Cancel", admin_communities_path

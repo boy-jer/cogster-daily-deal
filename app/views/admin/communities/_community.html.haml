@@ -1,6 +1,6 @@
 %tr{ :class => "#{community.active?? 'active' : 'inactive'}"}
   %td=link_to community.name, admin_community_path(community) 
-  %td="#{community.businesses.count + community.inactive_businesses.count} (#{community.businesses.count})"
-  %td=community.users.count
+  %td.business_count="#{community.businesses.count + community.inactive_businesses.count} (#{community.businesses.count})"
+  %td.user_count=community.users.count
   %td=link_to "Edit", edit_admin_community_path(community)
   %td=button_to "Delete", admin_community_path(community)

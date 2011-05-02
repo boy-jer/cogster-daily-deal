@@ -1,5 +1,5 @@
 class CommunityRequestsController < ApplicationController
-  skip_before_filter :authenticate_user!
+  skip_before_filter :authenticate_user!, :except => :destroy
 
   def new
     @community_request = CommunityRequest.new
@@ -14,5 +14,11 @@ class CommunityRequestsController < ApplicationController
     end
   end
 
+  def destroy
+    community_request = CommunityRequest.find(params[:id])
+    community_request.message = params[:message]
+    community_request.destroy
+    redirect_to root_url, :notice => "The community request was deleted. Your response will be sent to #{community_request.email}."
+  end
 end
 

@@ -1,0 +1,30 @@
+#cash_spacer  
+#cash
+  #note
+    #region=@purchase.business.community.name
+    #small_cash_logo
+      =wicked_pdf_image_tag("images8/cogster_cash_text_logo.png", :alt => "Cogster")
+    #cash_text
+      Cash
+  %h1=number_to_currency(@coupon.remainder, :precision => 2)
+  %h2=current_user.name 
+  #unique_id
+    %strong COGSTER ID:
+    =current_user.cogster_id
+  #business
+    %strong=@purchase.business.name
+    %br
+    =@purchase.business.address.line_1
+    %br
+    =@purchase.business.address.last_line
+    %br
+    =@purchase.business.address.phone
+  #cogster_cash_logo
+    =wicked_pdf_image_tag "images8/cogster_cash_logo.png", :alt => "Cogster.com"
+    %h4 Cogster Cash
+  %h3
+    %strong VALID:
+    %span=@coupon.start_date.strftime("%b %d")
+    %br
+      %strong TO:
+      %span=@coupon.expiration_date.strftime("%b %d")

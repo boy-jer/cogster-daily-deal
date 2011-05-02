@@ -11,11 +11,11 @@
       =image_tag("images8/cogster_cash_text_logo.png", :alt => "Cogster")
     #cash_text
       Cash
-  %h1=number_to_currency(@coupon.remainder, :precision => 2)
+  %h1#value=number_to_currency(@coupon.remainder, :precision => 2)
   %h2=current_user.name 
   #unique_id
     %strong COGSTER ID:
-    =current_user.cogster_id
+    %span=current_user.cogster_id
   #business
     %strong=@purchase.business.name
     %br
@@ -29,10 +29,10 @@
     %h4 Cogster Cash
   %h3
     %strong VALID:
-    %span=@coupon.start_date.strftime("%b %d")
+    %span#start_date=@coupon.start_date.strftime("%b %d")
     %br
       %strong TO:
-      %span=@coupon.expiration_date.strftime("%b %d")
+      %span#end_date=@coupon.expiration_date.strftime("%b %d")
   / <div id="fineprint">Not valid with other promotions or offers unless authorized by merchant</div>
   /
     <div id="sign_off">

@@ -1,0 +1,8 @@
+-content_for :menu do
+  =menu
+#content
+  .main.narrow
+    %h2 New Business Option
+    =form_for @business_option, :url => admin_business_options_path do |f|
+      = render :partial => 'form', :locals => { :f => f }
+    =link_to "Cancel", admin_business_options_path

@@ -6,35 +6,32 @@ Feature: Manage users
   Scenario: Merchant request
     Given someone has signed up and said he has a business
     And I am logged in as an admin
-    When I visit the home page
+    When I visit my account page
     Then I see a reminder of the business request
-    And I see a link to make the user a merchant
+    And I see a link to edit the business request
 
   Scenario: Making a merchant
     Given someone has signed up and said he has a business
     And I am logged in as an admin
-    When I visit the edit page for the user
-    Then I see a check box to change the user from customer to merchant
-    And I see a form to describe the user's business
-    And I see a check box to deny the business request
-    And I see a field to mail a response to the user
+    When I visit the edit page for the merchant
+    Then I see a form to describe the user's business
 
   Scenario: Review users
     Given I am logged in as an admin
-    When I visit the home page
+    And there are a lot of users
+    When I visit my account page
     Then I see a "Users" link
     When I click "Users"
     Then I see the first ten users
-    And the users who have requested to become merchants are listed first
     And I see a link to reach the next page of users
-    And I see a "New User" link
+    And I see a "Add User" link
 
   Scenario: Add user
     Given I am logged in as an admin
     When I visit the "New User" page
-    Then I see a form to enter normal user details
-    And I see a check box to mark the user as customer or merchant or admin
-    When I fill out the form
-    Then I am taken to the "Users" page
+    Then I see a form to enter user details
+    And I see a select box to mark the user as customer or merchant or admin
+    When I fill out the user form
+    Then I am on the Users page
     And I see a notice that the new account was created
 

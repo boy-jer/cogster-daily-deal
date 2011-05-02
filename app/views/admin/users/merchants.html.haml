@@ -1,0 +1,22 @@
+-content_for :menu do
+  =admin_menu
+#content
+  =notice_or_alert
+  .main.narrow
+    %h2 Merchants
+    =paginated_section @merchants do
+      %table{ :cellpadding => 0, :cellspacing => 0 }
+        %thead
+          %tr
+            %th Name
+            %th Business
+            %th Active
+            %th Last Login
+          %tbody
+            =render :partial => 'merchant', :collection => @merchants
+    =link_to 'Add Admin', new_admin_user_path
+  #rightbar
+    %h3 Other User Types
+    %ul
+      %li=link_to "Cogsters", :type => nil, :page => 1
+      %li=link_to "Admin", :type => 'admin', :page => 1

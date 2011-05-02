@@ -1,0 +1,7 @@
+%tr
+  %td=business.name
+  %td=business.community.name
+  %td=business.merchant.name
+  %td=business.active
+  %td=link_to "Edit", edit_admin_business_path(business)
+  %td=button_to "Delete", admin_business_path(business), :method => :delete

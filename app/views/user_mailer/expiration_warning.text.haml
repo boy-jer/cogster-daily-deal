@@ -1,0 +1,13 @@
+Hello
+="#{@name},"
+This message is to remind you that you have Cogster Cash for
+=@business
+, and it will expire on
+="#{@expiration}!"
+You still have
+=number_to_currency(@amount)
+available to spend, so go get your money's worth.
+=link_to "Click here to print your Cash", url_for(:controller => 'devise/sessions', :action => 'new', :only_path => false)
+
+Thank you,
+The Cogster Team

@@ -1,0 +1,8 @@
+%tr
+  %td=purchase.user.abbr_name
+  %td=purchase.created_at.strftime("%B %d")
+  %td=number_to_currency(purchase.amount)
+  -purchase.coupons.each do |coupon|
+    %td=number_to_currency(coupon.remainder)
+    %td=coupon.start_date.strftime("%B %d")
+    %td=coupon.expiration_date.strftime("%B %d")

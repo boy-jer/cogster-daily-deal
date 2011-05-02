@@ -12,5 +12,3 @@
   .field
     =form.label :active, :class => "required"
     =form.check_box :active
-  .field
-    =submit_tag "#{@community.persisted?? 'Edit' : 'Add'} Community", :class => "submit", :id => "submit"

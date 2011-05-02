@@ -5,6 +5,7 @@
     %h2 DOUBLE YOUR MONEY!
     %h3#double_your_money_desc JUST FOLLOW THE FEW SHORT STEPS BELOW:
     =form_for @purchase, :url => business_purchase_path(@business) do |f|
+      =error_messages_for @purchase
       .purchase_select
         .header
           .counter 1
@@ -13,7 +14,7 @@
           .left
             .box_side
               %h4 YOU PAY
-              =f.select :amount, options_for_select(purchase_options(@project)), {}, :class => "dropdown text"
+              =f.select :amount, options_for_select(purchase_options(@project), purchase_selection(@project)), {}, :class => "dropdown text"
           .equal 
           .right
             .box_side
@@ -76,6 +77,7 @@
         %p Your card is processed using Paypal.  Paypal is a highly trusted e-commerce provider with top-tier security.
         %h5 Your Payment Goes to the Merchant:
         %p Cogster collects your payment from Paypal and passes it directly to the merchant. The merchant uses your funds to support its project.
-      .purchase_amount_box
-        Your Credit Card Will Be Charged:
-        #amount_charged_to_user=number_to_currency @project.min_amount
+      -if user_signed_in?
+        .purchase_amount_box
+          Your Credit Card Will Be Charged:
+          #amount_charged_to_user=number_to_currency @project.min_amount

@@ -10,6 +10,17 @@ require 'spec_helper'
 #     end
 #   end
 # end
-describe UsersHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Admin::UsersHelper do
+  describe "#last_sign_in_for" do
+    it "returns string if no last_sign_in" do
+      user =  mock_model(User, :last_sign_in_at => nil)
+      helper.last_sign_in_for(user).should == 'N/A'
+    end
+
+    it "returns sign in time if it exists" do
+      time = Time.now
+      user = mock_model(User, :last_sign_in_at => time)
+      helper.last_sign_in_for(user).should == time.strftime("%r %b %d")
+    end
+  end
 end

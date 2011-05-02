@@ -1,0 +1,24 @@
+.main.full
+  #business_region_list
+    -if params[:ephrata]
+      %h2 Welcome To Cogster, Ephrata People
+    -else
+      %h2.seo_hide The Buzz In Town. Discover great local businesses below
+      =business_search_title
+      #business_controls
+        #business_sort
+          #sort_by_text Sort By:
+          #business_sort_selection
+            =business_sorter
+        .clear
+    #businesses
+      -if @businesses.count + @other_businesses.count == 0
+        %p 
+          =none_like
+          You can search again in the "Find Merchant" box on the right side of the menu bar, browse through businesses by community with the community selector on the left, or browse by any of the categories in the middle.
+      -else
+        %h3="#{community_name} Businesses"
+        =render :partial => "shared/business", :collection => @businesses
+        -unless @other_businesses.empty?
+          %h3 Other Businesses
+          =render :partial => "shared/business", :collection => @other_businesses

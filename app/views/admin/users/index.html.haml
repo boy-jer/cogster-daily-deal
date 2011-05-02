@@ -1,33 +1,21 @@
 -content_for :menu do
   =admin_menu
 #content
+  =notice_or_alert
   .main.narrow
-    %h2 Users
-    %h3 Merchants
-    %table{ :cellpadding => 0, :cellspacing => 0 }
-      %thead
-        %tr
-          %th Name
-          %th Business
-          %th Active
-          %th Last Login
+    %h2 Cogsters
+    =paginated_section @cogsters do
+      %table{ :cellpadding => 0, :cellspacing => 0 }
+        %thead
+          %tr
+            %th Name
+            %th Community
+            %th Last Login
         %tbody
-          =render :partial => 'merchant', :collection => @merchants
-    %h3 Cogsters
-    %table{ :cellpadding => 0, :cellspacing => 0 }
-      %thead
-        %tr
-          %th Name
-          %th Community
-          %th Last Login
-      %tbody
-        =render :partial => 'cogster', :collection => @cogsters
-    %h3 Admin
-    %table{ :cellpadding => 0, :cellspacing => 0 }
-      %thead
-        %tr
-          %th Name
-          %th Last Login
-      %tbody
-        =render :partial => 'admin', :collection => @admin
+          =render :partial => 'cogster', :collection => @cogsters
     =link_to 'Add User', new_admin_user_path
+  #rightbar
+    %h3 Other User Types
+    %ul
+      %li=link_to "Merchants", :type => 'merchants', :page => 1
+      %li=link_to "Admin", :type => 'admin', :page => 1

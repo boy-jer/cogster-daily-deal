@@ -12,9 +12,10 @@
         =f.label :role, nil, :class => "required"
         =f.select :role, options_for_select(%w(admin merchant cogster))
       #new_business.hide
-        =f.fields_for :business, Business.new do |b|
+        =f.fields_for :business, @business do |b|
           =render :partial => 'shared/business_form', :locals => { :b => b }
+          =render :partial => 'shared/address_form', :locals => { :addressable => @business.address, :f => b }
       .field
-        =f.submit "Create"
+        =submit_tag "Create", :class => "submit"
     .clear
     =link_to "Cancel", admin_users_path

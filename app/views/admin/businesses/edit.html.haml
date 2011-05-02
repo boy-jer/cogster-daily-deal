@@ -7,3 +7,13 @@
       =render :partial => 'shared/business_form', :locals => { :b => b }
       .field
         =submit_tag "Update", :class => "submit", :id => "submit"
+    %hr
+    %p If this business is not a good fit for Cogster, please enter a short message explaining your decision to the merchant before pressing "delete". The message will be emailed to the merchant, who will still be able to use his login information as a normal Cogster user.
+    =form_for @business, :url => admin_business_path(@business), :method => :delete do |b|
+      .field
+        =b.label :deletion_explanation, "Deletion Message", :class => "required"
+        =b.text_area :deletion_explanation, :class => "text"
+      .field
+        =submit_tag "Delete", :class => "submit"
+       
+

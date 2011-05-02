@@ -1,0 +1,7 @@
+=error_messages_for @business_option
+%fieldset
+  .field
+    =f.label :category, nil, :class => "required"
+    =f.text_field :category, :class => "text"
+  .field
+    =f.submit "#{@business_option.persisted?? 'Update' : 'Create'}", :class => "submit"

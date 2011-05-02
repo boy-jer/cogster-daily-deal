@@ -1,6 +1,5 @@
-class CommunitiesController < ApplicationController
+class Admin::CommunitiesController < ApplicationController
   before_filter :find_community, :only => [ :edit, :update, :destroy ]
-  skip_before_filter :authenticate_user!, :only => :show
 
   def create
     @community = Community.new(params[:community])
@@ -22,22 +21,20 @@ class CommunitiesController < ApplicationController
 
   def index
     @communities = Community.includes(:businesses, :inactive_businesses)
+    @communities, @inactives = @communities.partition(&:active)
   end
 
   def new
     @community = Community.new
+    if params[:community_request_id]
+      @community_request = CommunityRequest.find(params[:community_request_id]) 
+      @community.community_request_id = @community_request.id
+    end
   end
 
   def show
-    if params[:id]
-      @community = Community.find(params[:id])
-      @businesses = Business.find_all_by_community_id(params[:id])
-    elsif params[:community_id]
-      @community = Community.includes(:businesses => { :current_project => :purchases }).find(params[:community_id])
-      @communities = Community.all.reject{|c| c == @community }
-      @businesses = @community.businesses
-      @businesses.sort_by!(&params[:sort].to_sym) if params[:sort]
-    end
+    @community = Community.find(params[:id])
+    @businesses = Business.find_all_by_community_id(params[:id])
     @cogs = User.where(["community_id = ?", params[:id]])
   end
 

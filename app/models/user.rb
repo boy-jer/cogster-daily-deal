@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable, 
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
@@ -20,10 +20,16 @@ class User < ActiveRecord::Base
   has_many :purchases
   has_many :coupons, :through => :purchases
   has_many :projects, :through => :purchases, :uniq => true
+  before_create :set_cogster_id
 
-  delegate :swag_counter, :to => :community
-  #has_and_belongs_to_many :followers, :class_name => 'User'
-  
+  %w(admin cogster merchant).each do |role|
+    (class << self; self; end).instance_eval do
+      define_method role do
+        where(['role = ?', role])
+      end
+    end
+  end
+
   %w(admin merchant).each do |role|
     define_method "#{role}?" do
       self.role.downcase == role
@@ -38,10 +44,6 @@ class User < ActiveRecord::Base
     address_without_ensure || Address.new
   end
   alias_method_chain :address, :ensure
-
-  def cogster_id
-    password_salt[0..10]
-  end
 
   def earnings
     coupons.sum(:initial_amount) - purchases.sum(:amount) 
@@ -63,12 +65,21 @@ class User < ActiveRecord::Base
     purchases.sum(:amount) * 50
   end
 
+  def purchases_of(project)
+    purchases.where(['project_id = ?', project.id]).sum(:amount)
+  end
+
   def role
-    super || 'user'
+    super || 'cogster'
   end
 
   def swag_rank
     community.swag_rank(self)
   end
-end
 
+  protected
+
+    def set_cogster_id
+      self.cogster_id = SecureRandom.hex(5)[0..8].upcase
+    end
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110409174839) do
+ActiveRecord::Schema.define(:version => 20110418074220) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line_1"
@@ -26,15 +26,19 @@ ActiveRecord::Schema.define(:version => 20110409174839) do
     t.datetime "updated_at"
   end
 
+  create_table "business_options", :force => true do |t|
+    t.string "category"
+  end
+
   create_table "businesses", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "community_id"
-    t.integer  "user_id"
+    t.integer  "merchant_id"
     t.string   "business_hours"
-    t.string   "business_type"
+    t.integer  "business_option_id", :limit => 255
     t.boolean  "active"
     t.boolean  "featured"
     t.string   "type"
@@ -145,6 +149,7 @@ ActiveRecord::Schema.define(:version => 20110409174839) do
     t.datetime "updated_at"
     t.string   "role"
     t.integer  "community_id"
+    t.string   "cogster_id"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

@@ -1,9 +1,8 @@
 require 'spec_helper'
 
-describe BusinessesController do
-  include Devise::TestHelpers
+describe Admin::BusinessesController do
 
-  let(:business) { mock_model(Business) }
+  let(:business) { mock_model(Business, :name => 'bj') }
 
   before :each do
     sign_in_as_admin
@@ -14,14 +13,16 @@ describe BusinessesController do
   end
 
   describe "POST 'create'" do
-    before :each do
-      Business.stub(:new).with('the' => 'params') { business }
+    before :each do                              
+      @merchant = User.new 
+      User.stub(:new).with('the' => 'params') { @merchant }
     end
 
     context "success" do
       before :each do
-        business.should_receive(:save).and_return(true)
-        post :create, :business => { 'the' => 'params' }
+        @merchant.should_receive(:save).and_return(true)
+        @merchant.should_receive(:business) { business }
+        post :create, :user => { 'the' => 'params' }
       end
     
       it "redirects to businesses path" do
@@ -29,18 +30,18 @@ describe BusinessesController do
       end
 
       it "provides notice of new business" do
-        flash[:notice].should == "New business has been created"
+        flash[:notice].should == "bj has been created"
       end
     end
 
     context "failure" do
       before :each do
-        business.should_receive(:save).and_return(false)
-        post :create, :business => { 'the' => 'params' }
+        @merchant.should_receive(:save).and_return(false)
+        post :create, :user => { 'the' => 'params' }
       end
 
-      it "assigns @business" do
-        assigns(:business).should == business
+      it "assigns @merchant" do
+        assigns(:merchant).should == @merchant
       end
 
       it "renders new" do

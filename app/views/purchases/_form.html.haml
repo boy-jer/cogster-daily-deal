@@ -1,10 +1,4 @@
 .purchase_select
-  -unless @purchase.errors.empty?
-    %h3 Your Purchase Could Not Be Completed.
-    %p Please correct the following errors:
-    %ul
-      -@purchase.errors.full_messages.each do |msg|
-        %li=msg
   .header
     .counter 3
     %h3 Payment Information
@@ -41,5 +35,4 @@
     =f.check_box :terms
     I agree to the
     =link_to "Cogster Member Purchase Agreement", member_purchase_agreement_path, :class => "new_window"
-    =f.hidden_field :amount
   =f.submit "Purchase"

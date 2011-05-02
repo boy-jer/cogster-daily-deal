@@ -5,7 +5,8 @@ Factory.define :user do |user|
   user.password              "password"
   user.password_confirmation "password"
   user.association           :community, :factory => :community
-  user.role                  "user"
+  user.terms                 "1"
+  user.role                  "cogster"
 end
 
 Factory.define :merchant, :parent => :user do |merchant|
@@ -17,6 +18,7 @@ Factory.define :merchant, :parent => :user do |merchant|
   merchant.association           :community, :factory => :community
   merchant.association           :business, :factory => :business
   merchant.role                  "merchant"
+  merchant.terms                 "1"
 end
 
 Factory.define :admin, :parent => :user do |admin|
@@ -27,4 +29,5 @@ Factory.define :admin, :parent => :user do |admin|
   admin.password_confirmation "password"
   admin.association           :community, :factory => :community
   admin.role                  "admin"
+  admin.terms                 "1"
 end

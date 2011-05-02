@@ -1,5 +1,24 @@
 require 'spec_helper'
 
 describe CommunityRequest do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:request)  { Factory(:community_request) }
+
+  before :each do
+    reset_mailer
+  end
+
+  describe "#destroy" do
+    it "sends an email" do
+      request.destroy
+      unread_emails_for(request.email).should have(1).message
+    end
+  end
+
+  describe "#destroy_with_positive_feedback" do
+    it "sends an email and destroys the request" do
+      request.destroy_with_positive_feedback("you're in!")
+      unread_emails_for(request.email).should have(1).message
+      expect { CommunityRequest.find(request.id) }.to raise_error
+    end
+  end
 end

@@ -1,10 +1,10 @@
 class ProjectsController < ApplicationController
-  before_filter :authenticate_user!
   before_filter :find_business
-  before_filter :find_project, :only => [ :destroy, :edit, :show, :update ]
+  before_filter :find_project, :only => [ :destroy, :edit, :update ]
 
   def create
     @project = @business.projects.new(params[:project])
+    @project.active = true
     if @project.save
       redirect_to merchant_or_admin_url, :notice => "New project created"
     else
@@ -32,7 +32,8 @@ class ProjectsController < ApplicationController
   end
 
   def show
-
+    @project = @business.projects.find(params[:id], :include => { :purchases => [{ :coupons => :redemptions }, :user]})
+    @purchases = @project.purchases
   end
 
   def update

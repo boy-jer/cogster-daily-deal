@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CommunitiesController do
+describe Admin::CommunitiesController do
   include Devise::TestHelpers
 
   let(:community) { mock_model(Community) }
@@ -117,26 +117,6 @@ describe CommunitiesController do
       end
     end
 
-    context "in public view" do
-      before :each do
-        Community.stub_chain(:includes, :find) { community }
-        community.stub(:businesses) { [] }
-        Community.should_receive(:all) { [community, :other_community] }
-        get :show, :community_id => :id
-      end
-    
-      it "shows the page" do
-        response.should be_success 
-      end
-
-      it "assigns @businesses" do
-        assigns(:businesses).should == []
-      end
-    
-      it "assigns @communities" do
-        assigns(:communities).should == [:other_community]
-      end
-    end
   end
 
   describe "PUT 'update'" do

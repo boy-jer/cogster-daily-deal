@@ -6,4 +6,6 @@
 
     =form_for @community, :url => admin_community_path(@community) do |f|
       =render :partial => 'form', :object => f
+    .field
+      =submit_tag "Add Community", :class => "submit", :id => "submit"
     =link_to "Cancel", admin_communities_path

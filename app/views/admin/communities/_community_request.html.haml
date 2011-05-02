@@ -1,0 +1,12 @@
+.field
+  %dl
+    %dt Request Email
+    %dd=@community_request.email
+    %dt Request Zip Code
+    %dd=@community_request.zip_code
+    %dt Request Description
+    %dd=@community_request.comment
+  %fieldset
+    =f.hidden_field :community_request_id
+    =f.label :request_message, "Positive Response to Request", :class => "required"
+    =f.text_area :request_message, :class => "text"

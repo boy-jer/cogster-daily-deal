@@ -2,7 +2,13 @@ class Purchase < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
   has_one :business, :through => :project
-  has_many :coupons
+  has_many :coupons do
+    def for_week_and_project(date, _project)
+      select do |c| 
+        c.good_during_week_of?(date) && proxy_owner.project == _project
+      end
+    end
+  end
   has_many :redemptions, :through => :coupons
   has_one :address
   accepts_nested_attributes_for :address
@@ -14,17 +20,26 @@ class Purchase < ActiveRecord::Base
   validates_numericality_of :amount, :greater_than => 0
   validates_acceptance_of :terms, :on => :create
   validate                  :validate_card, :on => :create
+  delegate :redemption_schedule, :to => :project
 
   attr_accessor :type, :expiration_year, :expiration_month, :card_number, :security_code, :first_name, :last_name
+
+  def self.check_for_expiring_coupons
+    includes(:coupons).each do |purchase|
+      purchase.coupons.each{|coupon| coupon.check_for_status_change(purchase.user) } 
+    end
+  end
+
+  def cogster_cash
+    coupons.sum(:initial_amount)
+  end
 
   def current_balance
     current_coupon.remainder
   end
 
   def current_coupon
-    coupons.detect do |c| 
-      (c.start_date..c.expiration_date).member?(Date.today) 
-    end
+    coupons.detect{|c| c.current? } 
   end
 
   protected
@@ -34,12 +49,11 @@ class Purchase < ActiveRecord::Base
     end
 
     def create_coupons
-      schedule = project.redemption_schedule
       start = Date.today
-      schedule.each do |period|
+      redemption_schedule.each do |period|
         coupon_amount = period[:percentage] * amount / 100
-        coupons.create(:start_date => start, :initial_amount => coupon_amount, :expiration_date => start + period[:duration], :remainder => coupon_amount)
-        start = start + period[:duration]
+        coupons.create(:start_date => start, :initial_amount => coupon_amount, :expiration_date => start + period[:duration] - 1)
+        start = start + period[:duration] 
       end
     end
 
@@ -83,11 +97,11 @@ class Purchase < ActiveRecord::Base
     end
 
     def send_email
-
+      UserMailer.purchase_confirmation(self, current_coupon, user).deliver
     end
 
     def validate_card
-      if Rails.env == 'production'
+      if false #Rails.env == 'production'
         unless credit_card.valid?
           credit_card.errors.full_messages.each do |message|
             errors.add(:base, message)

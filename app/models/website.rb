@@ -1,2 +1,2 @@
-class Websites < ActiveRecord::Base
+class Website < ActiveRecord::Base
 end

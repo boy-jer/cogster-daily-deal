@@ -1,0 +1,17 @@
+-content_for :menu do
+  =menu
+#content
+  .main.narrow
+    %h2 Business Options
+    %table{ :cellspacing => 0, :cellpadding => 0 }
+      %thead
+        %tr
+          %th Name
+          %th Businesses
+          %th{ :colspan => 2 }
+      %tfoot
+        %tr
+          %td{ :colspan => 4 }=link_to "New", new_admin_business_option_path
+      %tbody
+        =render @business_options
+

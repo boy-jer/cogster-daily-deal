@@ -10,6 +10,6 @@ require 'spec_helper'
 #     end
 #   end
 # end
-describe BusinessesHelper do
+describe Admin::BusinessesHelper do
   pending "add some examples to (or delete) #{__FILE__}"
 end

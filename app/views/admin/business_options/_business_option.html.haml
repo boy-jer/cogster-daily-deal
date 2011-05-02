@@ -1,0 +1,5 @@
+%tr
+  %td=business_option.category
+  %td=business_option.businesses.count
+  %td=link_to "Edit", edit_admin_business_option_path(business_option)
+  %td=button_to "Delete", admin_business_option_path(business_option), :method => :delete
