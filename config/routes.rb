@@ -4,21 +4,23 @@ Cogster::Application.routes.draw do
 
   match "certificates/:id" => "accounts#cash", :as => "cash", :via => :get
 
-  match "community/:community_id" => "communities#show", :as => "community", :via => :get
+  match "community/:id" => "communities#show", :as => "community", :via => :get
 
-  resources :community_requests, :only => [:new, :create]
+  resources :community_requests, :only => [ :new, :create, :destroy ]
 
   resources :businesses, :only => [ :show, :index ] do
-    resources :redemptions
+    resources :coupons
     resources :projects
-    resource :purchase, :only => [ :new, :create ]
+    resource :purchase, :only => [ :new, :create ], 
+                        :path_names => { :new => '' }
   end
 
-  scope :path => "/admin", :as => "admin" do
+  namespace "admin" do
     resources :businesses
     resources :project_options
     resources :users
     resources :communities
+    resources :business_options
   end
 
   controller :information do
@@ -35,7 +37,7 @@ Cogster::Application.routes.draw do
     get "/login" => "devise/sessions#new", :as => 'login'
     get "/lost_password" => "devise/passwords#new", :as => 'lost_password'
     post "/lost_password" => "devise/passwords#create", :as => 'lost_password'
-    post "/logout" => "devise/sessions#destroy", :as => 'logout'
+    post "/logout" => "sessions#destroy", :as => 'logout'
   end
 
   root :to => "home#index"
