@@ -29,11 +29,10 @@ class UserMailer < ActionMailer::Base
   end
 
   def purchase_confirmation(purchase, coupon, user)
-    @name = user.name
+    set_common_variables(coupon, user)
     @amount = purchase.amount
     @cogster_cash = purchase.cogster_cash
 
-    @expiration = coupon.expiration_date.strftime("%B %d")
     mail(:to => user.email, :subject => "Thank you for your Cogster purchase")
   end
 

@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe CommunityRequest do
+
+  it { should validate_presence_of(:email) }
+  it { should validate_presence_of(:zip_code) }
+
   let(:request)  { Factory(:community_request) }
 
   before :each do

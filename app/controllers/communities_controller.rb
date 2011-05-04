@@ -7,7 +7,10 @@ class CommunitiesController < ApplicationController
     @businesses = @community.businesses
     filter_or_search
     @businesses.sort_by!(&params[:sort].to_sym) if params[:sort]
+    @businesses.reverse! if params[:sort] == 'created_at'
+    @businesses.sort_by!{|x| x.featured?? 0 : 1 }
     @other_businesses = []
     @cogs = @community.users.sort_by(&:earnings)
+    @merchant_types = @businesses.map(&:business_option).uniq
   end
 end

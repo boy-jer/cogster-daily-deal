@@ -15,8 +15,8 @@ Factory.define :merchant, :parent => :user do |merchant|
   merchant.email                 "tasty@selinsgrove.net"
   merchant.password              "password"
   merchant.password_confirmation "password"
-  merchant.association           :community, :factory => :community
   merchant.association           :business, :factory => :business
+  merchant.community             {|b| b.community }
   merchant.role                  "merchant"
   merchant.terms                 "1"
 end

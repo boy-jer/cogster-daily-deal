@@ -61,4 +61,5 @@ gem 'chronic'
    gem 'pickle'
    gem 'email_spec'
    gem 'timecop'
+   gem 'shoulda-matchers'
  end

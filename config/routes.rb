@@ -8,7 +8,7 @@ Cogster::Application.routes.draw do
 
   resources :community_requests, :only => [ :new, :create, :destroy ]
 
-  resources :businesses, :only => [ :show, :index ] do
+  resources :businesses, :only => [ :show, :index, :edit, :update ] do
     resources :coupons
     resources :projects
     resource :purchase, :only => [ :new, :create ], 

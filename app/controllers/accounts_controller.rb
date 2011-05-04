@@ -8,9 +8,7 @@ class AccountsController < ApplicationController
       format.html { render :layout => 'header' }
       format.pdf { render :pdf => 'cogster_cash',
                           :layout => 'pdf',
-                          :footer => {
-                            :center => "Center", :left => "Left", 
-                            :right  => "Right" }
+                          :disposition => 'attachment'
                  }
     end
   end
@@ -49,6 +47,7 @@ class AccountsController < ApplicationController
         set_options
         render  'edit_merchant' 
       else
+       @options = Community.all.map{|c| [c.name, c.id] }
        render 'edit'
       end
     end

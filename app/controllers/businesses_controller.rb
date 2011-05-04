@@ -4,6 +4,7 @@ class BusinessesController < ApplicationController
 
   def index
     @businesses = Business.active.with_purchases.order(params[:sort])
+    @businesses.reverse! if params[:sort] == 'created_at'
     @businesses.sort_by!{ |b| b.supporters.count } unless params[:sort]
     params[:filter] ||= "all" if params[:search].blank?
     filter_or_search
@@ -14,6 +15,7 @@ class BusinessesController < ApplicationController
     else
       @other_businesses = []
     end
+    @merchant_types = BusinessOption.all
     render :search
   end
 

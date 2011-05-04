@@ -8,7 +8,7 @@ class PurchasesController < ApplicationController
     @purchase.type = params[:purchase][:type]
     @purchase.project = @business.current_project
     if @purchase.save
-      redirect_to account_path, :notice => "Thank you for your purchase! You have ${@purchase.current_balance} in Cogster Cash available right now for use at @business.name."
+      redirect_to account_path, :notice => "Thank you for your purchase! You have $#{@purchase.current_balance} in Cogster Cash available right now for use at #{@business.name}."
     else
       @project = @purchase.project
       populate_form

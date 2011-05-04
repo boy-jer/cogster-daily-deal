@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   has_many :projects, :through => :purchases, :uniq => true
   before_create :set_cogster_id
 
+
   %w(admin cogster merchant).each do |role|
     (class << self; self; end).instance_eval do
       define_method role do
@@ -51,6 +52,11 @@ class User < ActiveRecord::Base
 
   def image
     "default_avatar.jpg"
+  end
+
+  def may_make_purchase_for?(project)
+    project.accepting_purchases? &&
+    purchases_of(project) < project.max_amount
   end
 
   def name

@@ -15,7 +15,14 @@ class ApplicationController < ActionController::Base
     end
 
     def find_community
-      @community = current_user ? current_user.community : Community.first
+      @community = 
+      if @business
+        @business.community
+      elsif current_user
+        current_user.community
+      else
+        Community.first 
+      end
       @communities = Community.all.reject{|c| c == @community }
     end
 

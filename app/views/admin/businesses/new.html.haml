@@ -2,7 +2,7 @@
   =admin_menu
 #content
   .main.narrow
-    = form_for @merchant, :url => admin_businesses_path do |f|
+    = form_for @merchant, :url => admin_businesses_path, :html => { :multipart => true } do |f|
       -unless @merchant.errors.empty?
         =@merchant.errors.full_messages
       %fieldset
@@ -26,7 +26,7 @@
           = f.password_field :password_confirmation, :class => "text"
         .field.split
           = f.label :community_id, "Community:", :class => "required"
-          = f.select :community_id, options_for_select(@options)
+          = f.select :community_id, options_for_select(@options, @merchant.community_id)
         .field
           = f.label :gender
           .gender

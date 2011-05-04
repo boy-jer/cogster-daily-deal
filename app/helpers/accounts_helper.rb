@@ -36,6 +36,14 @@ module AccountsHelper
     "#{cycle('odd', 'even')} #{coupon.expired?? 'expired' : !coupon.future?? 'active' : ''}"  
   end
 
+  def new_or_edit_project_link(project)
+    if project.new_record?
+      link_to 'Create a Project', new_business_project_path
+    else
+      link_to 'Edit Your Project', edit_business_project_path(current_user.business, project)
+    end
+  end
+
   def redeemable_coupons_for(user, purchase)
     coupons = purchase.coupons.for_week_and_project(@monday, @current_project)
     return "" if coupons.empty?

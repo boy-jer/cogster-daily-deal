@@ -10,6 +10,7 @@ class Community < ActiveRecord::Base
   attr_accessor :community_request_id, :request_message
 
   validates_presence_of :name
+  validates_uniqueness_of :name
 
   def earnings_levels
     users.map(&:earnings).uniq.sort

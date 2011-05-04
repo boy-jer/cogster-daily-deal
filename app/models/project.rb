@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
   has_many :supporters, :through => :purchases, :source => :user, :uniq => true
   has_many :redemptions
   delegate :redemption_schedule, :redemption_period, :redemption_total, :to => :project_option
+  validates_presence_of :expiration_date, :business_id, :name, :max_amount, :goal, :project_option_id
 
   def accepting_purchases?
     amount_funded < goal

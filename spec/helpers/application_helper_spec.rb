@@ -37,12 +37,12 @@ describe ApplicationHelper do
 
   describe "#business_image" do
     it "has one image tag if business is not featured" do
-      business = mock_model(Business, :image => 'test.jpg', :featured? => nil)
+      business = stub_model(Business)
       helper.business_image(business).scan(/img /).size.should == 1
     end
 
     it "has two image tags if business is featured" do
-      business = mock_model(Business, :image => 'test.jpg', :featured? => true)
+      business = stub_model(Business, :featured? => true)
       helper.business_image(business).scan(/img /).size.should == 2
     end
   end

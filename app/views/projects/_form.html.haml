@@ -34,7 +34,8 @@
       .field
         =f.label :incentives, "Kicker"
         =f.text_area :incentives
-      .field
-        =f.label :terms, "I agree to the #{link_to 'Cogster Merchant Project Agreement', merchant_agreement_path, :class => 'new_window'}".html_safe
-        =f.check_box :terms
+      -if @project.new_record?
+        .field
+          =f.label :terms, "I agree to the #{link_to 'Cogster Merchant Project Agreement', merchant_agreement_path, :class => 'new_window'}".html_safe
+          =f.check_box :terms
     =f.submit @project.persisted?? "Update" : "Create"

@@ -1,8 +1,17 @@
 require 'spec_helper'
 
 describe Business do
+
+  it { should have_errors_on(:name) }
+  it { should have_errors_on(:community_id) }
+
   before :each do
-    @business = Factory.build(:business)
+    @business = Factory.build(:business, :merchant_id => 1)
+  end
+
+  it "validates uniqueness of name" do
+    @business.save
+    Business.new(@business.attributes).should validate_uniqueness_of(:name).scoped_to(:community_id)
   end
 
   it "always has current project" do

@@ -1,7 +1,7 @@
 %h3.seo_hide.my_swag My Swag
 %ul#swag
   %li.points
-    %span=link_to current_user.swag_rank, swag_path, :class => "hidden_link"
+    %span=link_to number_with_precision(current_user.swag_rank, :precision => 1), swag_path, :class => "hidden_link"
     =link_to "Swag Rating:", swag_path, :class => "hidden_link"
   %li.money
     %span=link_to(number_to_currency(current_user.earnings), swag_path, :class => "hidden_link")

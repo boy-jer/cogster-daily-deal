@@ -8,7 +8,10 @@
   =b.text_area :description, :class => "text"
 .field
   =b.label :business_option_id, "Category", :class => "required"
-  =b.select :business_option_id, options_for_select(@business_options)
+  =b.select :business_option_id, options_for_select(@business_options, b.object.business_option_id)
+.field
+  =b.label :image, "Upload a logo for your business"
+  =b.file_field :image
 -if can? :create, Business.new
   .field
     =b.label :active, "Active?", :class => "required"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110418074220) do
+ActiveRecord::Schema.define(:version => 20110503192615) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line_1"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20110418074220) do
     t.boolean  "active"
     t.boolean  "featured"
     t.string   "type"
+    t.string   "image"
   end
 
   create_table "communities", :force => true do |t|

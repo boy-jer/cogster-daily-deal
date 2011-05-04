@@ -11,6 +11,10 @@ class Business < ActiveRecord::Base
   delegate :name, :to => :community, :prefix => true
   attr_accessor :deletion_explanation
   before_destroy :send_explanation
+  validates_presence_of :name, :community_id
+  validates_uniqueness_of :name, :scope => :community_id
+
+  mount_uploader :image, IconUploader
 
   def self.active
     where(['businesses.active = ?', true])
@@ -29,12 +33,12 @@ class Business < ActiveRecord::Base
   end
   alias_method_chain :current_project, :ensure
 
-  def image
-    'default.jpg'
-  end
+  #def image
+  #  image_url || 'default.jpg'
+  #end
 
   def medium_image
-    'default_medium.png'
+    image_url(:thumb) || 'default_medium.png'
   end
 
   def purchases

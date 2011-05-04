@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 describe Community do
+
+  it { should validate_presence_of(:name) }
+
+  it "validates uniqueness of name" do
+    Factory.create(:community)
+    Factory.build(:community).should validate_uniqueness_of(:name)
+  end
+
   it "uses given handle" do
     community = Community.new(:handle => 'the-grove')
     community.handle.should == 'the-grove'

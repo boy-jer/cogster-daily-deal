@@ -24,7 +24,7 @@
         =f.text_field :last_name, :class => "text"
       .field
         =f.label :community_id, "Preferred Community", :class => "required"
-        =f.select :community_id, options_for_select(@options)
+        =f.select :community_id, options_for_select(@options, current_user.community_id)
       .clear
       %br
         %h4.split Contact Information

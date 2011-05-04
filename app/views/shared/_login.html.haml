@@ -2,7 +2,7 @@
   %ul
     -if user_signed_in?
       %li#hello_msg
-        =link_to current_user.first_name, account_path
+        =link_to_unless_current 'Account', account_path
       %li
         =button_to "Log out", logout_path, :title => "Log Out", :id => "logout"
     -else
