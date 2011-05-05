@@ -108,6 +108,10 @@ module ApplicationHelper
       admin_menu
     elsif controller_path == 'purchases'
       breadcrumbs [link_to(@community.name, @community), link_to(@business.name, @business), "Make a Purchase"]
+    elsif controller_path == 'accounts'
+      breadcrumbs [link_to('Account', account_path), 'Edit Profile']
+    elsif controller_path == 'businesses'
+      breadcrumbs [link_to('Account', account_path), 'Edit Business Profile']
     else
       menu_without_business_filters + 
       render('shared/business_selector')

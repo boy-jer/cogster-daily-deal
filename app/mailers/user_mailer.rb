@@ -40,7 +40,7 @@ class UserMailer < ActionMailer::Base
 
   def set_common_variables(coupon, user)
     @name = user.first_name
-    @business = coupon.purchase.business.name
+    @business = coupon.business.name
     @expiration = coupon.expiration_date.strftime("%B %d")
   end
 end

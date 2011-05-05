@@ -32,7 +32,7 @@ Given /^I want to look at the communities$/ do
   4.times do |n|
     c = Factory.create(:community, :name => "community #{n}")
     5.times do |m|
-      Factory.create(:business, :community => c, :business_option => opt)
+      Factory.create(:business, :community => c, :business_option => opt, :name => "business #{n * 10 + m}")
     end
   end
   Factory.create(:community_request)

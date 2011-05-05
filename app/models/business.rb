@@ -28,14 +28,17 @@ class Business < ActiveRecord::Base
     includes(:current_project => [:purchases, :supporters])
   end
 
+  def business_hours
+    super || (0..6).map do |n|
+      { :open => { :hour => nil, :min => nil, :meridian => nil }, 
+        :close => { :hour => nil, :min => nil, :meridian => nil }}
+    end
+  end
+
   def current_project_with_ensure
     current_project_without_ensure || Project.new(:goal => 0)
   end
   alias_method_chain :current_project, :ensure
-
-  #def image
-  #  image_url || 'default.jpg'
-  #end
 
   def medium_image
     image_url(:thumb) || 'default_medium.png'

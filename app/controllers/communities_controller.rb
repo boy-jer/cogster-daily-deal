@@ -10,7 +10,7 @@ class CommunitiesController < ApplicationController
     @businesses.reverse! if params[:sort] == 'created_at'
     @businesses.sort_by!{|x| x.featured?? 0 : 1 }
     @other_businesses = []
-    @cogs = @community.users.sort_by(&:earnings)
+    @cogs = @community.users.sort_by{|u| [u.earnings, u.created_at]}
     @merchant_types = @businesses.map(&:business_option).uniq
   end
 end

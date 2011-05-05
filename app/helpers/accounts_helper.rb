@@ -38,7 +38,7 @@ module AccountsHelper
 
   def new_or_edit_project_link(project)
     if project.new_record?
-      link_to 'Create a Project', new_business_project_path
+      link_to 'Create a Project', new_business_project_path(current_user.business)
     else
       link_to 'Edit Your Project', edit_business_project_path(current_user.business, project)
     end

@@ -5,6 +5,7 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @user.terms = "1"
+    @user.skip_confirmation!
     @user.role = params[:user][:role]
     if @user.merchant?
       @user.business.community_id = @user.community_id

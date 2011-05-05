@@ -2,6 +2,11 @@ class BusinessesController < ApplicationController
   before_filter :find_community
   skip_before_filter :authenticate_user!
 
+  def edit
+    @business = current_user.business
+    set_options
+  end
+
   def index
     @businesses = Business.active.with_purchases.order(params[:sort])
     @businesses.reverse! if params[:sort] == 'created_at'
@@ -23,4 +28,13 @@ class BusinessesController < ApplicationController
     @business = Business.includes(:current_project).find(params[:id])
   end
 
+  def update
+    @business = current_user.business
+    if @business.update_attributes(params[:business])
+      redirect_to account_path, :notice => "Business profile updated"
+    else
+      set_options
+      render :edit
+    end
+  end
 end

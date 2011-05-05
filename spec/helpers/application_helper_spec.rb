@@ -109,7 +109,7 @@ describe ApplicationHelper do
     end
 
     it "hooks controllers outside of admin namespace to generic menu" do
-      helper.stub(:controller_path).and_return 'businesses'
+      helper.stub(:controller_path).and_return 'communities'
       helper.should_receive(:menu_without_business_filters).and_return 'txt'
       helper.should_receive(:render).and_return '_partial'
       helper.menu.should == 'txt_partial'

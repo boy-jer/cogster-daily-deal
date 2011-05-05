@@ -42,14 +42,8 @@ class AccountsController < ApplicationController
   protected
 
     def render_edit_template
-      if current_user.merchant? 
-        @business = current_user.business
-        set_options
-        render  'edit_merchant' 
-      else
-       @options = Community.all.map{|c| [c.name, c.id] }
-       render 'edit'
-      end
+     @options = Community.all.map{|c| [c.name, c.id] }
+     render 'edit'
     end
 
     def set_session

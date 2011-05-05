@@ -30,7 +30,7 @@ Spork.each_run do
 
   def sign_in_as_admin
     @admin = Factory.create(:admin)
-    #@admin.confirm!
+    @admin.confirm!
     sign_in :user, @admin
   end
   

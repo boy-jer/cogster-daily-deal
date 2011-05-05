@@ -1,7 +1,7 @@
 Given /^I am logged in(.*)$/ do |type_string|
   type = (type_string.split.last || 'user').to_sym
   @user = Factory(type)
-  #@user.confirm!
+  @user.confirm!
   visit "login"
   fill_in "Email", :with => @user.email
   fill_in "Password", :with => @user.password

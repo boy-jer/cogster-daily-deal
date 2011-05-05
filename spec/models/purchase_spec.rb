@@ -49,6 +49,7 @@ describe Purchase do
 
     it "sends an email" do
       reset_mailer
+      @purchase.stub(:current_coupon).and_return mock_model(Coupon, :business => Business.new(:name => 'test'), :expiration_date => Date.today)
       @purchase.save
       unread_emails_for(@purchase.user.email).should have(1).message
     end

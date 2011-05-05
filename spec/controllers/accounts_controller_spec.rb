@@ -22,23 +22,6 @@ describe AccountsController do
   end
 
   describe "GET 'edit'" do
-    context "merchant user" do
-    
-      before :each do
-        user = Factory.create(:merchant)
-        user.stub(:business) { mock_model(Business) }
-        sign_in :user, user
-        get :edit
-      end
-
-      it "uses the merchant template" do
-        response.should render_template('edit_merchant')
-      end
-    
-      it "assigns @business" do
-        assigns(:business).should_not be_nil
-      end
-    end
 
     context "admin user" do
 

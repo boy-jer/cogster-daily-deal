@@ -43,6 +43,7 @@ When /^I register( as a merchant)?$/ do |merchant|
   end
   check "user_terms"
   click_button "Sign Up"
+  User.last.confirm!
 end
 
 Then /^I should get a user account$/ do

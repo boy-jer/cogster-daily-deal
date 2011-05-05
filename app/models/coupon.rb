@@ -7,7 +7,7 @@ class Coupon < ActiveRecord::Base
   validates_numericality_of :remainder, 
                             :on => :update, :greater_than_or_equal_to => 0
   attr_accessor :redemption_date, :redemption_amount
-  delegate :user, :to => :purchase
+  delegate :user, :business, :to => :purchase
 
   def check_for_status_change(user)
     check_for_expiration(user)
