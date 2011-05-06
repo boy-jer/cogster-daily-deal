@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110503192615) do
+ActiveRecord::Schema.define(:version => 20110506004312) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line_1"
@@ -37,12 +37,12 @@ ActiveRecord::Schema.define(:version => 20110503192615) do
     t.datetime "updated_at"
     t.integer  "community_id"
     t.integer  "merchant_id"
-    t.string   "business_hours"
     t.integer  "business_option_id", :limit => 255
     t.boolean  "active"
     t.boolean  "featured"
     t.string   "type"
     t.string   "image"
+    t.string   "email"
   end
 
   create_table "communities", :force => true do |t|
@@ -83,6 +83,19 @@ ActiveRecord::Schema.define(:version => 20110503192615) do
     t.integer  "rank_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "hours", :force => true do |t|
+    t.integer  "business_id"
+    t.integer  "open_hour"
+    t.integer  "open_minute"
+    t.string   "open_meridian"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "close_hour"
+    t.integer  "close_minute"
+    t.string   "close_meridian"
+    t.integer  "day"
   end
 
   create_table "project_options", :force => true do |t|
@@ -159,7 +172,6 @@ ActiveRecord::Schema.define(:version => 20110503192615) do
 
   create_table "websites", :force => true do |t|
     t.integer  "business_id"
-    t.string   "name"
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"

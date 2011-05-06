@@ -6,16 +6,31 @@ module BusinessesHelper
     end
   end
 
-  def hour_options
-    options_for_select (1..12).to_a
+  def dt_dd(business, attribute)
+    if business.send(attribute).present?
+      content_tag(:dt, attribute.to_s.capitalize) + content_tag(:dd, business.send(attribute))
+    end
   end
 
-  def meridian_options
-    options_for_select %w(am pm)
+  def dt_dds(business, collection, attribute)
+    if business.send(collection).present? && business.send(collection).any?{|a| a.persisted? }
+      content_tag(:dt, collection.to_s.capitalize) +
+      business.send(collection).select{|a| a.persisted? }.map do |a|
+        content_tag(:dd, a.send(attribute))
+      end.join.html_safe
+    end
   end
 
-  def minute_options
-    options_for_select (0..59).map{|n| sprintf "%02d", n }.to_a
+  def hour_options(h, method)
+    options_for_select (1..12).to_a, h.object.send(method)
+  end
+
+  def meridian_options(h, method)
+    options_for_select %w(am pm), h.object.send(method)
+  end
+
+  def minute_options(h, method)
+    options_for_select (0..59).map{|n| sprintf "%02d", n }.to_a, h.object.send(method)
   end
 
   def purchase_possible?

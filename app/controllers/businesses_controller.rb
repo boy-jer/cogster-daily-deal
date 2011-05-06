@@ -4,7 +4,7 @@ class BusinessesController < ApplicationController
 
   def edit
     @business = current_user.business
-    set_options
+    set_options_and_websites
   end
 
   def index
@@ -33,8 +33,15 @@ class BusinessesController < ApplicationController
     if @business.update_attributes(params[:business])
       redirect_to account_path, :notice => "Business profile updated"
     else
-      set_options
+      set_options_and_websites
       render :edit
     end
   end
+
+  protected
+
+    def set_options_and_websites
+      set_options
+      @business.ensure_websites_present 
+    end
 end

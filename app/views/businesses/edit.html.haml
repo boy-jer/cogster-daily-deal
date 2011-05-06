@@ -1,67 +1,53 @@
 -content_for :menu do
-  =menu
+  =breadcrumbs [link_to('Account', account_path), 'Edit Business Profile']
 #content
   .main.full
     %h3 Edit Business Profile
     %p Provide some basic information about your business/group here. You can edit your hours and add links to your website and other popular social networks as well.
     %p This information will be displayed publicly on the profile page of your business.  Provide any information you would like Cogster supporters (or potential supporters) to see!
     .span-18.prepend-1
-      =form_for @business, :url => business_path(@business) do |f|
+      =form_for @business, :url => business_path(@business), :html => { :multipart => true } do |f|
         %fieldset
+          %legend Basic Information
           .field
             =f.label :name
             =f.text_field :name, :class => "text"
           .field
             =f.label :business_option_id, "Business Type"
             =f.select :business_option_id, options_for_select(@business_options, @business.business_option_id)
-          .field
-            =render :partial => 'shared/user_community_form', :locals => { :f => f}
+          =render :partial => 'shared/user_community_form', :locals => { :f => f}
           .field
             =f.label :description, "About the Business"
             =f.text_area :description, :class => "text"
-          .field
-            %label{:for => "business_hours"} Business Hours
-            %table#business_hours{ :cellpadding => 0, :cellspacing => 0 }
-              %thead
-                %tr
-                  %th Day
-                  %th{ :colspan => 3 } Opening Hour
-                  %th{ :colspan => 3 } Closing Hour
-                  %th Closed
-              %tbody
-                -Date::DAYNAMES.each.with_index do |day, i|
-                  %tr
-                    %td=day 
-                    %td=select_tag "business[business_hours][#{i}][open][hour]", hour_options, :style => "width:auto"
-                    %td=select_tag "business[business_hours][#{i}][open][minute]", minute_options, :style => "width:auto"
-                    %td=select_tag "business[business_hours][#{i}][open][meridian]", meridian_options, :style => "width:auto"
-                    %td=select_tag "business[business_hours][#{i}][close][hour]", hour_options, :style => "width:auto"
-                    %td=select_tag "business[business_hours][#{i}][close][minute]", minute_options, :style => "width:auto"
-                    %td=select_tag "business[business_hours][#{i}][close][meridian]", meridian_options, :style => "width:auto"
-                    %td
-                      %input{:type => "checkbox"}/
+        %fieldset
+          %legend Business Hours
+          %table#business_hours{ :cellpadding => 0, :cellspacing => 0 }
+            %thead
+              %tr
+                %th Day
+                %th{ :colspan => 3 } Opening Hour
+                %th{ :colspan => 3 } Closing Hour
+                %th Closed
+            %tbody
+              =f.fields_for :hours do |h|
+                = render :partial => 'hours', :locals => { :h => h}
           .clear
         %fieldset
-          %h4 Website, Facebook & Twitter Links:
-          %p.red Please copy & paste the respective URLs in the fields below. (use this format: 'http://www.example.com')
-          .field
-            %label{:for => "url"} Website
-            %input#url.text{:name => "url", :type => "text", :value => ""}
-          .clear
-          .field
-            %label{:for => "facebook"} Facebook
-            %input#facebook.text{:name => "facebook", :type => "text", :value => ""}
-          .field
-            %label{:for => "twitter"} Twitter
-            %input#twitter.text{:name => "twitter", :type => "text", :value => ""}
-          .field
-            %label{:for => "youtube"} Youtube
-            %input#twitter.text{:name => "youtube", :type => "text", :value => ""}
-          .field
-            %label{:for => "youtube2"} Youtube 2
-            %input#twitter.text{:name => "youtube2", :type => "text", :value => ""}
+          %legend Logo
+          =f.file_field :image
+          .right
+            =image_tag @business.image_url(:thumb)
+            %caption Current Image
+ 
         %fieldset
-          %h4 Contact Information
+          %legend Website, Facebook & Twitter Links:
+          %p Please copy & paste the respective URLs in the fields below. (use this format: 'http://www.example.com')
+          =f.fields_for :websites do |site|
+            .field
+              =site.label :url, 'Website URL'
+              =site.text_field :url, :class => "text"
+        %fieldset
+          %legend Contact Information
           %p Update your physical address and phone number information here.
           =render :partial => "shared/address_form", :locals => { :f => f, :addressable => @business.address }
         %div

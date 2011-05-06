@@ -17,12 +17,15 @@
         .contact
           %h4 Contact Info
           %dl
-            %dt Phone
-            %dd 814-237-0361
-            %dt Email
-            %dd ribs@hotsauce.com
-            %dt Website
-            %dd www.gotyourribsrighthere.com
+            =dt_dd(@business, :phone)
+            =dt_dd(@business, :email)
+            =dt_dds(@business, :websites, :url)
+        .contact
+          %h4 Business Hours
+          %dl
+            -@business.hours.each do |day|
+              %dt=day.weekday
+              %dd=day
       .steeple
         %h4 Business Details
         %p=@business.description

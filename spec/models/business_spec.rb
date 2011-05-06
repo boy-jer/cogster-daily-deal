@@ -50,4 +50,37 @@ describe Business do
       unread_emails_for(@business.merchant.email).should have(1).message
     end
   end
+
+  describe "#ensure_websites_present" do
+    it "does nothing if business has 4 websites already" do
+      4.times {|n| @business.websites.build }
+      @business.ensure_websites_present
+      @business.websites.length.should == 4
+    end
+
+    it "adds website placeholders otherwise" do
+      @business.ensure_websites_present
+      @business.websites.length.should == 4
+    end
+  end
+
+  describe "#closed_on?" do
+    before :each do
+      @business.save
+    end
+
+    it "does not register a day as closed before any hours are set" do
+      0.upto(6){|n| @business.closed_on?(n).should be_false }
+    end
+
+    it "should not register a day as closed if day has hours set" do
+      @business.hours[0].open_hour = 9
+      @business.closed_on?(0).should be_false
+    end
+
+    it "should register a day as closed if day has no open hour but other days do" do
+      @business.hours[0].open_hour = 9
+      @business.closed_on?(1).should be_true
+    end
+  end
 end

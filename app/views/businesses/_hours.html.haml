@@ -1,0 +1,9 @@
+%tr{ :class => cycle('odd', '')}
+  %td=h.object.weekday
+  %td=h.select :open_hour, hour_options(h, :open_hour)
+  %td=h.select :open_minute, minute_options(h, :open_minute)
+  %td=h.select :open_meridian, meridian_options(h, :open_meridian)
+  %td=h.select :close_hour, hour_options(h, :close_hour)
+  %td=h.select :close_minute, minute_options(h, :close_minute)
+  %td=h.select :close_meridian, meridian_options(h, :close_meridian)
+  %td.centered=check_box_tag "business[hours_attributes][#{h.object.day}][set_closed]", '1', @business.closed_on?(h.object.day)

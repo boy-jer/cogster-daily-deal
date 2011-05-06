@@ -1,6 +1,7 @@
+-content_for :menu do
+  =breadcrumbs [link_to('Account', account_path), 'Edit Project']
 #content
   .main.full
-    %h2 My Business
-    %h3 Edit Fundraising Project
+    %h2 Edit Fundraising Project
     =render "form"
   #rightbar
