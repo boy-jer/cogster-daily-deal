@@ -42,7 +42,7 @@ Given /^there are restaurants and shops in a community$/ do
 end
 
 Then /^I should see the profiles for the restaurants$/ do
-  page.should have_selector('h3', :text => "Search for restaurants")
+  page.should have_selector('h3', :text => "Restaurants")
   page.should have_selector('.business', :count => Business.category('restaurants').count)
 end
 

@@ -18,6 +18,8 @@ class ApplicationController < ActionController::Base
       @community = 
       if @business
         @business.community
+      elsif params[:community_id]
+        Community.find(params[:community_id])
       elsif current_user
         current_user.community
       else

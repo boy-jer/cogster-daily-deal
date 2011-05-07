@@ -28,8 +28,14 @@ module ApplicationHelper
   end
 
   def business_search_title
-    capture_haml do
-      haml_tag :h3, "Search for #{params[:search] || params[:filter]}"
+    if params[:search]
+      capture_haml do
+        haml_tag :h3, "Search for #{params[:search]}"
+      end
+    elsif params[:filter]
+      capture_haml do
+        haml_tag :h3, "#{params[:filter].capitalize}"
+      end
     end
   end
 

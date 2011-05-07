@@ -1,4 +1,5 @@
 =form_tag businesses_path, :method => :get do
   #search_div
     =text_field_tag "search", "Find Merchant...", :id => "search"
+    =hidden_field_tag "community_id", @community ? @community.id : params[:community_id]
     =image_submit_tag "images8/search_btn.png", :id => "submit", :alt => "Search"
