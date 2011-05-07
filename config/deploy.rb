@@ -29,11 +29,11 @@ set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
 
 namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do
-    sudo "/etc/init.d/unicorn start"
+    sudo "/etc/init.d/unicorn start /etc/unicorn/cogster.conf"
     #run "cd #{current_path} && #{try_sudo} #{unicorn_binary} -c #{unicorn_config} -E #{rails_env} -D"
   end
   task :stop, :roles => :app, :except => { :no_release => true } do
-    sudo "/etc/init.d/unicorn stop"
+    sudo "/etc/init.d/unicorn stop /etc/unicorn/cogster.conf"
     #run "#{try_sudo} kill `cat #{unicorn_pid}`"
   end
   task :graceful_stop, :roles => :app, :except => { :no_release => true } do
