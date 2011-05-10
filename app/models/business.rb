@@ -17,6 +17,7 @@ class Business < ActiveRecord::Base
   before_destroy :send_explanation
   validates_presence_of :name, :community_id
   validates_uniqueness_of :name, :scope => :community_id
+  validates_length_of :description, :maximum => 500
 
   mount_uploader :image, IconUploader
 

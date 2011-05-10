@@ -52,9 +52,14 @@ describe AccountsHelper do
       helper.cash_link(coupon).should == 'Future'
     end
 
-    it "shows link to cash page if coupon for present" do
+    it "shows text if coupon current but worthless" do
+      coupon = mock_model(Coupon, :expired? => false, :future? => false, :remainder => 0)
+      helper.cash_link(coupon).should == 'Spent'
+    end
+
+    it "shows link to cash page if coupon for present and has value" do
       purchase = mock_model(Purchase, :to_param => '1')
-      coupon = mock_model(Coupon, :expired? => false, :future? => false, :purchase => purchase)
+      coupon = mock_model(Coupon, :expired? => false, :future? => false, :purchase => purchase, :remainder => 1) 
       helper.cash_link(coupon).should match(/Print Cash/)
     end
   end

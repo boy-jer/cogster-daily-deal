@@ -119,7 +119,7 @@ describe AccountsController do
       it "redirects for success" do
         @user.should_receive(:update_attributes).with({ 'valid' => :params }).and_return true
         put :update, :id => @user.id, :user => { :valid => :params }
-        response.should be_redirect
+        response.should redirect_to(account_path)
       end
 
       context "on failure" do

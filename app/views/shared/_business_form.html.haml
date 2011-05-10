@@ -1,21 +1,35 @@
-.field
-  -if b.object.new_record?
-    %p Enter some information about your business. 
-  =b.label :name, nil, :class => "required"
-  =b.text_field :name, :class => "text"
-.field
-  =b.label :description, nil, :class => "required"
-  =b.text_area :description, :class => "text"
-.field
-  =b.label :business_option_id, "Category", :class => "required"
-  =b.select :business_option_id, options_for_select(@business_options, b.object.business_option_id)
-.field
-  =b.label :image, "Upload a logo for your business"
-  =b.file_field :image
--if can? :create, Business.new
+-if b.object.new_record?
+  %p Enter some information about your business. 
+%fieldset
+  %legend Basic Information
   .field
-    =b.label :active, "Active?", :class => "required"
-    =b.check_box :active
+    =b.label :name, nil, :class => "required"
+    =b.text_field :name, :class => "text"
   .field
-    =b.label :featured
-    =b.check_box :featured
+    =b.label :description, nil, :class => "required"
+    =b.text_area :description, :class => "text"
+  .field
+    =b.label :business_option_id, "Category", :class => "required"
+    =b.select :business_option_id, options_for_select(@business_options, b.object.business_option_id)
+  -if can? :create, Business.new
+    %fieldset
+      %legend Listing Details
+      .field
+        =b.label :active, "Active?", :class => "required"
+        =b.check_box :active
+      .field
+        =b.label :featured
+        =b.check_box :featured
+  %fieldset
+    %legend Business Hours
+    %table#business_hours{ :cellpadding => 0, :cellspacing => 0 }
+      %thead
+        %tr
+          %th Day
+          %th{ :colspan => 3 } Opening Hour
+          %th{ :colspan => 3 } Closing Hour
+          %th Closed
+      %tbody
+        =b.fields_for :hours do |h|
+          = render :partial => 'shared/hours', :locals => { :h => h }
+    .clear

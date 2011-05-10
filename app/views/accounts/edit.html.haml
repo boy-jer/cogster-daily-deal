@@ -12,13 +12,6 @@
         =f.label :email, nil, :class => "required"
         =f.text_field :email, :class => "text"
       .field
-        =f.label :password, nil, :class => "required"
-        =f.password_field :password, :class => "text"
-        %p{ :style => 'clear:both'} Leave the password blank unless you want to change it.
-      .field
-        =f.label :password_confirmation, "Password Confirmation", :class => "required"
-        =f.password_field :password_confirmation, :class => "text"
-      .field
         =f.label :first_name, "First Name", :class => "required"
         =f.text_field :first_name, :class => "text"
       .field
@@ -28,11 +21,10 @@
         =f.label :community_id, "Preferred Community", :class => "required"
         =f.select :community_id, options_for_select(@options, current_user.community_id)
       .clear
-      %br
-        %h4.split Contact Information
-        %p Store your information below for future purchases.
-        =render :partial => 'shared/address_form', :locals => { :f => f, :addressable => current_user.address }
-        .clear
-        %br
-          .field.split
-            =f.submit "Update", :class => "submit right"
+      %h4.split Contact Information
+      %p Store your information below for future purchases.
+      =render :partial => 'shared/address_form', :locals => { :f => f, :addressable => current_user.address }
+      .clear
+      .field.split
+        =f.submit "Update", :class => "submit right"
+    =link_to 'Click here to change your password', password_account_path

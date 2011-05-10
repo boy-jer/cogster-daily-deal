@@ -15,6 +15,8 @@ module AccountsHelper
       'Expired'
     elsif coupon.future?
       'Future'
+    elsif coupon.remainder == 0
+      'Spent'
     else
       link_to "Print Cash", cash_path(coupon.purchase, :pdf), :class => "button"
     end

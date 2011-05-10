@@ -8,8 +8,8 @@
       .field
         =f.label :role, nil, :class => "required"
         =f.select :role, options_for_select(%w(admin merchant cogster), :selected => @user.role)
-      -if @user.business
-        =f.fields_for @user.business do |b|
+      -if @business = @user.business
+        =f.fields_for @business do |b|
           =render :partial => 'shared/business_form', :locals => { :b => b }
       .field
         =f.submit "Update"

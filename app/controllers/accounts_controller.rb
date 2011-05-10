@@ -35,15 +35,24 @@ class AccountsController < ApplicationController
     if update_successful?
       redirect_to account_url, :notice => "Your profile has been updated"
     else
-      render_edit_template
+      render_edit_or_password_template
     end
   end
 
   protected
 
+    def render_edit_or_password_template
+      if params[:user][:password]
+        render :edit_password
+      else
+        render_edit_template
+      end
+    end
+
+
     def render_edit_template
-     @options = Community.all.map{|c| [c.name, c.id] }
-     render 'edit'
+      @options = Community.all.map{|c| [c.name, c.id] }
+      render 'edit'
     end
 
     def set_session

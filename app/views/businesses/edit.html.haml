@@ -6,38 +6,9 @@
     %p Provide some basic information about your business/group here. You can edit your hours and add links to your website and other popular social networks as well.
     %p This information will be displayed publicly on the profile page of your business.  Provide any information you would like Cogster supporters (or potential supporters) to see!
     .span-18.prepend-1
-      =form_for @business, :url => business_path(@business), :html => { :multipart => true } do |f|
-        %fieldset
-          %legend Basic Information
-          .field
-            =f.label :name
-            =f.text_field :name, :class => "text"
-          .field
-            =f.label :business_option_id, "Business Type"
-            =f.select :business_option_id, options_for_select(@business_options, @business.business_option_id)
-          =render :partial => 'shared/user_community_form', :locals => { :f => f}
-          .field
-            =f.label :description, "About the Business"
-            =f.text_area :description, :class => "text"
-        %fieldset
-          %legend Business Hours
-          %table#business_hours{ :cellpadding => 0, :cellspacing => 0 }
-            %thead
-              %tr
-                %th Day
-                %th{ :colspan => 3 } Opening Hour
-                %th{ :colspan => 3 } Closing Hour
-                %th Closed
-            %tbody
-              =f.fields_for :hours do |h|
-                = render :partial => 'hours', :locals => { :h => h}
-          .clear
-        %fieldset
-          %legend Logo
-          =f.file_field :image
-          .right
-            =image_tag @business.image_url(:thumb)
-            %caption Current Image
+      =form_for @business, :url => business_path(@business) do |f|
+        =render :partial => 'shared/business_form', :locals => { :b => f }
+        =render :partial => 'shared/user_community_form', :locals => { :f => f}
  
         %fieldset
           %legend Website, Facebook & Twitter Links:
@@ -48,8 +19,10 @@
               =site.text_field :url, :class => "text"
         %fieldset
           %legend Contact Information
-          %p Update your physical address and phone number information here.
+          %p Update your business' physical address and phone number information here.
           =render :partial => "shared/address_form", :locals => { :f => f, :addressable => @business.address }
         %div
           =f.submit "Update"
+          =link_to 'Click here to upload a logo for display', edit_logo_business_path(@business)
   #rightbar
+

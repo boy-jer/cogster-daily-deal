@@ -8,6 +8,7 @@ class Project < ActiveRecord::Base
   has_many :redemptions
   delegate :redemption_schedule, :redemption_period, :redemption_total, :to => :project_option
   validates_presence_of :expiration_date, :business_id, :name, :max_amount, :goal, :project_option_id
+  validates_length_of :reason, :maximum => 500
 
   def accepting_purchases?
     amount_funded < goal

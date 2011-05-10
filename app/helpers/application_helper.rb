@@ -101,6 +101,10 @@ module ApplicationHelper
     image_tag('images8/featured_overlay.png', :class => "featured_business_img") if business.featured?
   end
 
+  def hour_options(h, method)
+    options_for_select (1..12).to_a, h.object.send(method)
+  end
+
   def involving(object)
     object.persisted?? 'updating' : 'creating'
   end
@@ -123,6 +127,14 @@ module ApplicationHelper
   def menu_without_business_filters
     render('shared/merchant_search') +
     render('shared/community_select') 
+  end
+
+  def meridian_options(h, method)
+    options_for_select %w(am pm), h.object.send(method)
+  end
+
+  def minute_options(h, method)
+    options_for_select (0..59).map{|n| sprintf "%02d", n }.to_a, h.object.send(method)
   end
 
   def none_like

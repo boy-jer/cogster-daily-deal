@@ -2,7 +2,7 @@ class Purchase < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
   has_one :business, :through => :project
-  has_many :coupons do
+  has_many :coupons, :order => :start_date do
     def for_week_and_project(date, _project)
       select do |c| 
         c.good_during_week_of?(date) && proxy_owner.project == _project
@@ -13,6 +13,7 @@ class Purchase < ActiveRecord::Base
   has_one :address
   accepts_nested_attributes_for :address
 
+  #before_create :process_with_active_merchant 
   after_create :create_coupons, :send_email
 
   attr_protected :customer_ip, :status, :error_message, :updated_at, :created_at
@@ -91,8 +92,12 @@ class Purchase < ActiveRecord::Base
       {
         :ip => customer_ip,
         :billing_address => {
-          :name => 'name',
-          :line1=> 'addr'
+          :name =>  user.name,
+          :line1 => address.line_1,
+          :city  => address.city,
+          :state => address.state,
+          :country => address.country,
+          :zip     => address.zip
       }}
     end
 
@@ -101,14 +106,10 @@ class Purchase < ActiveRecord::Base
     end
 
     def validate_card
-      if false #Rails.env == 'production'
-        unless credit_card.valid?
-          credit_card.errors.full_messages.each do |message|
-            errors.add(:base, message)
-          end
+      unless credit_card.valid? || true
+        credit_card.errors.full_messages.each do |message|
+          errors.add(:base, message)
         end
-      else
-        errors.add(:type, 'must be MasterCard for demo') unless type == 'master'
       end
     end
 end

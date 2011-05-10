@@ -84,6 +84,10 @@ class User < ActiveRecord::Base
   end
 
   protected
+   
+    def password_required?
+      !persisted? || !password.blank? || !password_confirmation.blank?
+    end
 
     def set_cogster_id
       self.cogster_id = SecureRandom.hex(5)[0..8].upcase

@@ -38,7 +38,7 @@ When /^I make a (.*?)purchase for the "(.*)" project$/ do |amt, business_name|
   visit business_purchase_path(@business)
   select amt.to_i.to_s, :from => "purchase_amount" if amt
   select "MasterCard", :from => "Card Type"
-  fill_in "Credit Card Number", :with => "valid credit card #"
+  fill_in "Credit Card Number", :with => "1"
   fill_in "Security code", :with => "security code"
   select Date.today.month.to_s, :from => "purchase_expiration_month"
   select Date.today.year.to_s, :from => "purchase_expiration_year"

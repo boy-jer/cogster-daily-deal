@@ -1,6 +1,10 @@
 Cogster::Application.routes.draw do
 
-  resource :account, :only => [ :show, :edit, :update ]
+  resource :account, :only => [ :show, :edit, :update ] do
+    member do
+      get :password
+    end
+  end
 
   match "certificates/:id" => "accounts#cash", :as => "cash", :via => :get
 
@@ -9,6 +13,9 @@ Cogster::Application.routes.draw do
   resources :community_requests, :only => [ :new, :create, :destroy ]
 
   resources :businesses, :only => [ :show, :index, :edit, :update ] do
+    member do
+      get :edit_logo
+    end
     resources :coupons
     resources :projects
     resource :purchase, :only => [ :new, :create ], 
