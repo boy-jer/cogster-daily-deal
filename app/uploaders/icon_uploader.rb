@@ -13,7 +13,7 @@ class IconUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    path = Rails.env == "production" ? "../shared/system" : "public/images"
+    path = Rails.env == "production" ? "../../shared/system" : "public/images"
     "#{Rails.root}/#{path}/uploads"
   end
 
