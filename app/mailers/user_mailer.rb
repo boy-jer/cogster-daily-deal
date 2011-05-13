@@ -28,6 +28,10 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.email, :subject => "You can use more Cogster Cash starting today!")
   end
 
+  def notify_of_activation(email)
+    mail(:to => email, :subject => "Good news! Cogster likes your business!")
+  end
+
   def purchase_confirmation(purchase, coupon, user)
     set_common_variables(coupon, user)
     @amount = purchase.amount

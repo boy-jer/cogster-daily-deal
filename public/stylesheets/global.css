@@ -681,7 +681,7 @@ input.half{
 #business_controls #business_sort #business_sort_selection strong{
   padding:0px !important;margin:0px !important;margin-left:10px !important;color:#53535b}
 #business_controls #business_sort #business_sort_selection:hover{
-  -moz-border-radius-topleft:10px;-webkit-border-top-left-radius:10px;-o-border-top-left-radius:10px;-ms-border-top-left-radius:10px;-khtml-border-top-left-radius:10px;border-top-left-radius:10px;-moz-border-radius-topright:10px;-webkit-border-top-right-radius:10px;-o-border-top-right-radius:10px;-ms-border-top-right-radius:10px;-khtml-border-top-right-radius:10px;border-top-right-radius:10px;background:#1a1b1b url('/images/images8/business_sort_arrow_down.png') no-repeat 95% 50%}
+  -moz-border-radius-topleft:10px;-webkit-border-top-left-radius:10px;-o-border-top-left-radius:10px;-ms-border-top-left-radius:10px;-khtml-border-top-left-radius:10px;border-top-left-radius:10px;-moz-border-radius-topright:10px;-webkit-border-top-right-radius:10px;-o-border-top-right-radius:10px;-ms-border-top-right-radius:10px;-khtml-border-top-right-radius:10px;border-top-right-radius:10px;background:#1a1b1b url('/images/images8/current_region_dropdown_arrow_down.png') no-repeat 95% 50%}
 #business_controls #business_sort #business_sort_selection:hover strong{
   color:#fff}
 #business_controls #business_sort #business_sort_selection:hover ul{

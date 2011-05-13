@@ -3,10 +3,12 @@ Feature: Manage redemptions
   I want to keep track of Cogster cash reimbursements
   So I can allow my customers to use what they have purchased
 
+  Background: 
+    Given I am a merchant with an active project
+
   Scenario: View outstanding Cogster cash
-    Given I am logged in as a merchant
-    And I have an active project
-    And a user has Cogster cash that can be reimbursed this week
+    Given a user has Cogster cash that can be reimbursed this week
+    And I am a fucking merchant
     When I visit my account page
     Then I see a Cogster cash table
     And I see a row with the user's name and Cogster ID
@@ -15,10 +17,9 @@ Feature: Manage redemptions
     Then I see a form to redeem the user's Cogster cash
 
   Scenario: User's first Cogster cash redemption period expires midweek
-    Given I am logged in as a merchant
-    And I have an active project
-    And a user has Cogster cash that expires midweek
+    Given a user has Cogster cash that expires midweek
     And the user has Cogster cash that becomes available midweek
+    And I am a fucking merchant
     When I visit my account page
     Then I see a Cogster cash table
     And I see a row with the user's name and Cogster ID
@@ -26,10 +27,9 @@ Feature: Manage redemptions
     And I see which days are in the user's second redemption period
 
   Scenario: View all Cogster cash purchases
-    Given I am logged in as a merchant
-    And I have an active project
-    And a user has Cogster cash that expires midweek
+    Given a user has Cogster cash that expires midweek
     And the user has Cogster cash that becomes available midweek
+    And I am a fucking merchant
     When I visit my account page
     Then I see "View All Cogster Cash Purchases"
     When I click "View All Cogster Cash Purchases"

@@ -4,7 +4,7 @@ class Admin::BusinessOptionsController < ApplicationController
   def create
     @business_option = BusinessOption.new(params[:business_option])
     if @business_option.save
-      redirect_to admin_business_options_url
+      redirect_to admin_business_options_url, :notice => "#{@business_option.category} has been added"
     else
       render :new
     end
@@ -12,7 +12,7 @@ class Admin::BusinessOptionsController < ApplicationController
 
   def destroy
     @business_option.destroy
-    redirect_to admin_business_options_url
+    redirect_to admin_business_options_url, :notice => "#{@business_option.category} has been removed"
   end
 
   def edit
@@ -33,7 +33,7 @@ class Admin::BusinessOptionsController < ApplicationController
 
   def update
     if @business_option.update_attributes(params[:business_option])
-      redirect_to admin_business_options_url
+      redirect_to admin_business_options_url, :notice => "The category name has been updated to '#{@business_option.category}'"
     else
       render :edit
     end

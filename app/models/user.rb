@@ -14,14 +14,13 @@ class User < ActiveRecord::Base
   belongs_to :community
   has_one :address, :as => :addressable
   has_one :business, :foreign_key => :merchant_id
-  accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :address, :reject_if => :all_blank
   accepts_nested_attributes_for :business, 
     :reject_if => Proc.new{|attr| attr['name'].blank? && attr['description'].blank? }
   has_many :purchases
   has_many :coupons, :through => :purchases
   has_many :projects, :through => :purchases, :uniq => true
-  before_create :set_cogster_id
-
+  before_create :set_cogster_id, :set_role
 
   %w(admin cogster merchant).each do |role|
     (class << self; self; end).instance_eval do
@@ -52,6 +51,10 @@ class User < ActiveRecord::Base
 
   def image
     "default_avatar.jpg"
+  end
+
+  def made_purchase_for?(project)
+    purchases_of(project) > 0
   end
 
   def may_make_purchase_for?(project)
@@ -91,5 +94,9 @@ class User < ActiveRecord::Base
 
     def set_cogster_id
       self.cogster_id = SecureRandom.hex(5)[0..8].upcase
+    end
+     
+    def set_role
+      self.role ||= 'cogster'
     end
 end

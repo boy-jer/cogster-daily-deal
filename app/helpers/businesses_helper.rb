@@ -2,7 +2,13 @@ module BusinessesHelper
 
   def conditional_purchase_link(name, options, alt = nil)
     link_to_if(purchase_possible?, name, new_business_purchase_path(@business), options) do 
-      content_tag(:span, alt) if alt 
+      content_tag(:span, alt, :class => current_user_involved?) if alt 
+    end
+  end
+
+  def current_user_involved?
+    if current_user && current_user.made_purchase_for?(@business.current_project)
+      'supported'
     end
   end
 
@@ -16,7 +22,7 @@ module BusinessesHelper
     if business.send(collection).present? && business.send(collection).any?{|a| a.persisted? }
       content_tag(:dt, collection.to_s.capitalize) +
       business.send(collection).select{|a| a.persisted? }.map do |a|
-        content_tag(:dd, link_to(a.send(attribute), a.send(attribute)))
+        content_tag(:dd, link_to(a.send(attribute), a.send(attribute), :target => '_blank'))
       end.join.html_safe
     end
   end

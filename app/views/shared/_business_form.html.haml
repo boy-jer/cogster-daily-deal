@@ -20,16 +20,17 @@
       .field
         =b.label :featured
         =b.check_box :featured
-  %fieldset
-    %legend Business Hours
-    %table#business_hours{ :cellpadding => 0, :cellspacing => 0 }
-      %thead
-        %tr
-          %th Day
-          %th{ :colspan => 3 } Opening Hour
-          %th{ :colspan => 3 } Closing Hour
-          %th Closed
-      %tbody
-        =b.fields_for :hours do |h|
-          = render :partial => 'shared/hours', :locals => { :h => h }
-    .clear
+  -if b.object.persisted?
+    %fieldset
+      %legend Business Hours
+      %table#business_hours{ :cellpadding => 0, :cellspacing => 0 }
+        %thead
+          %tr
+            %th Day
+            %th{ :colspan => 3 } Opening Hour
+            %th{ :colspan => 3 } Closing Hour
+            %th Closed
+        %tbody
+          =b.fields_for :hours do |h|
+            = render :partial => 'shared/hours', :locals => { :h => h }
+  .clear

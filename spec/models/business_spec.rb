@@ -3,10 +3,11 @@ require 'spec_helper'
 describe Business do
 
   it { should have_errors_on(:name) }
-  it { should have_errors_on(:community_id) }
+  #it { should have_errors_on(:community_id) }
 
   before :each do
-    @business = Factory.build(:business, :merchant_id => 1)
+    @business = Factory.build(:business)
+    @business.merchant = Factory(:merchant, :business => nil)
   end
 
   it "validates uniqueness of name" do
@@ -31,11 +32,32 @@ describe Business do
     @business.purchases.should == [:purchase_1, :purchase_2, :purchase_3]
   end
 
-  describe "#destroy" do
+  describe "activation" do
     before :each do
-      @business = Business.new
-      @business.merchant = Factory(:merchant, :business => nil)
+      @merchant = Factory(:user)
+      @business.merchant = @merchant
+      @merchant.save
+      reset_mailer
     end
+
+    it "sets owner role to merchant" do
+      @business.update_attribute(:active, true)
+      @merchant.reload.role.should == 'merchant'
+    end
+
+    it "sends message to owner" do
+      @business.update_attribute(:active, true)
+      unread_emails_for(@business.merchant.email).should have(1).messages
+    end
+
+    it "skips message if owner previously set to merchant" do
+      @merchant.update_attribute(:role, 'merchant')
+      @business.update_attribute(:active, true)
+      unread_emails_for(@business.merchant.email).should have(0).messages
+    end
+  end
+
+  describe "#destroy" do
 
     it "goes quietly if no reason is given" do
       @business.save
@@ -53,7 +75,7 @@ describe Business do
 
   describe "#ensure_websites_present" do
     it "does nothing if business has 4 websites already" do
-      4.times {|n| @business.websites.build }
+      @business.ensure_websites_present
       @business.ensure_websites_present
       @business.websites.length.should == 4
     end
@@ -61,6 +83,14 @@ describe Business do
     it "adds website placeholders otherwise" do
       @business.ensure_websites_present
       @business.websites.length.should == 4
+    end
+
+    it "adds website placeholders in correct order" do
+      @business.websites.build(:url => "http://www.twitter.com")
+      @business.ensure_websites_present
+      @business.websites.map(&:url).should == Website::SOCIAL_MEDIA.map do |site|
+        "http://www.#{site}.com"
+      end
     end
   end
 

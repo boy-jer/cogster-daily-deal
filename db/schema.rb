@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110506004312) do
+ActiveRecord::Schema.define(:version => 20110511044601) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line_1"
@@ -96,6 +96,20 @@ ActiveRecord::Schema.define(:version => 20110506004312) do
     t.integer  "close_minute"
     t.string   "close_meridian"
     t.integer  "day"
+  end
+
+  create_table "paypal_responses", :force => true do |t|
+    t.integer  "purchase_id"
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.string   "action"
+    t.integer  "amount"
+    t.boolean  "success"
+    t.string   "authorization"
+    t.string   "message"
+    t.text     "params"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "project_options", :force => true do |t|

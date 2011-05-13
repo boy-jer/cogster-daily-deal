@@ -6,9 +6,9 @@ Given /^there are several businesses active in a community$/ do
   scrambled_alpha = %w(c b a d e)
   5.times do |n|
     type = n.odd?? restaurant : apparel
-    b = Factory.create(:business, :name => "#{scrambled_alpha[n]}Business #{n}", :community => @community, :active => true, :business_option => type)
-    Factory.create(:merchant, :email => "user#{n}@example.com", :business => b, :community => @community)
-    Factory.create(:project, :business => b, :project_option => project_option)
+    m = Factory(:merchant, :email => "user#{n}@example.com", :business => nil, :community => @community)
+    b = Factory(:business, :name => "#{scrambled_alpha[n]}Business #{n}", :community => @community, :active => true, :business_option => type, :merchant => m)
+    Factory(:project, :business => b, :project_option => project_option)
   end
 end
 
@@ -43,7 +43,7 @@ end
 
 Then /^I should see the profiles for the restaurants$/ do
   page.should have_selector('h3', :text => "Restaurants")
-  page.should have_selector('.business', :count => Business.category('restaurants').count)
+  page.should have_selector('.business', :count => Business.category('1-Restaurants').count)
 end
 
 Then /^I should not see the profiles for the shops$/ do

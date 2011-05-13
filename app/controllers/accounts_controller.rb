@@ -31,6 +31,10 @@ class AccountsController < ApplicationController
     render_edit_template
   end
 
+  def edit_password
+
+  end
+
   def update
     if update_successful?
       redirect_to account_url, :notice => "Your profile has been updated"

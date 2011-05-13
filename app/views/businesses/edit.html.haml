@@ -12,10 +12,10 @@
  
         %fieldset
           %legend Website, Facebook & Twitter Links:
-          %p Please copy & paste the respective URLs in the fields below. (use this format: 'http://www.example.com')
+          %p If applicable, please copy & paste the respective URLs in the fields below. (use this format: 'http://www.example.com')
           =f.fields_for :websites do |site|
             .field
-              =site.label :url, 'Website URL'
+              =site.label :url, "#{site.object.label.capitalize} URL"
               =site.text_field :url, :class => "text"
         %fieldset
           %legend Contact Information

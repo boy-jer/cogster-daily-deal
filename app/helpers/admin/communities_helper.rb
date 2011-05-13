@@ -1,3 +1,0 @@
-module Admin::CommunitiesHelper
-
-end

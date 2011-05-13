@@ -14,7 +14,7 @@ Factory.define :merchant, :parent => :user do |merchant|
   merchant.first_name            "BJ"
   merchant.last_name             "Rib"
   merchant.email                 "tasty@selinsgrove.net"
-  merchant.business              { Business.find_by_name(Factory.attributes_for(:business)[:business]) || Factory(:business) }
+  merchant.business              { Business.find_by_name(Factory.attributes_for(:business)[:business]) || Factory.build(:business) }
   merchant.role                  "merchant"
 end
 

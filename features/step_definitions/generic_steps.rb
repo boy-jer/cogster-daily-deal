@@ -1,7 +1,7 @@
 Given /^I am logged in(.*)$/ do |type_string|
   type = (type_string.split.last || 'user').to_sym
-  @user = Factory(type)
-  @user.confirm!
+  @user = User.find_by_role(type) || Factory(type)
+  @user.confirm! unless @user.confirmed?
   visit "login"
   fill_in "Email", :with => @user.email
   fill_in "Password", :with => @user.password
@@ -35,11 +35,12 @@ When /^I visit my account page$/ do
 end
 
 When /^I make a (.*?)purchase for the "(.*)" project$/ do |amt, business_name|
-  visit business_purchase_path(@business)
+  business = Business.find_by_name(business_name)
+  visit business_purchase_path(business)
   select amt.to_i.to_s, :from => "purchase_amount" if amt
   select "MasterCard", :from => "Card Type"
-  fill_in "Credit Card Number", :with => "1"
-  fill_in "Security code", :with => "security code"
+  fill_in "Credit Card Number", :with => "5500000000000004"
+  fill_in "Security code", :with => "123"
   select Date.today.month.to_s, :from => "purchase_expiration_month"
   select Date.today.year.to_s, :from => "purchase_expiration_year"
   fill_in "Address", :with => "100 Market St"
@@ -56,7 +57,7 @@ Given /^I have made two purchases$/ do
 end
 
 Given /^I have made a purchase$/ do
-  Given "I make a $40 purchase for the \"#{@business}\" project"
+  Given "I make a $40 purchase for the \"#{@business.name}\" project"
 end
 
 Then /^I see my swag rating$/ do

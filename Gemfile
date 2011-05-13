@@ -63,4 +63,5 @@ gem 'rmagick'
    gem 'email_spec'
    gem 'timecop'
    gem 'shoulda-matchers'
+   gem 'rcov'
  end

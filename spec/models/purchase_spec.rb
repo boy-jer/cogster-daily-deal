@@ -36,6 +36,8 @@ describe Purchase do
       schedule = [{ :duration => 7, :percentage => 75 },
                   { :duration => 7, :percentage => 50 }]
       @purchase.should_receive(:redemption_schedule).and_return schedule
+      @purchase.should_receive(:process_with_active_merchant).and_return true
+      @purchase.should_receive(:save_paypal_response).and_return true
     end
 
     it "creates its own coupons" do

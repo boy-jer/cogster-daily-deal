@@ -8,4 +8,12 @@ module Admin::UsersHelper
     end
   end
 
+  def role_options(user)
+    if user.business
+      %w(admin merchant cogster)
+    else
+      %w(admin cogster)
+    end
+  end
+
 end

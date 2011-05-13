@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'spork'
+require 'rspec/core'
 require 'matchers'
 
 Spork.prefork do
@@ -27,6 +28,11 @@ end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
+  def log_in
+    @user = Factory(:user)
+    sign_in @user 
+    controller.stub(:current_user) { @user }
+  end
 
   def sign_in_as_admin
     @admin = Factory.create(:admin)

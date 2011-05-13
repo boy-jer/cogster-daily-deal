@@ -1,12 +1,22 @@
 Given /^a user has Cogster cash that can be reimbursed this week$/ do
-  @cogster = Factory.create(:user, :community => Community.first)
-  purchase = @cogster.purchases.build(:project => @project, :amount => 20)
-  purchase.type = 'master'
-  purchase.save
+  Given "I am logged in"
+  @cogster = @user
+  Given "I have made a purchase"
+  click_button 'Log out'
 end
 
-Given /^I have an active project$/ do
-  @project = Factory.create(:project, :business => @user.business)
+Given /^I am a fucking merchant$/ do
+  visit "login"
+  fill_in "Email", :with => @merchant.email
+  fill_in "Password", :with => @merchant.password
+  click_button "Sign In"
+end
+
+Given /^I am a merchant with an active project$/ do
+  @merchant = Factory.create(:merchant)
+  @merchant.confirm! unless @merchant.confirmed?
+  @business = @merchant.business
+  @project = Factory.create(:project, :business => @business)
 end
 
 Then /^I see a Cogster cash table$/ do
@@ -35,10 +45,7 @@ end
 Given /^a user has Cogster cash that expires midweek$/ do
   desired_date = Date.today - Date.today.wday - 10
   Timecop.freeze(desired_date) do
-    @cogster = Factory.create(:user, :community => Community.first)
-    purchase = @cogster.purchases.build(:project => @project, :amount => 20)
-    purchase.type = 'master'
-    purchase.save
+    Given "a user has Cogster cash that can be reimbursed this week"
   end
 end
 

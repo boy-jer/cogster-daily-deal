@@ -5,7 +5,6 @@ describe User do
   let(:completed_project) { mock_model(Project, :accepting_purchases? => false)}
   let(:open_project) { mock_model(Project, :max_amount => 50, :accepting_purchases? => true)}
   its(:address) { should_not be_nil }
-  its(:role)    { should == 'cogster' }  
   
   describe "has a name" do
     subject { User.new(:first_name => "Dan", :last_name => "Bisbee") }
@@ -44,6 +43,16 @@ describe User do
     it "may if user has not maxed out and project is incomplete" do
       user.stub(:purchases_of).with(open_project).and_return 0
       user.may_make_purchase_for?(open_project).should be_true
+    end
+  end
+
+  describe "create" do
+    it "can have a business" do
+      user_attr = Factory.attributes_for(:user)
+      attr = user_attr.merge(:business_attributes => { 
+        :name => 'BJs', :description => 'food', :community_id => 1 }) 
+      user = User.create(attr)
+      user.should be_valid
     end
   end
 end

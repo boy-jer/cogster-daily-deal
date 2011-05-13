@@ -4,10 +4,8 @@ describe AccountsController do
 
   describe "GET 'cash'" do
     before :each do
-      user = Factory.create(:user)
-      sign_in :user, user
-      controller.stub(:current_user) { user }
-      user.purchases.stub(:find).with(1, :include => :coupons) { mock_model(Purchase, :current_coupon => Coupon.new) }
+      log_in
+      @user.purchases.stub(:find).with(1, :include => :coupons) { mock_model(Purchase, :current_coupon => Coupon.new) }
       get :cash, :id => 1
     end
 
@@ -25,13 +23,9 @@ describe AccountsController do
 
     context "admin user" do
 
-      before :each do
-        user = Factory.create(:admin)
-        sign_in :user, user
-        get :edit
-      end
-
       it "uses the default template" do
+        sign_in Factory.create(:admin)
+        get :edit
         response.should render_template('edit')
       end
     end
@@ -40,8 +34,7 @@ describe AccountsController do
   describe "GET 'show'" do
     %w(user admin merchant).each do |role|
       it "renders #{role} template for #{role}" do
-        user = Factory.create(role.to_sym)
-        sign_in :user, user
+        sign_in Factory.create(role.to_sym)
         get :show
         role = 'cogster' if role == 'user'
         response.should render_template(role.to_sym)
@@ -55,8 +48,7 @@ describe AccountsController do
 
       context "an admin user" do
         before :each do
-          user = Factory.create(:admin)
-          sign_in :user, user
+          sign_in Factory.create(:admin)
           get :show
         end
 
@@ -71,8 +63,7 @@ describe AccountsController do
 
       context "a merchant" do
         before :each do
-          user = Factory.create(:merchant)
-          sign_in :user, user
+          sign_in Factory.create(:merchant)
           get :show
         end
 
@@ -90,7 +81,7 @@ describe AccountsController do
   describe "PUT 'update'" do
     before :each do
       @user = Factory.create(:user)
-      sign_in :user, @user
+      sign_in @user
     end
 
     context "toggling status" do

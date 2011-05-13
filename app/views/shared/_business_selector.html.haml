@@ -1,4 +1,4 @@
 %ul
   %li=link_to "View All", :filter => :all
   -@merchant_types.each do |type|
-    %li=link_to type.category.capitalize, :filter => type.category
+    %li=link_to type.category, :filter => type.to_param
