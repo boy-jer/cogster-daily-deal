@@ -28,17 +28,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="spec-models-business_spec_rb.html">spec/models/business_spec.rb</a></td>
-            <td class='right_align'><tt>108</tt></td>
-            <td class='right_align'><tt>88</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>97.22%</tt></div>
+            <td class='right_align'><tt>116</tt></td>
+            <td class='right_align'><tt>94</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>96.55%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:97px"></div>
             <div class="uncovered" style="width:3px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>96.59%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>95.74%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:97px"></div>
-            <div class="uncovered" style="width:3px"></div>
+            <div class="covered" style="width:96px"></div>
+            <div class="uncovered" style="width:4px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -87,12 +87,12 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line6">6</a>   it { should have_errors_on(:community_id) }</pre></td>
+            <td><pre><a name="line6">6</a>   #it { should have_errors_on(:community_id) }</pre></td>
           </tr>
         
           
           
-          <tr class="marked">
+          <tr class="inferred">
             <td><pre><a name="line7">7</a> </pre></td>
           </tr>
         
@@ -519,7 +519,7 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line78">78</a>       4.times {|n| @business.websites.build }</pre></td>
+            <td><pre><a name="line78">78</a>       @business.ensure_websites_present</pre></td>
           </tr>
         
           
@@ -573,139 +573,187 @@
           
           
           <tr class="inferred">
-            <td><pre><a name="line87">87</a>   end</pre></td>
+            <td><pre><a name="line87">87</a> </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line88">88</a> </pre></td>
+            <td><pre><a name="line88">88</a>     it &quot;adds website placeholders in correct order&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line89">89</a>       @business.websites.build(:url =&gt; &quot;http://www.twitter.com&quot;)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line90">90</a>       @business.ensure_websites_present</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line91">91</a>       @business.websites.map(&amp;:url).should == Website::SOCIAL_MEDIA.map do |site|</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line92">92</a>         &quot;http://www.#{site}.com&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line93">93</a>       end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line94">94</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line89">89</a>   describe &quot;#closed_on?&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line90">90</a>     before :each do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line91">91</a>       @business.save</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line92">92</a>     end</pre></td>
+            <td><pre><a name="line95">95</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line93">93</a> </pre></td>
+            <td><pre><a name="line96">96</a> </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line94">94</a>     it &quot;does not register a day as closed before any hours are set&quot; do</pre></td>
+            <td><pre><a name="line97">97</a>   describe &quot;#closed_on?&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line95">95</a>       0.upto(6){|n| @business.closed_on?(n).should be_false }</pre></td>
+            <td><pre><a name="line98">98</a>     before :each do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line96">96</a>     end</pre></td>
+            <td><pre><a name="line99">99</a>       @business.save</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line100">100</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line97">97</a> </pre></td>
+            <td><pre><a name="line101">101</a> </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line98">98</a>     it &quot;should not register a day as closed if day has hours set&quot; do</pre></td>
+            <td><pre><a name="line102">102</a>     it &quot;does not register a day as closed before any hours are set&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line99">99</a>       @business.hours[0].open_hour = 9</pre></td>
+            <td><pre><a name="line103">103</a>       0.upto(6){|n| @business.closed_on?(n).should be_false }</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line100">100</a>       @business.closed_on?(0).should be_false</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line101">101</a>     end</pre></td>
+            <td><pre><a name="line104">104</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line102">102</a> </pre></td>
+            <td><pre><a name="line105">105</a> </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line103">103</a>     it &quot;should register a day as closed if day has no open hour but other days do&quot; do</pre></td>
+            <td><pre><a name="line106">106</a>     it &quot;should not register a day as closed if day has hours set&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line104">104</a>       @business.hours[0].open_hour = 9</pre></td>
+            <td><pre><a name="line107">107</a>       @business.hours[0].open_hour = 9</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line105">105</a>       @business.closed_on?(1).should be_true</pre></td>
+            <td><pre><a name="line108">108</a>       @business.closed_on?(0).should be_false</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line106">106</a>     end</pre></td>
+            <td><pre><a name="line109">109</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line107">107</a>   end</pre></td>
+            <td><pre><a name="line110">110</a> </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line108">108</a> end</pre></td>
+            <td><pre><a name="line111">111</a>     it &quot;should register a day as closed if day has no open hour but other days do&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line112">112</a>       @business.hours[0].open_hour = 9</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line113">113</a>       @business.closed_on?(1).should be_true</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line114">114</a>     end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line115">115</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line116">116</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on 2011-05-12 16:00:06 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on 2011-05-14 14:54:46 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

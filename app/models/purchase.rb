@@ -32,6 +32,10 @@ class Purchase < ActiveRecord::Base
     end
   end
 
+  def self.recent
+    includes(:coupons).where(['coupons.expiration_date >= ?', Date.today - 30])
+  end
+
   def cogster_cash
     coupons.sum(:initial_amount)
   end

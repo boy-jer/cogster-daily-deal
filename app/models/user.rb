@@ -82,6 +82,20 @@ class User < ActiveRecord::Base
     super || 'cogster'
   end
 
+  def set_business_community
+    if merchant?
+      business.community_id = community_id
+    else
+      self.business = nil 
+    end
+  end
+
+  def set_terms_and_confirmed_and_role(role)
+    self.terms = "1"
+    skip_confirmation!
+    self.role = role
+  end
+
   def swag_rank
     community.swag_rank(self)
   end

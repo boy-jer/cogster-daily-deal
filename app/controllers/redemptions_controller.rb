@@ -11,12 +11,4 @@ class RedemptionsController < ApplicationController
     end
   end
 
-  def show
-    @business = Business.find(params[:business_id])
-    @coupon = Coupon.includes(:purchase => :user).find(params[:id])
-    #redirect_to root_url unless @coupon.purchase.business_id == @business.id
-    @user = @coupon.purchase.user
-    @redemption = @coupon.redemptions.new
-  end
-
 end

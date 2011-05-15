@@ -28,17 +28,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="spec-helpers-admin-project_options_helper_spec_rb.html">spec/helpers/admin/project_options_helper_spec.rb</a></td>
-            <td class='right_align'><tt>15</tt></td>
-            <td class='right_align'><tt>4</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>93.33%</tt></div>
+            <td class='right_align'><tt>8</tt></td>
+            <td class='right_align'><tt>7</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>87.50%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:93px"></div>
-            <div class="uncovered" style="width:7px"></div>
+            <div class="covered" style="width:88px"></div>
+            <div class="uncovered" style="width:12px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>75.00%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>85.71%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:75px"></div>
-            <div class="uncovered" style="width:25px"></div>
+            <div class="covered" style="width:86px"></div>
+            <div class="uncovered" style="width:14px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -69,85 +69,43 @@
           
           
           <tr class="inferred">
-            <td><pre><a name="line3">3</a> # Specs in this file have access to a helper object that includes</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line4">4</a> # the CampaignsHelper. For example:</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line5">5</a> #</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line6">6</a> # describe CampaignsHelper do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line7">7</a> #   describe &quot;string concat&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line8">8</a> #     it &quot;concats two strings with spaces&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line9">9</a> #       helper.concat_strings(&quot;this&quot;,&quot;that&quot;).should == &quot;this that&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line10">10</a> #     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line11">11</a> #   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line12">12</a> # end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line13">13</a> describe Admin::ProjectOptionsHelper do</pre></td>
+            <td><pre><a name="line3">3</a> describe Admin::ProjectOptionsHelper do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line14">14</a>   pending &quot;add some examples to (or delete) #{__FILE__}&quot;</pre></td>
+            <td><pre><a name="line4">4</a>   it &quot;has a helper for interval count&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line15">15</a> end</pre></td>
+            <td><pre><a name="line5">5</a>     @project_option = mock_model(ProjectOption, :redemption_schedule =&gt; [1,2,3])</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line6">6</a>     helper.fewer_intervals.should == 2</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line7">7</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line8">8</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on 2011-05-12 16:00:06 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on 2011-05-14 14:54:46 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

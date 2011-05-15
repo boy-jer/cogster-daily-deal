@@ -4,14 +4,8 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    @user.terms = "1"
-    @user.skip_confirmation!
-    @user.role = params[:user][:role]
-    if @user.merchant?
-      @user.business.community_id = @user.community_id
-    else
-      @user.business = nil 
-    end
+    @user.set_terms_and_confirmed_and_role(params[:user][:role])
+    @user.set_business_community
     if @user.save
       redirect_to admin_users_path(:type => @user.role), :notice => "An account for #{@user.name} has been created"
     else
@@ -22,7 +16,7 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to admin_users_path, :notice => "#{@user.name}'s account has been deleted'"
+    redirect_to admin_users_path(:type => @user.role), :notice => "#{@user.name}'s account has been deleted'"
   end
 
   def edit
@@ -54,7 +48,7 @@ class Admin::UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       @user.role = params[:user][:role]
       @user.save
-      redirect_to admin_users_path, :notice => "#{@user.name} has been updated"
+      redirect_to admin_users_path(:type => @user.role), :notice => "#{@user.name} has been updated"
     else
       set_options
       render :edit

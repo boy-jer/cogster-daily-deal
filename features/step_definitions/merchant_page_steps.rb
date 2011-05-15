@@ -9,9 +9,9 @@ end
 
 Then /^I (do not )?see details of my current project$/ do |negate|
   if negate
-    page.should_not have_selector('.progress')
+    page.should_not have_selector('dl.list')
   else
-    page.should have_selector('.progress')
+    page.should have_selector('dl.list')
   end
 end
 
@@ -27,11 +27,4 @@ When /^I create a project$/ do
 end
 When /^I visit my account home page$/ do
   visit('/account')
-end
-
-Then /^I should see details of my current project$/ do
-  page.should have_selector('.business h4', :text => @user.business.name)
-end
-
-Then /^I should see a link to start a new project$/ do
 end

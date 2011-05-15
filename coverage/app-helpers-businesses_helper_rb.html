@@ -28,17 +28,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-helpers-businesses_helper_rb.html">app/helpers/businesses_helper.rb</a></td>
-            <td class='right_align'><tt>41</tt></td>
-            <td class='right_align'><tt>34</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>17.07%</tt></div>
+            <td class='right_align'><tt>38</tt></td>
+            <td class='right_align'><tt>32</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>81.58%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:17px"></div>
-            <div class="uncovered" style="width:83px"></div>
+            <div class="covered" style="width:82px"></div>
+            <div class="uncovered" style="width:18px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>14.71%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>78.12%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:15px"></div>
-            <div class="uncovered" style="width:85px"></div>
+            <div class="covered" style="width:78px"></div>
+            <div class="uncovered" style="width:22px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -80,25 +80,25 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line5">5</a>       content_tag(:span, alt, :class =&gt; current_user_involved?) if alt </pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line6">6</a>     end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line7">7</a>   end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line8">8</a> </pre></td>
           </tr>
         
@@ -116,25 +116,25 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line11">11</a>       'supported'</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line12">12</a>     end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line13">13</a>   end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line14">14</a> </pre></td>
           </tr>
         
@@ -152,25 +152,25 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line17">17</a>       content_tag(:dt, attribute.to_s.capitalize) + content_tag(:dd, business.send(attribute))</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line18">18</a>     end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line19">19</a>   end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line20">20</a> </pre></td>
           </tr>
         
@@ -188,43 +188,43 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line23">23</a>       content_tag(:dt, collection.to_s.capitalize) +</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line24">24</a>       business.send(collection).select{|a| a.persisted? }.map do |a|</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line25">25</a>         content_tag(:dd, link_to(a.send(attribute), a.send(attribute), :target =&gt; '_blank'))</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line26">26</a>       end.join.html_safe</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line27">27</a>     end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line28">28</a>   end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line29">29</a> </pre></td>
           </tr>
         
@@ -242,13 +242,13 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line32">32</a>       current_user.may_make_purchase_for?(@business.current_project)</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line33">33</a>     else</pre></td>
           </tr>
         
@@ -260,50 +260,32 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line35">35</a>     end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line36">36</a>   end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line37">37</a> </pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
-            <td><pre><a name="line38">38</a>   def rating_for(cog)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line39">39</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line40">40</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line41">41</a> end</pre></td>
+          <tr class="inferred">
+            <td><pre><a name="line38">38</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on 2011-05-12 16:00:06 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on 2011-05-14 14:54:45 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

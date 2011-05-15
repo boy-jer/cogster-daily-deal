@@ -28,17 +28,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="spec-spec_helper_rb.html">spec/spec_helper.rb</a></td>
-            <td class='right_align'><tt>60</tt></td>
-            <td class='right_align'><tt>30</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>80.00%</tt></div>
+            <td class='right_align'><tt>68</tt></td>
+            <td class='right_align'><tt>38</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>80.88%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:80px"></div>
-            <div class="uncovered" style="width:20px"></div>
+            <div class="covered" style="width:81px"></div>
+            <div class="uncovered" style="width:19px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>76.67%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>78.95%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:77px"></div>
-            <div class="uncovered" style="width:23px"></div>
+            <div class="covered" style="width:79px"></div>
+            <div class="uncovered" style="width:21px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -308,116 +308,164 @@
         
           
           
-          <tr class="inferred">
-            <td><pre><a name="line43">43</a> end</pre></td>
+          <tr class="uncovered">
+            <td><pre><a name="line43">43</a>   def mock_options</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line44">44</a>     Community.should_receive(:all) { </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line45">45</a>             [mock_model(Community, :name =&gt; 'State College', :id =&gt; 1), </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line46">46</a>              mock_model(Community, :name =&gt; 'Selinsgrove', :id =&gt; 2)] }</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line44">44</a> </pre></td>
+            <td><pre><a name="line47">47</a>     BusinessOption.should_receive(:all) {</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line48">48</a>       [mock_model(BusinessOption, :category =&gt; 'Restaurants', :id =&gt; 1),</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line49">49</a>        mock_model(BusinessOption, :category =&gt; 'Apparel', :id =&gt; 2)] }</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line45">45</a> # --- Instructions ---</pre></td>
+            <td><pre><a name="line50">50</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line51">51</a> end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line46">46</a> # - Sort through your spec_helper file. Place as much environment loading </pre></td>
+            <td><pre><a name="line52">52</a> </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line47">47</a> #   code that you don't normally modify during development in the </pre></td>
+            <td><pre><a name="line53">53</a> # --- Instructions ---</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line48">48</a> #   Spork.prefork block.</pre></td>
+            <td><pre><a name="line54">54</a> # - Sort through your spec_helper file. Place as much environment loading </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line49">49</a> # - Place the rest under Spork.each_run block</pre></td>
+            <td><pre><a name="line55">55</a> #   code that you don't normally modify during development in the </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line50">50</a> # - Any code that is left outside of the blocks will be ran during preforking</pre></td>
+            <td><pre><a name="line56">56</a> #   Spork.prefork block.</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line51">51</a> #   and during each_run!</pre></td>
+            <td><pre><a name="line57">57</a> # - Place the rest under Spork.each_run block</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line52">52</a> # - These instructions should self-destruct in 10 seconds.  If they don't,</pre></td>
+            <td><pre><a name="line58">58</a> # - Any code that is left outside of the blocks will be ran during preforking</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line53">53</a> #   feel free to delete them.</pre></td>
+            <td><pre><a name="line59">59</a> #   and during each_run!</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line54">54</a> #</pre></td>
+            <td><pre><a name="line60">60</a> # - These instructions should self-destruct in 10 seconds.  If they don't,</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line55">55</a> </pre></td>
+            <td><pre><a name="line61">61</a> #   feel free to delete them.</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line56">56</a> </pre></td>
+            <td><pre><a name="line62">62</a> #</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line57">57</a> </pre></td>
+            <td><pre><a name="line63">63</a> </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line58">58</a> </pre></td>
+            <td><pre><a name="line64">64</a> </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line59">59</a> # This file is copied to spec/ when you run 'rails generate rspec:install'</pre></td>
+            <td><pre><a name="line65">65</a> </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line60">60</a> </pre></td>
+            <td><pre><a name="line66">66</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line67">67</a> # This file is copied to spec/ when you run 'rails generate rspec:install'</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line68">68</a> </pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on 2011-05-12 16:00:07 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on 2011-05-14 14:54:46 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

@@ -8,6 +8,7 @@
   .field
     =b.label :description, nil, :class => "required"
     =b.text_area :description, :class => "text"
+    %em (Limit 500 characters)
   .field
     =b.label :business_option_id, "Category", :class => "required"
     =b.select :business_option_id, options_for_select(@business_options, b.object.business_option_id)

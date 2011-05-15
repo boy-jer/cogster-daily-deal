@@ -10,6 +10,8 @@
       =link_to "edit profile", edit_account_path
       )
     %h2 My Purchases
+    -if @purchases.empty?
+      %p You have no active purchases.
     #business_purchase_list
       =render :partial => 'purchase', :collection => @purchases
   #rightbar

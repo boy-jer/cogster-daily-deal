@@ -28,17 +28,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="spec-models-user_spec_rb.html">spec/models/user_spec.rb</a></td>
-            <td class='right_align'><tt>48</tt></td>
-            <td class='right_align'><tt>38</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>95.83%</tt></div>
-          <div class="percent_graph">
-            <div class="covered" style="width:96px"></div>
-            <div class="uncovered" style="width:4px"></div>
-          </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>94.74%</tt></div>
+            <td class='right_align'><tt>58</tt></td>
+            <td class='right_align'><tt>47</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>94.83%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:95px"></div>
             <div class="uncovered" style="width:5px"></div>
+          </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>93.62%</tt></div>
+          <div class="percent_graph">
+            <div class="covered" style="width:94px"></div>
+            <div class="uncovered" style="width:6px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -339,13 +339,73 @@
           
           
           <tr class="inferred">
-            <td><pre><a name="line48">48</a> end</pre></td>
+            <td><pre><a name="line48">48</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line49">49</a>   describe &quot;create&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line50">50</a>     it &quot;can have a business&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line51">51</a>       user_attr = Factory.attributes_for(:user)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line52">52</a>       attr = user_attr.merge(:business_attributes =&gt; { </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line53">53</a>         :name =&gt; 'BJs', :description =&gt; 'food', :community_id =&gt; 1 }) </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line54">54</a>       user = User.create(attr)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line55">55</a>       user.should be_valid</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line56">56</a>     end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line57">57</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line58">58</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on 2011-05-12 16:00:07 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on 2011-05-14 14:54:46 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

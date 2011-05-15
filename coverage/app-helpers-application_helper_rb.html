@@ -30,15 +30,15 @@
             <td class="left_align"><a href="app-helpers-application_helper_rb.html">app/helpers/application_helper.rb</a></td>
             <td class='right_align'><tt>178</tt></td>
             <td class='right_align'><tt>150</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>56.74%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>60.11%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:57px"></div>
-            <div class="uncovered" style="width:43px"></div>
+            <div class="covered" style="width:60px"></div>
+            <div class="uncovered" style="width:40px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>54.67%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>58.00%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:55px"></div>
-            <div class="uncovered" style="width:45px"></div>
+            <div class="covered" style="width:58px"></div>
+            <div class="uncovered" style="width:42px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -273,7 +273,7 @@
           
           
           <tr class="uncovered">
-            <td><pre><a name="line37">37</a>         haml_tag :h3, &quot;#{params[:filter].capitalize}&quot;</pre></td>
+            <td><pre><a name="line37">37</a>         haml_tag :h3, &quot;#{params[:filter].sub(/^.*-/,'').capitalize}&quot;</pre></td>
           </tr>
         
           
@@ -699,13 +699,13 @@
           
           
           <tr class="uncovered">
-            <td><pre><a name="line108">108</a>   def involving(object)</pre></td>
+            <td><pre><a name="line108">108</a>   def meridian_options(h, method)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line109">109</a>     object.persisted?? 'updating' : 'creating'</pre></td>
+            <td><pre><a name="line109">109</a>     options_for_select %w(am pm), h.object.send(method)</pre></td>
           </tr>
         
           
@@ -716,164 +716,164 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line111">111</a> </pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
-            <td><pre><a name="line112">112</a>   def login_link</pre></td>
+          <tr class="inferred">
+            <td><pre><a name="line112">112</a>   def minute_options(h, method)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line113">113</a>     link_to(&quot;Log In&quot;, login_path) unless user_signed_in?</pre></td>
+            <td><pre><a name="line113">113</a>     options_for_select (0..59).map{|n| sprintf &quot;%02d&quot;, n }.to_a, h.object.send(method)</pre></td>
           </tr>
         
           
           
-          <tr class="marked">
+          <tr class="inferred">
             <td><pre><a name="line114">114</a>   end</pre></td>
           </tr>
         
           
           
-          <tr class="marked">
+          <tr class="inferred">
             <td><pre><a name="line115">115</a> </pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
-            <td><pre><a name="line116">116</a>   def menu</pre></td>
+          <tr class="inferred">
+            <td><pre><a name="line116">116</a>   def involving(object)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line117">117</a>     if controller_path =~ /admin\//</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line118">118</a>       admin_menu</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line119">119</a>     elsif controller_path == 'purchases'</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line120">120</a>       breadcrumbs [link_to(@community.name, @community), link_to(@business.name, @business), &quot;Make a Purchase&quot;]</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line121">121</a>     else</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line122">122</a>       menu_without_business_filters + </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line123">123</a>       render('shared/business_selector')</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line124">124</a>     end</pre></td>
+            <td><pre><a name="line117">117</a>     object.persisted?? 'updating' : 'creating'</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line125">125</a>   end</pre></td>
+            <td><pre><a name="line118">118</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line119">119</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line120">120</a>   def login_link</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line126">126</a> </pre></td>
+            <td><pre><a name="line121">121</a>     link_to(&quot;Log In&quot;, login_path) unless user_signed_in?</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line122">122</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line123">123</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line124">124</a>   def menu</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line125">125</a>     if controller_path =~ /admin\//</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line126">126</a>       admin_menu</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line127">127</a>     elsif controller_path == 'purchases'</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line128">128</a>       breadcrumbs [link_to(@community.name, @community), link_to(@business.name, @business), &quot;Make a Purchase&quot;]</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line129">129</a>     else</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line130">130</a>       menu_without_business_filters + </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line131">131</a>       render('shared/business_selector')</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line132">132</a>     end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line133">133</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line134">134</a> </pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line127">127</a>   def menu_without_business_filters</pre></td>
+            <td><pre><a name="line135">135</a>   def menu_without_business_filters</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line128">128</a>     render('shared/merchant_search') +</pre></td>
+            <td><pre><a name="line136">136</a>     render('shared/merchant_search') +</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line129">129</a>     render('shared/community_select') </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line130">130</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line131">131</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line132">132</a>   def meridian_options(h, method)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line133">133</a>     options_for_select %w(am pm), h.object.send(method)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line134">134</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line135">135</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line136">136</a>   def minute_options(h, method)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line137">137</a>     options_for_select (0..59).map{|n| sprintf &quot;%02d&quot;, n }.to_a, h.object.send(method)</pre></td>
+            <td><pre><a name="line137">137</a>     render('shared/community_select') </pre></td>
           </tr>
         
           
@@ -884,13 +884,13 @@
         
           
           
-          <tr class="inferred">
+          <tr class="uncovered">
             <td><pre><a name="line139">139</a> </pre></td>
           </tr>
         
           
           
-          <tr class="inferred">
+          <tr class="uncovered">
             <td><pre><a name="line140">140</a>   def none_like</pre></td>
           </tr>
         
@@ -1125,7 +1125,7 @@
       </tbody>
     </table>
 
-    <p>Generated on 2011-05-12 16:00:06 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on 2011-05-14 14:54:45 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

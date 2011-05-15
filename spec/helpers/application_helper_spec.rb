@@ -46,6 +46,22 @@ describe ApplicationHelper do
       helper.business_image(business).scan(/img /).size.should == 2
     end
   end
+
+  describe "#community_name" do
+    it "returns nil if businesses are from multiple communities" do
+      biz = mock_model(Business, :community_id => 1)
+      other_biz = mock_model(Business, :community_id => 2)
+      assign(:businesses, [biz, other_biz])
+      helper.community_name.should be_nil
+    end
+
+    it "returns the name of the businesses' community if they are all from the same place" do
+      businesses = Array.new(10){|b| mock_model(Business, :community_id => 1, :community_name => 'The Grove')}
+      assign(:businesses, businesses)
+      helper.community_name.should == 'The Grove'
+    end
+  end
+
   describe "#controller_index_link" do
     it "does what it says" do
       helper.should_receive(:controller_title).and_return :title
@@ -113,6 +129,23 @@ describe ApplicationHelper do
       helper.should_receive(:menu_without_business_filters).and_return 'txt'
       helper.should_receive(:render).and_return '_partial'
       helper.menu.should == 'txt_partial'
+    end
+  end
+
+  describe "#none_like" do
+    it "mentions the search term if there was one" do
+      helper.stub(:params).and_return({ :search => 'Meaning' }) 
+      helper.none_like.should match(/Meaning/)
+    end
+
+    it "has generic text if there was a filter" do
+      helper.stub(:params).and_return({ :filter => 'Restaurants' }) 
+      helper.none_like.should_not be_empty
+    end
+
+    it "is blank if neither of those params are present" do
+      helper.stub(:params).and_return({}) 
+      helper.none_like.should be_nil
     end
   end
 

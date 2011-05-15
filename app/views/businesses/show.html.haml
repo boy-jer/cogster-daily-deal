@@ -12,6 +12,9 @@
         %h3 Project Details
         %p=@business.current_project.reason 
         =conditional_purchase_link("Support this Project", :class => "right")
+        -if @business.current_project.kicker.present?
+          %h3 Here's the Kicker:
+          %p=@business.current_project.kicker
       .clear
       .column
         .contact

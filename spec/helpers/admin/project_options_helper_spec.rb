@@ -1,15 +1,8 @@
 require 'spec_helper'
 
-# Specs in this file have access to a helper object that includes
-# the CampaignsHelper. For example:
-#
-# describe CampaignsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       helper.concat_strings("this","that").should == "this that"
-#     end
-#   end
-# end
 describe Admin::ProjectOptionsHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "has a helper for interval count" do
+    @project_option = mock_model(ProjectOption, :redemption_schedule => [1,2,3])
+    helper.fewer_intervals.should == 2
+  end
 end

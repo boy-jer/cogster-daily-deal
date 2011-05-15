@@ -90,7 +90,7 @@ describe Business do
       @business.ensure_websites_present
       @business.websites.map(&:url).should == Website::SOCIAL_MEDIA.map do |site|
         "http://www.#{site}.com"
-      end
+      end.unshift('') 
     end
   end
 

@@ -81,6 +81,16 @@ module ApplicationHelper
     end
   end
 
+  def edit_business_link_if_allowed(business)
+    if user_signed_in? 
+      if current_user.admin? 
+        link_to "Edit", edit_admin_business_path(business)
+      elsif current_user.owns?(business)
+        link_to "Edit", edit_business_path(business)  
+      end
+    end
+  end
+
   def error_messages_for(*objects)
     options = objects.extract_options!
     object = objects.first

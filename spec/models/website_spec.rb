@@ -12,4 +12,10 @@ describe Website do
     website.save
     website.url.should == 'http://www.facebook.com'
   end
+
+  it "deletes website if url is blank" do
+    website = Website.create(:url => 'homepage.com')
+    website.update_attributes(:url => '')
+    Website.find_by_url(website).should be_nil
+  end
 end

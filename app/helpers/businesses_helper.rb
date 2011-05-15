@@ -36,6 +36,7 @@ module BusinessesHelper
   end
 
   def rating_for(cog)
-
+    #don't delete this; it's called in shared template but should return nil
+    #outside of communities controller
   end
 end

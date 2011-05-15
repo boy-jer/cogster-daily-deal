@@ -30,9 +30,7 @@ class Business < ActiveRecord::Base
   end
 
   def self.category(cat)
-    #find_all_by_business_option_id(cat)
     where(['business_option_id = ?', cat.to_i])
-    #includes(:business_option).where(['business_options.category = ?', cat])
   end
 
   def self.with_purchases
@@ -49,11 +47,16 @@ class Business < ActiveRecord::Base
   alias_method_chain :current_project, :ensure
 
   def ensure_websites_present
+    if websites.present? && websites.first.homepage?
+      websites.first.label = 'website'
+    else
+      websites.insert(0, Website.new(:url => '', :label => 'website'))
+    end
     Website::SOCIAL_MEDIA.each_with_index do |site, i|
       if existing_site = websites.detect{|w| w.url =~ /#{site}/ }
         existing_site.label = site
       else
-        websites.insert(i, Website.new(:url => "http://www.#{site}.com"))
+        websites.insert(i + 1, Website.new(:url => "http://www.#{site}.com", :label => site))
       end
     end
   end

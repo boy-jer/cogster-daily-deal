@@ -1,11 +1,13 @@
 -content_for :menu do
   %ul
+    -if @current_project.persisted?
+      %li=link_to "View Customer List", business_project_path(@business, @current_project)
     %li=link_to 'Edit Profile', edit_account_path
     %li=link_to 'Edit Business', edit_business_path(current_user.business)
     %li=new_or_edit_project_link(@current_project)
 #content
   .main.full
-    %h1 
+    %h3 
       Welcome Back, 
       =current_user.first_name
     %h2 My Current Project
@@ -14,11 +16,9 @@
         Looks like you don't have a project set up yet. 
         =link_to "Click here to set up your first project", new_business_project_path(current_user.business), :id => 'new_project'
     -else
-      %h4 
-        =@current_project.supporters.count
-        Supporters
+      %h4="#{@current_project.supporters.count} Supporters"
       %div
-        = render 'shared/progress_bar', :project => @current_project
+        =# render 'shared/progress_bar', :project => @current_project
         %dl.list
           %dt Project Goal
           %dd.value
@@ -51,7 +51,6 @@
           %tbody
             =render :partial => 'supporter', :collection => @current_project.supporters
       %p=link_to "View All Cogster Cash Purchases", business_project_path(@business, @current_project)
-
 
   #rightbar
     =render 'user_view_button' unless session[:cogster]

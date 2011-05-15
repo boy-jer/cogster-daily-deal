@@ -40,6 +40,14 @@ Spork.each_run do
     sign_in :user, @admin
   end
   
+  def mock_options
+    Community.should_receive(:all) { 
+            [mock_model(Community, :name => 'State College', :id => 1), 
+             mock_model(Community, :name => 'Selinsgrove', :id => 2)] }
+    BusinessOption.should_receive(:all) {
+      [mock_model(BusinessOption, :category => 'Restaurants', :id => 1),
+       mock_model(BusinessOption, :category => 'Apparel', :id => 2)] }
+  end
 end
 
 # --- Instructions ---
