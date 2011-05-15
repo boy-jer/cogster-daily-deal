@@ -111,8 +111,20 @@ module ApplicationHelper
     image_tag('images8/featured_overlay.png', :class => "featured_business_img") if business.featured?
   end
 
+  def group_progress(project)
+    if !user_signed_in? || !current_user.made_purchase_for?(project)
+      'final_progress'
+    end
+  end
+
   def hour_options(h, method)
     options_for_select (1..12).to_a, h.object.send(method)
+  end
+
+  def individual_progress(project)
+    if user_signed_in? && current_user.sole_purchaser_of(project)
+      'initial_progress'
+    end
   end
 
   def meridian_options(h, method)

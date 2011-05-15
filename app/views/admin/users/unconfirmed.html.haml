@@ -3,21 +3,21 @@
 #content
   =notice_or_alert
   .main.narrow
-    %h2 Merchants
-    =paginated_section @merchants do
+    %h2 Unconfirmed Users
+    =paginated_section @users do
       %table{ :cellpadding => 0, :cellspacing => 0 }
         %thead
           %tr
             %th Name
-            %th Business
-            %th Active
-            %th Last Login
+            %th Community
+            %th Type
+            %th Sign Up Date
+            %th{ :colspan => 2} &nbsp;
           %tbody
-            =render :partial => 'merchant', :collection => @merchants
-    =link_to 'Add Merchant', new_admin_user_path
+            =render :partial => 'unconfirmed', :collection => @users
   #rightbar
     %h3 Other User Types
     %ul
       %li=link_to "Cogsters", :type => nil, :page => 1
       %li=link_to "Admin", :type => 'admin', :page => 1
-      %li=link_to "Unconfirmed Users", :type => 'unconfirmed', :page => 1
+      %li=link_to "Merchants", :type => 'merchant', :page => 1

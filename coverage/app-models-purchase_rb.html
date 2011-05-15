@@ -28,14 +28,14 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-models-purchase_rb.html">app/models/purchase.rb</a></td>
-            <td class='right_align'><tt>114</tt></td>
-            <td class='right_align'><tt>97</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>64.04%</tt></div>
+            <td class='right_align'><tt>118</tt></td>
+            <td class='right_align'><tt>100</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>63.56%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:64px"></div>
             <div class="uncovered" style="width:36px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>63.92%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>64.00%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:64px"></div>
             <div class="uncovered" style="width:36px"></div>
@@ -261,37 +261,37 @@
           
           
           <tr class="uncovered">
-            <td><pre><a name="line35">35</a>   def cogster_cash</pre></td>
+            <td><pre><a name="line35">35</a>   def self.recent</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line36">36</a>     coupons.sum(:initial_amount)</pre></td>
+            <td><pre><a name="line36">36</a>     includes(:coupons).where(['coupons.expiration_date &gt;= ?', Date.today - 30])</pre></td>
           </tr>
         
           
           
-          <tr class="marked">
+          <tr class="inferred">
             <td><pre><a name="line37">37</a>   end</pre></td>
           </tr>
         
           
           
-          <tr class="marked">
+          <tr class="uncovered">
             <td><pre><a name="line38">38</a> </pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line39">39</a>   def current_balance</pre></td>
+            <td><pre><a name="line39">39</a>   def cogster_cash</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line40">40</a>     current_coupon.remainder</pre></td>
+            <td><pre><a name="line40">40</a>     coupons.sum(:initial_amount)</pre></td>
           </tr>
         
           
@@ -309,13 +309,13 @@
           
           
           <tr class="uncovered">
-            <td><pre><a name="line43">43</a>   def current_coupon</pre></td>
+            <td><pre><a name="line43">43</a>   def current_balance</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line44">44</a>     coupons.detect{|c| c.current? } </pre></td>
+            <td><pre><a name="line44">44</a>     current_coupon.remainder</pre></td>
           </tr>
         
           
@@ -333,319 +333,319 @@
           
           
           <tr class="uncovered">
-            <td><pre><a name="line47">47</a>   protected</pre></td>
+            <td><pre><a name="line47">47</a>   def current_coupon</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line48">48</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line49">49</a>     def amount_in_pennies</pre></td>
+            <td><pre><a name="line48">48</a>     coupons.detect{|c| c.current? } </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line50">50</a>       (amount * 100).to_i</pre></td>
+            <td><pre><a name="line49">49</a>   end</pre></td>
           </tr>
         
           
           
-          <tr class="inferred">
-            <td><pre><a name="line51">51</a>     end</pre></td>
+          <tr class="marked">
+            <td><pre><a name="line50">50</a> </pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
+            <td><pre><a name="line51">51</a>   protected</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
             <td><pre><a name="line52">52</a> </pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line53">53</a>     def create_coupons</pre></td>
+            <td><pre><a name="line53">53</a>     def amount_in_pennies</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line54">54</a>       start = Date.today</pre></td>
+            <td><pre><a name="line54">54</a>       (amount * 100).to_i</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line55">55</a>     end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line56">56</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line57">57</a>     def create_coupons</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line55">55</a>       redemption_schedule.each do |period|</pre></td>
+            <td><pre><a name="line58">58</a>       start = Date.today</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line56">56</a>         coupon_amount = period[:percentage] * amount / 100</pre></td>
+            <td><pre><a name="line59">59</a>       redemption_schedule.each do |period|</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line57">57</a>         coupons.create(:start_date =&gt; start, :initial_amount =&gt; coupon_amount, :expiration_date =&gt; start + period[:duration] - 1)</pre></td>
+            <td><pre><a name="line60">60</a>         coupon_amount = period[:percentage] * amount / 100</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line58">58</a>         start = start + period[:duration] </pre></td>
+            <td><pre><a name="line61">61</a>         coupons.create(:start_date =&gt; start, :initial_amount =&gt; coupon_amount, :expiration_date =&gt; start + period[:duration] - 1)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line59">59</a>       end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line60">60</a>     end</pre></td>
+            <td><pre><a name="line62">62</a>         start = start + period[:duration] </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line61">61</a> </pre></td>
+            <td><pre><a name="line63">63</a>       end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
-            <td><pre><a name="line62">62</a>     def credit_card</pre></td>
+          <tr class="inferred">
+            <td><pre><a name="line64">64</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line63">63</a>       @credit_card ||= ActiveMerchant::Billing::CreditCard.new(</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line64">64</a>         :first_name         =&gt; first_name,</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line65">65</a>         :last_name          =&gt; last_name,</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line66">66</a>         :number             =&gt; card_number,</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line67">67</a>         :type               =&gt; type,</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line68">68</a>         :month              =&gt; expiration_month,</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line69">69</a>         :year               =&gt; expiration_year,</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line70">70</a>         :verification_value =&gt; security_code</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line71">71</a>       )</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line72">72</a>     end</pre></td>
+            <td><pre><a name="line65">65</a> </pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line73">73</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line74">74</a>     def process_with_active_merchant</pre></td>
+            <td><pre><a name="line66">66</a>     def credit_card</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line75">75</a>       response = GATEWAY.purchase(amount_in_pennies, credit_card, purchase_options) </pre></td>
+            <td><pre><a name="line67">67</a>       @credit_card ||= ActiveMerchant::Billing::CreditCard.new(</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line68">68</a>         :first_name         =&gt; first_name,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line69">69</a>         :last_name          =&gt; last_name,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line70">70</a>         :number             =&gt; card_number,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line71">71</a>         :type               =&gt; type,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line72">72</a>         :month              =&gt; expiration_month,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line73">73</a>         :year               =&gt; expiration_year,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line74">74</a>         :verification_value =&gt; security_code</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line75">75</a>       )</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line76">76</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line76">76</a>       if response.success?</pre></td>
+            <td><pre><a name="line77">77</a> </pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line77">77</a>         @response = paypal_responses.build(:amount =&gt; amount_in_pennies, :action =&gt; 'purchase', :response =&gt; response, :user_id =&gt; user_id, :project_id =&gt; project_id)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line78">78</a>       else</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line79">79</a>         errors.add(:base, response.message) </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line80">80</a>         PayPalResponse.create(:amount =&gt; amount_in_pennies, :action =&gt; 'purchase', :response =&gt; response, :user_id =&gt; user_id, :project_id =&gt; project_id)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line81">81</a>         return false</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line82">82</a>       end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line83">83</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line84">84</a>          </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line85">85</a>     def purchase_options </pre></td>
+            <td><pre><a name="line78">78</a>     def process_with_active_merchant</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line86">86</a>       {</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line87">87</a>         :ip =&gt; customer_ip,</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line88">88</a>         :billing_address =&gt; {</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line89">89</a>           :name =&gt;  user.name,</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line90">90</a>           :line1 =&gt; address.line_1,</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line91">91</a>           :city  =&gt; address.city,</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line92">92</a>           :state =&gt; address.state,</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line93">93</a>           :country =&gt; address.country,</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line94">94</a>           :zip     =&gt; address.zip</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line95">95</a>       }}</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line96">96</a>     end</pre></td>
+            <td><pre><a name="line79">79</a>       response = GATEWAY.purchase(amount_in_pennies, credit_card, purchase_options) </pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line97">97</a> </pre></td>
+            <td><pre><a name="line80">80</a>       if response.success?</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line98">98</a>     def save_paypal_response</pre></td>
+            <td><pre><a name="line81">81</a>         @response = paypal_responses.build(:amount =&gt; amount_in_pennies, :action =&gt; 'purchase', :response =&gt; response, :user_id =&gt; user_id, :project_id =&gt; project_id)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line82">82</a>       else</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line83">83</a>         errors.add(:base, response.message) </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line84">84</a>         PayPalResponse.create(:amount =&gt; amount_in_pennies, :action =&gt; 'purchase', :response =&gt; response, :user_id =&gt; user_id, :project_id =&gt; project_id)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line85">85</a>         return false</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line86">86</a>       end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line87">87</a>     end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line88">88</a>          </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line89">89</a>     def purchase_options </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line99">99</a>       @response.save</pre></td>
+            <td><pre><a name="line90">90</a>       {</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line91">91</a>         :ip =&gt; customer_ip,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line92">92</a>         :billing_address =&gt; {</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line93">93</a>           :name =&gt;  user.name,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line94">94</a>           :line1 =&gt; address.line_1,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line95">95</a>           :city  =&gt; address.city,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line96">96</a>           :state =&gt; address.state,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line97">97</a>           :country =&gt; address.country,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line98">98</a>           :zip     =&gt; address.zip</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line99">99</a>       }}</pre></td>
           </tr>
         
           
@@ -663,85 +663,109 @@
           
           
           <tr class="uncovered">
-            <td><pre><a name="line102">102</a>     def send_email</pre></td>
+            <td><pre><a name="line102">102</a>     def save_paypal_response</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line103">103</a>       UserMailer.purchase_confirmation(self, current_coupon, user).deliver</pre></td>
+            <td><pre><a name="line103">103</a>       @response.save</pre></td>
           </tr>
         
           
           
-          <tr class="marked">
+          <tr class="inferred">
             <td><pre><a name="line104">104</a>     end</pre></td>
           </tr>
         
           
           
-          <tr class="marked">
+          <tr class="uncovered">
             <td><pre><a name="line105">105</a> </pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line106">106</a>     def validate_card</pre></td>
+            <td><pre><a name="line106">106</a>     def send_email</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line107">107</a>       unless credit_card.valid? </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line108">108</a>         credit_card.errors.full_messages.each do |message|</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line109">109</a>           errors.add(:base, message)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line110">110</a>         end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line111">111</a>       end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line112">112</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line113">113</a> end</pre></td>
+            <td><pre><a name="line107">107</a>       UserMailer.purchase_confirmation(self, current_coupon, user).deliver</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line114">114</a> </pre></td>
+            <td><pre><a name="line108">108</a>     end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line109">109</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line110">110</a>     def validate_card</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line111">111</a>       unless credit_card.valid? </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line112">112</a>         credit_card.errors.full_messages.each do |message|</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line113">113</a>           errors.add(:base, message)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line114">114</a>         end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line115">115</a>       end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line116">116</a>     end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line117">117</a> end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line118">118</a> </pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on 2011-05-14 14:54:45 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on 2011-05-14 23:50:09 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

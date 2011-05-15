@@ -30,8 +30,20 @@ class Project < ActiveRecord::Base
     min_amount * redemption_percentage(period)
   end
 
+  def no_goal?
+    goal.nil? || goal == 0 
+  end
+
   def percent_funded
-    (goal.nil? || goal == 0) ? 0 : (100 * amount_funded / goal).to_i
+    no_goal? ? 0 : (100 * amount_funded / goal).to_i
+  end
+
+  def percent_funded_by(user = nil)
+    (no_goal? || user.nil?) ? 0 : (100 * user.purchases_of(self) / goal).to_i
+  end
+
+  def percent_funded_less(user = nil)
+    percent_funded - percent_funded_by(user)
   end
 
   def redemption_percentage(period)

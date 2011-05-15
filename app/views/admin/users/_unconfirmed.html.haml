@@ -1,0 +1,7 @@
+%tr
+  %td=unconfirmed.name
+  %td=unconfirmed.community.name
+  %td=unconfirmed.role
+  %td=unconfirmed.created_at.strftime("%b %d")
+  %td=button_to 'Activate', admin_user_path(unconfirmed, :confirm => true), :method => :put
+  %td=button_to 'Delete', admin_user_path(unconfirmed), :method => :delete

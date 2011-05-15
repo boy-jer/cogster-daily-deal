@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.unconfirmed
+    where(['confirmed_at IS NULL'])
+  end
+
   def abbr_name
     "#{first_name} #{last_name[0]}"
   end
@@ -94,6 +98,10 @@ class User < ActiveRecord::Base
     self.terms = "1"
     skip_confirmation!
     self.role = role
+  end
+
+  def sole_purchaser_of(project)
+    purchases_of(project) == project.amount_funded
   end
 
   def swag_rank

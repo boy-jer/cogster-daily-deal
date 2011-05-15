@@ -30,6 +30,8 @@ class Admin::UsersController < ApplicationController
     elsif params[:type] == 'admin'
       @admin = User.admin.paginate(:per_page => 10, :page => params[:page])
       render :admin
+    elsif params[:type] == 'unconfirmed'
+      @users = User.unconfirmed.includes(:community).paginate(:per_page => 10, :page => params[:page])
     else
       @cogsters = User.cogster.includes(:community).paginate(:per_page => 10, :page => params[:page])
     end
@@ -45,7 +47,10 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(params[:user])
+    if params[:confirm]
+      @user.confirm!
+      redirect_to admin_users_path(:type => 'unconfirmed'), :notice => "#{@user.name} has been confirmed"
+    elsif @user.update_attributes(params[:user])
       @user.role = params[:user][:role]
       @user.save
       redirect_to admin_users_path(:type => @user.role), :notice => "#{@user.name} has been updated"

@@ -1,7 +1,8 @@
 -social ||= nil
 .progress
   .progress_bar_background
-    .progress_bar{:style => "width:#{project.percent_funded}%;"}
+    %div{ :class => "progress_bar initial_progress #{group_progress(project)}", :style => "width:#{project.percent_funded_less(current_user)}$;"}
+    %div{ :class => "personal_progress_bar final_progress #{individual_progress(project)}", :style => "width:#{project.percent_funded_by(current_user)}%;"}
   .progress_bar_score
     %strong="#{project.percent_funded}%"
     %br/

@@ -2,8 +2,9 @@
   %ul
     -if @current_project.persisted?
       %li=link_to "View Customer List", business_project_path(@business, @current_project)
+    %li=link_to 'View Business', business_path(@business)
     %li=link_to 'Edit Profile', edit_account_path
-    %li=link_to 'Edit Business', edit_business_path(current_user.business)
+    %li=link_to 'Edit Business', edit_business_path(@business)
     %li=new_or_edit_project_link(@current_project)
 #content
   .main.full

@@ -465,7 +465,13 @@ h1#title a{
 .progress_bar_background{
   background-color:#ecf0f1;height:18px;width:85%;padding:1px 1px 1px 1px;margin:10px 0px 5px 0;float:left;-moz-border-radius:6px;-webkit-border-radius:6px;-o-border-radius:6px;-ms-border-radius:6px;-khtml-border-radius:6px;border-radius:6px}
 .progress_bar{
-  height:18px;background:url("/images/progress_bg.jpg") repeat-x;-moz-border-radius:6px;-webkit-border-radius:6px;-o-border-radius:6px;-ms-border-radius:6px;-khtml-border-radius:6px;border-radius:6px}
+  height:18px;background:url("/images/progress_bg.jpg") repeat-x;float: left;}
+.personal_progress_bar{
+  height:18px;background:url("/images/personal_progress_bg.jpg") repeat-x;float: left;}
+.initial_progress{
+  -moz-border-radius:6px 0 0 6px;-webkit-border-radius:6px 0 0 6px;-o-border-radius:6px 0 0 6px;-ms-border-radius:6px 0 0 6px;-khtml-border-radius:6px 0 0 6px;border-radius:6px 0 0 6px;}  
+.final_progress{
+  -moz-border-radius:0 6px 6px 0;-webkit-border-radius:0 6px 6px 0;-o-border-radius:0 6px 6px 0;-ms-border-radius:0 6px 6px 0;-khtml-border-radius:0 6px 6px 0;border-radius:0 6px 6px 0;}
 .progress_data{
   float:left;margin-right:30px}
 .progress_data_container{
