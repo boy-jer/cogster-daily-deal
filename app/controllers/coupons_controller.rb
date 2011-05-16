@@ -2,17 +2,14 @@ class CouponsController < ApplicationController
   before_filter :find_business
 
   def edit
-    @coupon = Coupon.includes(:redemptions, :purchase => :user).find(params[:id])
+    @coupon = Coupon.includes(:purchase => :user).find(params[:id])
     @user = @coupon.user
   end
 
   def update
     @coupon = Coupon.find(params[:id])
-    if @coupon.update_attributes(params[:coupon])
-      redirect_to account_url
-    else
-      render :edit
-    end
+    @coupon.toggle!(:used)
+    redirect_to account_url, :notice => "#{@coupon.user.abbr_name}'s coupon has been redeemed.'"
   end
 
   protected

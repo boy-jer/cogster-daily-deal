@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = @business.projects.find(params[:id], :include => { :purchases => [{ :coupons => :redemptions }, :user]})
+    @project = @business.projects.find(params[:id], :include => { :purchases => [ :coupons, :user]})
     @purchases = @project.purchases
   end
 

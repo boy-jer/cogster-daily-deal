@@ -42,7 +42,7 @@ Then /^I see a Cogster Cash coupon$/ do
 end
   
 Then /^I see how much money I have available$/ do
-  page.should have_selector('#value', :text => "$#{@user.purchases.first.current_coupon.remainder.to_i}.00")
+  page.should have_selector('#value', :text => "$#{@user.purchases.first.current_coupon.amount.to_i}.00")
 end
 
 Then /^I see the duration of the spending period$/ do

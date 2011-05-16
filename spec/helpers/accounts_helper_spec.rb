@@ -53,34 +53,14 @@ describe AccountsHelper do
     end
 
     it "shows text if coupon current but worthless" do
-      coupon = mock_model(Coupon, :expired? => false, :future? => false, :remainder => 0)
+      coupon = mock_model(Coupon, :expired? => false, :future? => false, :used? => true)
       helper.cash_link(coupon).should == 'Spent'
     end
 
     it "shows link to cash page if coupon for present and has value" do
       purchase = mock_model(Purchase, :to_param => '1')
-      coupon = mock_model(Coupon, :expired? => false, :future? => false, :purchase => purchase, :remainder => 1) 
+      coupon = mock_model(Coupon, :expired? => false, :future? => false, :purchase => purchase, :used? => false) 
       helper.cash_link(coupon).should match(/Print Cash/)
-    end
-  end
-
-  describe "#coupon_rows" do
-    before :each do
-      @user = mock_model(User, :abbr_name => 'Dan B', :cogster_id => '123456789')
-      @coupons = [mock_model(Coupon), mock_model(Coupon)]
-      helper.stub(:valid_days_for).and_return helper.content_tag(:td, 'valid')
-    end
-
-    it "has one element per coupon" do
-      helper.coupon_rows(@coupons, @user).size.should == 2
-    end
-
-    it "has user name in each element" do
-      helper.coupon_rows(@coupons, @user)[0].should match(/Dan B/)
-    end
-
-    it "has tds in each element" do
-      helper.coupon_rows(@coupons, @user)[0].scan(/<td/).size.should == 3
     end
   end
 
@@ -101,51 +81,4 @@ describe AccountsHelper do
     end
   end
 
-  describe "#redeemable_coupons_for" do
-    before :each do
-      assign(:monday, Date.today - 2)
-      assign(:current_project, @project = mock_model(Project))
-      @user = mock_model(User)
-      @purchase = Purchase.new 
-    end
-
-    it "returns '' if there are no coupons" do
-      helper.redeemable_coupons_for(@user, @purchase).should == ''
-    end
-
-    it "returns set of tr elements" do
-      @purchase.coupons.should_receive(:for_week_and_project).and_return :coupons
-      helper.should_receive(:coupon_rows).with(:coupons, @user).and_return %w(one two three)
-      helper.redeemable_coupons_for(@user, @purchase).scan(/<tr/).size.should == 3
-    end
-  end
-
-   describe "#valid_days_for" do
-     before :each do
-       assign(:monday, Date.today)
-       @coupon = mock_model(Coupon, :start_date => Date.today, :expiration_date => Date.today + 7, :remainder => 10)
-       business = mock_model(Business, :to_param => '1-business')
-       assign(:current_project, mock_model(Project, :business => business))
-     end
-
-     it "shows one td if coupon is valid all week" do
-       helper.valid_days_for(@coupon).scan(/<td/).size.should == 1
-     end
-
-     it "shows 2 tds if coupon becomes valid during week" do
-       @coupon.stub(:start_date).and_return Date.today + 1
-       helper.valid_days_for(@coupon).scan(/<td/).size.should == 2
-     end
-
-     it "shows 2 tds if coupon becomes invalid during week" do
-       @coupon.stub(:expiration_date).and_return Date.today + 5
-       helper.valid_days_for(@coupon).scan(/<td/).size.should == 2
-     end
-
-     it "shows 3 tds if coupon is invalid at start and end of week" do
-       @coupon.stub(:start_date).and_return Date.today + 1
-       @coupon.stub(:expiration_date).and_return Date.today + 5
-       helper.valid_days_for(@coupon).scan(/<td/).size.should == 3
-     end
-   end
 end

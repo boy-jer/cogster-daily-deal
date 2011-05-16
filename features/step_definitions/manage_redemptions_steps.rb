@@ -29,37 +29,17 @@ Then /^I see a row with the user's name and Cogster ID$/ do
 end
 
 Then /^I see how much Cogster cash the user has available$/ do
-  amount = @cogster.purchases.first.current_coupon.remainder.to_i
+  amount = @cogster.purchases.first.current_coupon.amount.to_i
   page.should have_selector('td a', :text => "$#{amount}.00")
 end
 
 When /^I click the amount$/ do
-  amount = @cogster.purchases.first.current_coupon.remainder.to_i
+  amount = @cogster.purchases.first.current_coupon.amount.to_i
   click_link "$#{amount}.00"
 end
 
 Then /^I see a form to redeem the user's Cogster cash$/ do
   page.should have_selector('h2', :text => "Redeem Coupon")
-end
-
-Given /^a user has Cogster cash that expires midweek$/ do
-  desired_date = Date.today - Date.today.wday - 10
-  Timecop.freeze(desired_date) do
-    Given "a user has Cogster cash that can be reimbursed this week"
-  end
-end
-
-Given /^the user has Cogster cash that becomes available midweek$/ do
-  @cogster.purchases.first.coupons.first.good_during_week_of?(Date.today)
-  @cogster.purchases.first.coupons.second.good_during_week_of?(Date.today)
-end
-
-Then /^I see which days are in the user's first redemption period$/ do
-  page.should have_xpath('//td[@colspan="4"]/a')
-end
-
-Then /^I see which days are in the user's second redemption period$/ do
-  page.should have_xpath('//td[@colspan="3"]/a')
 end
 
 Then /^I see a table of every purchase made in my active project$/ do
@@ -84,10 +64,10 @@ Then /^each row has the purchase amount$/ do
   end
 end
 
-Then /^each row has the Cogster cash outstanding for each redemption period$/ do
+Then /^each row has the Cogster cash value for each redemption period$/ do
   @project.purchases.each do |purchase|
     purchase.coupons.each do |coupon|
-      page.should have_selector('td', :text => "$#{coupon.remainder.to_i}.00")
+      page.should have_selector('td', :text => "$#{coupon.amount.to_i}.00")
     end
   end
 end

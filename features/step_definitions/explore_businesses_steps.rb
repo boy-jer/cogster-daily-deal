@@ -53,5 +53,5 @@ Then /^I should not see the profiles for the shops$/ do
 end
 
 Then /^I should see the profiles of the community businesses in alphabetical order$/ do
-  save_and_open_page
+  #save_and_open_page
 end

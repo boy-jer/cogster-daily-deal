@@ -1,12 +1,5 @@
 class Coupon < ActiveRecord::Base
   belongs_to :purchase
-  has_many :redemptions
-  before_create :set_remainder
-  after_update :create_redemption
-  before_update :calculate_remainder
-  validates_numericality_of :remainder, 
-                            :on => :update, :greater_than_or_equal_to => 0
-  attr_accessor :redemption_date, :redemption_amount
   delegate :user, :business, :to => :purchase
 
   def check_for_status_change(user)
@@ -15,7 +8,7 @@ class Coupon < ActiveRecord::Base
   end
 
   def current?
-    !expired? && !future?
+    !expired? && !future? && !used?
   end
 
   def expired?
@@ -32,12 +25,8 @@ class Coupon < ActiveRecord::Base
 
   protected
 
-    def calculate_remainder
-      self.remainder -= redemption_amount.to_f
-    end
-
     def check_for_expiration(user)
-      if current? && remainder > 0 && expiration_date == Date.today + 2
+      if current? && expiration_date == Date.today + 2
         UserMailer.expiration_warning(self, user).deliver
       end
     end
@@ -48,12 +37,4 @@ class Coupon < ActiveRecord::Base
       end
     end
 
-    def create_redemption
-      amount = remainder_change.first - remainder_change.last
-      redemptions.create(:date => redemption_date, :amount => amount)
-    end
-
-    def set_remainder
-      self.remainder = initial_amount
-    end
 end

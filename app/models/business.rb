@@ -34,7 +34,7 @@ class Business < ActiveRecord::Base
   end
 
   def self.with_purchases
-    includes(:current_project => [:purchases, :supporters])
+    includes(:current_project => { :purchases => :user })
   end
 
   def closed_on?(n)

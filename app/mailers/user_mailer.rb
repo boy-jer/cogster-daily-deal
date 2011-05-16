@@ -17,14 +17,14 @@ class UserMailer < ActionMailer::Base
   end
 
   def expiration_warning(coupon, user)
-    @amount = coupon.remainder
+    @amount = coupon.amount
     set_common_variables(coupon, user)
     mail(:to => user.email, :subject => "Your Cogster Cash is about to expire!")
   end
 
   def new_coupon(coupon, user)
     set_common_variables(coupon, user)
-    @amount = coupon.initial_amount
+    @amount = coupon.amount
     mail(:to => user.email, :subject => "You can use more Cogster Cash starting today!")
   end
 

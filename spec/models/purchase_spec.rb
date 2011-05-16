@@ -16,7 +16,7 @@ describe Purchase do
   end
 
   it "gets balance from current coupon" do
-    @purchase.should_receive(:current_coupon).and_return mock_model(Coupon, :remainder => 20)
+    @purchase.stub(:current_coupon).and_return mock_model(Coupon, :used? => false, :amount => 20)
     @purchase.current_balance.should == 20
   end
 
@@ -41,8 +41,8 @@ describe Purchase do
     end
 
     it "creates its own coupons" do
-      params_1 = { :start_date => Date.today, :initial_amount => 75.0, :expiration_date => Date.today + 6 }
-      params_2 = { :start_date => Date.today + 7, :initial_amount => 50.0, :expiration_date => Date.today + 13 }
+      params_1 = { :start_date => Date.today, :amount => 75.0, :expiration_date => Date.today + 6 }
+      params_2 = { :start_date => Date.today + 7, :amount => 50.0, :expiration_date => Date.today + 13 }
       @purchase.coupons.should_receive(:create).with(params_1)
       @purchase.coupons.should_receive(:create).with(params_2) 
       @purchase.should_receive(:send_email).and_return true

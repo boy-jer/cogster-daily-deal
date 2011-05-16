@@ -9,7 +9,6 @@ class Purchase < ActiveRecord::Base
       end
     end
   end
-  has_many :redemptions, :through => :coupons
   has_many :paypal_responses
   has_one :address
   accepts_nested_attributes_for :address
@@ -23,6 +22,7 @@ class Purchase < ActiveRecord::Base
   validates_acceptance_of :terms, :on => :create
   validate                  :validate_card, :on => :create
   delegate :redemption_schedule, :to => :project
+  delegate :abbr_name, :cogster_id, :to => :user
 
   attr_accessor :type, :expiration_year, :expiration_month, :card_number, :security_code, :first_name, :last_name
 
@@ -37,11 +37,11 @@ class Purchase < ActiveRecord::Base
   end
 
   def cogster_cash
-    coupons.sum(:initial_amount)
+    coupons.sum(:amount)
   end
 
   def current_balance
-    current_coupon.remainder
+    current_coupon.used? ? 0 : current_coupon.amount
   end
 
   def current_coupon
@@ -58,7 +58,7 @@ class Purchase < ActiveRecord::Base
       start = Date.today
       redemption_schedule.each do |period|
         coupon_amount = period[:percentage] * amount / 100
-        coupons.create(:start_date => start, :initial_amount => coupon_amount, :expiration_date => start + period[:duration] - 1)
+        coupons.create(:start_date => start, :amount => coupon_amount, :expiration_date => start + period[:duration] - 1)
         start = start + period[:duration] 
       end
     end

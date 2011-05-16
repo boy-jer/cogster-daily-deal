@@ -17,18 +17,12 @@ describe CouponsController do
   describe "PUT 'update'" do
     context "on success" do
       it "works" do
-        Coupon.should_receive(:find).with(:id) { mock_model(Coupon, :update_attributes => true) }
+        user = mock_model(User, :abbr_name => "Test G")
+        Coupon.should_receive(:find).with(:id) { mock_model(Coupon, :toggle! => true, :user => user) }
         put :update, :id => :id, :business_id => :business_id
         response.should be_redirect
       end
     end
 
-    context "on failure" do
-      it "renders edit form" do
-        Coupon.should_receive(:find).with(:id) { mock_model(Coupon, :update_attributes => false) }
-        put :update, :id => :id, :business_id => :business_id
-        response.should render_template('edit')
-      end
-    end
   end
 end

@@ -16,19 +16,8 @@ Feature: Manage redemptions
     When I click the amount
     Then I see a form to redeem the user's Cogster cash
 
-  Scenario: User's first Cogster cash redemption period expires midweek
-    Given a user has Cogster cash that expires midweek
-    And the user has Cogster cash that becomes available midweek
-    And I am a fucking merchant
-    When I visit my account page
-    Then I see a Cogster cash table
-    And I see a row with the user's name and Cogster ID
-    And I see which days are in the user's first redemption period
-    And I see which days are in the user's second redemption period
-
   Scenario: View all Cogster cash purchases
-    Given a user has Cogster cash that expires midweek
-    And the user has Cogster cash that becomes available midweek
+    Given a user has Cogster cash that can be reimbursed this week
     And I am a fucking merchant
     When I visit my account page
     Then I see "View All Cogster Cash Purchases"
@@ -37,5 +26,5 @@ Feature: Manage redemptions
     And each row has the purchaser's name
     And each row has the date of purchase
     And each row has the purchase amount
-    And each row has the Cogster cash outstanding for each redemption period
+    And each row has the Cogster cash value for each redemption period
 

@@ -1,27 +1,13 @@
 #content
   .main.narrow
     %h2 Redeem Coupon
-    %h3 
-      Purchase by 
-      =@user.abbr_name
-      (ID
-      =@user.cogster_id
-      )
-    =form_for [@business, @coupon] do |r|
-      %fieldset
-        .field
-          =r.label :redemption_date
-          =r.select :redemption_date, options_for_select(redemption_date_range)
-        .field
-          =r.label :redemption_amount
-          =r.text_field :redemption_amount, :class => "text"
-        .clear
-        =r.submit "Save Transaction"
-    =link_to "Cancel", account_path
-    -if @coupon.redemptions.empty?
-      %p 
-        This is the first transaction recorded for this coupon. 
+    %h3="Purchase by #{@user.abbr_name} (ID #{@user.cogster_id})"
     %p
       =@user.abbr_name
       may redeem the coupon for up to
-      ="#{number_to_currency @coupon.remainder}."
+      ="#{number_to_currency @coupon.amount}."
+    =form_for [@business, @coupon] do |r|
+      %fieldset
+        .field
+        =r.submit "Redeem"
+    =link_to "Cancel", account_path

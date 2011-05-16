@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110514235424) do
+ActiveRecord::Schema.define(:version => 20110516052320) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line_1"
@@ -66,11 +66,11 @@ ActiveRecord::Schema.define(:version => 20110514235424) do
   create_table "coupons", :force => true do |t|
     t.date     "start_date"
     t.date     "expiration_date"
-    t.decimal  "initial_amount"
-    t.decimal  "remainder"
+    t.decimal  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "purchase_id"
+    t.boolean  "used"
   end
 
   create_table "deals", :force => true do |t|
@@ -138,21 +138,11 @@ ActiveRecord::Schema.define(:version => 20110514235424) do
     t.integer  "user_id"
     t.integer  "project_id"
     t.decimal  "amount"
-    t.date     "expiration_date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "customer_ip"
     t.string   "status"
     t.string   "error_message"
-  end
-
-  create_table "redemptions", :force => true do |t|
-    t.integer  "coupon_id"
-    t.date     "date"
-    t.decimal  "amount"
-    t.string   "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

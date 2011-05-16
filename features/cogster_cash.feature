@@ -24,8 +24,8 @@ Feature: Cogster cash
     Then I see the Cogster cash available for the second and subsequent redemption periods
     And I see the Cogster cash for the first redemption period has expired
 
-  Scenario: All Cogster cash redeemed
-    Given all the Cogster cash for the first redemption period has been redeemed
+  Scenario: Cogster cash redeemed
+    Given the Cogster cash for the first redemption period has been redeemed
     When I go to the account page
     Then I see the Cogster cash available for future redemption periods
-    And I see the Cogster cash for the first redemption period has a balance 0
+    And I see the Cogster cash for the first redemption period has been used

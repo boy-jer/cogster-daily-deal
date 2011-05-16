@@ -25,25 +25,6 @@ describe Coupon do
     @coupon.good_during_week_of?(Date.today).should be_true
   end
 
-  it "creates a record of a redemption when it is updated" do
-    @coupon.save
-    sale_date = Date.today - 1
-    @coupon.remainder = 20
-    amount = BigDecimal.new('15', 9)
-    @coupon.redemption_amount = amount
-    @coupon.redemption_date = sale_date
-    redemption_params = { :date => sale_date, :amount => amount } 
-    @coupon.redemptions.should_receive(:create).with redemption_params
-    @coupon.save
-    @coupon.remainder.should be_within(0.1).of(5)
-  end
-
-  it "sets remainder upon creation" do
-    @coupon.remainder = nil
-    @coupon.save
-    @coupon.remainder.should == @coupon.initial_amount
-  end
-
   describe "#check_for_status_change" do
 
     before :each do
@@ -83,9 +64,9 @@ describe Coupon do
       end
     end
 
-    it "does nothing for current coupon with no value" do
+    it "does nothing for current coupon that has been used" do
       @coupon.expiration_date = Date.today + 2
-      @coupon.remainder = 0
+      @coupon.used = true
       @coupon.check_for_status_change(@user)
       unread_emails_for(@user.email).should have(0).messages
     end

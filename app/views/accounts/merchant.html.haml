@@ -34,24 +34,26 @@
           %dt Maximum Individual Purchase
           %dd=number_to_currency(@current_project.max_amount)
         =link_to "Edit Current Project", edit_business_project_path(current_user.business, @current_project), :title => "Click to change any of the parameters of your current Cogster project", :class => "right"
-      %h2 Redemptions
+      %h2 Manage Redemptions
       -if @current_project.supporters.empty?
         %p Once your project starts to get supporters, you will see how to redeem purchases on this page when you log in.
       -else
-        %p Keep track of redemptions during the week. 
+        %p Find the customer's name. Click on the dollar amount under the appropriate Visit Period. Process the visit.
+        %p=link_to "View All Cogster Cash Purchases", business_project_path(@business, @current_project)
         %table{ :cellpadding => 0, :cellspacing => 0, :id => "redemptions" }
           %thead
             %tr
               %th{ :colspan => 2}Customer
-              %th{ :colspan => 7}="#{@monday.strftime("%m/%d")}-#{(@monday + 6).strftime("%m/%d")}"
+              %th{ :colspan => @current_project.redemption_schedule.length }="Visit Period"
+              %th &nbsp;
             %tr
               %th Name
               %th Cogster ID
-              -%w(M T W Th F Sa Su).each do |day|
-                %th=day
+              -1.upto(@current_project.redemption_schedule.length) do |n|
+                %th=n
+              %th Details
           %tbody
-            =render :partial => 'supporter', :collection => @current_project.supporters
-      %p=link_to "View All Cogster Cash Purchases", business_project_path(@business, @current_project)
+            =render :partial => 'supporter_purchase', :collection => @current_project.purchases
 
   #rightbar
     =render 'user_view_button' unless session[:cogster]

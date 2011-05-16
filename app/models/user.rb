@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   alias_method_chain :address, :ensure
 
   def earnings
-    coupons.sum(:initial_amount) - purchases.sum(:amount) 
+    coupons.sum(:amount) - purchases.sum(:amount) 
   end
 
   def image
