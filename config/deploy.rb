@@ -26,6 +26,7 @@ set :unicorn_binary, "/usr/bin/unicorn"
 set :unicorn_config, "#{current_path}/config/unicorn.rb"
 set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
 
+after "deploy:remove_test_files"
 
 namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do
@@ -47,4 +48,11 @@ namespace :deploy do
     start
   end
 
+end
+
+describe "Remove test files" do
+  task :remove_test_files, :roles => :web do
+    sudo "rm -rf #{current_path}/features/"
+    sudo "rm -rf #{current_path}/spec/"
+  end
 end
