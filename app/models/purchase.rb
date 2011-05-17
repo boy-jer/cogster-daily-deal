@@ -77,10 +77,10 @@ class Purchase < ActiveRecord::Base
     def process_with_active_merchant
       response = GATEWAY.purchase(amount_in_pennies, credit_card, purchase_options) 
       if response.success?
-        @response = paypal_responses.build(response_options)
+        @response = paypal_responses.build(response_options(response))
       else
         errors.add(:base, response.message) 
-        PaypalResponse.create(response_options)
+        PaypalResponse.create(response_options(response))
         return false
       end
     end
@@ -98,7 +98,7 @@ class Purchase < ActiveRecord::Base
       }}
     end
 
-    def response_options      
+    def response_options(response)
       { 
         :amount => amount_in_pennies, 
         :action => 'purchase', 
