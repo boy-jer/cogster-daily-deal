@@ -26,7 +26,7 @@ set :unicorn_binary, "/usr/bin/unicorn"
 set :unicorn_config, "#{current_path}/config/unicorn.rb"
 set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
 
-after "deploy:remove_test_files"
+after :deploy, :remove_test_files
 
 namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do
