@@ -50,9 +50,8 @@ namespace :deploy do
 
 end
 
-describe "Remove test files" do
-  task :remove_test_files, :roles => :web do
-    sudo "rm -rf #{current_path}/features/"
-    sudo "rm -rf #{current_path}/spec/"
-  end
+desc "Remove test files" 
+task :remove_test_files, :roles => :web do
+  sudo "rm -rf #{current_path}/features/"
+  sudo "rm -rf #{current_path}/spec/"
 end
