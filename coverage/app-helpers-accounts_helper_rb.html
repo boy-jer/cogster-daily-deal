@@ -28,17 +28,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-helpers-accounts_helper_rb.html">app/helpers/accounts_helper.rb</a></td>
-            <td class='right_align'><tt>65</tt></td>
-            <td class='right_align'><tt>57</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>73.85%</tt></div>
+            <td class='right_align'><tt>51</tt></td>
+            <td class='right_align'><tt>44</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>50.98%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:74px"></div>
-            <div class="uncovered" style="width:26px"></div>
+            <div class="covered" style="width:51px"></div>
+            <div class="uncovered" style="width:49px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>71.93%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>50.00%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:72px"></div>
-            <div class="uncovered" style="width:28px"></div>
+            <div class="covered" style="width:50px"></div>
+            <div class="uncovered" style="width:50px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -159,7 +159,7 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line18">18</a>     elsif coupon.remainder == 0</pre></td>
+            <td><pre><a name="line18">18</a>     elsif coupon.used?</pre></td>
           </tr>
         
           
@@ -201,42 +201,42 @@
           
           
           <tr class="uncovered">
-            <td><pre><a name="line25">25</a>   def coupon_rows(coupons, user)</pre></td>
+            <td><pre><a name="line25">25</a>   def empty_td_tag(width)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line26">26</a>     coupons.map do |coupon|</pre></td>
+            <td><pre><a name="line26">26</a>     width &gt; 0 ? content_tag(:td, ' ', :colspan =&gt; width) : ''</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line27">27</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line28">28</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line29">29</a>   def expiration_status(coupon)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line27">27</a>       content_tag(:td, user.abbr_name) +</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line28">28</a>       content_tag(:td, user.cogster_id) +</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line29">29</a>       valid_days_for(coupon).html_safe</pre></td>
+            <td><pre><a name="line30">30</a>     &quot;#{cycle('odd', 'even')} #{coupon.expired?? 'expired' : !coupon.future?? 'active' : ''}&quot;  </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line30">30</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
             <td><pre><a name="line31">31</a>   end</pre></td>
           </tr>
         
@@ -249,205 +249,121 @@
           
           
           <tr class="uncovered">
-            <td><pre><a name="line33">33</a>   def empty_td_tag(width)</pre></td>
+            <td><pre><a name="line33">33</a>   def merchant_coupon_display(coupon)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line34">34</a>     width &gt; 0 ? content_tag(:td, ' ', :colspan =&gt; width) : ''</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line35">35</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line36">36</a> </pre></td>
+            <td><pre><a name="line34">34</a>     if coupon.used?</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line37">37</a>   def expiration_status(coupon)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line38">38</a>     &quot;#{cycle('odd', 'even')} #{coupon.expired?? 'expired' : !coupon.future?? 'active' : ''}&quot;  </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line39">39</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line40">40</a> </pre></td>
+            <td><pre><a name="line35">35</a>       'Processed'</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line41">41</a>   def new_or_edit_project_link(project)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line42">42</a>     if project.new_record?</pre></td>
+            <td><pre><a name="line36">36</a>     elsif coupon.future?</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line43">43</a>       link_to 'Create a Project', new_business_project_path(current_user.business)</pre></td>
+            <td><pre><a name="line37">37</a>       number_to_currency(coupon.amount)</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line44">44</a>     else</pre></td>
+            <td><pre><a name="line38">38</a>     else</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line45">45</a>       link_to 'Edit Your Project', edit_business_project_path(current_user.business, project)</pre></td>
+            <td><pre><a name="line39">39</a>       link_to number_to_currency(coupon.amount), edit_business_coupon_path(@business, coupon), :class =&gt; &quot;outstanding_cash&quot;</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line46">46</a>     end</pre></td>
+            <td><pre><a name="line40">40</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line47">47</a>   end</pre></td>
+            <td><pre><a name="line41">41</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line48">48</a> </pre></td>
+            <td><pre><a name="line42">42</a> </pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line49">49</a>   def redeemable_coupons_for(user, purchase)</pre></td>
+            <td><pre><a name="line43">43</a>   def new_or_edit_project_link(project)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line50">50</a>     coupons = purchase.coupons.for_week_and_project(@monday, @current_project)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line51">51</a>     return &quot;&quot; if coupons.empty?</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line52">52</a>     coupon_rows(coupons, user).map do |row|</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line53">53</a>       content_tag :tr, row </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line54">54</a>     end.join.html_safe</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line55">55</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line56">56</a> </pre></td>
+            <td><pre><a name="line44">44</a>     if project.new_record?</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line57">57</a>   def valid_days_for(coupon)</pre></td>
+            <td><pre><a name="line45">45</a>       link_to 'Create a Project', new_business_project_path(current_user.business)</pre></td>
           </tr>
         
           
           
-          <tr class="marked">
-            <td><pre><a name="line58">58</a>     start = [0, coupon.start_date - @monday].max.to_i</pre></td>
+          <tr class="uncovered">
+            <td><pre><a name="line46">46</a>     else</pre></td>
           </tr>
         
           
           
-          <tr class="marked">
-            <td><pre><a name="line59">59</a>     week_end = [0, @monday - coupon.expiration_date + 6].max.to_i</pre></td>
+          <tr class="uncovered">
+            <td><pre><a name="line47">47</a>       link_to 'Edit Your Project', edit_business_project_path(current_user.business, project)</pre></td>
           </tr>
         
           
           
-          <tr class="marked">
-            <td><pre><a name="line60">60</a>     middle = 7 - start - week_end</pre></td>
+          <tr class="uncovered">
+            <td><pre><a name="line48">48</a>     end</pre></td>
           </tr>
         
           
           
-          <tr class="marked">
-            <td><pre><a name="line61">61</a>     empty_td_tag(start) +</pre></td>
+          <tr class="uncovered">
+            <td><pre><a name="line49">49</a>   end</pre></td>
           </tr>
         
           
           
-          <tr class="inferred">
-            <td><pre><a name="line62">62</a>     content_tag(:td, link_to(number_to_currency(coupon.remainder), edit_business_coupon_path(@current_project.business, coupon)), :colspan =&gt; middle, :class =&gt; &quot;outstanding_cash&quot;) +</pre></td>
+          <tr class="uncovered">
+            <td><pre><a name="line50">50</a> </pre></td>
           </tr>
         
           
           
-          <tr class="inferred">
-            <td><pre><a name="line63">63</a>     empty_td_tag(week_end)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line64">64</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line65">65</a> end</pre></td>
+          <tr class="uncovered">
+            <td><pre><a name="line51">51</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on 2011-05-14 23:50:09 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on 2011-05-16 11:51:54 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

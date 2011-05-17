@@ -28,14 +28,14 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-models-user_rb.html">app/models/user.rb</a></td>
-            <td class='right_align'><tt>120</tt></td>
-            <td class='right_align'><tt>94</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>66.67%</tt></div>
+            <td class='right_align'><tt>124</tt></td>
+            <td class='right_align'><tt>97</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>66.13%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:67px"></div>
-            <div class="uncovered" style="width:33px"></div>
+            <div class="covered" style="width:66px"></div>
+            <div class="uncovered" style="width:34px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>69.15%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>69.07%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:69px"></div>
             <div class="uncovered" style="width:31px"></div>
@@ -369,7 +369,7 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line53">53</a>     coupons.sum(:initial_amount) - purchases.sum(:amount) </pre></td>
+            <td><pre><a name="line53">53</a>     coupons.sum(:amount) - purchases.sum(:amount) </pre></td>
           </tr>
         
           
@@ -669,13 +669,13 @@
           
           
           <tr class="uncovered">
-            <td><pre><a name="line103">103</a>   def swag_rank</pre></td>
+            <td><pre><a name="line103">103</a>   def sole_purchaser_of(project)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line104">104</a>     community.swag_rank(self)</pre></td>
+            <td><pre><a name="line104">104</a>     purchases_of(project) == project.amount_funded</pre></td>
           </tr>
         
           
@@ -693,49 +693,49 @@
           
           
           <tr class="uncovered">
-            <td><pre><a name="line107">107</a>   protected</pre></td>
+            <td><pre><a name="line107">107</a>   def swag_rank</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line108">108</a>    </pre></td>
+            <td><pre><a name="line108">108</a>     community.swag_rank(self)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line109">109</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line109">109</a>     def password_required?</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line110">110</a>       !persisted? || !password.blank? || !password_confirmation.blank?</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line111">111</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line112">112</a> </pre></td>
+            <td><pre><a name="line110">110</a> </pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line113">113</a>     def set_cogster_id</pre></td>
+            <td><pre><a name="line111">111</a>   protected</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line114">114</a>       self.cogster_id = SecureRandom.hex(5)[0..8].upcase</pre></td>
+            <td><pre><a name="line112">112</a>    </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line113">113</a>     def password_required?</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line114">114</a>       !persisted? || !password.blank? || !password_confirmation.blank?</pre></td>
           </tr>
         
           
@@ -747,19 +747,19 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line116">116</a>      </pre></td>
+            <td><pre><a name="line116">116</a> </pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line117">117</a>     def set_role</pre></td>
+            <td><pre><a name="line117">117</a>     def set_cogster_id</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line118">118</a>       self.role ||= 'cogster'</pre></td>
+            <td><pre><a name="line118">118</a>       self.cogster_id = SecureRandom.hex(5)[0..8].upcase</pre></td>
           </tr>
         
           
@@ -771,13 +771,37 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line120">120</a> end</pre></td>
+            <td><pre><a name="line120">120</a>      </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line121">121</a>     def set_role</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line122">122</a>       self.role ||= 'cogster'</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line123">123</a>     end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line124">124</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on 2011-05-14 23:50:09 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on 2011-05-16 11:51:54 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

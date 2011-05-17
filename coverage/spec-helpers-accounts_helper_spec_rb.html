@@ -28,17 +28,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="spec-helpers-accounts_helper_spec_rb.html">spec/helpers/accounts_helper_spec.rb</a></td>
-            <td class='right_align'><tt>151</tt></td>
-            <td class='right_align'><tt>117</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>99.34%</tt></div>
+            <td class='right_align'><tt>84</tt></td>
+            <td class='right_align'><tt>61</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>98.81%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:99px"></div>
             <div class="uncovered" style="width:1px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>99.15%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>98.36%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:99px"></div>
-            <div class="uncovered" style="width:1px"></div>
+            <div class="covered" style="width:98px"></div>
+            <div class="uncovered" style="width:2px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -387,7 +387,7 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line56">56</a>       coupon = mock_model(Coupon, :expired? =&gt; false, :future? =&gt; false, :remainder =&gt; 0)</pre></td>
+            <td><pre><a name="line56">56</a>       coupon = mock_model(Coupon, :expired? =&gt; false, :future? =&gt; false, :used? =&gt; true)</pre></td>
           </tr>
         
           
@@ -423,7 +423,7 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line62">62</a>       coupon = mock_model(Coupon, :expired? =&gt; false, :future? =&gt; false, :purchase =&gt; purchase, :remainder =&gt; 1) </pre></td>
+            <td><pre><a name="line62">62</a>       coupon = mock_model(Coupon, :expired? =&gt; false, :future? =&gt; false, :purchase =&gt; purchase, :used? =&gt; false) </pre></td>
           </tr>
         
           
@@ -453,55 +453,55 @@
           
           
           <tr class="inferred">
-            <td><pre><a name="line67">67</a>   describe &quot;#coupon_rows&quot; do</pre></td>
+            <td><pre><a name="line67">67</a>   describe &quot;#expiration_status&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line68">68</a>     before :each do</pre></td>
+            <td><pre><a name="line68">68</a>     it &quot;notes expired&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line69">69</a>       @user = mock_model(User, :abbr_name =&gt; 'Dan B', :cogster_id =&gt; '123456789')</pre></td>
+            <td><pre><a name="line69">69</a>       coupon = mock_model(Coupon, :expired? =&gt; true)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line70">70</a>       @coupons = [mock_model(Coupon), mock_model(Coupon)]</pre></td>
+            <td><pre><a name="line70">70</a>       helper.expiration_status(coupon).should == 'odd expired'</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line71">71</a>       helper.stub(:valid_days_for).and_return helper.content_tag(:td, 'valid')</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line72">72</a>     end</pre></td>
+            <td><pre><a name="line71">71</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line73">73</a> </pre></td>
+            <td><pre><a name="line72">72</a> </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line74">74</a>     it &quot;has one element per coupon&quot; do</pre></td>
+            <td><pre><a name="line73">73</a>     it &quot;notes active&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line75">75</a>       helper.coupon_rows(@coupons, @user).size.should == 2</pre></td>
+            <td><pre><a name="line74">74</a>       coupon = mock_model(Coupon, :expired? =&gt; false, :future? =&gt; false)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line75">75</a>       helper.expiration_status(coupon).should == 'odd active'</pre></td>
           </tr>
         
           
@@ -519,451 +519,49 @@
           
           
           <tr class="inferred">
-            <td><pre><a name="line78">78</a>     it &quot;has user name in each element&quot; do</pre></td>
+            <td><pre><a name="line78">78</a>     it &quot;just cycles for future&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line79">79</a>       helper.coupon_rows(@coupons, @user)[0].should match(/Dan B/)</pre></td>
+            <td><pre><a name="line79">79</a>       coupon = mock_model(Coupon, :expired? =&gt; false, :future? =&gt; true)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line80">80</a>     end</pre></td>
+            <td><pre><a name="line80">80</a>       helper.expiration_status(coupon).should == 'odd '</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line81">81</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line81">81</a> </pre></td>
+            <td><pre><a name="line82">82</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line82">82</a>     it &quot;has tds in each element&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line83">83</a>       helper.coupon_rows(@coupons, @user)[0].scan(/&lt;td/).size.should == 3</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line84">84</a>     end</pre></td>
+            <td><pre><a name="line83">83</a> </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line85">85</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line86">86</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line87">87</a>   describe &quot;#expiration_status&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line88">88</a>     it &quot;notes expired&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line89">89</a>       coupon = mock_model(Coupon, :expired? =&gt; true)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line90">90</a>       helper.expiration_status(coupon).should == 'odd expired'</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line91">91</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line92">92</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line93">93</a>     it &quot;notes active&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line94">94</a>       coupon = mock_model(Coupon, :expired? =&gt; false, :future? =&gt; false)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line95">95</a>       helper.expiration_status(coupon).should == 'odd active'</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line96">96</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line97">97</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line98">98</a>     it &quot;just cycles for future&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line99">99</a>       coupon = mock_model(Coupon, :expired? =&gt; false, :future? =&gt; true)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line100">100</a>       helper.expiration_status(coupon).should == 'odd '</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line101">101</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line102">102</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line103">103</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line104">104</a>   describe &quot;#redeemable_coupons_for&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line105">105</a>     before :each do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line106">106</a>       assign(:monday, Date.today - 2)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line107">107</a>       assign(:current_project, @project = mock_model(Project))</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line108">108</a>       @user = mock_model(User)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line109">109</a>       @purchase = Purchase.new </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line110">110</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line111">111</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line112">112</a>     it &quot;returns '' if there are no coupons&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line113">113</a>       helper.redeemable_coupons_for(@user, @purchase).should == ''</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line114">114</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line115">115</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line116">116</a>     it &quot;returns set of tr elements&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line117">117</a>       @purchase.coupons.should_receive(:for_week_and_project).and_return :coupons</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line118">118</a>       helper.should_receive(:coupon_rows).with(:coupons, @user).and_return %w(one two three)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line119">119</a>       helper.redeemable_coupons_for(@user, @purchase).scan(/&lt;tr/).size.should == 3</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line120">120</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line121">121</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line122">122</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line123">123</a>    describe &quot;#valid_days_for&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line124">124</a>      before :each do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line125">125</a>        assign(:monday, Date.today)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line126">126</a>        @coupon = mock_model(Coupon, :start_date =&gt; Date.today, :expiration_date =&gt; Date.today + 7, :remainder =&gt; 10)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line127">127</a>        business = mock_model(Business, :to_param =&gt; '1-business')</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line128">128</a>        assign(:current_project, mock_model(Project, :business =&gt; business))</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line129">129</a>      end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line130">130</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line131">131</a>      it &quot;shows one td if coupon is valid all week&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line132">132</a>        helper.valid_days_for(@coupon).scan(/&lt;td/).size.should == 1</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line133">133</a>      end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line134">134</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line135">135</a>      it &quot;shows 2 tds if coupon becomes valid during week&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line136">136</a>        @coupon.stub(:start_date).and_return Date.today + 1</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line137">137</a>        helper.valid_days_for(@coupon).scan(/&lt;td/).size.should == 2</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line138">138</a>      end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line139">139</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line140">140</a>      it &quot;shows 2 tds if coupon becomes invalid during week&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line141">141</a>        @coupon.stub(:expiration_date).and_return Date.today + 5</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line142">142</a>        helper.valid_days_for(@coupon).scan(/&lt;td/).size.should == 2</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line143">143</a>      end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line144">144</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line145">145</a>      it &quot;shows 3 tds if coupon is invalid at start and end of week&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line146">146</a>        @coupon.stub(:start_date).and_return Date.today + 1</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line147">147</a>        @coupon.stub(:expiration_date).and_return Date.today + 5</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line148">148</a>        helper.valid_days_for(@coupon).scan(/&lt;td/).size.should == 3</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line149">149</a>      end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line150">150</a>    end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line151">151</a> end</pre></td>
+            <td><pre><a name="line84">84</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on 2011-05-14 23:50:09 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on 2011-05-16 11:51:55 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

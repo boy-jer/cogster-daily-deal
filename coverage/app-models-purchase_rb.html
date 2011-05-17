@@ -123,85 +123,85 @@
           
           
           <tr class="uncovered">
-            <td><pre><a name="line12">12</a>   has_many :redemptions, :through =&gt; :coupons</pre></td>
+            <td><pre><a name="line12">12</a>   has_many :paypal_responses</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line13">13</a>   has_many :paypal_responses</pre></td>
+            <td><pre><a name="line13">13</a>   has_one :address</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line14">14</a>   has_one :address</pre></td>
+            <td><pre><a name="line14">14</a>   accepts_nested_attributes_for :address</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line15">15</a>   accepts_nested_attributes_for :address</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line16">16</a> </pre></td>
+            <td><pre><a name="line15">15</a> </pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line17">17</a>   before_create :process_with_active_merchant </pre></td>
+            <td><pre><a name="line16">16</a>   before_create :process_with_active_merchant </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line18">18</a>   after_create :create_coupons, :send_email, :save_paypal_response</pre></td>
+            <td><pre><a name="line17">17</a>   after_create :create_coupons, :send_email, :save_paypal_response</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line19">19</a> </pre></td>
+            <td><pre><a name="line18">18</a> </pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line20">20</a>   attr_protected :customer_ip, :status, :error_message, :updated_at, :created_at</pre></td>
+            <td><pre><a name="line19">19</a>   attr_protected :customer_ip, :status, :error_message, :updated_at, :created_at</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line21">21</a>   validates_inclusion_of :status, :in =&gt; %w(open processed closed failed), :allow_blank =&gt; true</pre></td>
+            <td><pre><a name="line20">20</a>   validates_inclusion_of :status, :in =&gt; %w(open processed closed failed), :allow_blank =&gt; true</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line22">22</a>   validates_numericality_of :amount, :greater_than =&gt; 0</pre></td>
+            <td><pre><a name="line21">21</a>   validates_numericality_of :amount, :greater_than =&gt; 0</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line23">23</a>   validates_acceptance_of :terms, :on =&gt; :create</pre></td>
+            <td><pre><a name="line22">22</a>   validates_acceptance_of :terms, :on =&gt; :create</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line24">24</a>   validate                  :validate_card, :on =&gt; :create</pre></td>
+            <td><pre><a name="line23">23</a>   validate                  :validate_card, :on =&gt; :create</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line25">25</a>   delegate :redemption_schedule, :to =&gt; :project</pre></td>
+            <td><pre><a name="line24">24</a>   delegate :redemption_schedule, :to =&gt; :project</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line25">25</a>   delegate :abbr_name, :cogster_id, :to =&gt; :user</pre></td>
           </tr>
         
           
@@ -291,7 +291,7 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line40">40</a>     coupons.sum(:initial_amount)</pre></td>
+            <td><pre><a name="line40">40</a>     coupons.sum(:amount)</pre></td>
           </tr>
         
           
@@ -315,7 +315,7 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line44">44</a>     current_coupon.remainder</pre></td>
+            <td><pre><a name="line44">44</a>     current_coupon.used? ? 0 : current_coupon.amount</pre></td>
           </tr>
         
           
@@ -417,7 +417,7 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line61">61</a>         coupons.create(:start_date =&gt; start, :initial_amount =&gt; coupon_amount, :expiration_date =&gt; start + period[:duration] - 1)</pre></td>
+            <td><pre><a name="line61">61</a>         coupons.create(:start_date =&gt; start, :amount =&gt; coupon_amount, :expiration_date =&gt; start + period[:duration] - 1)</pre></td>
           </tr>
         
           
@@ -765,7 +765,7 @@
       </tbody>
     </table>
 
-    <p>Generated on 2011-05-14 23:50:09 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on 2011-05-16 11:51:54 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

@@ -17,7 +17,6 @@ class Purchase < ActiveRecord::Base
   after_create :create_coupons, :send_email, :save_paypal_response
 
   attr_protected :customer_ip, :status, :error_message, :updated_at, :created_at
-  validates_inclusion_of :status, :in => %w(open processed closed failed), :allow_blank => true
   validates_numericality_of :amount, :greater_than => 0
   validates_acceptance_of :terms, :on => :create
   validate                  :validate_card, :on => :create
@@ -78,10 +77,10 @@ class Purchase < ActiveRecord::Base
     def process_with_active_merchant
       response = GATEWAY.purchase(amount_in_pennies, credit_card, purchase_options) 
       if response.success?
-        @response = paypal_responses.build(:amount => amount_in_pennies, :action => 'purchase', :response => response, :user_id => user_id, :project_id => project_id)
+        @response = paypal_responses.build(response_options)
       else
         errors.add(:base, response.message) 
-        PayPalResponse.create(:amount => amount_in_pennies, :action => 'purchase', :response => response, :user_id => user_id, :project_id => project_id)
+        PaypalResponse.create(response_options)
         return false
       end
     end
@@ -97,6 +96,16 @@ class Purchase < ActiveRecord::Base
           :country => address.country,
           :zip     => address.zip
       }}
+    end
+
+    def response_options      
+      { 
+        :amount => amount_in_pennies, 
+        :action => 'purchase', 
+        :response => response,
+        :user_id => user_id,
+        :project_id => project_id 
+      }
     end
 
     def save_paypal_response

@@ -28,17 +28,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="spec-models-coupon_spec_rb.html">spec/models/coupon_spec.rb</a></td>
-            <td class='right_align'><tt>94</tt></td>
-            <td class='right_align'><tt>79</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>98.94%</tt></div>
+            <td class='right_align'><tt>75</tt></td>
+            <td class='right_align'><tt>62</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>98.67%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:99px"></div>
             <div class="uncovered" style="width:1px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>98.73%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>98.39%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:99px"></div>
-            <div class="uncovered" style="width:1px"></div>
+            <div class="covered" style="width:98px"></div>
+            <div class="uncovered" style="width:2px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -219,73 +219,73 @@
           
           
           <tr class="inferred">
-            <td><pre><a name="line28">28</a>   it &quot;creates a record of a redemption when it is updated&quot; do</pre></td>
+            <td><pre><a name="line28">28</a>   describe &quot;#check_for_status_change&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line29">29</a>     @coupon.save</pre></td>
+            <td><pre><a name="line29">29</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line30">30</a>     before :each do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line30">30</a>     sale_date = Date.today - 1</pre></td>
+            <td><pre><a name="line31">31</a>       reset_mailer</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line31">31</a>     @coupon.remainder = 20</pre></td>
+            <td><pre><a name="line32">32</a>       @user = Factory.build(:user)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line32">32</a>     amount = BigDecimal.new('15', 9)</pre></td>
+            <td><pre><a name="line33">33</a>     end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line34">34</a>     it &quot;does nothing if coupon is not yet valid&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line33">33</a>     @coupon.redemption_amount = amount</pre></td>
+            <td><pre><a name="line35">35</a>       @coupon.expiration_date = Date.today + 20</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line34">34</a>     @coupon.redemption_date = sale_date</pre></td>
+            <td><pre><a name="line36">36</a>       @coupon.start_date = Date.today + 10</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line35">35</a>     redemption_params = { :date =&gt; sale_date, :amount =&gt; amount } </pre></td>
+            <td><pre><a name="line37">37</a>       @coupon.check_for_status_change(:user).should be_false</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line36">36</a>     @coupon.redemptions.should_receive(:create).with redemption_params</pre></td>
+            <td><pre><a name="line38">38</a>       unread_emails_for(@user.email).should have(0).messages</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line37">37</a>     @coupon.save</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line38">38</a>     @coupon.remainder.should be_within(0.1).of(5)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line39">39</a>   end</pre></td>
+            <td><pre><a name="line39">39</a>     end</pre></td>
           </tr>
         
           
@@ -297,150 +297,150 @@
           
           
           <tr class="inferred">
-            <td><pre><a name="line41">41</a>   it &quot;sets remainder upon creation&quot; do</pre></td>
+            <td><pre><a name="line41">41</a>     it &quot;does nothing if coupon expired&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line42">42</a>     @coupon.remainder = nil</pre></td>
+            <td><pre><a name="line42">42</a>       @coupon.expiration_date = Date.today - 10</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line43">43</a>     @coupon.save</pre></td>
+            <td><pre><a name="line43">43</a>       @coupon.start_date = Date.today - 20</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line44">44</a>     @coupon.remainder.should == @coupon.initial_amount</pre></td>
+            <td><pre><a name="line44">44</a>       @coupon.check_for_status_change(@user).should be_false</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line45">45</a>   end</pre></td>
+            <td><pre><a name="line45">45</a>       unread_emails_for(@user.email).should have(0).messages</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line46">46</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line46">46</a> </pre></td>
+            <td><pre><a name="line47">47</a> </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line47">47</a>   describe &quot;#check_for_status_change&quot; do</pre></td>
+            <td><pre><a name="line48">48</a>     describe &quot;acts here&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line48">48</a> </pre></td>
+            <td><pre><a name="line49">49</a>       before :each do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line50">50</a>         biz = mock_model(Business, :name =&gt; 'BJ')</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line51">51</a>         @coupon.purchase = mock_model(Purchase, :business =&gt; biz)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line52">52</a>       end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line49">49</a>     before :each do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line50">50</a>       reset_mailer</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line51">51</a>       @user = Factory.build(:user)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line52">52</a>     end</pre></td>
+            <td><pre><a name="line53">53</a> </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line53">53</a>     it &quot;does nothing if coupon is not yet valid&quot; do</pre></td>
+            <td><pre><a name="line54">54</a>       it &quot;sends warning if coupon about to expire&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line54">54</a>       @coupon.expiration_date = Date.today + 20</pre></td>
+            <td><pre><a name="line55">55</a>         @coupon.expiration_date = Date.today + 2</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line55">55</a>       @coupon.start_date = Date.today + 10</pre></td>
+            <td><pre><a name="line56">56</a>         @coupon.check_for_status_change(@user)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line56">56</a>       @coupon.check_for_status_change(:user).should be_false</pre></td>
+            <td><pre><a name="line57">57</a>         unread_emails_for(@user.email).should have(1).message</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line57">57</a>       unread_emails_for(@user.email).should have(0).messages</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line58">58</a>     end</pre></td>
+            <td><pre><a name="line58">58</a>       end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line59">59</a> </pre></td>
+            <td><pre><a name="line59">59</a>       </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line60">60</a>     it &quot;does nothing if coupon expired&quot; do</pre></td>
+            <td><pre><a name="line60">60</a>       it &quot;sends notice for new coupon&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line61">61</a>       @coupon.expiration_date = Date.today - 10</pre></td>
+            <td><pre><a name="line61">61</a>         @coupon.start_date = Date.today</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line62">62</a>       @coupon.start_date = Date.today - 20</pre></td>
+            <td><pre><a name="line62">62</a>         @coupon.check_for_status_change(@user)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line63">63</a>       @coupon.check_for_status_change(@user).should be_false</pre></td>
+            <td><pre><a name="line63">63</a>         unread_emails_for(@user.email).should have(1).message</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line64">64</a>       unread_emails_for(@user.email).should have(0).messages</pre></td>
+            <td><pre><a name="line64">64</a>       end</pre></td>
           </tr>
         
           
           
-          <tr class="marked">
+          <tr class="inferred">
             <td><pre><a name="line65">65</a>     end</pre></td>
           </tr>
         
@@ -453,175 +453,61 @@
           
           
           <tr class="inferred">
-            <td><pre><a name="line67">67</a>     describe &quot;acts here&quot; do</pre></td>
+            <td><pre><a name="line67">67</a>     it &quot;does nothing for current coupon that has been used&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line68">68</a>       before :each do</pre></td>
+            <td><pre><a name="line68">68</a>       @coupon.expiration_date = Date.today + 2</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line69">69</a>         biz = mock_model(Business, :name =&gt; 'BJ')</pre></td>
+            <td><pre><a name="line69">69</a>       @coupon.used = true</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line70">70</a>         @coupon.purchase = mock_model(Purchase, :business =&gt; biz)</pre></td>
+            <td><pre><a name="line70">70</a>       @coupon.check_for_status_change(@user)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line71">71</a>       end</pre></td>
+            <td><pre><a name="line71">71</a>       unread_emails_for(@user.email).should have(0).messages</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line72">72</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line72">72</a> </pre></td>
+            <td><pre><a name="line73">73</a> </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line73">73</a>       it &quot;sends warning if coupon about to expire&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line74">74</a>         @coupon.expiration_date = Date.today + 2</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line75">75</a>         @coupon.check_for_status_change(@user)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line76">76</a>         unread_emails_for(@user.email).should have(1).message</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line77">77</a>       end</pre></td>
+            <td><pre><a name="line74">74</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line78">78</a>       </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line79">79</a>       it &quot;sends notice for new coupon&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line80">80</a>         @coupon.start_date = Date.today</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line81">81</a>         @coupon.check_for_status_change(@user)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line82">82</a>         unread_emails_for(@user.email).should have(1).message</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line83">83</a>       end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line84">84</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line85">85</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line86">86</a>     it &quot;does nothing for current coupon with no value&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line87">87</a>       @coupon.expiration_date = Date.today + 2</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line88">88</a>       @coupon.remainder = 0</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line89">89</a>       @coupon.check_for_status_change(@user)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line90">90</a>       unread_emails_for(@user.email).should have(0).messages</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line91">91</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line92">92</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line93">93</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line94">94</a> end</pre></td>
+            <td><pre><a name="line75">75</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on 2011-05-14 23:50:10 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on 2011-05-16 11:51:55 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

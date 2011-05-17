@@ -165,7 +165,7 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line19">19</a>     @purchase.should_receive(:current_coupon).and_return mock_model(Coupon, :remainder =&gt; 20)</pre></td>
+            <td><pre><a name="line19">19</a>     @purchase.stub(:current_coupon).and_return mock_model(Coupon, :used? =&gt; false, :amount =&gt; 20)</pre></td>
           </tr>
         
           
@@ -315,13 +315,13 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line44">44</a>       params_1 = { :start_date =&gt; Date.today, :initial_amount =&gt; 75.0, :expiration_date =&gt; Date.today + 6 }</pre></td>
+            <td><pre><a name="line44">44</a>       params_1 = { :start_date =&gt; Date.today, :amount =&gt; 75.0, :expiration_date =&gt; Date.today + 6 }</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line45">45</a>       params_2 = { :start_date =&gt; Date.today + 7, :initial_amount =&gt; 50.0, :expiration_date =&gt; Date.today + 13 }</pre></td>
+            <td><pre><a name="line45">45</a>       params_2 = { :start_date =&gt; Date.today + 7, :amount =&gt; 50.0, :expiration_date =&gt; Date.today + 13 }</pre></td>
           </tr>
         
           
@@ -417,7 +417,7 @@
       </tbody>
     </table>
 
-    <p>Generated on 2011-05-14 23:50:10 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on 2011-05-16 11:51:55 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

@@ -28,17 +28,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-controllers-coupons_controller_rb.html">app/controllers/coupons_controller.rb</a></td>
-            <td class='right_align'><tt>23</tt></td>
-            <td class='right_align'><tt>19</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>73.91%</tt></div>
+            <td class='right_align'><tt>20</tt></td>
+            <td class='right_align'><tt>16</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>75.00%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:74px"></div>
-            <div class="uncovered" style="width:26px"></div>
+            <div class="covered" style="width:75px"></div>
+            <div class="uncovered" style="width:25px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>68.42%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>68.75%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:68px"></div>
-            <div class="uncovered" style="width:32px"></div>
+            <div class="covered" style="width:69px"></div>
+            <div class="uncovered" style="width:31px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -81,7 +81,7 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line5">5</a>     @coupon = Coupon.includes(:redemptions, :purchase =&gt; :user).find(params[:id])</pre></td>
+            <td><pre><a name="line5">5</a>     @coupon = Coupon.includes(:purchase =&gt; :user).find(params[:id])</pre></td>
           </tr>
         
           
@@ -117,85 +117,67 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line11">11</a>     if @coupon.update_attributes(params[:coupon])</pre></td>
+            <td><pre><a name="line11">11</a>     @coupon.toggle!(:used)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line12">12</a>       redirect_to account_url</pre></td>
+            <td><pre><a name="line12">12</a>     redirect_to account_url, :notice =&gt; &quot;#{@coupon.user.abbr_name}'s coupon has been redeemed.'&quot;</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line13">13</a>     else</pre></td>
+            <td><pre><a name="line13">13</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line14">14</a> </pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line14">14</a>       render :edit</pre></td>
+            <td><pre><a name="line15">15</a>   protected</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line15">15</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line16">16</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line17">17</a> </pre></td>
+            <td><pre><a name="line16">16</a> </pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line18">18</a>   protected</pre></td>
+            <td><pre><a name="line17">17</a>     def find_business</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line19">19</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line20">20</a>     def find_business</pre></td>
+            <td><pre><a name="line18">18</a>       @business = Business.find(params[:business_id])</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line21">21</a>       @business = Business.find(params[:business_id])</pre></td>
+            <td><pre><a name="line19">19</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line22">22</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line23">23</a> end</pre></td>
+            <td><pre><a name="line20">20</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on 2011-05-14 23:50:09 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on 2011-05-16 11:51:53 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

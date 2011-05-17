@@ -28,17 +28,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="spec-controllers-coupons_controller_spec_rb.html">spec/controllers/coupons_controller_spec.rb</a></td>
-            <td class='right_align'><tt>34</tt></td>
-            <td class='right_align'><tt>30</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>97.06%</tt></div>
+            <td class='right_align'><tt>28</tt></td>
+            <td class='right_align'><tt>24</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>96.43%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:97px"></div>
-            <div class="uncovered" style="width:3px"></div>
+            <div class="covered" style="width:96px"></div>
+            <div class="uncovered" style="width:4px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>96.67%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>95.83%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:97px"></div>
-            <div class="uncovered" style="width:3px"></div>
+            <div class="covered" style="width:96px"></div>
+            <div class="uncovered" style="width:4px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -171,97 +171,61 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line20">20</a>         Coupon.should_receive(:find).with(:id) { mock_model(Coupon, :update_attributes =&gt; true) }</pre></td>
+            <td><pre><a name="line20">20</a>         user = mock_model(User, :abbr_name =&gt; &quot;Test G&quot;)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line21">21</a>         put :update, :id =&gt; :id, :business_id =&gt; :business_id</pre></td>
+            <td><pre><a name="line21">21</a>         Coupon.should_receive(:find).with(:id) { mock_model(Coupon, :toggle! =&gt; true, :user =&gt; user) }</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line22">22</a>         response.should be_redirect</pre></td>
+            <td><pre><a name="line22">22</a>         put :update, :id =&gt; :id, :business_id =&gt; :business_id</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line23">23</a>       end</pre></td>
+            <td><pre><a name="line23">23</a>         response.should be_redirect</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line24">24</a>       end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line24">24</a>     end</pre></td>
+            <td><pre><a name="line25">25</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line25">25</a> </pre></td>
+            <td><pre><a name="line26">26</a> </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line26">26</a>     context &quot;on failure&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line27">27</a>       it &quot;renders edit form&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line28">28</a>         Coupon.should_receive(:find).with(:id) { mock_model(Coupon, :update_attributes =&gt; false) }</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line29">29</a>         put :update, :id =&gt; :id, :business_id =&gt; :business_id</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line30">30</a>         response.should render_template('edit')</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line31">31</a>       end</pre></td>
+            <td><pre><a name="line27">27</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line32">32</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line33">33</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line34">34</a> end</pre></td>
+            <td><pre><a name="line28">28</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on 2011-05-14 23:50:09 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on 2011-05-16 11:51:54 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>
