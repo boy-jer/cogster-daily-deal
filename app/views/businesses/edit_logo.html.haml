@@ -5,10 +5,10 @@
     %h3 Edit Business Logo
     %p 
       Provide a small image of your business logo. The logo will be displayed within a rectangle 250 pixels wide, so it will look best if you crop it to a small square before you upload. Right now the image we're using for your logo looks like this:
-      =image_tag @business.image.url
+      =image_tag @business.image_url
     .span-18.prepend-1
-      =form_for @business, :url => business_path(@business) do |f|
-        =f.label "Logo", :image
+      =form_for @business, :url => business_path(@business), :html => { :multipart => true } do |f|
+        =f.label :image, "Logo"
         =f.file_field :image
-          =f.submit "Update"
+        =f.submit "Upload"
   #rightbar

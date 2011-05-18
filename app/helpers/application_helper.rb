@@ -22,7 +22,7 @@ module ApplicationHelper
 
   def business_image(business)
     content_tag :div, :class => "business_img_container" do
-      image_tag(business.image.url, :class => "business_profile") +
+      image_tag(business.image_url, :class => "business_profile") +
       featured_tag(business)
     end
   end

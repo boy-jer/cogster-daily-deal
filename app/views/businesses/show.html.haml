@@ -8,7 +8,7 @@
       =render :partial => "shared/progress_bar", :locals => { :project => @business.current_project, :social => true }
       .project_details
         #biz_logo_img.img_container{:style => "height: 150px; width: 150px;"}
-          =link_to image_tag(@business.image_url, :alt => "Test:  The Gingerbread Man"), new_business_purchase_path(@business)
+          =link_to image_tag(@business.image_url, :alt => @business.current_project.name), new_business_purchase_path(@business)
         %h3 Project Details
         %p=@business.current_project.reason 
         =conditional_purchase_link("Support this Project", :class => "right")

@@ -1,22 +1,19 @@
 #content
   .main.full
-    %h2 Purchases
+    %h2 Cogster Customer List
+    %p="as of #{Time.now.strftime("%I:%M%P, %m/%d/%y")}"
     %table{ :cellpadding => 0, :cellspacing => 0 }
       %thead
         %tr
-          %th{ :colspan => 3 } &nbsp;
-          %th{ :colspan => 3 * @project.redemption_schedule.length } Amount of Cogster Cash to Redeem
-        %tr
-          %th{ :colspan => 3 } Cogster
-          -@project.redemption_schedule.length.times do |n|
-            %th{ :colspan => 3 } Period
+          %th{ :colspan => 2 } Cogster
+          %th{ :colspan => @project.redemption_schedule.length } Visit Period
+          %th Purchase
         %tr
           %th Name
-          %th Purchase Date
-          %th Purchase Amt
+          %th ID
           -@project.redemption_schedule.length.times do |n|
-            %th Amt
-            %th Start
-            %th End
+            %th=n+1
+          %th Amount
+          %th Date
       %tbody
         =render :partial => 'purchase', :collection => @purchases

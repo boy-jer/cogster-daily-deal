@@ -30,6 +30,10 @@ module NavigationHelpers
       community_path(Community.first)
     when /the Users page/
       admin_users_path
+    when /the edit business page/
+      edit_business_path(@user.business)
+    when /my business page/
+      business_path(@user.business)
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

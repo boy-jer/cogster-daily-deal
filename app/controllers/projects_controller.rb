@@ -35,6 +35,13 @@ class ProjectsController < ApplicationController
   def show
     @project = @business.projects.find(params[:id], :include => { :purchases => [ :coupons, :user]})
     @purchases = @project.purchases
+    respond_to do |format|
+      format.html { render :layout => 'header' }
+      format.pdf { render :pdf => 'customer_list',
+                          :layout => 'pdf',
+                          :disposition => 'attachment'
+                 }
+    end
   end
 
   def update

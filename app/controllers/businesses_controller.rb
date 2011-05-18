@@ -7,6 +7,10 @@ class BusinessesController < ApplicationController
     set_options_and_websites
   end
 
+  def edit_logo
+    @business = current_user.business
+  end
+
   def index
     @businesses = Business.active.with_purchases.order(params[:sort])
     @businesses.reverse! if params[:sort] == 'created_at'

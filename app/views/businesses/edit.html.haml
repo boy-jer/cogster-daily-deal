@@ -6,6 +6,7 @@
     %p Provide some basic information about your business/group here. You can edit your hours and add links to your website and other popular social networks as well.
     %p This information will be displayed publicly on the profile page of your business.  Provide any information you would like Cogster supporters (or potential supporters) to see!
     .span-18.prepend-1
+      =error_messages_for @business
       =form_for @business, :url => business_path(@business) do |f|
         =render :partial => 'shared/business_form', :locals => { :b => f }
         =render :partial => 'shared/user_community_form', :locals => { :f => f}
