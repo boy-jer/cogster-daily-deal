@@ -18,30 +18,16 @@
         Looks like you don't have a project set up yet. 
         =link_to "Click here to set up your first project", new_business_project_path(current_user.business), :id => 'new_project'
     -else
-      %h4="#{@current_project.supporters.count} Supporters"
+      %h4#project_status="#{@current_project.supporters.count} Supporters | Goal #{number_to_currency(@current_project.amount_funded)} | #{@current_project.percent_funded}% Funded"
       %div
-        =# render 'shared/progress_bar', :project => @current_project
-        %dl.list
-          %dt Project Goal
-          %dd.value
-            =number_to_currency(@current_project.goal)
-          %dt Percent Reached
-          %dd.value 
-            =@current_project.percent_funded
-          %dt Start Date
-          %dd.value=@current_project.created_at.strftime("%b %d")
-          %dt End Date
-          %dd.value=@current_project.expiration_date.strftime("%b %d")
-          %dt Maximum Individual Purchase
-          %dd=number_to_currency(@current_project.max_amount)
-        =link_to "Edit Current Project", edit_business_project_path(current_user.business, @current_project), :title => "Click to change any of the parameters of your current Cogster project", :class => "right"
+        =link_to "Edit Current Project", edit_business_project_path(current_user.business, @current_project), :title => "Click to change any of the parameters of your current Cogster project"
       %h2 Manage Redemptions
       -if @current_project.supporters.empty?
         %p Once your project starts to get supporters, you will see how to redeem purchases on this page when you log in.
       -else
         %p Find the customer's name. Click on the dollar amount under the appropriate Visit Period. Process the visit.
-        %p=link_to "View All Cogster Cash Purchases", business_project_path(@business, @current_project)
-        %table{ :cellpadding => 0, :cellspacing => 0, :id => "redemptions" }
+        %p=link_to "View All Cogster Cash Purchases", business_project_path(@business, @current_project, :pdf)
+        %table#redemptions.nice{ :cellpadding => 0, :cellspacing => 0 }
           %thead
             %tr
               %th{ :colspan => 2}Customer

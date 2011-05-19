@@ -262,21 +262,21 @@ input:invalid,textarea:invalid{
   width:55px;padding-left:0px;color:#9b9da5}
 #purchase_values span{
   color:green;font-weight:bold}
-#purchases_table{
+.nice{
   -moz-box-shadow:#333333 1px 1px 5px 0;-webkit-box-shadow:#333333 1px 1px 5px 0;-o-box-shadow:#333333 1px 1px 5px 0;box-shadow:#333333 1px 1px 5px 0;display:table !important;margin:0;border:1px solid #000;padding:0;width:528px;text-align:center !important}
-#purchases_table .active{
+.nice .active{
   color:green}
-#purchases_table .expired{
+.nice .expired{
   color:#666666}
-#purchases_table .column_names, #purchases_table .column_names th {
+.nice .column_names, .nice .column_names th {
   height:24px !important;line-height:24px !important;font-size:12px !important;width:528px;color:#fff;background-color:#111111;text-shadow:#000 1px 1px 1px;background-image:-webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #666666), color-stop(100%, #111111));background-image:-moz-linear-gradient(top, #666666 0%, #111111 100%);background-image:linear-gradient(top, #666666 0%, #111111 100%);}
-#purchases_table tr.column_names{
+.nice tr.column_names{
   -moz-border-radius-topleft:10px;-webkit-border-top-left-radius:10px;-o-border-top-left-radius:10px;-ms-border-top-left-radius:10px;-khtml-border-top-left-radius:10px;border-top-left-radius:10px;-moz-border-radius-topright:10px;-webkit-border-top-right-radius:10px;-o-border-top-right-radius:10px;-ms-border-top-right-radius:10px;-khtml-border-top-right-radius:10px;border-top-right-radius:10px}
-#purchases_table .column_names th:hover{
+.nice .column_names th:hover{
   background-color:#111111;color:#fff;text-shadow:#000 1px 1px 1px}
-#purchases_table .row{
+.nice .row{
   height:24px !important;line-height:24px !important;font-size:12px !important;display:table-row !important;width:528px}
-#purchases_table .row:last-child{
+.nice .row:last-child{
   background-color:#fff;-moz-border-radius-bottomleft:10px;-webkit-border-bottom-left-radius:10px;-o-border-bottom-left-radius:10px;-ms-border-bottom-left-radius:10px;-khtml-border-bottom-left-radius:10px;border-bottom-left-radius:10px;-moz-border-radius-bottomright:10px;-webkit-border-bottom-right-radius:10px;-o-border-bottom-right-radius:10px;-ms-border-bottom-right-radius:10px;-khtml-border-bottom-right-radius:10px;border-bottom-right-radius:10px}
 table .even td{
   background-color:#fff}
@@ -1460,19 +1460,19 @@ html > .ie6 body p code,html > .ie7 body p code,html > .ie8 body p code{
   position:relative !important}
 .ie6 body #my_account_container #dropdown,.ie7 body #my_account_container #dropdown,.ie8 body #my_account_container #dropdown{
   position:absolute !important}
-.ie6 body #purchases_table,.ie7 body #purchases_table,.ie8 body #purchases_table{
+.ie6 body .nice,.ie7 body .nice,.ie8 body .nice{
   width:528px}
-.ie6 body #purchases_table .column-names,.ie7 body #purchases_table .column-names,.ie8 body #purchases_table .column-names{
+.ie6 body .nice .column-names,.ie7 body .nice .column-names,.ie8 body .nice .column-names{
   float:left}
-.ie6 body #purchases_table .row,.ie7 body #purchases_table .row,.ie8 body #purchases_table .row{
+.ie6 body .nice .row,.ie7 body .nice .row,.ie8 body .nice .row{
   float:left;width:530px;background-color:#eee}
-.ie6 body #purchases_table .cash,.ie7 body #purchases_table .cash,.ie8 body #purchases_table .cash{
+.ie6 body .nice .cash,.ie7 body .nice .cash,.ie8 body .nice .cash{
   float:left}
-.ie6 body #purchases_table .balance,.ie7 body #purchases_table .balance,.ie8 body #purchases_table .balance{
+.ie6 body .nice .balance,.ie7 body .nice .balance,.ie8 body .nice .balance{
   float:left}
-.ie6 body #purchases_table .period,.ie7 body #purchases_table .period,.ie8 body #purchases_table .period{
+.ie6 body .nice .period,.ie7 body .nice .period,.ie8 body .nice .period{
   float:left}
-.ie6 body #purchases_table .cash_status,.ie7 body #purchases_table .cash_status,.ie8 body #purchases_table .cash_status{
+.ie6 body .nice .cash_status,.ie7 body .nice .cash_status,.ie8 body .nice .cash_status{
   float:left}
 .ie6 body #swag li,.ie7 body #swag li,.ie8 body #swag li{
   padding:0;margin:0;margin:3px;line-height:25px;height:25px}

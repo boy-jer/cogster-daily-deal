@@ -1,8 +1,8 @@
 #content
   .main.full
     %h2 Cogster Customer List
-    %p="as of #{Time.now.strftime("%I:%M%P, %m/%d/%y")}"
-    %table{ :cellpadding => 0, :cellspacing => 0 }
+    %p="as of #{(Time.now - 4.hours).strftime("%I:%M%P ET, %m/%d/%y")}"
+    %table#redemptions.nice{ :cellpadding => 0, :cellspacing => 0 }
       %thead
         %tr
           %th{ :colspan => 2 } Cogster

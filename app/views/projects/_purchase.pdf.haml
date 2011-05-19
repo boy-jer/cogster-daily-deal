@@ -1,5 +1,4 @@
-#-100.times do |n|
-%tr
+%tr{ :class => cycle('odd', 'even')}
   %td=purchase.user.abbr_name
   %td=purchase.user.cogster_id
   -purchase.coupons.each do |coupon|

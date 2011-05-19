@@ -2,7 +2,7 @@ Cogster::Application.routes.draw do
 
   resource :account, :only => [ :show, :edit, :update ] do
     member do
-      get :password
+      get :edit_password
     end
   end
 

@@ -9,9 +9,9 @@ end
 
 Then /^I (do not )?see details of my current project$/ do |negate|
   if negate
-    page.should_not have_selector('dl.list')
+    page.should_not have_selector('#project_status')
   else
-    page.should have_selector('dl.list')
+    page.should have_selector('#project_status')
   end
 end
 

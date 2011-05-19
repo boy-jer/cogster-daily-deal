@@ -6,9 +6,10 @@
     %h3
       Welcome Back, 
       =current_user.first_name
-      (
-      =link_to "edit profile", edit_account_path
-      )
+    %p
+      =link_to "Edit profile", edit_account_path
+      |
+      =link_to "Edit password", edit_password_account_path
     %h2 My Purchases
     -if @purchases.empty?
       %p You have no active purchases.
