@@ -12,13 +12,13 @@
       =f.text_field :last_name, :class => "text"
     .field
       =f.label :type, "Card Type"
-      =f.select :type, options_for_select(credit_card_options)
+      =f.select :type, options_for_select(credit_card_options, card_selection)
     .field
       =f.label :card_number, "Credit Card Number"
-      =f.text_field :card_number, :class => "text"
+      =f.text_field :card_number, :class => "text", :value => '', :autocomplete => 'off'
     .field
       =f.label :security_code
-      =f.text_field :security_code, :class => "text"
+      =f.text_field :security_code, :class => "text", :value => '', :autocomplete => 'off'
     .field
       =f.label :expiration_month, "Expiration Date"
       =f.select :expiration_month, options_for_select((1..12).to_a), {}, :class => "xsmall"
@@ -32,7 +32,7 @@
     = render :partial => 'shared/address_form', :locals => { :f => f, :addressable => @purchase.address }
   .clear
   %p
-    =f.check_box :terms
-    I agree to the
+    /=f.check_box :terms
+    By clicking 'Purchase', I agree to the
     =link_to "Cogster Member Purchase Agreement", member_purchase_agreement_path, :class => "new_window"
   =f.submit "Purchase"

@@ -25,12 +25,12 @@ describe PurchasesHelper do
     end
     it "uses previously selected amount if there is one" do
       assign(:purchase, mock_model(Purchase, :amount => 20))
-      helper.purchase_selection(@project).should == 20
+      helper.purchase_selection(@project).should == "20"
     end
 
     it "falls back on project min amount if purchase has no amt" do
       assign(:purchase, mock_model(Purchase, :amount => nil))
-      helper.purchase_selection(@project).should == 10
+      helper.purchase_selection(@project).should == "10"
     end
   end
 

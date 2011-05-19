@@ -2,7 +2,7 @@
 .progress
   .progress_bar_background
     %div{ :class => "progress_bar initial_progress #{group_progress(project)}", :style => "width:#{project.percent_funded_less(current_user)}%;"}
-    %div{ :class => "personal_progress_bar final_progress #{individual_progress(project)}", :style => "width:#{project.percent_funded_by(current_user)}%;"}
+    %div{ :class => "personal_progress_bar final_progress #{individual_progress(project)}", :style => "width:#{project.percent_funded_by(current_user)}%;", :title => "This is your contribution to the project"}
   .progress_bar_score
     %strong="#{project.percent_funded}%"
     %br/

@@ -32,6 +32,7 @@ class Admin::UsersController < ApplicationController
       render :admin
     elsif params[:type] == 'unconfirmed'
       @users = User.unconfirmed.includes(:community).paginate(:per_page => 10, :page => params[:page])
+      render :unconfirmed
     else
       @cogsters = User.cogster.includes(:community).paginate(:per_page => 10, :page => params[:page])
     end

@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
     def filter_or_search
       if params[:search]
-        @businesses = @businesses.where(["businesses.name LIKE ?", "%#{params[:search]}%"])
+        @businesses = @businesses.where(["UPPER(businesses.name) LIKE ?", "%#{params[:search].upcase}%"])
       elsif params[:filter].present? && params[:filter] != "all"
         @businesses = @businesses.category(params[:filter])
       end

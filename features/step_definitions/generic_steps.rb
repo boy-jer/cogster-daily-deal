@@ -47,7 +47,6 @@ When /^I make a (.*?)purchase for the "(.*)" project$/ do |amt, business_name|
   fill_in "City", :with => "Selinsgrove"
   select "Pennsylvania", :from => "State"
   fill_in "Zip Code", :with => "17870"
-  check "purchase_terms"
   click_button "Purchase"
 end
 

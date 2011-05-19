@@ -34,7 +34,7 @@ Cogster::Application.configure do
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
 
-  config.action_mailer.default_url_options = { :host => 'cogster.com' }
+  config.action_mailer.default_url_options = { :host => 'cogster.littleredbrick.net' }
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 

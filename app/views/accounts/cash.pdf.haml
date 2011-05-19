@@ -23,8 +23,8 @@
     =wicked_pdf_image_tag "images8/cogster_cash_logo.png", :alt => "Cogster.com"
     %h4 Cogster Cash
   %h3
-    %strong VALID:
-    %span=@coupon.start_date.strftime("%b %d")
+    %strong PERIOD:
+    %span="#{@purchase.coupons.index(@coupon) + 1} of #{@purchase.coupons.length}"
     %br
-      %strong TO:
-      %span=@coupon.expiration_date.strftime("%b %d")
+      %strong VALID:
+      %span="#{@coupon.start_date.strftime("%b %d")} to #{@coupon.expiration_date.strftime("%b %d")}"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110516201240) do
+ActiveRecord::Schema.define(:version => 20110518210755) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line_1"
@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(:version => 20110516201240) do
     t.decimal  "goal"
     t.date     "success_date"
     t.date     "expiration_date"
-    t.string   "reason"
+    t.text     "reason",            :limit => 255
     t.string   "kicker"
     t.boolean  "active"
     t.datetime "created_at"

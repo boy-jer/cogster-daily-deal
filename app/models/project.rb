@@ -9,6 +9,7 @@ class Project < ActiveRecord::Base
   delegate :redemption_schedule, :redemption_period, :redemption_total, :to => :project_option
   validates_presence_of :expiration_date, :business_id, :name, :max_amount, :goal, :project_option_id
   validates_length_of :reason, :maximum => 500
+  validates_length_of :kicker, :maximum => 150
 
   def accepting_purchases?
     amount_funded < goal
@@ -52,6 +53,10 @@ class Project < ActiveRecord::Base
 
   def steps_for(user)
     min_amount.step(max_for(user), 10)
+  end
+
+  def top_supporters
+    supporters.map{|s| [s, purchases.select{|p| p.user_id == s.id }.sum(&:amount)]}.sort_by{|arr| [-1 * arr[1], arr[0].created_at] }[0..4].map(&:first)
   end
 
 end

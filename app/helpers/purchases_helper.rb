@@ -1,5 +1,9 @@
 module PurchasesHelper
 
+  def card_selection
+    params[:purchase][:type] if params[:purchase].present?
+  end
+
   def credit_card_options
     %w(Visa MasterCard Discover\ Card American\ Express).zip(%w(visa master discover american_express))
   end
@@ -9,7 +13,7 @@ module PurchasesHelper
   end
 
   def purchase_selection(project)
-    @purchase.amount || project.min_amount
+    @purchase.amount.nil? ? project.min_amount.to_i.to_s : @purchase.amount.to_i.to_s  
   end
 
   def redemption_amount(project, period)

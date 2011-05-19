@@ -1,5 +1,5 @@
 -content_for :menu do
-  =menu_without_business_filters
+  =breadcrumbs [link_to(@business.community.name, @business.community), @business.name]
 #content
   .main.full
     #business_details.business
@@ -36,7 +36,7 @@
     %h3#double_money.seo_hide=conditional_purchase_link("Double Your Money", {}, "We did it!") 
     %h3.seo_hide.our_cogs Our Cogs
     %ol.top_cogs
-      =render :partial => "shared/cog", :collection => @business.supporters
+      =render :partial => "shared/cog", :collection => @business.top_supporters
     .clear
     =render "shared/personal_swag" if user_signed_in?
     =link_to "What is swag?", swag_path, :id => "smaller" 

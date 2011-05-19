@@ -84,4 +84,22 @@ describe Project do
     @project.should_receive(:max_for).with(user).and_return 50
     @project.steps_for(user).to_a.should == [10, 20, 30, 40, 50]
   end
+
+  it "selects 5 top supporters based on total purchases and user signup" do
+    time = Time.now
+    best = mock_model(User, :id => 1, :created_at => time)
+    late = mock_model(User, :id => 2, :created_at => time)
+    early = mock_model(User, :id => 3, :created_at => time - 100)
+    cheap = mock_model(User, :id => 4, :created_at => time)
+    other = mock_model(User, :id => 6, :created_at => time - 100)
+    extra = mock_model(User, :id => 5, :created_at => time)
+    @project.should_receive(:supporters) { [extra, other, cheap, early, late, best]}
+    purchases = [mock_model(Purchase, :user_id => 2, :amount => 10),
+                 mock_model(Purchase, :user_id => 3, :amount => 10),
+                 mock_model(Purchase, :user_id => 1, :amount => 9),
+                 mock_model(Purchase, :user_id => 1, :amount => 9),
+                 mock_model(Purchase, :user_id => 4, :amount => 5)]
+    @project.stub(:purchases) { purchases }
+    @project.top_supporters.should == [best, early, late, cheap, other]
+  end
 end
