@@ -80,7 +80,7 @@ class Business < ActiveRecord::Base
     end
 
     def inform_owner
-      if merchant && !merchant.merchant?
+      if active && merchant && !merchant.merchant?
         UserMailer.notify_of_activation(merchant.email).deliver
       end
     end

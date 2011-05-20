@@ -20,8 +20,9 @@
         .contact
           %h4 Contact Info
           %dl
-            =dt_dd(@business, :phone)
-            =dt_dd(@business, :email)
+            -if @business.address
+              =dt_dd(@business, :phone)
+              =dt_dd(@business, :email)
             =dt_dds(@business, :websites, :url)
         .contact
           %h4 Business Hours
