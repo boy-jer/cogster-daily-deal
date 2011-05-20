@@ -32,7 +32,7 @@ module AccountsHelper
 
   def merchant_coupon_display(coupon)
     if coupon.used?
-      'Processed'
+      'Used'
     elsif coupon.future?
       number_to_currency(coupon.amount)
     else

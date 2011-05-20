@@ -32,7 +32,7 @@
               %th{ :colspan => 2}Customer
               %th{ :colspan => @current_project.redemption_schedule.length }="Visit Period"
               %th{ :colspan => 2}Purchase Details
-            %tr
+            %tr.column_names
               %th Name
               %th Cogster ID
               -1.upto(@current_project.redemption_schedule.length) do |n|
