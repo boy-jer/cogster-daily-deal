@@ -5,7 +5,6 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @user.set_terms_and_confirmed_and_role(params[:user][:role])
-    @user.set_business_community
     if @user.save
       redirect_to admin_users_path(:type => @user.role), :notice => "An account for #{@user.name} has been created"
     else

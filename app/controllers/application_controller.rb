@@ -6,6 +6,16 @@ class ApplicationController < ActionController::Base
 
   protected
 
+    def after_sign_in_path_for(resource)
+      if stored_location_for(:user)
+        stored_location_for(:user)
+      elsif resource.sign_in_count == 1 && resource.cogster?
+        community_path(resource.community)
+      else
+        account_path
+      end
+    end
+
     def filter_or_search
       if params[:search]
         @businesses = @businesses.where(["UPPER(businesses.name) LIKE ?", "%#{params[:search].upcase}%"])

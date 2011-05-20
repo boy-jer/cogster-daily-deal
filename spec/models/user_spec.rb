@@ -23,6 +23,13 @@ describe User do
     user.should be_admin
   end
 
+  it "defaults to cogster" do
+    user = Factory.build(:user)
+    user.role = nil
+    user.save
+    user.role.should == 'cogster'
+  end
+
   it "has 10-digit cogster id" do
     user = Factory.create(:user)
     user.cogster_id.size.should == 9
@@ -50,9 +57,10 @@ describe User do
     it "can have a business" do
       user_attr = Factory.attributes_for(:user)
       attr = user_attr.merge(:business_attributes => { 
-        :name => 'BJs', :description => 'food', :community_id => 1 }) 
+        :name => 'BJs', :description => 'food' }) 
       user = User.create(attr)
       user.should be_valid
+      user.business.community_id.should == user.community_id
     end
   end
 end

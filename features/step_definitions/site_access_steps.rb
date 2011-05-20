@@ -10,6 +10,7 @@ end
 
 Given /^I have a merchant account$/ do
   @user = Factory.create(:merchant)
+  @user.increment!(:sign_in_count)
 end
 
 When /^I enter my login information$/ do

@@ -7,13 +7,13 @@
         %tr
           %th{ :colspan => 2 } Cogster
           %th{ :colspan => @project.redemption_schedule.length } Visit Period
-          %th Purchase
+          %th{ :colspan => 2} Purchase Details
         %tr
           %th Name
           %th ID
           -@project.redemption_schedule.length.times do |n|
             %th=n+1
-          %th Amount
           %th Date
+          %th Amount
       %tbody
         =render :partial => 'purchase', :collection => @purchases

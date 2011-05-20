@@ -3,5 +3,5 @@
   %td=purchase.user.cogster_id
   -purchase.coupons.each do |coupon|
     %td=status_for(coupon)
-  %td=number_to_currency(purchase.amount)
   %td=purchase.created_at.strftime("%B %d")
+  %td=number_to_currency(purchase.amount)

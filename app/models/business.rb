@@ -7,7 +7,7 @@ class Business < ActiveRecord::Base
   has_one :address, :as => :addressable
   accepts_nested_attributes_for :websites, :hours, :reject_if => :all_blank,
                                                    :allow_destroy => true
-  accepts_nested_attributes_for :address, :update_only => true, :reject_if => :all_blank
+  accepts_nested_attributes_for :address, :reject_if => :all_blank
   belongs_to :business_option
   has_one :current_project, :class_name => 'Project', :conditions => { :active => true }
   delegate :supporters, :top_supporters, :accepting_purchases?, :to => :current_project
@@ -56,7 +56,7 @@ class Business < ActiveRecord::Base
       if existing_site = websites.detect{|w| w.url =~ /#{site}/ }
         existing_site.label = site
       else
-        websites.insert(i + 1, Website.new(:url => "http://www.#{site}.com", :label => site))
+        websites.insert(i + 1, Website.new(:url => Website.generic_for(site), :label => site))
       end
     end
   end

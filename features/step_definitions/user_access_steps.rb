@@ -44,6 +44,7 @@ When /^I register( as a merchant)?$/ do |merchant|
   check "user_terms"
   click_button "Sign Up"
   User.last.confirm!
+  User.last.increment!(:sign_in_count)
 end
 
 Then /^I should get a user account$/ do
@@ -55,6 +56,7 @@ Then /^I should be taken to the home page for my account$/ do
 end
 
 When /^I log in/ do
+  User.find_by_email("steve@cogster.com").increment!(:sign_in_count)
   visit "login"
   fill_in "Email", :with => "steve@cogster.com"
   fill_in "Password", :with => "password"

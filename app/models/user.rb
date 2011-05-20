@@ -30,9 +30,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  %w(admin merchant).each do |role|
+  %w(admin merchant cogster).each do |role|
     define_method "#{role}?" do
-      self.role.downcase == role
+      self.role && self.role.downcase == role
     end
   end
 
@@ -80,18 +80,6 @@ class User < ActiveRecord::Base
 
   def purchases_of(project)
     purchases.where(['project_id = ?', project.id]).sum(:amount)
-  end
-
-  def role
-    super || 'cogster'
-  end
-
-  def set_business_community
-    if merchant?
-      business.community_id = community_id
-    else
-      self.business = nil 
-    end
   end
 
   def set_terms_and_confirmed_and_role(role)

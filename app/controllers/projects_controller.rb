@@ -34,7 +34,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = @business.projects.find(params[:id], :include => { :purchases => [ :coupons, :user]})
-    @purchases = @project.purchases
+    @purchases = @project.purchases.sort_by{|p| [p.user.abbr_name, p.created_at] }
     respond_to do |format|
       format.html { render :layout => 'header' }
       format.pdf { render :pdf => 'customer_list',

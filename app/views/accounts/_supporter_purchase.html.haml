@@ -3,5 +3,6 @@
   %td=supporter_purchase.cogster_id
   -supporter_purchase.coupons.each do |coupon|
     %td=merchant_coupon_display(coupon)
-  %td="Joined for #{number_to_currency(supporter_purchase.amount)} on #{supporter_purchase.created_at("%m/%d/%y")}"
+  %td=supporter_purchase.created_at.strftime("%B %d")
+  %td=number_to_currency(supporter_purchase.amount)
 
