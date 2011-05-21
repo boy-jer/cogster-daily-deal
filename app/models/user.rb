@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
                   :first_name, :last_name, :community_id, :gender, :terms,
                   :address_attributes, :business_attributes
 
-  validates_acceptance_of :terms, :on => :create, :allow_nil => false
   validates_presence_of :first_name, :last_name
   belongs_to :community
   has_one :address, :as => :addressable
@@ -83,7 +82,6 @@ class User < ActiveRecord::Base
   end
 
   def set_terms_and_confirmed_and_role(role)
-    self.terms = "1"
     skip_confirmation!
     self.role = role
   end

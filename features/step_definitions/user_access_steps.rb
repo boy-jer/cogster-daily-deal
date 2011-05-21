@@ -41,7 +41,6 @@ When /^I register( as a merchant)?$/ do |merchant|
     fill_in "Name", :with => "BJ's"
     fill_in "Description", :with => "Where The Grove Eats"
   end
-  check "user_terms"
   click_button "Sign Up"
   User.last.confirm!
   User.last.increment!(:sign_in_count)

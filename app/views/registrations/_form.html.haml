@@ -20,8 +20,7 @@
     .field
       %h3=link_to "Are You a Business Owner?", :business => true
   .field
-    =f.check_box :terms, :class => "text"
-    I hereby agree to the
+    By clicking "Sign Up", I agree to the
     =link_to "Terms and Conditions.", terms_path, :id => "terms_link"
   .field
     =submit_tag "Sign Up", :class => "submit", :id => "submit"

@@ -1,6 +1,6 @@
 class Hours < ActiveRecord::Base
   belongs_to :business
-  before_update :check_closure
+  validate :check_closure
   validate :close_after_open, :on => :update 
   attr_accessor :set_closed
 
@@ -32,8 +32,8 @@ class Hours < ActiveRecord::Base
 
     def close_after_open
       if open_meridian == close_meridian && close_meridian == 'pm'
-        unless open_hour < close_hour 
-          errors.add(:close_hour, "^ Hours are not in order")
+        unless closed? || open_hour < close_hour  || open_hour == 12
+          errors.add(:base, "Hours are not in order")
         end
       end
     end

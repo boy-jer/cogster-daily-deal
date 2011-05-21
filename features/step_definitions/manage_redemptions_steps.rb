@@ -19,6 +19,17 @@ Given /^I am a merchant with an active project$/ do
   @project = Factory.create(:project, :business => @business)
 end
 
+When /^I click the pdf link "([^\"]*)"$/ do |text|
+  click_link text
+  temp_pdf = Tempfile.new('pdf')
+  temp_pdf << page.body.force_encoding("UTF-8")
+  temp_pdf.close
+  temp_txt = Tempfile.new('txt')
+  temp_txt.close
+  `pdftotext -enc UTF-8 #{temp_pdf.path} #{temp_txt.path} --2>&1`
+  page.driver.instance_variable_set('@body', File.read(temp_txt.path))
+end
+
 Then /^I see a Cogster cash table$/ do
   page.should have_selector('table#redemptions')
 end

@@ -2,7 +2,7 @@
   %td=supporter_purchase.abbr_name
   %td=supporter_purchase.cogster_id
   -supporter_purchase.coupons.each do |coupon|
-    %td=merchant_coupon_display(coupon)
-  %td=supporter_purchase.created_at.strftime("%B %d")
+    =merchant_coupon_display(coupon)
+  %td=supporter_purchase.created_at.strftime("%b %d")
   %td=number_to_currency(supporter_purchase.amount)
 

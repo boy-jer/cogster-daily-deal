@@ -4,8 +4,7 @@ class Admin::BusinessesController < ApplicationController
 
   def create
     @merchant = User.new(params[:user])   
-    @merchant.role = "Merchant"
-    @merchant.terms = true
+    @merchant.role = "merchant"
     if @merchant.save
       redirect_to admin_businesses_path, :notice => "#{@merchant.business.name} has been created"
     else

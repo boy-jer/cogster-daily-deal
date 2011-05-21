@@ -29,7 +29,7 @@
     %h3 Billing Address
   %p 
     Enter Your Credit Card Billing Address Below
-    = render :partial => 'shared/address_form', :locals => { :f => f, :addressable => @purchase.address }
+    = render :partial => 'shared/address_form', :locals => { :f => f, :addressable => current_user.address }
   .clear
   %p
     /=f.check_box :terms

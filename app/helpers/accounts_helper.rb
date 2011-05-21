@@ -32,11 +32,11 @@ module AccountsHelper
 
   def merchant_coupon_display(coupon)
     if coupon.used?
-      'Used'
+      content_tag :td, link_to('Used', edit_business_coupon_path(@business, coupon)), :class => 'expired', :title => 'You have marked this coupon as used. Click the link to change it back.' 
     elsif coupon.future?
-      number_to_currency(coupon.amount)
+      content_tag :td, number_to_currency(coupon.amount), :title => "This coupon will not be available until #{coupon.start_date.strftime("%B %d")}"
     else
-      link_to number_to_currency(coupon.amount), edit_business_coupon_path(@business, coupon), :class => "outstanding_cash"
+      content_tag :td, link_to(number_to_currency(coupon.amount), edit_business_coupon_path(@business, coupon), :class => "outstanding_cash") 
     end
   end
 

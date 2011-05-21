@@ -37,7 +37,7 @@ class AccountsController < ApplicationController
 
   def update
     if update_successful?
-      redirect_to account_url, :notice => "Your profile has been updated"
+      redirect_to account_url, :notice => params[:toggle].blank?? "Your profile has been updated" : ''
     else
       render_edit_or_password_template
     end

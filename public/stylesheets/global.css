@@ -263,19 +263,22 @@ input:invalid,textarea:invalid{
 #purchase_values span{
   color:green;font-weight:bold}
 .nice{
-  -moz-box-shadow:#333333 1px 1px 5px 0;-webkit-box-shadow:#333333 1px 1px 5px 0;-o-box-shadow:#333333 1px 1px 5px 0;box-shadow:#333333 1px 1px 5px 0;display:table !important;margin:0;border:1px solid #000;padding:0;width:528px;text-align:center !important}
+  -moz-box-shadow:#333333 1px 1px 5px 0;-webkit-box-shadow:#333333 1px 1px 5px 0;-o-box-shadow:#333333 1px 1px 5px 0;box-shadow:#333333 1px 1px 5px 0;display:table !important;margin:0;border:1px solid #000;padding:0;width:99%;text-align:center !important}
 .nice .active{
   color:green}
-.nice .expired{
+.nice tr.expired{
   color:#666666}
+.nice td.expired{
+  background: #666;
+  color: #fff;}
 .nice .column_names, .nice .column_names th {
-  height:24px !important;line-height:24px !important;font-size:12px !important;width:528px;color:#fff;background-color:#111111;text-shadow:#000 1px 1px 1px;background-image:-webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #666666), color-stop(100%, #111111));background-image:-moz-linear-gradient(top, #666666 0%, #111111 100%);background-image:linear-gradient(top, #666666 0%, #111111 100%);}
+  height:24px !important;line-height:24px !important;font-size:12px !important;width:99%;color:#fff;background-color:#111111;text-shadow:#000 1px 1px 1px;background-image:-webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #666666), color-stop(100%, #111111));background-image:-moz-linear-gradient(top, #666666 0%, #111111 100%);background-image:linear-gradient(top, #666666 0%, #111111 100%);}
 .nice tr.column_names{
   -moz-border-radius-topleft:10px;-webkit-border-top-left-radius:10px;-o-border-top-left-radius:10px;-ms-border-top-left-radius:10px;-khtml-border-top-left-radius:10px;border-top-left-radius:10px;-moz-border-radius-topright:10px;-webkit-border-top-right-radius:10px;-o-border-top-right-radius:10px;-ms-border-top-right-radius:10px;-khtml-border-top-right-radius:10px;border-top-right-radius:10px}
 .nice .column_names th:hover{
   background-color:#111111;color:#fff;text-shadow:#000 1px 1px 1px}
 .nice .row{
-  height:24px !important;line-height:24px !important;font-size:12px !important;display:table-row !important;width:528px}
+  height:24px !important;line-height:24px !important;font-size:12px !important;display:table-row !important;width:99%}
 .nice .row:last-child{
   background-color:#fff;-moz-border-radius-bottomleft:10px;-webkit-border-bottom-left-radius:10px;-o-border-bottom-left-radius:10px;-ms-border-bottom-left-radius:10px;-khtml-border-bottom-left-radius:10px;border-bottom-left-radius:10px;-moz-border-radius-bottomright:10px;-webkit-border-bottom-right-radius:10px;-o-border-bottom-right-radius:10px;-ms-border-bottom-right-radius:10px;-khtml-border-bottom-right-radius:10px;border-bottom-right-radius:10px}
 table .even td{
@@ -1374,115 +1377,107 @@ p,h2,h3{
 h2,h3{
   page-break-after:avoid}
   }
-.ie6 body,.ie7 body,.ie8 body{
+.ie body{
   text-align:center}
-* html .ie6 body legend,* html .ie7 body legend,* html .ie8 body legend{
+* html .ie body legend{
   margin:0px -8px 16px 0;padding:0}
-html > .ie6 body p code,html > .ie7 body p code,html > .ie8 body p code{
+html > .ie body p code{
   *white-space:normal}
-.ie6 body .container,.ie7 body .container,.ie8 body .container{
+.ie body .container{
   text-align:left}
-.ie6 body sup,.ie7 body sup,.ie8 body sup{
+.ie body sup{
   vertical-align:text-top}
-.ie6 body sub,.ie7 body sub,.ie8 body sub{
+.ie body sub{
   vertical-align:text-bottom}
-.ie6 body hr,.ie7 body hr,.ie8 body hr{
+.ie body hr{
   margin:-8px auto 11px}
-.ie6 body img,.ie7 body img,.ie8 body img{
+.ie body img{
   -ms-interpolation-mode:bicubic}
-.ie6 body fieldset,.ie7 body fieldset,.ie8 body fieldset{
+.ie body fieldset{
   padding-top:0}
-.ie6 body textarea,.ie7 body textarea,.ie8 body textarea{
+.ie body textarea{
   overflow:auto}
-.ie6 body input.text,.ie7 body input.text,.ie8 body input.text{
+.ie body input.text{
   margin:0.5em 0;background-color:white;border:1px solid #bbbbbb}
-.ie6 body input.text:focus,.ie7 body input.text:focus,.ie8 body input.text:focus{
+.ie body input.text:focus{
   border:1px solid #666666}
-.ie6 body input.title,.ie7 body input.title,.ie8 body input.title{
+.ie body input.title{
   margin:0.5em 0;background-color:white;border:1px solid #bbbbbb}
-.ie6 body input.title:focus,.ie7 body input.title:focus,.ie8 body input.title:focus{
+.ie body input.title:focus{
   border:1px solid #666666}
-.ie6 body input.checkbox,.ie7 body input.checkbox,.ie8 body input.checkbox{
+.ie body input.checkbox{
   position:relative;top:0.25em}
-.ie6 body input.radio,.ie7 body input.radio,.ie8 body input.radio{
+.ie body input.radio{
   position:relative;top:0.25em}
-.ie6 body input.button,.ie7 body input.button,.ie8 body input.button{
+.ie body input.button{
   position:relative;top:0.25em}
-.ie6 body textarea,.ie7 body textarea,.ie8 body textarea{
+.ie body textarea{
   margin:0.5em 0}
-.ie6 body select,.ie7 body select,.ie8 body select{
+.ie body select{
   margin:0.5em 0}
-.ie6 body button,.ie7 body button,.ie8 body button{
+.ie body button{
   position:relative;top:0.25em}
-.ie6 body .lightbox_container,.ie7 body .lightbox_container,.ie8 body .lightbox_container{
+.ie body .lightbox_container{
   position:absolute}
-.ie6 body label,.ie7 body label,.ie8 body label{
+.ie body label{
   margin:0.5em 0;padding-right:7px}
-.ie6 body #header div #links li,.ie7 body #header div #links li,.ie8 body #header div #links li{
+.ie body #header div #links li{
   text-indent:0px !important}
-.ie6 body #header div #links #nav1 a,.ie7 body #header div #links #nav1 a,.ie8 body #header div #links #nav1 a{
+.ie body #header div #links #nav2 a{
   background:none !important}
-.ie6 body #header div #links #nav1 a:hover,.ie7 body #header div #links #nav1 a:hover,.ie8 body #header div #links #nav1 a:hover{
+.ie body #header div #links #nav2 a:hover{
   background:none !important}
-.ie6 body #header div #links #nav2 a,.ie7 body #header div #links #nav2 a,.ie8 body #header div #links #nav2 a{
+.ie body #header div #links #nav3 a{
   background:none !important}
-.ie6 body #header div #links #nav2 a:hover,.ie7 body #header div #links #nav2 a:hover,.ie8 body #header div #links #nav2 a:hover{
+.ie body #header div #links #nav3 a:hover{
   background:none !important}
-.ie6 body #header div #links #nav3 a,.ie7 body #header div #links #nav3 a,.ie8 body #header div #links #nav3 a{
-  background:none !important}
-.ie6 body #header div #links #nav3 a:hover,.ie7 body #header div #links #nav3 a:hover,.ie8 body #header div #links #nav3 a:hover{
-  background:none !important}
-.ie6 body #header div #account li,.ie7 body #header div #account li,.ie8 body #header div #account li{
+.ie body #header div #account li{
   width:68px;height:23px;line-height:23px}
-.ie6 body #header div #account li a,.ie7 body #header div #account li a,.ie8 body #header div #account li a{
+.ie body #header div #account li a{
   border:1px solid transparent}
-.ie6 body #header div #account li a:hover,.ie7 body #header div #account li a:hover,.ie8 body #header div #account li a:hover{
+.ie body #header div #account li a:hover{
   border-top:1px solid #000;border-bottom:1px solid #434444;border-left:1px solid #111111;border-right:1px solid #111111}
-.ie6 body #splash_dropdown,.ie7 body #splash_dropdown,.ie8 body #splash_dropdown{
+.ie body #splash_dropdown{
   position:relative !important;margin-left:48px !important}
-.ie6 body #splash_dropdown #region_listing,.ie7 body #splash_dropdown #region_listing,.ie8 body #splash_dropdown #region_listing{
+.ie body #splash_dropdown #region_listing{
   font-size:18px;border:1px #000 solid !important;margin:0px !important;padding:0px !important}
-.ie6 body #splash_dropdown #region_listing ul,.ie7 body #splash_dropdown #region_listing ul,.ie8 body #splash_dropdown #region_listing ul{
+.ie body #splash_dropdown #region_listing ul{
   padding:0px !important;margin-right:0px !important}
-.ie6 body #splash_dropdown #region_listing ul li h2,.ie7 body #splash_dropdown #region_listing ul li h2,.ie8 body #splash_dropdown #region_listing ul li h2{
+.ie body #splash_dropdown #region_listing ul li h2{
   font-style:normal;line-height:27px;height:27px}
-.ie6 body #splash_dropdown #region_listing ul li ul,.ie7 body #splash_dropdown #region_listing ul li ul,.ie8 body #splash_dropdown #region_listing ul li ul{
+.ie body #splash_dropdown #region_listing ul li ul{
   width:300px;height:70px;overflow:scroll;overflow-x:hidden}
-.ie6 body #splash_dropdown #region_listing ul li ul li a h2,.ie7 body #splash_dropdown #region_listing ul li ul li a h2,.ie8 body #splash_dropdown #region_listing ul li ul li a h2{
+.ie body #splash_dropdown #region_listing ul li ul li a h2{
   line-height:20px !important;font-size:14px !important;height:20px !important}
-.ie6 body #splash_dropdown #region_listing ul li ul span,.ie7 body #splash_dropdown #region_listing ul li ul span,.ie8 body #splash_dropdown #region_listing ul li ul span{
+.ie body #splash_dropdown #region_listing ul li ul span{
   font-size:12px}
-.ie6 body #current_region_dropdown,.ie7 body #current_region_dropdown,.ie8 body #current_region_dropdown{
+.ie body #current_region_dropdown{
   text-align:left !important;position:relative !important}
-.ie6 body #current_region_dropdown #region_selection,.ie7 body #current_region_dropdown #region_selection,.ie8 body #current_region_dropdown #region_selection{
+.ie body #current_region_dropdown #region_selection{
   position:absolute !important}
-.ie6 body #my_account_container,.ie7 body #my_account_container,.ie8 body #my_account_container{
-  position:relative !important}
-.ie6 body #my_account_container #dropdown,.ie7 body #my_account_container #dropdown,.ie8 body #my_account_container #dropdown{
-  position:absolute !important}
-.ie6 body .nice,.ie7 body .nice,.ie8 body .nice{
-  width:528px}
-.ie6 body .nice .column-names,.ie7 body .nice .column-names,.ie8 body .nice .column-names{
+.ie body .nice{
+  width:99%}
+.ie body .nice .column-names{
   float:left}
-.ie6 body .nice .row,.ie7 body .nice .row,.ie8 body .nice .row{
+.ie body .nice .row{
   float:left;width:530px;background-color:#eee}
-.ie6 body .nice .cash,.ie7 body .nice .cash,.ie8 body .nice .cash{
+.ie body .nice .cash{
   float:left}
-.ie6 body .nice .balance,.ie7 body .nice .balance,.ie8 body .nice .balance{
+.ie body .nice .balance{
   float:left}
-.ie6 body .nice .period,.ie7 body .nice .period,.ie8 body .nice .period{
+.ie body .nice .period{
   float:left}
-.ie6 body .nice .cash_status,.ie7 body .nice .cash_status,.ie8 body .nice .cash_status{
+.ie body .nice .cash_status{
   float:left}
-.ie6 body #swag li,.ie7 body #swag li,.ie8 body #swag li{
+.ie body #swag li{
   padding:0;margin:0;margin:3px;line-height:25px;height:25px}
-.ie6 body #swag li .points,.ie7 body #swag li .points,.ie8 body #swag li .points{
+.ie body #swag li .points{
   padding:0;margin:0;height:25px !important;line-height:25px !important;margin:3px}
-.ie6 body #swag li .money,.ie7 body #swag li .money,.ie8 body #swag li .money{
+.ie body #swag li .money{
   padding:0;margin:0;height:50px !important;line-height:50px !important;margin:3px}
-.ie6 body #business_details .progress_bar_score,.ie7 body #business_details .progress_bar_score,.ie8 body #business_details .progress_bar_score{
+.ie body #business_details .progress_bar_score{
   margin-bottom:0px;line-height:1}
-.ie6 body #business_details .progress_share,.ie7 body #business_details .progress_share,.ie8 body #business_details .progress_share{
+.ie body #business_details .progress_share{
   margin-top:35px;margin-right:-95px;width:120px}
 html,body{
   height:100%}

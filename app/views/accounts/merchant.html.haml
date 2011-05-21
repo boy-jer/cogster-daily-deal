@@ -40,12 +40,24 @@
               %th Date
               %th Amount
           %tbody
-            =render :partial => 'supporter_purchase', :collection => @current_project.purchases
+            =render :partial => 'supporter_purchase', :collection => @current_project.purchases.sorted
 
   #rightbar
     =render 'user_view_button' unless session[:cogster]
     =admin_or_merchant_view_button
     -if @current_project.persisted?
-      %h2 My Current Project
-      %h4#project_status="#{@current_project.supporters.count} Supporters | Goal #{number_to_currency(@current_project.goal)} | #{@current_project.percent_funded}% Funded"
-      %p=link_to "Edit Current Project", edit_business_project_path(current_user.business, @current_project), :title => "Click to change any of the parameters of your current Cogster project"
+      %h2#project_status My Current Project
+      %dl.list
+        %dt Supporters
+        %dd.value=@current_project.supporters.count
+        %dt Project Goal
+        %dd.value="$#{@current_project.goal}"
+        %dt Percent Reached
+        %dd.value =@current_project.percent_funded
+        %dt Start Date
+        %dd.value=@current_project.created_at.strftime("%b %d")
+        %dt Target Completion Date
+        %dd.value=@current_project.expiration_date.strftime("%b %d")
+        %dt Maximum Individual Purchase
+        %dd=number_to_currency(@current_project.max_amount, :precision => 0)
+      =link_to "Edit Current Project", edit_business_project_path(current_user.business, @current_project), :title => "Click to change any of the parameters of your current Cogster project", :class => "right"

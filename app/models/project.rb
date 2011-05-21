@@ -3,7 +3,11 @@ class Project < ActiveRecord::Base
   belongs_to :business
   validates_acceptance_of :terms
 
-  has_many :purchases
+  has_many :purchases do
+    def sorted
+      sort_by{|p| [p.abbr_name, p.created_at] }
+    end
+  end
   has_many :supporters, :through => :purchases, :source => :user, :uniq => true
   has_many :redemptions
   delegate :redemption_schedule, :redemption_period, :redemption_total, :to => :project_option
