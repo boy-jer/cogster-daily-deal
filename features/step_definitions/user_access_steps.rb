@@ -62,6 +62,12 @@ When /^I log in/ do
   click_button "Sign In"
 end
 
+When /^I choose a new password$/ do
+  fill_in "New Password", :with => "new_password"
+  fill_in "Confirm Password", :with => "new_password"
+  click_button "Update"
+end
+
 When /^I ask for a new password$/ do
   pending # express the regexp above with the code you wish you had
 end

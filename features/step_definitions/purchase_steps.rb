@@ -61,3 +61,7 @@ end
 Then /^I see the community$/ do
   page.should have_selector('#region', :text => @business.community.name)
 end
+
+Then /^I see my address$/ do
+  page.should have_selector('input', :value => @user.address.line_1)
+end

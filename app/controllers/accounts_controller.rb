@@ -37,7 +37,7 @@ class AccountsController < ApplicationController
 
   def update
     if update_successful?
-      redirect_to account_url, :notice => params[:toggle].blank?? "Your profile has been updated" : ''
+      redirect_to account_url, :notice => set_notice
     else
       render_edit_or_password_template
     end
@@ -57,6 +57,17 @@ class AccountsController < ApplicationController
     def render_edit_template
       @options = Community.all.map{|c| [c.name, c.id] }
       render 'edit'
+    end
+
+    def set_notice
+      if params[:toggle].present? 
+        ''
+      elsif params[:user][:password]
+        sign_in(@current_user, :bypass => true)
+        'Your password has been updated'                
+      else
+        'Your profile has been updated'
+      end
     end
 
     def set_session

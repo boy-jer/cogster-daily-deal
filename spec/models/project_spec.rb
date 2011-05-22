@@ -85,6 +85,13 @@ describe Project do
     @project.steps_for(user).to_a.should == [10, 20, 30, 40, 50]
   end
 
+  it "sorts purchases by user name and creation date" do
+    date = Date.today
+    p = [mock_model(Purchase, :abbr_name => 'Joe X', :created_at => date),
+         mock_model(Purchase, :abbr_name => 'Joe Y', :created_at => date),
+         mock_model(Purchase, :abbr_name => 'Joe X', :created_at => date - 1)]
+    
+  end
   it "selects 5 top supporters based on total purchases and user signup" do
     time = Time.now
     best = mock_model(User, :id => 1, :created_at => time)

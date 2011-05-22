@@ -27,6 +27,12 @@ Feature: Purchase a Cogster project
     And I get a purchase confirmation email
     And I see a notice about how much Cogster Cash I have available
 
+  Scenario: Make second purchase
+    Given I am logged in
+    When I make a purchase for the "BJ's Ribs" project
+    And I go to the purchase page for BJ's Ribs
+    Then I see my address
+
   Scenario: Review purchases
     Given I am logged in
     And I just checked my email

@@ -37,6 +37,13 @@ Feature: Site access
     When I log in
     Then I see "My Purchases"
 
+  Scenario: Edit password
+    Given I register
+    When I log in
+    Then I am on the account page
+    When I click "Edit password"
+    And I choose a new password
+    Then I see "Your password has been updated" 
 #  Scenario: Reset password
 #    Given I have a user account
 #    When I ask for a new password

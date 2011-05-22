@@ -55,6 +55,16 @@ describe Purchase do
       @purchase.save
       unread_emails_for(@purchase.user.email).should have(1).message
     end
+
+    it "saves address for user" do
+      @purchase.stub(:send_email).and_return true
+      @user = @purchase.user
+      @user.save
+      @purchase.address = Address.new(:line_1 => "Main St", :city => "Selingsgrove", :state => "PA", :zip => "17870", :country => "United States")
+      @purchase.save
+      @user.address.should be_persisted
+      @user.address.line_1.should == "Main St"
+    end
   end
 
 end

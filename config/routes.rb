@@ -1,5 +1,16 @@
 Cogster::Application.routes.draw do
 
+  devise_for :users
+
+  as :user do
+    get "/register" => "registrations#new", :as => 'register'
+    post "/register" => "registrations#create", :as => 'register'
+    get "/login" => "devise/sessions#new", :as => 'login'
+    get "/lost_password" => "devise/passwords#new", :as => 'lost_password'
+    post "/lost_password" => "devise/passwords#create", :as => 'lost_password'
+    post "/logout" => "sessions#destroy", :as => 'logout'
+  end
+
   resource :account, :only => [ :show, :edit, :update ] do
     member do
       get :edit_password
@@ -34,17 +45,6 @@ Cogster::Application.routes.draw do
     %w(merchant_agreement member_purchase_agreement terms faq privacy local swag contact how_it_works).each do |page|
       get page, :as => page
     end
-  end
-
-  devise_for :users
-
-  as :user do
-    get "/register" => "registrations#new", :as => 'register'
-    post "/register" => "registrations#create", :as => 'register'
-    get "/login" => "devise/sessions#new", :as => 'login'
-    get "/lost_password" => "devise/passwords#new", :as => 'lost_password'
-    post "/lost_password" => "devise/passwords#create", :as => 'lost_password'
-    post "/logout" => "sessions#destroy", :as => 'logout'
   end
 
   root :to => "home#index"
