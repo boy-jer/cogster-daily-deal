@@ -16,6 +16,13 @@ Feature: Editing a business
     When I go to my business page
     Then I see my hours of operation
 
+  Scenario: Fail Edit
+    When I go to the account page
+    And I click "Edit Business"
+    And I screw up the business hours
+    Then I see "Edit Business Profile"
+    And I see the days are closed
+
   Scenario: Editing Logo
     When I go to the edit business page
     And I click "upload a logo"

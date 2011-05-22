@@ -28,8 +28,8 @@
           %h4 Business Hours
           %dl
             -@business.hours.each do |day|
-              %dt=day.weekday
-              %dd=day
+              %dt{ :class => day.weekday }=day.weekday
+              %dd{ :class => day.weekday }=day
       .steeple
         %h4 Business Details
         %p=@business.description

@@ -20,6 +20,14 @@ module ApplicationHelper
      link_to_unless_current('Business Types', admin_business_options_path)].join(' | ').html_safe
   end
 
+  def business_hours_closed_check(day)
+    if params[:business] && params[:business][:hours_attributes]
+      params[:business][:hours_attributes][day.to_s][:set_closed]
+    else
+     @business.closed_on?(day)
+    end
+  end
+
   def business_image(business)
     content_tag :div, :class => "business_img_container" do
       image_tag(business.image_url, :class => "business_profile") +
