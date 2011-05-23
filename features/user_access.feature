@@ -44,6 +44,12 @@ Feature: Site access
     When I click "Edit password"
     And I choose a new password
     Then I see "Your password has been updated" 
+
+  Scenario: Edit profile
+    Given I register
+    When I log in
+    And click "Edit profile"
+    Then I see "Edit Profile"
 #  Scenario: Reset password
 #    Given I have a user account
 #    When I ask for a new password

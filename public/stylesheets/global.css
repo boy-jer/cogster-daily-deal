@@ -264,6 +264,7 @@ input:invalid,textarea:invalid{
   color:green;font-weight:bold}
 .nice{
   -moz-box-shadow:#333333 1px 1px 5px 0;-webkit-box-shadow:#333333 1px 1px 5px 0;-o-box-shadow:#333333 1px 1px 5px 0;box-shadow:#333333 1px 1px 5px 0;display:table !important;margin:0;border:1px solid #000;padding:0;width:99%;text-align:center !important}
+#business_purchase_list .nice { width: 528px;}
 .nice .active{
   color:green}
 .nice tr.expired{

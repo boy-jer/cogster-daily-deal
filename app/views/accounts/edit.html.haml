@@ -8,8 +8,8 @@
       =error_messages_for current_user
       %h4.split General Information
       %p Here you can edit your email address, name and community.
-      =render 'shared/user_form', :locals => { :f => f }
-      =render 'shared/user_community_form', :locals => { :f => f }
+      =render :partial => 'shared/user_form', :locals => { :f => f }
+      =render :partial => 'shared/user_community_form', :locals => { :f => f }
       .field
         =f.label :community_id, "Preferred Community", :class => "required"
         =f.select :community_id, options_for_select(@options, current_user.community_id)
