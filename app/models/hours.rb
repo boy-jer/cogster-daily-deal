@@ -1,19 +1,13 @@
 class Hours < ActiveRecord::Base
   belongs_to :business
-  validate :check_closure
   validate :close_after_open, :on => :update 
-  attr_accessor :set_closed
-
-  def closed?
-    !open?
-  end
 
   def weekday
     Date::DAYNAMES[day]
   end
 
   def open?
-    open_hour.present?
+    open_hour? && !closed?
   end
 
   def to_s
@@ -26,12 +20,8 @@ class Hours < ActiveRecord::Base
 
   protected
 
-    def check_closure
-      self.open_hour = nil if set_closed 
-    end
-
     def close_after_open
-      if open_meridian == close_meridian && close_meridian == 'pm'
+      if open? && open_meridian == close_meridian && close_meridian == 'pm'
         unless closed? || open_hour < close_hour  || open_hour == 12
           errors.add(:base, "Hours are not in order")
         end

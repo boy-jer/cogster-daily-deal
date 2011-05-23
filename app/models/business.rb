@@ -38,7 +38,7 @@ class Business < ActiveRecord::Base
   end
 
   def closed_on?(n)
-    hours[n].closed? && !hours.all?{|day| day.closed? }
+    hours[n].closed? 
   end
 
   def current_project_with_ensure

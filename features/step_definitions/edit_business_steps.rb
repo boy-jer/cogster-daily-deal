@@ -8,7 +8,7 @@ Then /^I see my logo$/ do
 end
 
 When /^I set my business hours$/ do
-  check "business_hours_attributes_0_set_closed"
+  check "business_hours_attributes_0_closed"
   0.upto(6) do |n|
     select "9", :from => "business[hours_attributes][#{n}][open_hour]"
     select "00", :from => "business[hours_attributes][#{n}][open_minute]"
@@ -17,7 +17,7 @@ When /^I set my business hours$/ do
     select "00", :from => "business[hours_attributes][#{n}][close_minute]"
     select "pm", :from => "business[hours_attributes][#{n}][close_meridian]"
   end
-  check "business_hours_attributes_6_set_closed"
+  check "business_hours_attributes_6_closed"
   select "Illinois", :from => "State"
   click_button 'Update'
 end
@@ -28,7 +28,7 @@ Then /^I see my hours of operation$/ do
 end
 
 When /^I screw up the business hours$/ do
-  check "business_hours_attributes_0_set_closed"
+  check "business_hours_attributes_0_closed"
   select "9", :from => "business[hours_attributes][1][open_hour]"
   select "00", :from => "business[hours_attributes][1][open_minute]"
   select "pm", :from => "business[hours_attributes][1][open_meridian]"
@@ -39,6 +39,6 @@ When /^I screw up the business hours$/ do
 end
 
 Then /^I see the days are closed$/ do
-  page.should have_selector("#business_hours_attributes_0_set_closed", :value => "1")
+  page.should have_selector("#business_hours_attributes_0_closed", :value => "1")
 end
     

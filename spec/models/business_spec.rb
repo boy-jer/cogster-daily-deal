@@ -108,9 +108,9 @@ describe Business do
       @business.closed_on?(0).should be_false
     end
 
-    it "should register a day as closed if day has no open hour but other days do" do
-      @business.hours[0].open_hour = 9
-      @business.closed_on?(1).should be_true
+    it "should register a day as closed if closed flag set for one day" do
+      @business.hours[0].closed = true
+      @business.closed_on?(0).should be_true
     end
   end
 end

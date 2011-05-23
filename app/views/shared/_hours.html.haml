@@ -6,4 +6,4 @@
   %td=h.select :close_hour, hour_options(h, :close_hour)
   %td=h.select :close_minute, minute_options(h, :close_minute)
   %td=h.select :close_meridian, meridian_options(h, :close_meridian)
-  %td.centered=check_box_tag "business[hours_attributes][#{h.object.day}][set_closed]", '1', business_hours_closed_check(h.object.day)
+  %td.centered=h.check_box :closed
