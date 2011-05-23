@@ -56,3 +56,8 @@ task :remove_test_files, :roles => :web do
   sudo "rm -rf #{current_path}/features/"
   sudo "rm -rf #{current_path}/spec/"
 end
+
+task :migrate, :roles => :web do
+  run "cd #{deploy_to}/current"
+  sudo "rake db:migrate"
+end

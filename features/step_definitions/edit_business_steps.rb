@@ -9,7 +9,7 @@ end
 
 When /^I set my business hours$/ do
   check "business_hours_attributes_0_set_closed"
-  1.upto(5) do |n|
+  0.upto(6) do |n|
     select "9", :from => "business[hours_attributes][#{n}][open_hour]"
     select "00", :from => "business[hours_attributes][#{n}][open_minute]"
     select "am", :from => "business[hours_attributes][#{n}][open_meridian]"
