@@ -1,4 +1,18 @@
 $(document).ready(function() {
+
+  $("#notice").animate({
+    backgroundColor: "#c2deaa",
+    color: "#5a9f08"
+    }, 1000);
+  $("#notice").animate({
+    backgroundColor: "#94df3a",
+    color: "#fff"
+    }, 1000); 
+  $('#purchase_submit').click(function(e) {
+    $(this).val("Processing...");
+    $(this).attr('disabled', 'disabled');
+    $(this).addClass('processing');
+  });
   $('.new_window').click(function(e) {
     e.preventDefault();
     var name = 'new_window' + Math.random();

@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   has_many :purchases
   has_many :coupons, :through => :purchases
   has_many :projects, :through => :purchases, :uniq => true
-  before_create :set_cogster_id, :set_role
+  before_create :set_cogster_id, :set_role, :set_business_community
 
   %w(admin cogster merchant).each do |role|
     (class << self; self; end).instance_eval do
@@ -98,6 +98,12 @@ class User < ActiveRecord::Base
    
     def password_required?
       !persisted? || !password.blank? || !password_confirmation.blank?
+    end
+
+    def set_business_community
+      if business && business.community_id.nil?
+        business.community_id = community_id
+      end
     end
 
     def set_cogster_id

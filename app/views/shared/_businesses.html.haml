@@ -15,7 +15,8 @@
           You can search again in the "Find Merchant" box on the right side of the menu bar, browse through businesses by community with the community selector on the left, or browse by any of the categories in the middle.
       -else
         %h3="#{community_name} Businesses"
-        =render :partial => "shared/business", :collection => @businesses
-        -unless @other_businesses.empty?
-          %h3 Other Businesses
-          =render :partial => "shared/business", :collection => @other_businesses
+        =paginated_section @businesses do
+          =render :partial => "shared/business", :collection => @businesses
+          -unless @other_businesses.empty?
+            %h3 Other Businesses
+            =render :partial => "shared/business", :collection => @other_businesses

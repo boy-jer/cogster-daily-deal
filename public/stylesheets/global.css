@@ -264,7 +264,7 @@ input:invalid,textarea:invalid{
   color:green;font-weight:bold}
 .nice{
   -moz-box-shadow:#333333 1px 1px 5px 0;-webkit-box-shadow:#333333 1px 1px 5px 0;-o-box-shadow:#333333 1px 1px 5px 0;box-shadow:#333333 1px 1px 5px 0;display:table !important;margin:0;border:1px solid #000;padding:0;width:99%;text-align:center !important}
-#business_purchase_list .nice { width: 528px;}
+#business_purchase_list .nice, #business_purchase_list .nice th { width: 528px;}
 .nice .active{
   color:green}
 .nice tr.expired{
@@ -390,7 +390,7 @@ table .odd td{
   color:red}
 .main input.submit,.main input[type="submit"], .toggle_view .button_to input{
   color:#fff;background:#fd9c00;border:none;font-weight:bold;font-size:14px;padding:3px 15px;margin:10px 0px;-moz-border-radius:20px;-webkit-border-radius:20px;-o-border-radius:20px;-ms-border-radius:20px;-khtml-border-radius:20px;border-radius:20px;-moz-box-shadow:5px #999 1px 5px 0;-webkit-box-shadow:5px #999 1px 5px 0;-o-box-shadow:5px #999 1px 5px 0;box-shadow:5px #999 1px 5px 0}
-.main input.submit:hover,.main input[type="submit"]:hover{
+.main input.submit:hover,.main input[type="submit"]:hover, input.processing{
   color:#fbd211}
 .main .main input.submit{
   font-size:1.5em}

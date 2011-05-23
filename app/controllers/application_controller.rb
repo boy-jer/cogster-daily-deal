@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
       elsif params[:filter].present? && params[:filter] != "all"
         @businesses = @businesses.category(params[:filter])
       end
+      @businesses = @businesses.paginate(:per_page => 10, :page => params[:page])
     end
 
     def find_community
