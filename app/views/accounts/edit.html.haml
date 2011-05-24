@@ -10,9 +10,6 @@
       %p Here you can edit your email address, name and community.
       =render :partial => 'shared/user_form', :locals => { :f => f }
       =render :partial => 'shared/user_community_form', :locals => { :f => f }
-      .field
-        =f.label :community_id, "Preferred Community", :class => "required"
-        =f.select :community_id, options_for_select(@options, current_user.community_id)
       .clear
       %h4.split Contact Information
       %p Store your information below for future purchases.
