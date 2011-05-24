@@ -41,6 +41,7 @@ describe Purchase do
     end
 
     it "creates its own coupons" do
+      @purchase.stub(:project) { mock_model(Project, :increment! => true)}
       params_1 = { :start_date => Date.today, :amount => 75.0, :expiration_date => Date.today + 6 }
       params_2 = { :start_date => Date.today + 7, :amount => 50.0, :expiration_date => Date.today + 13 }
       @purchase.coupons.should_receive(:create).with(params_1)
@@ -50,6 +51,7 @@ describe Purchase do
     end
 
     it "sends an email" do
+      @purchase.stub(:project) { mock_model(Project, :increment! => true)}
       reset_mailer
       @purchase.stub(:current_coupon).and_return mock_model(Coupon, :business => Business.new(:name => 'test'), :expiration_date => Date.today)
       @purchase.save
@@ -57,13 +59,21 @@ describe Purchase do
     end
 
     it "saves address for user" do
-      @purchase.stub(:send_email).and_return true
+      @purchase.stub(:project) { mock_model(Project, :increment! => true)}
+      @purchase.stub(:send_email) { true }
       @user = @purchase.user
       @user.save
       @purchase.user.address = Address.new(:line_1 => "Main St", :city => "Selingsgrove", :state => "PA", :zip => "17870", :country => "United States")
       @purchase.save
       @user.address.should be_persisted
       Address.find_by_addressable_id(@user).line_1.should == "Main St"
+    end
+
+    it "increments project funding" do
+      @purchase.stub(:send_email) { true }
+      @purchase.project = project = Project.new
+      project.should_receive(:increment!).with(:funded, @purchase.amount)
+      @purchase.save
     end
   end
 

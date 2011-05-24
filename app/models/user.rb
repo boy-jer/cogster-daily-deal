@@ -87,7 +87,7 @@ class User < ActiveRecord::Base
   end
 
   def sole_purchaser_of(project)
-    purchases_of(project) == project.amount_funded
+    purchases_of(project) == project.funded
   end
 
   def swag_rank

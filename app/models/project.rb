@@ -16,15 +16,11 @@ class Project < ActiveRecord::Base
   validates_length_of :kicker, :maximum => 150
 
   def accepting_purchases?
-    amount_funded < goal
-  end
-
-  def amount_funded
-    purchases.sum('amount')
+    funded < goal
   end
 
   def max_for(user = nil)
-    [(max_amount - (user ? user.purchases_of(self) : 0)), goal - amount_funded].min
+    [(max_amount - (user ? user.purchases_of(self) : 0)), goal - funded].min
   end
 
   def min_amount
@@ -40,7 +36,7 @@ class Project < ActiveRecord::Base
   end
 
   def percent_funded
-    no_goal? ? 0 : (100 * amount_funded / goal).to_i
+    no_goal? ? 0 : (100 * funded / goal).to_i
   end
 
   def percent_funded_by(user = nil)

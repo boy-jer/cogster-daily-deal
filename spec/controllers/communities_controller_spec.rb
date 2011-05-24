@@ -7,7 +7,7 @@ describe CommunitiesController do
 
   describe "GET 'show'" do
     before :each do
-      Community.stub(:all) { [community, :other_community] }
+      Community.stub(:where) { [:other_community] }
       Community.stub_chain('includes.find') { community }
       get :show, :id => :id
     end

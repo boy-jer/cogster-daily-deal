@@ -15,19 +15,14 @@ describe Project do
 
   describe "#accepting_purchases?" do
     it "true if funding is less than goal" do
-      @project.should_receive(:amount_funded) { @project.goal - 1 }
+      @project.should_receive(:funded) { @project.goal - 1 }
       @project.should be_accepting_purchases
     end
 
     it "false if funding equals goal" do
-      @project.should_receive(:amount_funded) { @project.goal }
+      @project.should_receive(:funded) { @project.goal }
       @project.should_not be_accepting_purchases
     end
-  end
-
-  it "sums its purchase amounts" do
-    @project.purchases.should_receive(:sum).with('amount').and_return :sum
-    @project.amount_funded.should == :sum
   end
 
   describe "max for user" do
@@ -49,7 +44,7 @@ describe Project do
 
     it "is reduced to prevent a purchase which exceeds the goal of the project" do
       user.should_receive(:purchases_of).with(@project).and_return 0
-      @project.stub(:amount_funded).and_return @project.goal - 30
+      @project.stub(:funded).and_return @project.goal - 30
       @project.max_for(user).should == 30
     end
   end
@@ -64,7 +59,7 @@ describe Project do
     end
 
     it "is calculated based on project funding" do
-      @project.should_receive(:amount_funded).and_return @project.goal / 2.0
+      @project.should_receive(:funded).and_return @project.goal / 2.0
       @project.percent_funded.should be_within(0.1).of(50)
     end
   end

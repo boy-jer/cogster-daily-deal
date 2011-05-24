@@ -24,7 +24,7 @@
     %tbody
       %tr
         %td#supporters=project.supporters.count 
-        %td#funding=number_to_currency(project.amount_funded, :precision => 0)
+        %td#funding=number_to_currency(project.funded, :precision => 0)
         %td=number_to_currency(project.goal, :precision => 0)
   -if project.percent_funded < 100 && social != true && false
     .progress_data

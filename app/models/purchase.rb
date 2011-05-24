@@ -13,7 +13,7 @@ class Purchase < ActiveRecord::Base
   accepts_nested_attributes_for :user
 
   before_create :process_with_active_merchant
-  after_create :create_coupons, :send_email, :save_paypal_response, :save_address
+  after_create :create_coupons, :send_email, :save_paypal_response, :increment_project
 
   attr_protected :customer_ip, :status, :error_message, :updated_at, :created_at
   validates_numericality_of :amount, :greater_than => 0
@@ -73,6 +73,10 @@ class Purchase < ActiveRecord::Base
       )
     end
 
+    def increment_project
+      project.increment!(:funded, amount)
+    end
+
     def process_with_active_merchant
       response = GATEWAY.purchase(amount_in_pennies, credit_card, purchase_options) 
       if response.success?
@@ -109,10 +113,6 @@ class Purchase < ActiveRecord::Base
 
     def save_paypal_response
       @response.save
-    end
-
-    def save_address
-      address.save
     end
 
     def send_email

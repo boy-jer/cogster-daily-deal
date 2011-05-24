@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110523054445) do
+ActiveRecord::Schema.define(:version => 20110524194035) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line_1"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20110523054445) do
     t.integer  "merchant_id"
     t.integer  "business_option_id", :limit => 255
     t.boolean  "active"
-    t.boolean  "featured"
+    t.boolean  "featured",                          :default => false
     t.string   "type"
     t.string   "image"
     t.string   "email"
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(:version => 20110523054445) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "project_option_id"
+    t.integer  "funded",                           :default => 0
   end
 
   create_table "purchases", :force => true do |t|

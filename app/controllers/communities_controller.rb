@@ -3,7 +3,7 @@ class CommunitiesController < ApplicationController
 
   def show
     @community = Community.includes(:businesses => [ :business_option, :current_project => :purchases ], :users => :purchases).find(params[:id])
-    @communities = Community.all.reject{|c| c == @community }
+    @communities = Community.where(['id != ?', @community])
     @businesses = @community.businesses
     filter_or_search
     @businesses.sort_by!(&params[:sort].to_sym) if params[:sort]
