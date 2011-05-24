@@ -60,10 +60,10 @@ describe Purchase do
       @purchase.stub(:send_email).and_return true
       @user = @purchase.user
       @user.save
-      @purchase.address = Address.new(:line_1 => "Main St", :city => "Selingsgrove", :state => "PA", :zip => "17870", :country => "United States")
+      @purchase.user.address = Address.new(:line_1 => "Main St", :city => "Selingsgrove", :state => "PA", :zip => "17870", :country => "United States")
       @purchase.save
       @user.address.should be_persisted
-      @user.address.line_1.should == "Main St"
+      Address.find_by_addressable_id(@user).line_1.should == "Main St"
     end
   end
 

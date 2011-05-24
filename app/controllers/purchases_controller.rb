@@ -32,7 +32,6 @@ class PurchasesController < ApplicationController
     @purchase.amount ||= @project.min_amount
     if current_user
       @purchase.first_name, @purchase.last_name = current_user.first_name, current_user.last_name
-      @purchase.address ||= current_user.address
     end
   end
 end

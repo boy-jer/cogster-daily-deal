@@ -18,7 +18,6 @@ When /^I set my business hours$/ do
     select "pm", :from => "business[hours_attributes][#{n}][close_meridian]"
   end
   check "business_hours_attributes_6_closed"
-  select "Illinois", :from => "State"
   click_button 'Update'
 end
 

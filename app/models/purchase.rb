@@ -10,10 +10,9 @@ class Purchase < ActiveRecord::Base
     end
   end
   has_many :paypal_responses
-  has_one :address, :as => :addressable
-  accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :user
 
-  before_create :process_with_active_merchant 
+  before_create :process_with_active_merchant
   after_create :create_coupons, :send_email, :save_paypal_response, :save_address
 
   attr_protected :customer_ip, :status, :error_message, :updated_at, :created_at
@@ -21,7 +20,7 @@ class Purchase < ActiveRecord::Base
   #validates_acceptance_of :terms, :on => :create
   validate                  :validate_card, :on => :create
   delegate :redemption_schedule, :to => :project
-  delegate :abbr_name, :cogster_id, :to => :user
+  delegate :abbr_name, :cogster_id, :address, :to => :user
 
   attr_accessor :type, :expiration_year, :expiration_month, :card_number, :security_code, :first_name, :last_name
 
@@ -108,13 +107,12 @@ class Purchase < ActiveRecord::Base
       }
     end
 
-    def save_address
-      user.address = address
-      user.save
-    end
-
     def save_paypal_response
       @response.save
+    end
+
+    def save_address
+      address.save
     end
 
     def send_email

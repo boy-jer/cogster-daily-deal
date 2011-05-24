@@ -7,7 +7,7 @@ class Business < ActiveRecord::Base
   has_one :address, :as => :addressable
   accepts_nested_attributes_for :websites, :hours, :reject_if => :all_blank,
                                                    :allow_destroy => true
-  accepts_nested_attributes_for :address, :reject_if => :all_blank
+  accepts_nested_attributes_for :address, :reject_if => :nothing_but_country
   belongs_to :business_option
   has_one :current_project, :class_name => 'Project', :conditions => { :active => true }
   delegate :supporters, :top_supporters, :accepting_purchases?, :to => :current_project
@@ -93,6 +93,10 @@ class Business < ActiveRecord::Base
 
     def merchantize_owner
       merchant.update_attribute(:role, 'merchant') if merchant
+    end
+
+    def nothing_but_country(attributes)
+      attributes.all?{|pair| pair[0] == 'country' || pair[1].blank? }
     end
 
     def presence_of_community_and_merchant

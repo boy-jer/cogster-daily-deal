@@ -18,6 +18,11 @@ describe Business do
   it "always has current project" do
     @business.current_project.should_not be_nil
   end
+
+  it "ignores incomplete address" do
+    @business.address_attributes = {'country' => 'United States', 'city' => ''}
+    @business.save.should be_true
+  end
    
   it "substitutes numerical id for use in url" do
     @business.stub(:id).and_return 1
