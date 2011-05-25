@@ -99,26 +99,6 @@ describe Admin::CommunitiesController do
     end
   end
 
-  describe "GET 'show'" do
-
-    context "in admin view" do
-      before :each do
-        stub_find
-        Business.should_receive(:find_all_by_community_id).and_return [:businesses]
-        get :show, :id => :id
-      end
-    
-      it "shows the page" do
-        response.should be_success 
-      end
-    
-      it "shows active and inactive businesses" do
-        assigns(:businesses).should == [:businesses]
-      end
-    end
-
-  end
-
   describe "PUT 'update'" do
     before :each do
       stub_find

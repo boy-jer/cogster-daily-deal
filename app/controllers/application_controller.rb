@@ -16,15 +16,6 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def filter_or_search
-      if params[:search]
-        @businesses = @businesses.where(["UPPER(businesses.name) LIKE ?", "%#{params[:search].upcase}%"])
-      elsif params[:filter].present? && params[:filter] != "all"
-        @businesses = @businesses.category(params[:filter]).order('featured DESC')
-      end
-      @businesses = @businesses.paginate(:per_page => 10, :page => params[:page])
-    end
-
     def find_community
       @community = 
       if @business

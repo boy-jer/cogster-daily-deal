@@ -1,7 +1,7 @@
 class Community < ActiveRecord::Base
   has_many :businesses, :conditions => { :active => true },
                         :include => :current_project,
-                        :order => "featured DESC, projects.funded DESC",
+                        :order => "featured DESC, projects.funded / projects.goal DESC, projects.funded DESC",
                         :dependent => :destroy
   has_many :inactive_businesses, :class_name => "Business",
                                  :conditions => { :active => false },

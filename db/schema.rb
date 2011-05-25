@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110524194035) do
+ActiveRecord::Schema.define(:version => 20110524201345) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line_1"
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(:version => 20110524194035) do
     t.string   "name"
     t.decimal  "min_amount"
     t.decimal  "max_amount"
-    t.integer  "goal"
+    t.integer  "goal",                             :default => 0
     t.date     "success_date"
     t.date     "expiration_date"
     t.text     "reason",            :limit => 255

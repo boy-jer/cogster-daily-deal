@@ -24,11 +24,10 @@ end
 
 Given /^1 merchant from another community is a pizza restaurant$/ do
   @other_community = Factory(:community, :name => "Shelbyville")
-  @other_business = Factory(:business, :community => @other_community, :business_option => @opt, :name => "Shelbyville Pizza")
+  @other_business = Factory(:business, :community => @other_community, :business_option => @opt, :name => "Shelbyville Pizza", :active => true)
 end
 
 Then /^I see (\d+) merchants$/ do |n|
-  save_and_open_page if n == "4"
   page.should have_selector(".business", :count => n.to_i)
 end
 

@@ -32,12 +32,6 @@ class Admin::CommunitiesController < ApplicationController
     end
   end
 
-  def show
-    @community = Community.find(params[:id])
-    @businesses = Business.find_all_by_community_id(params[:id])
-    @cogs = User.where(["community_id = ?", params[:id]])
-  end
-
   def update
     if @community.update_attributes(params[:community])
       redirect_to admin_communities_path, :notice => "Community updated"

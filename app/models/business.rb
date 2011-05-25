@@ -30,7 +30,37 @@ class Business < ActiveRecord::Base
   end
 
   def self.category(cat)
-    where(['business_option_id = ?', cat.to_i])
+    if cat.nil? || cat == 'all'
+      where('')
+    else
+      where(['business_option_id = ?', cat.to_i])
+    end
+  end
+
+  def self.community_ordered(user, sort_order)
+    if user
+      order("community_id = #{user.community_id} DESC").ordered(sort_order)
+    else
+      ordered(sort_order)
+    end
+  end
+
+  def self.ordered(sort_order)
+    if sort_order == 'name'
+      order('businesses.name ASC')
+    elsif sort_order == 'created_at'
+      order('created_at DESC')
+    else
+      where('')
+    end
+  end
+
+  def self.search(query)
+    if query
+      where(["UPPER(businesses.name) LIKE ?", "%#{query.upcase}%"])
+    else
+      where('')
+    end
   end
 
   def self.with_purchases
