@@ -4,6 +4,7 @@
   .business_listing_details
     =link_to business_image(business), business
     .description
+      /TODO: add :protocol => 'https' as option to link_to once ssl
       =link_to render(:partial => 'shared/progress_bar', :locals => { :project => business.current_project }), new_business_purchase_path(business)
       %p=business.description 
       =edit_business_link_if_allowed(business)

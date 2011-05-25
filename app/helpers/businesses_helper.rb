@@ -1,6 +1,7 @@
 module BusinessesHelper
 
   def conditional_purchase_link(name, options, alt = nil)
+    #TODO: add :protocol => 'https' to options once ssl supported
     link_to_if(purchase_possible?, name, new_business_purchase_path(@business), options) do 
       content_tag(:span, alt, :class => current_user_involved?) if alt 
     end

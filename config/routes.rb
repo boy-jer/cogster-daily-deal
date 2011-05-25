@@ -29,8 +29,10 @@ Cogster::Application.routes.draw do
     end
     resources :coupons
     resources :projects
+    #TODO: change protocol constraint once ssl is set up
     resource :purchase, :only => [ :new, :create ], 
-                        :path_names => { :new => '' }
+                        :path_names => { :new => '' },
+                        :constraints => { :protocol => Rails.env.nil? ? 'https' : 'http' }
   end
 
   namespace "admin" do
