@@ -63,18 +63,24 @@ describe Business do
   end
 
   describe "#destroy" do
+    before :each do
+      @business.save
+    end
 
     it "goes quietly if no reason is given" do
-      @business.save
       @business.destroy
       unread_emails_for(@business.merchant.email).should have(0).messages
     end
 
     it "sends message to wannabe merchant if Cogster rejects" do
-      @business.save
       @business.deletion_explanation = "text"
       @business.destroy
       unread_emails_for(@business.merchant.email).should have(1).message
+    end
+
+    it "changes merchant to normal cogster" do
+      @business.destroy
+      @business.merchant.role.should == 'cogster'
     end
   end
 

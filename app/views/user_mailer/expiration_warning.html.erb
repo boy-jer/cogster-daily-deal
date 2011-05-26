@@ -1,0 +1,12 @@
+<p>Hello <%= @name %>,</p>
+
+<p>Your current cash for <%= @business %> will expire on <%= @expiration %>.</p>
+<p><%= link_to "Click here", url_for(:controller => 'devise/sessions', :action => 'new', :only_path => false) %> to print your cash.</p>
+
+<p>Just a little reminder. We don’t want you to miss the chance to triple your impact on the local economy. (Studies show that a dollar spent at a local business provides three times the economic benefit to your community than a dollar spent at a national chain. Yep, that’s right.)</p>
+
+<p>Thank you, thank you, thank you!</p>
+
+<p>The Cogster Team</p>
+
+<p style="font-size:small;">PS. If you already spent this cash, we apologize for the extra email. Just wanted to make sure you got what you paid for!</p>

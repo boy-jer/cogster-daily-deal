@@ -14,3 +14,13 @@ Feature: Site access
     Then I am on the account page
     And I see "Looks like you don't have a project set up yet."
 
+  Scenario: Confirm account
+    Given I don't have an account
+    When I register
+    Then I receive an email to confirm
+    When I open the confirmation email
+    Then I should see "Welcome to Cogster! Activate your account right now." in the email subject
+    And I see the confirmation link
+    When I follow the confirmation link
+    Then I see "Susquehanna Valley"
+    And I see "Your account is now active."

@@ -22,7 +22,7 @@ en:
       updated: 'Your password was changed successfully. You are now signed in.'
     confirmations:
       send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
-      confirmed: 'Your account was successfully confirmed. You are now signed in.'
+      confirmed: 'Your account is now active. You are signed in.'
     registrations:
       signed_up: 'Welcome! You have signed up successfully.'
       updated: 'You updated your account successfully.'
@@ -33,7 +33,7 @@ en:
       unlocked: 'Your account was successfully unlocked. You are now signed in.'
     mailer:
       confirmation_instructions:
-        subject: 'Confirmation instructions'
+        subject: 'Welcome to Cogster! Activate your account right now.'
       reset_password_instructions:
         subject: 'Reset password instructions'
       unlock_instructions:

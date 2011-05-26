@@ -46,4 +46,9 @@ class ApplicationController < ActionController::Base
     def should_store_location?
       request.get? && [login_path, register_path].exclude?(request.fullpath) && !user_signed_in?
     end
+
+    def stored_location_for(resource_or_scope)
+      default = super
+      default =~ /#{Regexp.quote(user_confirmation_path(:confirmation_token => ''))}/ ? nil : default
+    end
 end

@@ -2,7 +2,7 @@ module ProjectsHelper
 
   def status_for(coupon)
     if coupon.used?
-      'Processed'
+      'Used'
     else
       number_to_currency(coupon.amount)
     end

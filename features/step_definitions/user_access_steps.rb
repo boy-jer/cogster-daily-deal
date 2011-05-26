@@ -30,7 +30,7 @@ Given /^I don't have a user account$/ do
   true
 end
 
-When /^I register( as a merchant)?$/ do |merchant|
+When /^I register( and confirm)?( as a merchant)?$/ do |confirm, merchant|
   visit merchant.blank?? "register" : "register?business=true"
   fill_in "First Name", :with => "Steve"
   fill_in "Last Name", :with => "Bisbee"
@@ -42,8 +42,10 @@ When /^I register( as a merchant)?$/ do |merchant|
     fill_in "Description", :with => "Where The Grove Eats"
   end
   click_button "Sign Up"
-  User.last.confirm!
-  User.last.increment!(:sign_in_count)
+  if confirm
+    User.last.confirm! 
+    User.last.increment!(:sign_in_count)
+  end
 end
 
 Then /^I should get a user account$/ do

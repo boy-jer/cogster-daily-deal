@@ -18,6 +18,7 @@ class Business < ActiveRecord::Base
   after_create :add_hours
   after_save :inform_owner, :merchantize_owner
   before_destroy :send_explanation
+  after_destroy :unmerchantize_owner
   validates_presence_of :name
   #validate :presence_of_community_and_merchant
   validates_uniqueness_of :name, :scope => :community_id
@@ -145,6 +146,10 @@ class Business < ActiveRecord::Base
       if deletion_explanation.present?
         UserMailer.delete_business(merchant.email, deletion_explanation).deliver
       end
+    end
+
+    def unmerchantize_owner
+      merchant.update_attribute(:role, 'cogster')
     end
 
 end

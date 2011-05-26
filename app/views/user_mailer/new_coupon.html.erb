@@ -1,0 +1,11 @@
+<p>Hello <%= @name %>,</p>
+
+<p>You have more Cogster cash for <%= @business %>. It expires on <%= @expiration %>.</p>
+
+<p><%= link_to "Click here", url_for(:controller => 'devise/sessions', :action => 'new', :only_path => false) %> to print your cash.</p>
+
+<p>You're doing the right thing. Spending your dollars at locally-owned independent businesses is good for innovation, competition and lower prices over the long term. Keep up the good work!</p>
+
+<p>Thank you, </p>
+
+<p>The Cogster Team</p>

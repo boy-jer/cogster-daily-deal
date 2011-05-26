@@ -14,8 +14,7 @@ Feature: Cogster cash
     When the first redemption period for the project is two days from expiration
     Then I get an email reminder
     When I open the email
-    Then the email says how much Cogster cash I have available for the redemption period
-    And the email says which business created the project
+    Then the email says which business created the project
     And the email says when the Cogster cash will expire
 
   Scenario: Cogster cash expires

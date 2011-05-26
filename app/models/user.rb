@@ -95,6 +95,10 @@ class User < ActiveRecord::Base
   end
 
   protected
+
+    def has_no_password?
+      encrypted_password.blank?
+    end
    
     def password_required?
       !persisted? || !password.blank? || !password_confirmation.blank?

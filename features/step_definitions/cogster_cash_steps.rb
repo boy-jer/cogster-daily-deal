@@ -13,10 +13,6 @@ Then /^I get an email reminder$/ do
   unread_emails_for(@user.email).should have(1).message
 end
 
-Then /^the email says how much Cogster cash I have available for the redemption period$/ do
-  Then "I should see \"$#{@user.purchases.first.current_coupon.amount.to_i}.00\" in the email body"
-end
-
 Then /^the email says which business created the project$/ do
   Then "I should see \"#{@user.purchases.first.business.name}\" in the email body"
 end

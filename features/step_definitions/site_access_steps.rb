@@ -1,4 +1,4 @@
-Given /^I don't have a merchant account$/ do
+Given /^I don't have a(n| merchant) account$/ do |skip|
   User.destroy_all
   Factory.create(:community)
   Factory.create(:community, :name => "The Grove")
@@ -18,6 +18,23 @@ When /^I enter my login information$/ do
   fill_in "Email", :with => @user.email
   fill_in "Password", :with => @user.password
   click_button "Sign In"
+end
+
+Then /^I receive an email to confirm$/ do
+  @user = User.first
+  unread_emails_for(@user.email).size.should == 1
+end
+
+When /^I open the confirmation email$/ do
+  open_email(@user.email)
+end
+
+Then /^I see the confirmation link$/ do
+  Then "I should see \"users/confirmation?confirmation_token=#{@user.confirmation_token}\" in the email body"
+end
+
+When /^I follow the confirmation link$/ do
+  visit_in_email("users/confirmation?confirmation_token=#{@user.confirmation_token}")
 end
 
 When /^I ask for a new password$/ do
