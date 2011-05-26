@@ -53,7 +53,7 @@ module ApplicationHelper
       haml_tag :strong, selector[params[:sort]]
       haml_tag :ul do
         selector.except(params[:sort]).each do |sort, text|
-          haml_tag :li, link_to(text, :sort => sort) 
+          haml_tag :li, link_to(text, :sort => sort, :filter => params[:filter], :search => params[:search]) 
         end
       end
     end
@@ -64,8 +64,10 @@ module ApplicationHelper
   end
 
   def community_name
-    if @businesses.map(&:community_id).uniq.length == 1
-      @businesses.first.community_name
+    if (params[:community_id] || user_signed_in?) && @community.id == @businesses.first.community_id
+      @community.name
+    else
+      'Other'
     end
   end
 

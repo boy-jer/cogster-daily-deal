@@ -40,17 +40,17 @@ class Business < ActiveRecord::Base
 
   def self.community_ordered(user, sort_order)
     if user
-      order("community_id = #{user.community_id} DESC").ordered(sort_order)
+      order("community_id = #{user.community_id} DESC").ordered(sort_order, :order)
     else
-      ordered(sort_order)
+      ordered(sort_order, :order)
     end
   end
 
-  def self.ordered(sort_order)
+  def self.ordered(sort_order, order = :reorder)
     if sort_order == 'name'
-      order('businesses.name ASC')
+      send(order, 'businesses.name ASC')
     elsif sort_order == 'created_at'
-      order('created_at DESC')
+      send(order, 'businesses.created_at DESC')
     else
       where('')
     end

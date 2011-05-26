@@ -33,7 +33,7 @@ end
 
 Then /^I see the next 10 merchants$/ do
   page.should have_selector(".business", :count => 10)
-  business = Business.offset(11)
+  business = @community.businesses[11]
   page.should have_content(business.name)
 end
 

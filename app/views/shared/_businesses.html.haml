@@ -10,11 +10,12 @@
           =business_sorter
       .clear
     #businesses
-      -if @businesses.count == 0
+      -if @businesses.present?
+        -unless controller_name == 'communities'
+          %h3="#{community_name} Businesses"
+        =render :partial => "shared/business", :collection => @businesses
+        =will_paginate @businesses 
+      -else
         %p 
           =none_like
           You can search again in the "Find Merchant" box on the right side of the menu bar, browse through businesses by community with the community selector on the left, or browse by any of the categories in the middle.
-      -else
-        %h3="#{community_name} Businesses"
-        =paginated_section @businesses do
-          =render :partial => "shared/business", :collection => @businesses

@@ -12,7 +12,7 @@ module NavigationHelpers
       '/'
     when /the purchase page for (.*)/
       business = Business.find_by_name($1)
-      business_purchase_path(business)
+      business_purchase_url(business, :protocol => 'https')
     when /the account page/
       account_path
     when /the project options page/
@@ -26,6 +26,9 @@ module NavigationHelpers
       business_path(business)
     when /the new community page/
       new_admin_community_path(:community_request_id => CommunityRequest.first)
+    when /the community page for (.*)/
+      community = Community.find_by_name($1)
+      community_path(community)
     when /the community page/
       community_path(Community.first)
     when /the Users page/

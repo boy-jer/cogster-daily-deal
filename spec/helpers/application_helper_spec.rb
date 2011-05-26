@@ -48,16 +48,22 @@ describe ApplicationHelper do
   end
 
   describe "#community_name" do
-    it "returns nil if businesses are from multiple communities" do
-      biz = mock_model(Business, :community_id => 1)
-      other_biz = mock_model(Business, :community_id => 2)
-      assign(:businesses, [biz, other_biz])
-      helper.community_name.should be_nil
+    it "returns 'Other' if there is no community_id or signed in user" do
+      helper.stub(:user_signed_in?){ nil }
+      helper.community_name.should == 'Other'
     end
 
-    it "returns the name of the businesses' community if they are all from the same place" do
-      businesses = Array.new(10){|b| mock_model(Business, :community_id => 1, :community_name => 'The Grove')}
-      assign(:businesses, businesses)
+    it "returns 'Other' if the first business is not from the community" do
+      helper.stub(:params).and_return({ :community_id => 1}) 
+      assign(:community, mock_model(Community, :id => 1))
+      assign(:businesses, [mock_model(Business, :community_id => 2)])
+      helper.community_name.should == 'Other'
+    end
+
+    it "returns the name of the 1st business community if it matches user" do
+      assign(:community, mock_model(Community, :id => 1, :name => 'The Grove'))
+      assign(:businesses, [mock_model(Business, :community_id => 1)])
+      helper.should_receive(:user_signed_in?){ true }
       helper.community_name.should == 'The Grove'
     end
   end
