@@ -28,6 +28,5 @@
         %td=number_to_currency(project.goal, :precision => 0)
   -if project.percent_funded < 100 && social != true && false
     .progress_data
-      /TODO: add :protocol => 'https' as option to link_to once ssl
-      %strong=link_to "Fund This Project", new_business_purchase_path(project.business)
+      %strong=link_to "Fund This Project", new_business_purchase_url(project.business, :protocol => 'https')
   .clear

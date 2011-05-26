@@ -11,7 +11,7 @@ describe BusinessesHelper do
     it "renders link to purchase if user may make purchase" do
       helper.stub(:purchase_possible?).and_return true
       helper.conditional_purchase_link('text', {}).should ==
-        link_to('text', new_business_purchase_path(@business), {})
+        link_to('text', new_business_purchase_url(@business, :protocol => 'https'), {})
     end
 
     describe "if user may not purchase" do

@@ -4,8 +4,7 @@
   .main.full
     %h2 DOUBLE YOUR MONEY!
     %h3#double_your_money_desc JUST FOLLOW THE FEW SHORT STEPS BELOW:
-    /TODO: add :protocol => 'https' to form_for once ssl
-    =form_for @purchase, :url => business_purchase_path(@business) do |f|
+    =form_for @purchase, :url => business_purchase_url(@business, :protocol => 'https') do |f|
       =error_messages_for @purchase
       .purchase_select
         .header

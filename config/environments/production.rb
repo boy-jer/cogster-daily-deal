@@ -52,15 +52,15 @@ Cogster::Application.configure do
     ActiveMerchant::Billing::Base.mode = :test
     ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
       #credentials for my sandbox, put on server for testing
-       :login => 'brian_1305061324_biz_api1.gmail.com',
-       :password => '1305061338',
-       :signature => 'AhMj-Qk-95Ugtw2EUfTt3VrLYoonA2s75xJwuw.C5dma90wDmlt9S75u'
+      # :login => 'brian_1305061324_biz_api1.gmail.com',
+      # :password => '1305061338',
+      # :signature => 'AhMj-Qk-95Ugtw2EUfTt3VrLYoonA2s75xJwuw.C5dma90wDmlt9S75u'
 
       #below are credentials for steve's real account
        #when this is set, remember to change mode to production
-      #:login => 'chris_api1.cogster.com',#from api key
-      #:password => '4929RCZXD247X5FQ', #ditto
-      #:signature =>'ARnr1B7zyTW-GnPsQyeq1OlHOUOpAaYyHrRwiti2liIHXowz9rTCR9uQ'
+      :login => 'chris_api1.cogster.com',#from api key
+      :password => '4929RCZXD247X5FQ', #ditto
+      :signature =>'ARnr1B7zyTW-GnPsQyeq1OlHOUOpAaYyHrRwiti2liIHXowz9rTCR9uQ'
     )
   end
 end
