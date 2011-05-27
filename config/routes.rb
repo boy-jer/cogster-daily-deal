@@ -30,8 +30,8 @@ Cogster::Application.routes.draw do
     resources :coupons
     resources :projects
     resource :purchase, :only => [ :new, :create ], 
-                        :path_names => { :new => '' },
-                        :constraints => { :protocol => 'https' }
+                        :path_names => { :new => '' }#,
+                        #:constraints => { :protocol => 'https' }
   end
 
   namespace "admin" do
