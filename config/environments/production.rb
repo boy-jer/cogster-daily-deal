@@ -49,7 +49,7 @@ Cogster::Application.configure do
   config.active_support.deprecation = :notify
 
   config.after_initialize do
-    ActiveMerchant::Billing::Base.mode = :test
+    ActiveMerchant::Billing::Base.mode = :production #remember to switch to test for sandbox
     ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
       #credentials for my sandbox, put on server for testing
       # :login => 'brian_1305061324_biz_api1.gmail.com',
