@@ -54,39 +54,16 @@ describe BusinessesHelper do
     end
   end
 
-  describe "#dt_dd" do
-    it "returns nil if the given attribute for the given obj is blank" do
-      business = mock_model(Business, :attribute => nil)
-      helper.dt_dd(business, 'attribute').should be_nil
+  describe "#dt_dd_phone" do
+    it "returns nil if the phone is blank" do
+      business = mock_model(Business, :address => true, :phone => nil)
+      helper.dt_dd_phone(business).should be_nil
     end
 
-    it "returns a defn list if the given attribute is not blank" do
-      business = mock_model(Business, :attribute => 'value')
-      helper.dt_dd(business, 'attribute').should == 
-        content_tag(:dt, 'Attribute') + content_tag(:dd, 'value')
-    end
-  end
-
-  describe "#dt_dds" do
-    it "returns nil if the given collection for the given obj is empty" do
-      business = mock_model(Business, :collection => [])
-      helper.dt_dds(business, 'collection', :attribute).should be_nil
-    end
-      
-    it "returns nil if given collection are all new objects" do
-      business = mock_model(Business, :collection => [mock_model(Website, :persisted? => false)])
-      helper.dt_dds(business, 'collection', :attribute).should be_nil
-    end
-      
-    it "returns defn list w links to each saved member of collection if any" do
-      website = mock_model(Website, :persisted? => true, :url => 'www.site.com')
-      facebook = mock_model(Website, :persisted? => true, :url => 'www.facebook.com')
-      new_twitter = mock_model(Website, :persisted? => false)
-      business = mock_model(Business, :collection => [website, facebook, new_twitter])
-      helper.dt_dds(business, 'collection', :url).should == 
-        content_tag(:dt, 'Collection') + 
-        [content_tag(:dd, link_to('www.site.com', 'www.site.com', :target => '_blank')),
-         content_tag(:dd, link_to('www.facebook.com', 'www.facebook.com', :target => '_blank'))].join.html_safe
+    it "returns a defn list if the phone is not blank" do
+      business = mock_model(Business, :address => true, :phone => 'number')
+      helper.dt_dd_phone(business).should == 
+        content_tag(:dt, 'Phone') + content_tag(:dd, 'number')
     end
   end
 

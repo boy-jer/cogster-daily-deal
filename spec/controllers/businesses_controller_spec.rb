@@ -11,7 +11,7 @@ describe BusinessesController do
 
   describe "GET 'show'" do
     it "works" do
-      Business.stub_chain('includes.find') { mock_model(Business, :inactive? => false) }
+      Business.stub_chain('includes.find') { mock_model(Business, :active => true) }
       get :show, :id => :id
       response.should be_success 
     end

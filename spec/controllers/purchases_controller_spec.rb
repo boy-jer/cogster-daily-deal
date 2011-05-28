@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe PurchasesController do
   let(:community) { mock_model(Community) }
+  let(:project)   { mock_model(Project, :accepting_purchases? => true, :max_amount => 10)}
   before :each do
-    Business.should_receive(:find).with(:business_id) { mock_model(Business, :community => community, :current_project => Project.new, :name => 'Biz')}
+    Business.should_receive(:find).with(:business_id) { mock_model(Business, :community => community, :current_project => project, :name => 'Biz')}
     log_in
   end
 

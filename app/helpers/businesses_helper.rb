@@ -26,7 +26,7 @@ module BusinessesHelper
   end
 
   def dt_dd_phone(business)
-    if business.address && business.address.phone.present?
+    if business.address && business.phone.present?
       content_tag(:dt, 'Phone') + content_tag(:dd, business.phone)
     end
   end
