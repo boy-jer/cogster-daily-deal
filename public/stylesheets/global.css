@@ -1234,6 +1234,7 @@ h3.our_cogs{
 #businesses .progress_data_container table {
   width: 55%;
   float: none;
+  clear: left;
 }
 .business_listing_details .progress_data, .business_listing_details th {
   font-size:11px;color:#9b9da5; font-weight:normal;}

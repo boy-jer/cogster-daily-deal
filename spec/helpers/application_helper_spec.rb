@@ -27,11 +27,11 @@ describe ApplicationHelper do
 
   describe "#breadcrumbs" do
     it "joins array elements" do
-      helper.breadcrumbs(%w(one two three)).should == content_tag(:div, "one&rarr;two&rarr;three", :id => "breadcrumbs").html_safe
+      helper.breadcrumbs(%w(one two three)).should == content_tag(:div, "one&rarr;two&rarr;three".html_safe, :id => "breadcrumbs")
     end
 
     it "flattens and joins array elements" do
-      helper.breadcrumbs([%w(one two), 'three']).should == content_tag(:div, "one&rarr;two&rarr;three", :id => "breadcrumbs")
+      helper.breadcrumbs([%w(one two), 'three']).should == content_tag(:div, "one&rarr;two&rarr;three".html_safe, :id => "breadcrumbs")
     end
   end
 
