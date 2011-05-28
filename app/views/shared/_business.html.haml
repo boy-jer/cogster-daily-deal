@@ -6,5 +6,8 @@
     =link_to business_image(business), business
     .description
       =link_to render(:partial => 'shared/progress_bar', :locals => { :project => business.current_project }), new_business_purchase_url(business, :protocol => 'https')
-      %p=business.description 
+      -if business.current_project.persisted?
+        %div
+          %span=business.current_project.name
+          %span.right="You Pay: $#{business.current_project.max_amount.to_i} | You Get: $#{business.current_project.redemption_total.to_i}"
       =edit_business_link_if_allowed(business)

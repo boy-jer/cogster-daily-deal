@@ -1229,6 +1229,11 @@ h3.our_cogs{
 .progress_data_container table {
   float: left;
   width: 45%;
+  margin-bottom: 0;
+}
+#business .progress_data_container table {
+  width: 55%;
+  float: none;
 }
 .business_listing_details .progress_data, .business_listing_details th {
   font-size:11px;color:#9b9da5; font-weight:normal;}
@@ -1560,3 +1565,4 @@ table#business_hours .centered input {
 }
 #support {
   background: url(/images/buttons/support-this-project.png) no-repeat top left;text-indent:-9999em;border:none;height: 45px;width: 270px;}
+#breadcrumbs { float: left; }

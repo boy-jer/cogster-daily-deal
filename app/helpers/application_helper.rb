@@ -60,7 +60,7 @@ module ApplicationHelper
   end
 
   def breadcrumbs(elements)
-    elements.flatten.join('&rarr;').html_safe
+    content_tag(:div, elements.flatten.join('&rarr;'), :id => "breadcrumbs").html_safe
   end
 
   def community_name
