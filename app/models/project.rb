@@ -24,6 +24,10 @@ class Project < ActiveRecord::Base
     [(max_amount - (user ? user.purchases_of(self) : 0)), goal - funded].min
   end
 
+  def max_redemption
+    max_amount * redemption_total
+  end
+
   def min_amount
     super || 10
   end
