@@ -17,7 +17,7 @@
   .field
     =a.label :country, nil, :class => "required"
     =a.country_select :country, ["United States"]
-  -unless session[:cogster] || current_user.cogster?
+  -if f.object.is_a?(Business)
     .field
       =a.label :phone, "Phone (###-###-####)", :class => "required"
       =a.text_field :phone, :class => "text"

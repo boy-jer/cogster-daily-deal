@@ -12,11 +12,11 @@
         =render :partial => 'shared/user_community_form', :locals => { :f => f}
  
         %fieldset
-          %legend Website, Facebook & Twitter Links:
-          %p If applicable, please copy & paste the respective URLs in the fields below. (use this format: 'http://www.example.com')
-          =f.fields_for :websites do |site|
+          %legend Website Link
+          %p If applicable, please copy & paste your website URL in the field below. (use this format: 'http://www.example.com')
+          =f.fields_for :website do |site|
             .field
-              =site.label :url, "#{site.object.label.capitalize} URL"
+              =site.label :url, "URL"
               =site.text_field :url, :class => "text"
         %fieldset
           %legend Contact Information

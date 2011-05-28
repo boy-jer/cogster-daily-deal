@@ -20,8 +20,8 @@ Feature: Manage redemptions
     Given a user has Cogster cash that can be reimbursed this week
     And I am a fucking merchant
     When I visit my account page
-    Then I see "View All Cogster Cash Purchases"
-    When I click the pdf link "View All Cogster Cash Purchases"
+    Then I see "Download Customer List"
+    When I click the pdf link "Download Customer List"
     Then I see a table of every purchase made in my active project
     And each row has the purchaser's name
     And each row has the date of purchase

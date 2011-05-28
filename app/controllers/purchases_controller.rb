@@ -20,6 +20,9 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.new
     @project = @business.current_project
     populate_form
+    if cannot? :purchase, @project
+      redirect_to root_path(:protocol => 'http'), :notice => "That project is not available"
+    end
   end
 
   protected

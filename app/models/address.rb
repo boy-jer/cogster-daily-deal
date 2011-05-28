@@ -64,4 +64,8 @@ class Address < ActiveRecord::Base
       city
     end
   end
+
+  def to_a
+    [line_1, line_2, last_line].compact
+  end
 end

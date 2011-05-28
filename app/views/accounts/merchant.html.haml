@@ -25,7 +25,7 @@
         %p Once your project starts to get supporters, you will see how to redeem purchases on this page when you log in.
       -else
         %p Find the customer's name. Click on the dollar amount under the appropriate Visit Period. Process the visit.
-        %p=link_to "View All Cogster Cash Purchases", business_project_path(@business, @current_project, :pdf)
+        %p=link_to "Download Customer List", business_project_path(@business, @current_project, :pdf)
         %table#redemptions.nice{ :cellpadding => 0, :cellspacing => 0 }
           %thead
             %tr.column_names
@@ -53,7 +53,7 @@
         %dt Project Goal
         %dd.value="$#{@current_project.goal}"
         %dt Percent Reached
-        %dd.value=@current_project.percent_funded
+        %dd.value="#{@current_project.percent_funded}%"
         %dt Start Date
         %dd.value=@current_project.created_at.strftime("%b %d")
         %dt Target Completion Date

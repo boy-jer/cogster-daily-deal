@@ -84,27 +84,6 @@ describe Business do
     end
   end
 
-  describe "#ensure_websites_present" do
-    it "does nothing if business has 4 websites already" do
-      @business.ensure_websites_present
-      @business.ensure_websites_present
-      @business.websites.length.should == 4
-    end
-
-    it "adds website placeholders otherwise" do
-      @business.ensure_websites_present
-      @business.websites.length.should == 4
-    end
-
-    it "adds website placeholders in correct order" do
-      @business.websites.build(:url => "http://www.twitter.com")
-      @business.ensure_websites_present
-      @business.websites.map(&:url).should == Website::SOCIAL_MEDIA.map do |site|
-        "http://www.#{site}.com"
-      end.unshift('') 
-    end
-  end
-
   describe "#closed_on?" do
     before :each do
       @business.save

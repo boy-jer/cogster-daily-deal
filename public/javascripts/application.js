@@ -58,6 +58,7 @@ $(document).ready(function() {
   });
 
   $('.datepicker').datepicker({
+    dateFormat: 'mm/dd/yy',
     showOn: "button",
     buttonImage: "/images/calendar.gif",
     buttonImageOnly: true

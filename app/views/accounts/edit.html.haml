@@ -13,6 +13,7 @@
       .clear
       %h4.split Contact Information
       %p Store your information below for future purchases.
+      %p This information will not be shared with third parties.
       =render :partial => 'shared/address_form', :locals => { :f => f, :addressable => current_user.address }
       .clear
       .field.split

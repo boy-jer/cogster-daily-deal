@@ -14,7 +14,7 @@ end
 
 Given /^a business "(.*)" has an active project$/ do |business_name|
   category = Factory(:business_option, :category => 'some unique thing')
-  @business = Factory(:business, :name => business_name, :business_option => category)
+  @business = Factory(:business, :name => business_name, :business_option => category, :active => true)
   @project = Factory(:project, :business => @business)
 end
 

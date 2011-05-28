@@ -1,25 +1,8 @@
 class Website < ActiveRecord::Base
-  validates_uniqueness_of :url, :scope => :business_id
-  before_validation :remove_defaults, :delete_blank
+  validates_uniqueness_of :url
+  before_validation :delete_blank
   before_save :check_protocol
-  attr_accessor :label
-  SOCIAL_MEDIA = %w(facebook twitter youtube)
-
-  SOCIAL_MEDIA.each do |site|
-    (class << self; self; end).instance_eval do
-      define_method site do
-        where(['websites.url LIKE ?', "%#{site}%"]).first
-      end
-    end
-  end
-
-  def self.generic_for(site)
-    "http://www.#{site}.com"
-  end
-
-  def homepage?
-    SOCIAL_MEDIA.none?{|domain| url =~ /#{domain}/} 
-  end
+  belongs_to :business
 
   protected
 
@@ -33,12 +16,4 @@ class Website < ActiveRecord::Base
         return false
       end
     end
-
-    def remove_defaults
-      if SOCIAL_MEDIA.map{|site| Website.generic_for(site) }.include? url
-        destroy
-        return false
-      end
-    end
-
 end

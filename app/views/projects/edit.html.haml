@@ -5,3 +5,23 @@
     %h2 Edit Project
     =render "form"
   #rightbar
+    .business_small
+      #business_small_details
+        %h4
+          =link_to @business.name, @business
+    %div
+      #purchase_text
+        %h5 Support the Project:
+        %p 
+          Choose the amount you wish to pay to support this project.  The minimum you can pay is 
+          The maximum amount appears as the last choice on the dropdown menu.  Maximum payment amounts may differ between merchants.
+        %h5 Double Your Money:
+        %p Notice the amounts that appear in the boxes, based on the amount you select from the dropdown.  When you pay, you will receive Cogster Cash in your account corresponding to the timing and amounts in these boxes.  Timing and amounts may differ between merchants.
+        %h5 Access Your Cogster Cash:
+        %p As soon as you pay by credit card, the first round of your Cogster Cash will appear in your “My Account” page.  Print it out and give it to the Merchant when you go.  You do not have to use all your Cogster Cash in one visit, but be sure to redeem the Cash during the time period listed.
+        %h5 We’ll Notify You When You Have More Cash:
+        %p Cogster will send you email updates to notify you when additional Cogster Cash is ready in your account.  Just sign-in, print it out, and enjoy it during the suggested dates!  Each project you support may imply different redemption dates.  We’ll keep track of it all and email you accordingly.
+        %h5 Paying by Credit Card is Safe:
+        %p Your card is processed using Paypal.  Paypal is a highly trusted e-commerce provider with top-tier security.
+        %h5 Your Payment Goes to the Merchant:
+        %p Cogster collects your payment from Paypal and passes it directly to the merchant. The merchant uses your funds to support its project.

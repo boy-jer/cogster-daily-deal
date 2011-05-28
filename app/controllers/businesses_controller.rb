@@ -1,14 +1,13 @@
 class BusinessesController < ApplicationController
   before_filter :find_community
+  before_filter :find_merchant_business, :only => [:edit, :edit_logo, :update]
   skip_before_filter :authenticate_user!
 
   def edit
-    @business = current_user.business
-    set_options_and_websites
+    set_options
   end
 
   def edit_logo
-    @business = current_user.business
   end
 
   def index
@@ -19,22 +18,23 @@ class BusinessesController < ApplicationController
 
   def show
     @business = Business.includes(:current_project).find(params[:id])
+    if cannot? :read, @business
+      redirect_to root_path, :notice => "Sorry, that business is not currently active."
+    end
   end
 
   def update
-    @business = current_user.business
     if @business.update_attributes(params[:business])
       redirect_to account_path, :notice => "Business profile updated"
     else
-      set_options_and_websites
+      set_options
       render :edit
     end
   end
 
   protected
 
-    def set_options_and_websites
-      set_options
-      @business.ensure_websites_present 
+    def find_merchant_business
+      @business = current_user.business
     end
 end

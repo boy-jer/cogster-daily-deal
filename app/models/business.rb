@@ -1,11 +1,11 @@
 class Business < ActiveRecord::Base
   belongs_to :merchant, :class_name => 'User'
-  has_many :websites
+  has_one :website
   has_many :projects
   has_many :hours, :class_name => 'Hours', :order => 'day ASC'
   belongs_to :community
   has_one :address, :as => :addressable
-  accepts_nested_attributes_for :websites, :hours, :reject_if => :all_blank,
+  accepts_nested_attributes_for :website, :hours, :reject_if => :all_blank,
                                                    :allow_destroy => true
   accepts_nested_attributes_for :address, :reject_if => :nothing_but_country
   belongs_to :business_option
@@ -14,7 +14,7 @@ class Business < ActiveRecord::Base
   delegate :name, :to => :community, :prefix => true
   delegate :phone, :to => :address
   attr_accessor :deletion_explanation, :closed_days
-  before_save :mark_websites_for_removal
+  before_save :mark_website_for_removal
   after_create :add_hours
   after_save :inform_owner, :merchantize_owner
   before_destroy :send_explanation
@@ -77,21 +77,6 @@ class Business < ActiveRecord::Base
   end
   alias_method_chain :current_project, :ensure
 
-  def ensure_websites_present
-    if websites.present? && websites.first.homepage?
-      websites.first.label = 'website'
-    else
-      websites.insert(0, Website.new(:url => '', :label => 'website'))
-    end
-    Website::SOCIAL_MEDIA.each_with_index do |site, i|
-      if existing_site = websites.detect{|w| w.url =~ /#{site}/ }
-        existing_site.label = site
-      else
-        websites.insert(i + 1, Website.new(:url => Website.generic_for(site), :label => site))
-      end
-    end
-  end
-
   def medium_image
     image_url(:thumb) || 'default_medium.png'
   end
@@ -116,10 +101,8 @@ class Business < ActiveRecord::Base
       end
     end
 
-    def mark_websites_for_removal
-      websites.each do |site|
-        site.mark_for_destruction if site.url.blank?
-      end
+    def mark_website_for_removal
+      website.mark_for_destruction if website && website.url.blank?
     end
 
     def merchantize_owner

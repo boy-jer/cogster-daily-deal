@@ -37,6 +37,6 @@ module Cogster
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password, :card_number, :card_verification]
+    config.filter_parameters += [:password, :card_number, :security_code]
   end
 end

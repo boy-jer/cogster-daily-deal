@@ -12,18 +12,29 @@ module BusinessesHelper
     end
   end
 
-  def dt_dd(business, attribute)
-    if business.send(attribute).present?
-      content_tag(:dt, attribute.to_s.capitalize) + content_tag(:dd, business.send(attribute))
+  def dt_dd_address(business)
+    if business.address.present?
+      content_tag(:dt, 'Address') + 
+      business.address.to_a.map{|elm| content_tag(:dd, elm) }.join.html_safe
     end
   end
 
-  def dt_dds(business, collection, attribute)
-    if business.send(collection).present? && business.send(collection).any?{|a| a.persisted? }
-      content_tag(:dt, collection.to_s.capitalize) +
-      business.send(collection).select{|a| a.persisted? }.map do |a|
-        content_tag(:dd, link_to(a.send(attribute), a.send(attribute), :target => '_blank'))
-      end.join.html_safe
+  def dt_dd_email(business)
+    if business.email.present?
+      content_tag(:dt, 'Email') + content_tag(:dd, mail_to(business.email))
+    end
+  end
+
+  def dt_dd_phone(business)
+    if business.address && business.address.phone.present?
+      content_tag(:dt, 'Phone') + content_tag(:dd, business.phone)
+    end
+  end
+
+  def dt_dd_website(business)
+    if business.website.present? 
+      content_tag(:dt, 'Website') +
+      content_tag(:dd, link_to(business.website.url, business.website.url, :target => '_blank'))
     end
   end
 

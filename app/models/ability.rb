@@ -9,6 +9,11 @@ class Ability
       can :manage, Business, :merchant_id => user.id
   #     can :read, :all
     end
+    can :read, Business, :active => true
+
+    can :purchase, Project do |project|
+      user.may_make_purchase_for?(project)
+    end
     #
     # The first argument to `can` is the action you are giving the user permission to do.
     # If you pass :manage it will apply to every action. Other common actions here are
