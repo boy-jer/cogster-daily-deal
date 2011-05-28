@@ -1559,4 +1559,4 @@ table#business_hours .centered input {
   top: 0;
 }
 #support {
-  background: url(/images/buttons/support-this-project.png) no-repeat top left;text-indent:-9999em;border:none;}
+  background: url(/images/buttons/support-this-project.png) no-repeat top left;text-indent:-9999em;border:none;height: 45px;width: 270px;}
