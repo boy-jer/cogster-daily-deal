@@ -7,13 +7,11 @@
     %strong="#{project.percent_funded}%"
     %br/
     %span FUNDED
-  -if social
-    .progress_share
-      %span Share This:
-      =link_to image_tag('buttons/share-facebook.png', :alt => "Share this business on Facebook"), '/business/share/facebook/56', :title => "Share this Business on Facebook", :class => 'new_window'
-      =link_to image_tag('buttons/share-twitter.png', :alt => "Share this business on Twitter"), '/business/share/twitter/56', :title => "Share this Business on Twitter", :class => 'new_window'
-  -else
-    .clear
+-if social
+  .progress_share
+    %span Share This:
+    =link_to image_tag('buttons/share-facebook.png', :alt => "Share this business on Facebook"), facebook_path(project.business), :title => "Share this Business on Facebook", :class => 'new_window', :target => '_blank'
+    =link_to image_tag('buttons/share-twitter.png', :alt => "Share this business on Twitter"), twitter_path(project.business), :title => "Share this Business on Twitter", :class => 'new_window', :target => '_blank'
 .progress_data_container
   %table
     %tfoot

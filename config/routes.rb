@@ -48,6 +48,10 @@ Cogster::Application.routes.draw do
     end
   end
 
+  %w(facebook twitter).each do |site|
+    match "/share/#{site}/:id" => "share##{site}", :as => site, :via => :get
+  end
+
   root :to => "home#index"
   match '/account' => "accounts#show", :as => 'user_root'
   # The priority is based upon order of creation:
