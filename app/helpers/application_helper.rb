@@ -193,18 +193,12 @@ module ApplicationHelper
     if @community
       digits = swag_digits.split('').map do |n|
         content_tag :div, n
-      end
-      swag_pad(digits).join.html_safe
+      end.join.html_safe
     end
   end
 
   def swag_digits
-    number_with_delimiter @community.swag_counter
-  end
-
-  def swag_pad(digits)
-    (7 - digits.length).times{|n| digits.unshift content_tag(:div, '') }
-    digits
+    number_to_currency @community.impact, :precision => 0
   end
 
 end

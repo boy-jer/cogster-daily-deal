@@ -160,10 +160,10 @@ describe ApplicationHelper do
       helper.swag_counter.should be_nil
     end
 
-    it "returns a set of 7 divs if @community is present" do
+    it "returns a set of divs if @community is present" do
       assign(:community, mock_model(Community, {}))
-      helper.should_receive(:swag_digits).and_return '4'
-      helper.swag_counter.scan(/<div/).size.should == 7
+      helper.should_receive(:swag_digits).and_return '$300'
+      helper.swag_counter.scan(/<div/).size.should == 4
     end
   end
 end

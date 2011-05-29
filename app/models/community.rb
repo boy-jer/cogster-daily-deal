@@ -33,7 +33,7 @@ class Community < ActiveRecord::Base
   end
 
   def swag_counter
-    510000 - 50 * purchases.sum(&:amount).to_i
+    impact
   end
 
   def swag_rank(user)

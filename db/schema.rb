@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110524201345) do
+ActiveRecord::Schema.define(:version => 20110529211333) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line_1"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20110524201345) do
     t.string   "state"
     t.boolean  "active"
     t.string   "description"
+    t.integer  "impact",      :default => 0
   end
 
   create_table "community_requests", :force => true do |t|
@@ -66,7 +67,7 @@ ActiveRecord::Schema.define(:version => 20110524201345) do
   create_table "coupons", :force => true do |t|
     t.date     "start_date"
     t.date     "expiration_date"
-    t.decimal  "amount"
+    t.integer  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "purchase_id"
@@ -123,7 +124,7 @@ ActiveRecord::Schema.define(:version => 20110524201345) do
     t.integer  "business_id"
     t.string   "name"
     t.decimal  "min_amount"
-    t.decimal  "max_amount"
+    t.integer  "max_amount"
     t.integer  "goal",                             :default => 0
     t.date     "success_date"
     t.date     "expiration_date"
@@ -139,7 +140,7 @@ ActiveRecord::Schema.define(:version => 20110524201345) do
   create_table "purchases", :force => true do |t|
     t.integer  "user_id"
     t.integer  "project_id"
-    t.decimal  "amount"
+    t.integer  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "customer_ip"

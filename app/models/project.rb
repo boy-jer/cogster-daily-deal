@@ -16,6 +16,8 @@ class Project < ActiveRecord::Base
   #validates_length_of :kicker, :maximum => 150
   validates_numericality_of :goal, :greater_than => 0
 
+  after_update :increment_community_impact
+
   def accepting_purchases?
     funded < goal
   end
@@ -64,4 +66,11 @@ class Project < ActiveRecord::Base
     supporters.map{|s| [s, purchases.select{|p| p.user_id == s.id }.sum(&:amount)]}.sort_by{|arr| [-1 * arr[1], arr[0].created_at] }[0..4].map(&:first)
   end
 
+  protected
+
+    def increment_community_impact
+      if funded != funded_was
+        business.community.increment!(:impact, 3 * (funded - funded_was))
+      end
+    end
 end
