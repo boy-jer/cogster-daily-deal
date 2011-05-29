@@ -14,8 +14,6 @@ body h4{
   font-size:1.2em;line-height:1.25;margin-bottom:1.25em}
 body h5{
   font-size:1em;font-weight:bold;margin-bottom:1.50em}
-body h6{
-  font-size:1em;font-weight:bold}
 body p{
   margin:0 0 1.5em}
 body p img.left{
@@ -32,15 +30,10 @@ body a:hover{
   color:black}
 body a:active{
   color:#cc0099}
-body blockquote{
-  padding:1em;font-style:italic;font-size:0.9em;
-  margin:1.5em;color:#666666;}
 body strong{
   font-weight:bold}
 body em{
   font-style:italic}
-body dfn{
-  font-style:italic;font-weight:bold}
 body sup,body sub{
   line-height:0}
 body abbr,body acronym{
@@ -78,20 +71,12 @@ body th,body td,body caption{
   padding:4px 10px 4px 5px}
 body tr.even td{
   background:#e4e4e4}
-body caption{
-  background:#eeeeee}
-body .loud{
-  color:#111111}
 body .clear{
   clear:both}
-body .nowrap{
-  white-space:nowrap}
 body .clearfix{
   overflow:hidden;*zoom:1}
 body .small{
   font-size:0.8em;margin-bottom:1.875em;line-height:1.875em}
-body .large{
-  font-size:1.2em;line-height:2.5em;margin-bottom:1.25em}
 body .first{
   margin-left:0;padding-left:0}
 body .last{
@@ -108,8 +93,6 @@ body .notice a{
   color:#514721}
 html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{
   margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}
-abbr[title],dfn[title]{
-  border-bottom:1px dotted;cursor:help}
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{
   display:block}
 blockquote,q{
@@ -144,8 +127,6 @@ form textarea{
   width:390px;height:250px}
 hr{
   display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}
-ins{
-  background-color:#ff9;color:#000;text-decoration:none}
 nav ul{
   list-style:none}
 input,select{
@@ -166,8 +147,6 @@ h1 i,h2 i,h3 i,h4 i,h5 i,h6 i{
   color:#000}
 h3{
   margin-top:3px}
-h6{
-  border-bottom:1px dotted #ccc;width:100%;clear:both;margin-top:6px}
 span{
   color:#999}
 p{
@@ -182,7 +161,7 @@ a:active{
   outline:none;color:#fbd211}
 a:visited{
   color:#fd9c00}
-a img.main_logo{
+a img#main_logo{
   margin-left:-23px}
 em{
   font-size:0.8em;color:#666}
@@ -238,10 +217,6 @@ button{
   display:block;text-indent:-999em;overflow:hidden;background-repeat:no-repeat;text-align:left;direction:ltr}
 .hidden{
   display:none;visibility:hidden}
-.visuallyhidden{
-  position:absolute !important;clip:rect(1px 1px 1px 1px);clip:rect(1px, 1px, 1px, 1px)}
-.invisible{
-  visibility:hidden}
 .clearfix{
   zoom:1}
 .clearfix:before{
@@ -352,14 +327,6 @@ table .odd td{
   display:inline;float:left;margin-right:10px;width:190px}
 * html .main label.medium,* html .main input.medium,* html .main select.medium,* html .main textarea.medium{
   overflow-x:hidden}
-.main label.large,.main input.large,.main select.large,.main textarea.large{
-  display:inline;float:left;margin-right:10px;width:230px}
-* html .main label.large,* html .main input.large,* html .main select.large,* html .main textarea.large{
-  overflow-x:hidden}
-.main label.xlarge,.main input.xlarge,.main select.xlarge,.main textarea.xlarge{
-  display:inline;float:left;margin-right:0;width:350px}
-* html .main label.xlarge,* html .main input.xlarge,* html .main select.xlarge,* html .main textarea.xlarge{
-  overflow-x:hidden}
 .main label{
   display:inline;float:left;margin-right:0;width:150px;padding-right:10px;margin:0;padding:0;color:#616161;font-weight:bold;text-align:right;font-size:12px;line-height:25px;height:25px}
 * html .main label{
@@ -404,16 +371,10 @@ table .odd td{
   display:none}
 .clear{
   clear:both}
-.med{
-  font-size:0.8em}
 .center{
   text-align:center}
 .right_align{
   text-align:right}
-.margin_right{
-  margin-right:15px}
-.margin_left{
-  margin-left:15px}
 .red{
   color:red}
 #container{
@@ -520,12 +481,8 @@ div.text_right{
   float:left;color:#fd9c00;text-align:left !important;margin:0;padding:0;margin-left:40px;padding-top:10px;font-size:16px;font-weight:bold}
 .purchase_select .dropdown{
   margin:5px;width:150px;text-align:center !important;font-weight:bold;font-size:20px;color:#9b9da5;height:40px;line-height:40px;border:1px solid #616161}
-.purchase_select .amount_received{
-  color:green;font-size:47px;font-weight:bold;margin-bottom:-10px}
 .purchase_select .below_amount_received{
   font-size:10px;margin-bottom:10px}
-.purchase_select .return_value{
-  color:#9b9da5;font-weight:bold;font-size:12px;margin-right:10px}
 .purchase_select .purchase_values{
   width:380px;float:left;font-size:13px}
 .purchase_select .purchase_values table.purchase_values_table td{
@@ -630,16 +587,6 @@ a.hidden_link span{
   position:relative}
 #search input.submit{
   display:inline-block;width:11px;height:15px;background:transparent url("/images/search.gif") no-repeat center;position:absolute;top:2px;right:0px}
-#connect a{
-  display:inline-block;height:36px;width:36px;margin:4px 6px 0px 6px;border:2px solid #fff}
-#connect a#twitter{
-  background:transparent url("/images/twitter.gif") no-repeat center}
-#connect a#facebook{
-  background:transparent url("/images/facebook.gif") no-repeat center}
-#connect a#linkedin{
-  background:transparent url("/images/linkedin.gif") no-repeat center}
-#connect a#youtube{
-  background:transparent url("/images/youtube.gif") no-repeat center}
 #swag{
   list-style-image:none;list-style-type:none;margin-left:0px;padding:0;margin:0;font-family:Lucida,Arial;font-size:12px;text-align:left}
 #swag li{
@@ -732,34 +679,6 @@ input.half{
   height:87px;display:inline-block;display:inline;float:left;border:1px solid #d1d1d1}
 .business img.logo{
   margin:3px 0 0 0;height:auto}
-.status{
-  position:relative;display:block;height:14px;border-bottom:1px solid #000;display:inline;float:left;width:100%;font-size:1em;background:transparent url("/images/status-bar.gif") no-repeat right center}
-.status.complete{
-  border-right:3px double #000;overflow:visible}
-.status.complete span{
-  width:200px;left:110%}
-.status .cover{
-  display:inline;float:right;min-width:0%;height:14px;background:transparent url("/images/status-cover.gif") no-repeat right top}
-.status span{
-  color:#000;position:absolute;right:3px;top:0px;line-height:1.1;z-index:10;font-size:0.8em}
-.desc{
-  display:inline;float:left;margin-right:0;width:390px;margin-top:3px}
-* html .desc{
-  overflow-x:hidden}
-.desc p{
-  padding-left:5px;padding-right:5px;overflow-y:hidden;height:57px}
-.details{
-  display:inline;float:left;margin-right:0;width:180px;font-size:0.8em;padding-top:3px;border-right:1px solid #d1d1d1;border-left:1px solid #d1d1d1}
-* html .details{
-  overflow-x:hidden}
-.details .stats{
-  display:inline;float:left;margin-right:0;width:180px;height:66px;background:#e1e2e3 url("/images/links-bg.gif") no-repeat bottom right}
-* html .details .stats{
-  overflow-x:hidden}
-.details .stats .field{
-  display:inline;float:left;margin-right:0;width:180px;margin:0 !important;padding:0 !important;line-height:1}
-* html .details .stats .field{
-  overflow-x:hidden}
 #business{
   display:inline;float:left;margin-right:10px;width:710px;width:100%}
 * html #business{
@@ -778,54 +697,6 @@ input.half{
   font-size:1.5em;left:6px;top:1px;text-shadow:0px 0px 20px #fff}
 #business .status,#business .cover{
   height:32px}
-#business .status{
-  border-top:6px solid #000;margin-top:3px;display:inline;float:left;margin-right:10px;width:710px;width:100%}
-* html #business .status{
-  overflow-x:hidden}
-#business .status span{
-  line-height:0.85;text-align:right;font-size:0.75em}
-#business .status strong{
-  font-size:2em}
-#business .stats{
-  clear:both;width:950px;margin:0 auto;overflow:hidden;*zoom:1;width:100%;height:18px;border-bottom:1px solid #000;line-height:1.2;text-transform:uppercase}
-#business .stats label,#business .stats strong{
-  font-size:0.65em;margin:3px 0 0 0}
-#business .stats label{
-  padding-left:0;padding-right:3px}
-#business .stats strong{
-  display:inline;float:left;padding-right:3px;border-right:1px solid #ccc;margin-right:3px}
-#business .stats a.join{
-  display:inline;float:right;clear:none;font-size:0.85em;color:#000;background:transparent url("/images/join-gear.gif") no-repeat left 3px;padding:1px 0 2px 40px;margin-top:1px;width:auto;-moz-box-shadow:0px transparent 1px 5px 0;-webkit-box-shadow:0px transparent 1px 5px 0;-o-box-shadow:0px transparent 1px 5px 0;box-shadow:0px transparent 1px 5px 0;-moz-border-radius:0px;-webkit-border-radius:0px;-o-border-radius:0px;-ms-border-radius:0px;-khtml-border-radius:0px;border-radius:0px;border:none}
-#business .stats a.join:hover{
-  color:green;background-image:url("/images/join-gear-green.gif")}
-.deal_button{
-  float:right;font-size:1.2em}
-.deal_listing p{
-  font-size:0.8em;color:#fff;text-shadow:#777 0px -1px 1px;padding:10px;-moz-box-shadow:6px #666 1px 5px 0;-webkit-box-shadow:6px #666 1px 5px 0;-o-box-shadow:6px #666 1px 5px 0;box-shadow:6px #666 1px 5px 0;-moz-border-radius:12px;-webkit-border-radius:12px;-o-border-radius:12px;-ms-border-radius:12px;-khtml-border-radius:12px;border-radius:12px;border:1px solid #0e6d8b}
-.deal_listing i{
-  color:#ccc}
-.deal_listing a{
-  margin-top:10px;text-shadow:#d2d2d2 0px -1px 1px;padding:3px 10px 3px 12px;background:#fff;-moz-box-shadow:6px #666 1px 5px 0;-webkit-box-shadow:6px #666 1px 5px 0;-o-box-shadow:6px #666 1px 5px 0;box-shadow:6px #666 1px 5px 0;-moz-border-radius:12px;-webkit-border-radius:12px;-o-border-radius:12px;-ms-border-radius:12px;-khtml-border-radius:12px;border-radius:12px;border:1px solid #efefef}
-.deal_listing a:hover{
-  color:#0659b5}
-.page_cover{
-  background-color:#000;position:fixed;top:0px;left:0px;right:0px;bottom:0px;z-index:999999999}
-.lightbox_container{
-  width:400px;position:fixed;z-index:99999999999;top:200px}
-.status_box{
-  display:block;float:none;margin:0 auto;background-color:#fff;-moz-border-radius:12px;-webkit-border-radius:12px;border-radius:12px;border:3px solid grey}
-.status_box .header{
-  background-color:#f0f0f0;border-bottom:thin solid #666;margin:0px;padding:10px 6px 6px 6px;-moz-border-radius-topleft:12px;-webkit-border-top-left-radius:12px;border-radius-topleft:12px;-moz-border-radius-topright:12px;-webkit-border-top-right-radius:12px;border-radius-topright:12px}
-.status_box .box_content{
-  margin:0;padding:10px;background-color:transparent}
-.box_content{
-  display:block;margin:0 0 0 16px;padding:10px 4px;text-align:justify;background-color:#fff;position:relative}
-.box_content a:hover{
-  text-decoration:underline}
-.box_content p{
-  margin-bottom:20px}
-.box_buttons{
-  margin:10px 10px 0 0;display:block;text-align:right}
 a.button{
   font-size:14px;background-color:#fff;width:auto;height:16px;border:solid 1px #ccc;-moz-box-shadow:6px #ccc 1px 5px 0;-webkit-box-shadow:6px #ccc 1px 5px 0;-o-box-shadow:6px #ccc 1px 5px 0;box-shadow:6px #ccc 1px 5px 0;-webkit-border-radius:18px;-moz-border-radius:18px;color:#000;text-align:center;padding:3px 0 2px 0;margin:0 6px;text-decoration:none}
 a.button:hover{
@@ -844,22 +715,6 @@ a.button:hover span.x{
   background:url("/images/status/add.png") no-repeat 6px 1px}
 a.button span{
   padding:0 20px}
-.main#letterhead{
-  width:950px;margin:0 auto;overflow:hidden;*zoom:1;width:600px;float:none;min-height:0px}
-.main#letterhead img.logo{
-  -moz-box-shadow:0px transparent 1px 5px 0;-webkit-box-shadow:0px transparent 1px 5px 0;-o-box-shadow:0px transparent 1px 5px 0;box-shadow:0px transparent 1px 5px 0;border:none;width:auto;height:auto}
-.main#letterhead p{
-  display:block}
-.main#letterhead p b{
-  text-transform:uppercase;font-size:1.25em}
-.main#letterhead em{
-  display:inline;float:left;margin-right:10px;width:130px;font-style:normal;text-transform:uppercase;font-weight:bold;text-align:right}
-* html .main#letterhead em{
-  overflow-x:hidden}
-.main#letterhead strong,.main#letterhead p{
-  display:inline;float:left;margin-right:10px;width:430px}
-* html .main#letterhead strong,* html .main#letterhead p{
-  overflow-x:hidden}
 #current_region_dropdown{
   display:inline;z-index:9999 !important;display:inline;float:left;margin-right:0;width:230px}
 * html #current_region_dropdown{
@@ -898,8 +753,6 @@ a.button span{
   padding-left:660px;margin-top:1.5em}
 .region_box_container #region-selector{
   position:absolute;text-align:right;z-index:10}
-#region-selector2{
-  position:absolute;text-align:right;margin-top:83px;margin-left:50px;-moz-border-radius:22px;-webkit-border-radius:22px;-o-border-radius:22px;-ms-border-radius:22px;-khtml-border-radius:22px;border-radius:22px;border:5px solid #efede5;z-index:10}
 #splash_body{
   background-color:#f7f6f2}
 #splash_body div{
@@ -1028,10 +881,6 @@ a.button span{
   color:#6d7071;background-color:#1a1b1b;-moz-box-shadow:8px #000 1px 5px 0;-webkit-box-shadow:8px #000 1px 5px 0;-o-box-shadow:8px #000 1px 5px 0;box-shadow:8px #000 1px 5px 0;-moz-border-radius:16px;-webkit-border-radius:16px;-o-border-radius:16px;-ms-border-radius:16px;-khtml-border-radius:16px;border-radius:16px;border-top:1px solid #000;border-bottom:1px solid #434444;text-shadow:0px -1px 1px #000}
 #header div #hello_msg{
   width:138px;color:#999;margin-right:10px;text-shadow:#000 1px 1px 1px;font-size:12px;line-height:52px;float:left;text-align:right}
-#header div #my_account{
-  margin-top:11px;float:left;display:block;text-align:left;font-size:12px;width:132px;line-height:30px}
-#corner{
-  height:30px;float:left;width:20px !important;z-index:9999}
 #text{
   text-shadow:#000 1px 1px 1px;font-weight:bold;float:left;z-index:9999;height:30px;width:112px !important;-moz-border-radius-topleft:8px;-webkit-border-top-left-radius:8px;-o-border-top-left-radius:8px;-ms-border-top-left-radius:8px;-khtml-border-top-left-radius:8px;border-top-left-radius:8px;-moz-border-radius-topright:8px;-webkit-border-top-right-radius:8px;-o-border-top-right-radius:8px;-ms-border-top-right-radius:8px;-khtml-border-top-right-radius:8px;border-top-right-radius:8px;background:url(/images/images8/my_account_arrow_left.png) no-repeat 95% center}
 #text span{
@@ -1350,8 +1199,6 @@ body a:link,body a:visited{
   background:transparent;font-weight:700;text-decoration:underline}
 body p img.top{
   margin-top:0}
-body .small{
-  font-size:0.9em}
 body .large{
   font-size:1.1em}
 body .hide{
@@ -1569,3 +1416,7 @@ table#business_hours .centered input {
 #breadcrumbs { float: left; }
 .supported {
   background: url(/images/button/thankyou.png) no-repeat top left;text-indent:-9999em;border:none;height:45px;width:270px;}
+.project {
+  font-weight: bold; font-size: 14px; color: #000;}
+a.purchase {
+  font-weight: bold; font-size: 14px; color: #008000;}

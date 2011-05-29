@@ -73,7 +73,7 @@ class Business < ActiveRecord::Base
   end
 
   def current_project_with_ensure
-    current_project_without_ensure || Project.new(:goal => 0)
+    current_project_without_ensure || Project.new(:goal => 0, :funded => 0)
   end
   alias_method_chain :current_project, :ensure
 

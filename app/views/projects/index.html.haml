@@ -11,10 +11,7 @@
       %a.right{:href => "/control_panel/campaign/report/61"} View Report
       =link_to "Edit", edit_merchant_project_path(current_user, @project), :class => "right"
       Current Project
-    .business.campaign
-      .status
-        .cover{:style => "width:100%"}
-      .clear
+    .clear
     %dd
       %dt Status
       %dd=@project.active?? 'Active' : "Inactive"
