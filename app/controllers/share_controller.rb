@@ -1,4 +1,5 @@
 class ShareController < ApplicationController
+  skip_before_filter :authenticate_user!
 
   def facebook
     title = CGI.escape('Cogster: Double Your Money.')
