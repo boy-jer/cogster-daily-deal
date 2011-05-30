@@ -481,6 +481,8 @@ div.text_right{
   float:left;color:#fd9c00;text-align:left !important;margin:0;padding:0;margin-left:40px;padding-top:10px;font-size:16px;font-weight:bold}
 .purchase_select .dropdown{
   margin:5px;width:150px;text-align:center !important;font-weight:bold;font-size:20px;color:#9b9da5;height:40px;line-height:40px;border:1px solid #616161}
+.amount_received{
+  color: green; font-size: 47px; font-weight: bold; margin-bottom: -10px}
 .purchase_select .below_amount_received{
   font-size:10px;margin-bottom:10px}
 .purchase_select .purchase_values{
@@ -1420,3 +1422,7 @@ table#business_hours .centered input {
   font-weight: bold; font-size: 14px; color: #000;}
 a.purchase {
   font-weight: bold; font-size: 14px; color: #008000;}
+a.project:hover, a.project:visited {
+  color: #000;}
+a.purchase:hover, a.purchase:visited {
+  color: #008000}
