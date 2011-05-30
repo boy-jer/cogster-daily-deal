@@ -3,7 +3,7 @@ Then /^I see my swag rating based on my purchases$/ do
 end
 
 Then /^I see a change to the swag meter for the community$/ do
-  page.should have_selector('#counter') #structure makes real test impossible here
+  page.should have_content('$120') 
 end
 
 Then /^I see my name at the top of the Our Cogs list$/ do

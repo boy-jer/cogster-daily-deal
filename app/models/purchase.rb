@@ -74,7 +74,7 @@ class Purchase < ActiveRecord::Base
     end
 
     def increment_project
-      project.increment!(:funded, amount)
+      project.increment_self_and_community!(amount)
     end
 
     def process_with_active_merchant

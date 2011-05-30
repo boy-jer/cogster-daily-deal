@@ -8,12 +8,6 @@
     #region_point_counter
       .center
         %a.hidden_link{ :href => local_path }
-          %small Value created:
-        %span 0
-        %a.hidden_link{ :href => local_path }
-          New Jobs
-      #counter
-        =swag_counter
-        %p.clear
-      %p Swag remaining to create one new job
+          %small Community impact: 
+        %span=impact
     =render 'shared/sidebar'

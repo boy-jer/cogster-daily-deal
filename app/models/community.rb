@@ -32,10 +32,6 @@ class Community < ActiveRecord::Base
     businesses.map(&:purchases).flatten
   end
 
-  def swag_counter
-    impact
-  end
-
   def swag_rank(user)
     100.0 * earnings_levels.reverse.index(user.earnings) / earnings_levels.count
   end

@@ -145,6 +145,10 @@ module ApplicationHelper
     options_for_select (0..59).map{|n| sprintf "%02d", n }.to_a, h.object.send(method)
   end
 
+  def impact
+    number_to_currency @community.impact, :precision => 0
+  end
+
   def involving(object)
     object.persisted?? 'updating' : 'creating'
   end
@@ -187,18 +191,6 @@ module ApplicationHelper
 
   def number_of(collection, word)
     collection.count > 1 ? "#{collection.count} #{word.pluralize}" : word
-  end
-
-  def swag_counter
-    if @community
-      digits = swag_digits.split('').map do |n|
-        content_tag :div, n
-      end.join.html_safe
-    end
-  end
-
-  def swag_digits
-    number_to_currency @community.impact, :precision => 0
   end
 
 end

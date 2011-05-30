@@ -37,7 +37,7 @@ end
 When /^I make a (.*?)purchase for the "(.*)" project$/ do |amt, business_name|
   business = Business.find_by_name(business_name)
   visit business_purchase_url(business, :protocol => 'https')
-  select amt.to_i.to_s, :from => "purchase_amount" if amt
+  select "#{amt.strip}.00", :from => "purchase_amount" if amt
   select "MasterCard", :from => "Card Type"
   fill_in "Credit Card Number", :with => "5500000000000004"
   fill_in "Security code", :with => "123"

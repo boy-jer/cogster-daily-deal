@@ -1336,7 +1336,9 @@ html > .ie body p code{
 .ie body #business_details .progress_bar_score{
   margin-bottom:0px;line-height:1}
 .ie body #business_details .progress_share{
-  margin-top:35px;margin-right:-95px;width:120px}
+  margin-top:35px;margin-right:0;width:120px}
+.ie body .contact dl {
+  width: 100%;}
 html,body{
   height:100%}
 #container{

@@ -21,12 +21,7 @@
       .center
         %a.hidden_link{:href => local_path }
           %small Value created:
-        %span 0
-        =link_to "New Jobs", local_path, :class => "hidden_link"
-      #counter
-        =swag_counter
-        %p.clear
-      %p Swag remaining to create one new job
+        %span=impact
       =render 'shared/personal_swag'
       #my_swag_options
         =link_to "What is swag?", swag_path, :id => "smaller"

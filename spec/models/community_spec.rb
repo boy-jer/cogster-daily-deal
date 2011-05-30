@@ -32,14 +32,6 @@ describe Community do
     community.purchases.should == [:purchase_1, :purchase_2, :purchase_3]
   end
 
-  it "calculates swag counter based on all purchases" do
-    community = Community.new
-    purchase_1 = mock_model(Purchase, :amount => 20)
-    purchase_2 = mock_model(Purchase, :amount => 10)
-    community.stub(:purchases).and_return [ purchase_1, purchase_2 ]
-    community.swag_counter.should == 508500
-  end
-
   it "calculates swag rank for a user" do
     community = Community.new
     high_user = mock_model(User, :earnings => 100)

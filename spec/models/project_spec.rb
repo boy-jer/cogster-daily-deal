@@ -104,4 +104,12 @@ describe Project do
     @project.stub(:purchases) { purchases }
     @project.top_supporters.should == [best, early, late, cheap, other]
   end
+
+  it "increments its funding and community impact" do
+    @project.should_receive(:save!)
+    @project.should_receive(:community).and_return community = mock_model(Community)
+    community.should_receive(:increment!).with(:impact, 30)
+    @project.send(:increment_self_and_community!, 10)
+    @project.funded.should == 10
+  end
 end

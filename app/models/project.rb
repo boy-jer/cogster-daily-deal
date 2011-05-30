@@ -11,12 +11,11 @@ class Project < ActiveRecord::Base
   has_many :supporters, :through => :purchases, :source => :user, :uniq => true
   has_many :redemptions
   delegate :redemption_schedule, :redemption_period, :redemption_total, :to => :project_option
+  delegate :community, :to => :business
   validates_presence_of :expiration_date, :business_id, :name, :max_amount, :goal, :project_option_id
   validates_length_of :reason, :maximum => 500
   #validates_length_of :kicker, :maximum => 150
   validates_numericality_of :goal, :greater_than => 0
-
-  after_update :increment_community_impact
 
   def accepting_purchases?
     funded < goal
@@ -68,9 +67,13 @@ class Project < ActiveRecord::Base
 
   protected
 
-    def increment_community_impact
-      if funded != funded_was
-        business.community.increment!(:impact, 3 * (funded - funded_was))
-      end
+    def increment_community_impact!
+      community.increment!(:impact, 3 * (funded - funded_was))
+    end
+
+    def increment_self_and_community!(amount)
+      self.funded += amount
+      increment_community_impact!
+      save!
     end
 end

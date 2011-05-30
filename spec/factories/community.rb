@@ -3,5 +3,4 @@ Factory.define :community do |community|
   community.state "PA"
   community.active true
   community.description "Where we started"
-  community.impact 300
 end

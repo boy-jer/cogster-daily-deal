@@ -13,7 +13,7 @@ Feature: Having points
     Then I see my swag rating based on my purchases
 
   Scenario: Seeing points
-    Given I go to my community page
+    When I go to my community page
     Then I see my swag rating based on my purchases
     And I see a change to the swag meter for the community
 
