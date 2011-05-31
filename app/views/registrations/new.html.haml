@@ -7,3 +7,10 @@
         = link_to "Click here to login.", "/login"
       %p
         = render 'form'
+  #rightbar
+    -if params[:business].blank?
+      %h3=link_to "Are You a Business Owner?", :business => true
+    -else
+      %h3 Terms of Use
+      %p This is where the terms will be explained.
+

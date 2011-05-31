@@ -13,12 +13,9 @@
       .gender
         = f.radio_button :gender, "f"
         = f.label :gender_female, "Female", :class => "male_female_label"
-  -if params[:business]
-    =f.fields_for :business do |b|
-      =render :partial => 'shared/business_form', :locals => { :b => b }
-  -else
-    .field
-      %h3=link_to "Are You a Business Owner?", :business => true
+    -if params[:business]
+      =f.fields_for :business do |b|
+        =render :partial => 'shared/business_form', :locals => { :b => b }
   .field
     By clicking "Sign Up", I agree to the
     =link_to "Terms and Conditions.", terms_path, :id => "terms_link"
