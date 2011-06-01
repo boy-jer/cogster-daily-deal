@@ -27,7 +27,8 @@ set :unicorn_config, "#{current_path}/config/unicorn.rb"
 set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
 
 after :deploy, :remove_test_files
-after :deploy, "rake:migrate"
+after :deploy, :replace_runner
+after :deploy, :migrate
 
 namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do
@@ -56,6 +57,11 @@ desc "Remove test files"
 task :remove_test_files, :roles => :web do
   sudo "rm -rf #{current_path}/features/"
   sudo "rm -rf #{current_path}/spec/"
+end
+
+desc "replace rails runner w version which has server-appropriate path"
+task :replace_runner, :roles => :web do
+  sudo "mv -f #{current_path}/script/rails.server #{current_path}/script/rails"
 end
 
 task :migrate, :roles => :web do

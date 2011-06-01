@@ -25,7 +25,7 @@ class Purchase < ActiveRecord::Base
   attr_accessor :type, :expiration_year, :expiration_month, :card_number, :security_code, :first_name, :last_name
 
   def self.check_for_expiring_coupons
-    includes(:coupons).each do |purchase|
+    includes(:coupons, :user).each do |purchase|
       purchase.coupons.each{|coupon| coupon.check_for_status_change(purchase.user) } 
     end
   end
