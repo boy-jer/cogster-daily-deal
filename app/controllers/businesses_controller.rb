@@ -5,6 +5,7 @@ class BusinessesController < ApplicationController
 
   def edit
     set_options
+    @business.website ||= Website.new
   end
 
   def edit_logo
@@ -28,6 +29,7 @@ class BusinessesController < ApplicationController
       redirect_to account_path, :notice => "Business profile updated"
     else
       set_options
+      @business.website ||= Website.new
       render :edit
     end
   end

@@ -16,3 +16,8 @@ Feature: Merchant page
     When I create a project
     Then I am on the account page
     And I see details of my current project
+
+  Scenario: Edit a business
+    When I visit my account home page
+    And I click "Edit Business"
+    Then show me the page
