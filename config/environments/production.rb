@@ -69,6 +69,6 @@ Cogster::Application.configure do
     #  :login => 'chris_api1.cogster.com',#from api key
     #  :password => '4929RCZXD247X5FQ', #ditto
     #  :signature =>'ARnr1B7zyTW-GnPsQyeq1OlHOUOpAaYyHrRwiti2liIHXowz9rTCR9uQ'
-    )
+#    )
   end
 end

@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name
   belongs_to :community
   has_one :address, :as => :addressable
-  has_one :business, :foreign_key => :merchant_id
+  has_one :business, :foreign_key => :merchant_id, :dependent => :destroy
   accepts_nested_attributes_for :address, :reject_if => :all_blank
   accepts_nested_attributes_for :business, 
     :reject_if => Proc.new{|attr| attr['name'].blank? && attr['description'].blank? }

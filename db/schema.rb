@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110609200421) do
+ActiveRecord::Schema.define(:version => 20110614152047) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line_1"
@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(:version => 20110609200421) do
   create_table "project_options", :force => true do |t|
     t.string  "description"
     t.boolean "active"
-    t.string  "redemption_schedule"
+    t.text    "redemption_schedule", :limit => 255
     t.integer "campaign_id"
   end
 
