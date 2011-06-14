@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default :from => "alltheguysandgals@cogster.com"
+  default :sender => "notice@cogster.com"
 
   def accept_community_request(request, msg)
     @msg = msg

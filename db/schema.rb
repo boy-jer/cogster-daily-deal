@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110529211333) do
+ActiveRecord::Schema.define(:version => 20110609200421) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line_1"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20110529211333) do
     t.string   "addressable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "location_id"
   end
 
   create_table "business_options", :force => true do |t|
@@ -40,9 +41,9 @@ ActiveRecord::Schema.define(:version => 20110529211333) do
     t.integer  "business_option_id", :limit => 255
     t.boolean  "active"
     t.boolean  "featured",                          :default => false
-    t.string   "type"
     t.string   "image"
     t.string   "email"
+    t.integer  "business_id"
   end
 
   create_table "communities", :force => true do |t|
@@ -53,7 +54,8 @@ ActiveRecord::Schema.define(:version => 20110529211333) do
     t.string   "state"
     t.boolean  "active"
     t.string   "description"
-    t.integer  "impact",      :default => 0
+    t.integer  "impact",       :default => 0
+    t.integer  "community_id"
   end
 
   create_table "community_requests", :force => true do |t|
@@ -72,18 +74,6 @@ ActiveRecord::Schema.define(:version => 20110529211333) do
     t.datetime "updated_at"
     t.integer  "purchase_id"
     t.boolean  "used"
-  end
-
-  create_table "deals", :force => true do |t|
-    t.integer  "business_id"
-    t.string   "title"
-    t.string   "description"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.boolean  "active"
-    t.integer  "rank_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "hours", :force => true do |t|
@@ -118,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20110529211333) do
     t.string  "description"
     t.boolean "active"
     t.string  "redemption_schedule"
+    t.integer "campaign_id"
   end
 
   create_table "projects", :force => true do |t|
@@ -129,12 +120,12 @@ ActiveRecord::Schema.define(:version => 20110529211333) do
     t.date     "success_date"
     t.date     "expiration_date"
     t.text     "reason",            :limit => 255
-    t.string   "kicker"
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "project_option_id"
     t.integer  "funded",                           :default => 0
+    t.integer  "campaign_id"
   end
 
   create_table "purchases", :force => true do |t|
@@ -170,6 +161,7 @@ ActiveRecord::Schema.define(:version => 20110529211333) do
     t.string   "role"
     t.integer  "community_id"
     t.string   "cogster_id"
+    t.integer  "user_id"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

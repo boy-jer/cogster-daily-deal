@@ -37,6 +37,8 @@ GEM
     activesupport (3.0.7)
     addressable (2.2.6)
     arel (2.0.9)
+    authorize-net (1.5.2)
+      nokogiri (~> 1.4)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
     barby (0.4.2)
@@ -221,6 +223,7 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   activemerchant
+  authorize-net
   autotest
   barby
   bitly

@@ -1,10 +1,10 @@
 class Business < ActiveRecord::Base
   belongs_to :merchant, :class_name => 'User'
-  has_one :website
-  has_many :projects
-  has_many :hours, :class_name => 'Hours', :order => 'day ASC'
+  has_one :website, :dependent => :destroy
+  has_many :projects, :dependent => :destroy
+  has_many :hours, :class_name => 'Hours', :order => 'day ASC', :dependent => :destroy
   belongs_to :community
-  has_one :address, :as => :addressable
+  has_one :address, :as => :addressable, :dependent => :destroy
   accepts_nested_attributes_for :website, :hours, :reject_if => :all_blank,
                                                    :allow_destroy => true
   accepts_nested_attributes_for :address, :reject_if => :nothing_but_country
@@ -16,7 +16,7 @@ class Business < ActiveRecord::Base
   attr_accessor :deletion_explanation, :closed_days
   before_save :mark_website_for_removal
   after_create :add_hours
-  after_save :inform_owner, :merchantize_owner
+  #after_save :inform_owner, :merchantize_owner
   before_destroy :send_explanation
   after_destroy :unmerchantize_owner
   validates_presence_of :name

@@ -15,6 +15,7 @@ gem 'haml'
 gem 'recaptcha', :require => 'recaptcha/rails'
 
 gem 'activemerchant'
+gem 'authorize-net'
 gem 'carrierwave'
 gem 'will_paginate', '3.0.pre2'
 gem 'RedCloth'

@@ -50,7 +50,15 @@ Cogster::Application.configure do
 
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :production #remember to switch to test for sandbox
-    ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+    ActiveMerchant::Billing::LinkpointGateway.pem_file = File.read(File.dirname(__FILE__) + '/../1909010267.pem')
+    ::GATEWAY = ActiveMerchant::Billing::LinkpointGateway.new(
+    :login => '1234567890')
+    #::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
+    #  :login => '2v76SvvM5b',
+    #  :password => '46SkhMf927AyXt2L',
+    #  :test => true
+    #)
+    #::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
       #credentials for my sandbox, put on server for testing
       # :login => 'brian_1305061324_biz_api1.gmail.com',
       # :password => '1305061338',
@@ -58,9 +66,9 @@ Cogster::Application.configure do
 
       #below are credentials for steve's real account
        #when this is set, remember to change mode to production
-      :login => 'chris_api1.cogster.com',#from api key
-      :password => '4929RCZXD247X5FQ', #ditto
-      :signature =>'ARnr1B7zyTW-GnPsQyeq1OlHOUOpAaYyHrRwiti2liIHXowz9rTCR9uQ'
+    #  :login => 'chris_api1.cogster.com',#from api key
+    #  :password => '4929RCZXD247X5FQ', #ditto
+    #  :signature =>'ARnr1B7zyTW-GnPsQyeq1OlHOUOpAaYyHrRwiti2liIHXowz9rTCR9uQ'
     )
   end
 end
