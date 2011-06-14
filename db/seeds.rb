@@ -33,7 +33,7 @@ File.open("#{Rails.root}/db/slim_cogster.sql") do |f|
       user.password_confirmation = user.password
       user.address = Address.find_by_location_id(user_array[2].sub(/\'/,''))
       puts "user #{user.password}" unless user.save
-      user.confirm! unless user.new_record?
+      user.confirm! if user.persisted? && user.respond_to?(:confirm!)
     end
   end
 
