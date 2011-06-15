@@ -53,7 +53,7 @@ class Purchase < ActiveRecord::Base
     end
 
     def create_coupons
-      start = Date.today
+      start = created_at.to_date
       redemption_schedule.each do |period|
         coupon_amount = period[:percentage] * amount / 100
         coupons.create(:start_date => start, :amount => coupon_amount, :expiration_date => start + period[:duration] - 1)
