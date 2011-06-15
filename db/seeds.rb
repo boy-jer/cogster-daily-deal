@@ -68,8 +68,8 @@ File.open("#{Rails.root}/db/slim_cogster.sql") do |f|
   ProjectOption.create!(:description => '15 Month: Long Term Supporter', :active => false, :redemption_schedule => [{ :duration => 120, :percentage => 0}, { :duration => 30, :percentage => 50 }, { :duration => 30, :percentage => 50 }])
   ProjectOption.create!(:description => 'Community Builder', :active => false, :redemption_schedule => [{ :duration => 120, :percentage => 0}, { :duration => 1, :percentage => 100 }])
   ProjectOption.create!(:description => '90-Day \"50-50-50\" Option', :active => false, :redemption_schedule => [{ :duration => 30, :percentage => 50}, { :duration => 30, :percentage => 50 }, { :duration => 30, :percentage => 50 }])
-  ProjectOption.create!(:description => '8-Week \\\"Double Money\\\" Option', :active => false, :redemption_schedule => [{ :duration => 7, :percentage => 25 }, { :duration => 7, :percentage => 25 }, { :duration => 7, :percentage => 25 }, { :duration => 7, :percentage => 25 }, { :duration => 7, :percentage => 25 }, { :duration => 7, :percentage => 25 }, { :duration => 7, :percentage => 25 }, { :duration => 7, :percentage => 25 }])
-  ProjectOption.create!(:description => '15-Month \\\"Long-Term Support\\\" Option', :active => false, :redemption_schedule => [{ :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}])
+  #ProjectOption.create!(:description => '8-Week \\\"Double Money\\\" Option', :active => false, :redemption_schedule => [{ :duration => 7, :percentage => 25 }, { :duration => 7, :percentage => 25 }, { :duration => 7, :percentage => 25 }, { :duration => 7, :percentage => 25 }, { :duration => 7, :percentage => 25 }, { :duration => 7, :percentage => 25 }, { :duration => 7, :percentage => 25 }, { :duration => 7, :percentage => 25 }])
+  ProjectOption.create!(:description => '15-Month "Long-Term Support" Option', :active => false, :redemption_schedule => [{ :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}, { :duration => 30, :percentage => 10}])
   ProjectOption.create!(:description => '4-Week Option (5-5-5-5)', :active => true, :redemption_schedule => [{ :duration => 7, :percentage => 50}, { :duration => 7, :percentage => 50}, { :duration => 7, :percentage => 50}, { :duration => 7, :percentage => 50}])
   ProjectOption.create!(:description => '3-Week Option (10-5-5)', :active => true, :redemption_schedule => [{ :duration => 7, :percentage => 100}, { :duration => 7, :percentage => 50 }, { :duration => 7, :percentage => 50 }])
   ProjectOption.create!(:description => '1-Time Option (pay 10-get 20)', :active => true, :redemption_schedule => [{ :duration => 90, :percentage => 200}])
@@ -87,18 +87,20 @@ File.open("#{Rails.root}/db/slim_cogster.sql") do |f|
     end
     default_option = ProjectOption.find_by_description('3-Month Option (10-5-5)').id
     project = Project.new(:campaign_id => campaign_array[0].gsub(/[^\d]/,''), :business_id => business, :min_amount => campaign_array[4].gsub(/[^\d]/,''), :max_amount => campaign_array[6].gsub(/[^\d]/,''), :goal => campaign_array[8].gsub(/[^\d]/,''), :success_date => campaign_array[10].sub(/\'/,''), :expiration_date => campaign_array[12].sub(/\'/,''), :reason => campaign_array[16].sub(/\'/,'')[0..499], :active => campaign_array[20].sub(/\'/,''), :name => campaign_array[22].sub(/\'/,''), :project_option_id => default_option)
-    if project.campaign_id == 59
-      project.project_option = ProjectOption.all[5]
-    elsif project.campaign_id == 66
-      project.project_option = ProjectOption.all[8]
-    elsif project.campaign_id == 67
-      project.project_option = ProjectOption.all[9]
-    elsif project.campaign_id == 68
-      project.project_option = ProjectOption.all[10]
-    elsif project.campaign_id == 69
-      project.project_option = ProjectOption.all[10]
-    elsif project.campaign_id == 73
-      project.project_option = ProjectOption.all[12]
+    if project.campaign_id == 52              
+      project.project_option = ProjectOption.find_by_description('90-Day \"50-50-50\" Option')
+    elsif project.campaign_id == 56
+      project.project_option = ProjectOption.find_by_description('15-Month "Long-Term Support" Option')
+    elsif [57, 61].include? project.campaign_id 
+      project.project_option = ProjectOption.find_by_description('4-Week Option (5-5-5-5)')
+    elsif project.campaign_id == 58
+      project.project_option = ProjectOption.find_by_description('3-Week Option (10-5-5)')
+    elsif project.campaign_id == 63
+      project.project_option = ProjectOption.find_by_description('3-Month Option (150-30-20)-Lipstick')
+    elsif project.campaign_id == 64
+      project.project_option = ProjectOption.find_by_description('2-Month Option (150-50)-New Zola')
+    elsif [59, 60, 62, 65].include? project.campaign_id 
+      project.project_option = ProjectOption.find_by_description('1-Time Option (pay 10-get 20)')
     end
     project.save! unless project.campaign_id == 49
   end
