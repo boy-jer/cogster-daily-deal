@@ -107,13 +107,6 @@ File.open("#{Rails.root}/db/slim_cogster.sql") do |f|
 
   lines[166].sub(/[^\(]+/,'').split('), (').each do |investment_string|
     investment_array = investment_string.split(/\', \'/)
-    user = User.find_by_user_id(investment_array[1].gsub(/[^\d]/,''))
-    if user
-      user = user.id
-    else
-      puts "skipping user #{investment_array[1]}"
-      next
-    end
     project = Project.find_by_campaign_id(investment_array[2].gsub(/[^\d]/,''))
     if project
       project = project.id
@@ -121,18 +114,42 @@ File.open("#{Rails.root}/db/slim_cogster.sql") do |f|
       puts "skipping #{investment_array[2]}"
       next
     end
-    purchase = Purchase.new(:user_id => user, :project_id => project, :amount => investment_array[8].sub(/\'/,''))
+    user = User.find_by_user_id(investment_array[1].gsub(/[^\d]/,''))
+    if user
+      user = user.id
+    else
+      puts "skipping user #{investment_array[1]}"
+      next
+    end
+    purchase = Purchase.new(:user_id => user, :project_id => project, :amount => investment_array[4].sub(/\'/,''))
     purchase.created_at = Time.at(investment_array[10].sub(/\'/,'').to_i)
     purchase.save!
   end
 
   lines[262].sub(/[^\(]+/,'').split('), (').each do |transaction_string|
     transaction_array = transaction_string.split(/('|null), /)
-    user = User.find_by_user_id(user_array[2].gsub(/[^\d]/,'')).id
-    project = Project.find_by_campaign_id(user_array[4].gsub(/[^\d]/,'')).id
-    date = user_array[6].sub(/\'/,'')
-    coupon = Coupon.where(['user_id = ? AND project_id = ? AND start_date <= ? AND expiration_date >= ?', user, project, date, date]).first
-    coupon.update_attribute(:used, true)
+    user = User.find_by_user_id(transaction_array[2].gsub(/[^\d]/,''))
+    if user.nil?
+      puts "no user #{transaction_array[2]}"
+      next
+    end
+    project = Project.find_by_campaign_id(transaction_array[4].gsub(/[^\d]/,''))
+    if project.nil?
+      puts "no project #{transaction_array[4]}"
+      next
+    end
+    date = transaction_array[6].sub(/\'/,'')
+    purchase = project.purchases.find_by_user_id(user.id)
+    if purchase.nil?
+      puts "no purchase for user #{transaction_array[2]} and project #{transaction_array[4]}"
+      next
+    end
+    coupon = purchase.coupons.where(['start_date <= ? AND expiration_date >= ?', date, date])
+    if coupon.empty?
+      puts "no coupon for user #{transaction_array[2]} and project #{transaction_array[4]} and date #{date}"
+    else
+      coupon.first.update_attribute(:used, true)
+    end
   end
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110614152047) do
+ActiveRecord::Schema.define(:version => 20110615190910) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line_1"
@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(:version => 20110614152047) do
     t.datetime "updated_at"
     t.string   "customer_ip"
     t.string   "error_message"
+    t.integer  "investment_id"
   end
 
   create_table "users", :force => true do |t|

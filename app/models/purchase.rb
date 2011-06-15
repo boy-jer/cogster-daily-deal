@@ -2,7 +2,7 @@ class Purchase < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
   has_one :business, :through => :project
-  has_many :coupons, :order => :start_date do
+  has_many :coupons, :order => :start_date, :dependent => :destroy do
     def for_week_and_project(date, _project)
       select do |c| 
         c.good_during_week_of?(date) && proxy_owner.project == _project
