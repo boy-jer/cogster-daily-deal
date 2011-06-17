@@ -1,5 +1,5 @@
 class BusinessesController < ApplicationController
-  before_filter :find_community
+  after_filter :find_community
   before_filter :find_merchant_business, :only => [:edit, :edit_logo, :update]
   skip_before_filter :authenticate_user!
 
@@ -18,7 +18,7 @@ class BusinessesController < ApplicationController
   end
 
   def show
-    @business = @community.businesses.includes(:current_project, :hours, :address, :website).find(params[:id])
+    @business = Business.includes(:current_project, :hours, :address, :website).find(params[:id])
     if cannot? :read, @business
       redirect_to root_path, :notice => "Sorry, that business is not currently active."
     end
