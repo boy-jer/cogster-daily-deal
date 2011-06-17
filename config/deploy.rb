@@ -10,8 +10,6 @@ set :repository,          "git@github.com:bgates/cogster.git"
 set :git_shallow_clone,   1
 set :keep_releases,       5
 
-set :deploy_to,           "/srv/www/cogster"
-
 set :runner,              "deploy"
 set :stages, %w(staging production)
 set :default_stage, "staging"
@@ -22,12 +20,11 @@ default_run_options[:pty] = true
 
 set :rails_env, :production
 set :unicorn_binary, "/usr/bin/unicorn"
-set :unicorn_config, "#{current_path}/config/unicorn.rb"
-set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
+set(:unicorn_config) { "#{current_path}/config/unicorn.rb" }
+set(:unicorn_pid) { "#{current_path}/tmp/pids/unicorn.pid" }
 
 after :deploy, :remove_test_files
 after :deploy, :replace_runner
-after :deploy, :migrate
 
 namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do
