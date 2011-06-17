@@ -3,14 +3,14 @@
 worker_processes 4
 # Help ensure your application will always spawn in the symlinked
 # "current" directory that Capistrano sets up.
-working_directory "/srv/www/cogster/production/current"
+working_directory "/srv/www/cogster/staging/current"
 # listen on both a Unix domain socket and a TCP port,
 # we use a shorter backlog for quicker failover when busy
-listen "/tmp/cogster.socket", :backlog => 64
+listen "/tmp/cogster_staging.socket", :backlog => 64
 # nuke workers after 30 seconds instead of 60 seconds (the default)
 timeout 30
 user 'deploy', 'deploy'
-shared_path = '/srv/www/cogster/production/shared'
+shared_path = '/srv/www/cogster/staging/shared'
 # feel free to point this anywhere accessible on the filesystem
 pid "#{shared_path}/pids/unicorn.pid"
 stderr_path "#{shared_path}/log/unicorn.stderr.log"

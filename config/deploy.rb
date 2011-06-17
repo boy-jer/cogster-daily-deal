@@ -26,28 +26,6 @@ set(:unicorn_pid) { "#{current_path}/tmp/pids/unicorn.pid" }
 after :deploy, :remove_test_files
 after :deploy, :replace_runner
 
-namespace :deploy do
-  task :start, :roles => :app, :except => { :no_release => true } do
-    sudo "/etc/init.d/unicorn start /etc/unicorn/cogster.conf"
-    #run "cd #{current_path} && #{try_sudo} #{unicorn_binary} -c #{unicorn_config} -E #{rails_env} -D"
-  end
-  task :stop, :roles => :app, :except => { :no_release => true } do
-    sudo "/etc/init.d/unicorn stop /etc/unicorn/cogster.conf"
-    #run "#{try_sudo} kill `cat #{unicorn_pid}`"
-  end
-  task :graceful_stop, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} kill -s QUIT `cat #{unicorn_pid}`"
-  end
-  task :reload, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} kill -s USR2 `cat #{unicorn_pid}`"
-  end
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    #stop
-    #start
-    sudo "/etc/init.d/unicorn restart /etc/unicorn/cogster.conf"
-  end
-
-end
 
 desc "Remove test files" 
 task :remove_test_files, :roles => :web do
