@@ -48,10 +48,6 @@ class User < ActiveRecord::Base
   end
   alias_method_chain :address, :ensure
 
-  def earnings
-    coupons.sum(:amount) - purchases.sum(:amount) 
-  end
-
   def image
     "default_avatar.jpg"
   end

@@ -5,6 +5,6 @@ module CommunitiesHelper
   end
 
   def rating_for(cog)
-    number_with_precision cog.swag_rank, :precision => 1
+    number_with_precision @community.swag_rank(cog), :precision => 1
   end
 end

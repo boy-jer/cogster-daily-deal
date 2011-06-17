@@ -14,7 +14,6 @@ class Project < ActiveRecord::Base
   delegate :community, :to => :business
   validates_presence_of :expiration_date, :business_id, :name, :max_amount, :goal, :project_option_id
   validates_length_of :reason, :maximum => 500
-  #validates_length_of :kicker, :maximum => 150
   validates_numericality_of :goal, :greater_than => 0
 
   def accepting_purchases?

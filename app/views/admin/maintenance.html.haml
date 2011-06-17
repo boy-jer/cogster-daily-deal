@@ -1,0 +1,30 @@
+<!doctype html>
+/ paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+/[if lt IE 7 ] <html class="no-js ie ie6">
+/[if IE 7 ] <html class="no-js ie ie7">
+/[if IE 8 ] <html class="no-js ie ie8">
+/ [if (gte IE 9)|!(IE)]><!
+%html.no-js
+  / <![endif] 
+  =render 'layouts/header'
+  %body
+    /[if lt IE 7]
+      .error
+      You are currently using an outdated browser that does not support many of the features on Cogster.  Please download a faster, more modern browser like: <a href="http://www.google.com/chrome" target="_blank">Google Chrome</a>, <a href="http://www.getfirefox.com" target="_blank">Mozilla Firefox</a>, or <a href="http://www.opera.com" target="_blank">Opera</a>.
+    #header.clearfix
+      %div
+        %h1=image_tag("logo.png", :alt => "Cogster", :id => "main_logo")
+    #menu_container
+      #menu
+    #container
+      #splash_content
+        %h1 Cogster is currently offline.
+        %div
+          #content_col_1
+            %div Pay to support a Project that enhances a merchant's locally-owned business in your community.
+          #content_col_2
+            %div By joining a Project you receive Cogster Cash you can redeem at the merchant.  You get double the cash.
+          #content_col_3
+            %div Watch your community impact rise every time you support a project.  Get your swag on.
+      #sticky_footer
+    = render 'layouts/footer'

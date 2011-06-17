@@ -18,7 +18,7 @@ class BusinessesController < ApplicationController
   end
 
   def show
-    @business = Business.includes(:current_project).find(params[:id])
+    @business = @community.businesses.includes(:current_project, :hours, :address, :website).find(params[:id])
     if cannot? :read, @business
       redirect_to root_path, :notice => "Sorry, that business is not currently active."
     end

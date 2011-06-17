@@ -29,12 +29,6 @@
       .field
         =f.label :project_option_id, "Timetable"
         =f.select :project_option_id, @project_options
-      /%strong Kickers:
-      /%p What else can you "kick in" to reward your loyal supporters?  Be creative, and give your supporters some extra incentives to join your project and show their loyalty to your business/group.
-      /.field
-      /  =f.label :kicker
-      /  =f.text_area :kicker
-      /  %em (Limit 150 characters)
       -if @project.new_record?
         .field
           =f.label :terms, "I agree to the #{link_to 'Cogster Merchant Project Agreement', merchant_agreement_path, :class => 'new_window'}".html_safe
