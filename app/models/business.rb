@@ -16,11 +16,11 @@ class Business < ActiveRecord::Base
   attr_accessor :deletion_explanation, :closed_days
   before_save :mark_website_for_removal
   after_create :add_hours
-  #after_save :inform_owner, :merchantize_owner
+  after_save :inform_owner, :merchantize_owner
   before_destroy :send_explanation
   after_destroy :unmerchantize_owner
   validates_presence_of :name
-  #validate :presence_of_community_and_merchant
+  validate :presence_of_community_and_merchant
   validates_uniqueness_of :name, :scope => :community_id
   validates_length_of :description, :maximum => 500
 

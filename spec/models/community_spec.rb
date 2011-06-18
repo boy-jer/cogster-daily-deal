@@ -37,11 +37,8 @@ describe Community do
     high_user = mock_model(User, :earnings => 100)
     mid_user = mock_model(User, :earnings => 50)
     low_user = mock_model(User, :earnings => 0)
-    community.stub(:users).and_return [mid_user, high_user, low_user]
-    community.users.map(&:earnings).should == [50,100,0]
-    [50,100,0].uniq.sort.should == [0,50,100]
-    community.users.map(&:earnings).uniq.sort.should == [0,50,100]
-    community.users.map(&:earnings).uniq.sort.should == community.earnings_levels
+    community.stub(:users).and_return users = mock('users')
+    users.stub(:select).and_return [mid_user, high_user, low_user]
     community.earnings_levels.should == [0,50,100]
     community.swag_rank(high_user).should == 0.0
     community.swag_rank(low_user).should be_within(0.1).of(66.7)

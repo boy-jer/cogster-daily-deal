@@ -1,5 +1,5 @@
 Then /^I see my swag rating based on my purchases$/ do
-  page.should have_selector('#swag a', :text => @user.swag_rank.to_s)
+  page.should have_selector('#swag a', :text => @business.community.users.first.swag_rank.to_s)
 end
 
 Then /^I see a change to the swag meter for the community$/ do

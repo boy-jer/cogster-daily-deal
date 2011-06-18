@@ -38,7 +38,7 @@ describe Purchase do
       @purchase.should_receive(:redemption_schedule).and_return schedule
       @purchase.should_receive(:process_with_active_merchant).and_return true
       @purchase.should_receive(:save_paypal_response).and_return true
-      @purchase.should_receive(:increment_project).and_return true
+      @purchase.stub_chain(:project, :increment_self_and_community!).and_return true
     end
 
     it "creates its own coupons" do

@@ -56,7 +56,7 @@ describe User do
   describe "create" do
     it "can have a business" do
       user_attr = Factory.attributes_for(:user)
-      attr = user_attr.merge(:business_attributes => { 
+      attr = user_attr.merge(:community_id => 1, :business_attributes => { 
         :name => 'BJs', :description => 'food' }) 
       user = User.create(attr)
       user.should be_valid

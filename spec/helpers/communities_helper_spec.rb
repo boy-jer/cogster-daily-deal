@@ -12,7 +12,7 @@ require 'spec_helper'
 # end
 describe CommunitiesHelper do
   it "formats the swag rank for a cog" do
-    cog = mock_model(User, :swag_rank => 4.04)
-    helper.rating_for(cog).should == '4.0'
+    assign(:community, mock_model(Community, :swag_rank => 4.01))
+    helper.rating_for(:cog).should == '4.0'
   end
 end

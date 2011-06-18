@@ -14,6 +14,7 @@ class BusinessesController < ApplicationController
   def index
     @businesses = Business.active.with_purchases.community_ordered(current_user, params[:sort]).category(params[:filter]).search(params[:search]).paginate(:per_page => 10, :page => params[:page])
     @merchant_types = BusinessOption.all
+    find_community
     render :search
   end
 

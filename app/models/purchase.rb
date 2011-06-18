@@ -12,7 +12,7 @@ class Purchase < ActiveRecord::Base
   has_many :paypal_responses
   accepts_nested_attributes_for :user
 
- # before_create :process_with_active_merchant
+  before_create :process_with_active_merchant
   after_create :create_coupons, :send_email, :save_paypal_response, :increment_project_and_user
 
   attr_protected :customer_ip, :status, :error_message, :updated_at, :created_at
@@ -75,7 +75,7 @@ class Purchase < ActiveRecord::Base
 
     def increment_project_and_user
       project.increment_self_and_community!(amount)
-      user.increment!(:earnings, amount - coupons.sum(:amount))
+      user.increment!(:earnings, coupons.sum(:amount) - amount)
     end
 
     def process_with_active_merchant
@@ -117,7 +117,7 @@ class Purchase < ActiveRecord::Base
     end
 
     def send_email
-      true #UserMailer.purchase_confirmation(self, current_coupon, user).deliver
+      UserMailer.purchase_confirmation(self, current_coupon, user).deliver
     end
 
     def validate_card

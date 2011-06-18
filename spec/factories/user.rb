@@ -6,6 +6,7 @@ Factory.define :user do |user|
   user.password_confirmation "password"
   user.community { Community.find_by_name(Factory.attributes_for(:community)[:name]) || Factory(:community) }
   user.role                  "cogster"
+  user.earnings              0
   user.confirmed_at          Time.now
 end
 
