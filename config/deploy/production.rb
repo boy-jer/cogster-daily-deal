@@ -1,6 +1,6 @@
-role :web, "www.cogster.com"
-role :app, "www.cogster.com"
-role :db, "www.cogster.com", :primary => true
+role :web, 'cogsterproduction.littleredbrick.net'#"www.cogster.com"
+role :app, 'cogsterproduction.littleredbrick.net'#"www.cogster.com"
+role :db, 'cogsterproduction.littleredbrick.net'#"www.cogster.com", :primary => true
 set :stage, :production
 set :deploy_to, "/srv/www/cogster/production"
 
