@@ -50,6 +50,7 @@ module BusinessesHelper
     else
       @business.accepting_purchases?
     end
+    false
   end
 
   def rating_for(cog)

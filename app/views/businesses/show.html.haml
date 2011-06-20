@@ -10,7 +10,7 @@
       =render :partial => "shared/progress_bar", :locals => { :project => @business.current_project, :social => true }
       .project_details
         #biz_logo_img.img_container{:style => "height: 150px; width: 150px;"}
-          =link_to image_tag(@business.image_url, :alt => @business.current_project.name), new_business_purchase_url(@business, :protocol => 'https')
+          =link_to_if false, image_tag(@business.image_url, :alt => @business.current_project.name), new_business_purchase_url(@business, :protocol => 'https')
         %h3 Project Details
         %p=@business.current_project.reason 
         =conditional_purchase_link("Support This Project", :class => "right", :id => "support")
@@ -23,12 +23,13 @@
             =dt_dd_email(@business)
             =dt_dd_website(@business)
             =dt_dd_address(@business)
-        .contact
-          %h4 Business Hours
-          %dl
-            -@business.hours.each do |day|
-              %dt{ :class => day.weekday }=day.weekday
-              %dd{ :class => day.weekday }=day
+        -if @business.hours.any?(&:open?)
+          .contact
+            %h4 Business Hours
+            %dl
+              -@business.hours.each do |day|
+                %dt{ :class => day.weekday }=day.weekday
+                %dd{ :class => day.weekday }=day
       .steeple
         %h4 Business Details
         %p=@business.description
