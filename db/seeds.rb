@@ -6,15 +6,15 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 ActiveRecord::Base.record_timestamps = false
-
+=begin
 ['Happy Valley', 'Ephrata Area', 'Susquehanna Valley'].each_with_index do |name, i|
   Community.create!(:name => name, :state => 'PA', :active => name == 'Happy Valley', :community_id => i + 1)
 end
 puts 'communities created'
-
+=end
 File.open("#{Rails.root}/db/slim_cogster.sql") do |f|
   lines = f.readlines
-
+=begin
   [189, 190].each do |n|
     puts "new address line"
     lines[n].sub(/[^\(]+/,'').split('), (').each do |address_string|
@@ -104,17 +104,25 @@ File.open("#{Rails.root}/db/slim_cogster.sql") do |f|
     end
     project.save! unless project.campaign_id == 49
   end
-
+=end
   lines[166].sub(/[^\(]+/,'').split('), (').each do |investment_string|
     investment_array = investment_string.split(/\', \'/)
     project = Project.find_by_campaign_id(investment_array[2].gsub(/[^\d]/,''))
+    user = User.find_by_user_id(investment_array[1].gsub(/[^\d]/,''))
     if project
       project = project.id
     else
       puts "skipping #{investment_array[2]}"
+      if user
+        user.earnings += investment_array[4].sub(/\'/,'').to_i
+        user.community.impact += 3 * investment_array[4].sub(/\'/,'').to_i
+        user.save
+        user.community.save
+      else
+        puts "--no user"
+      end
       next
     end
-    user = User.find_by_user_id(investment_array[1].gsub(/[^\d]/,''))
     if user
       user = user.id
     else
@@ -127,26 +135,26 @@ File.open("#{Rails.root}/db/slim_cogster.sql") do |f|
   end
 
   lines[262].sub(/[^\(]+/,'').split('), (').each do |transaction_string|
-    transaction_array = transaction_string.split(/('|null), /)
-    user = User.find_by_user_id(transaction_array[2].gsub(/[^\d]/,''))
+    transaction_array = transaction_string.split(/(\', \' /)
+    user = User.find_by_user_id(transaction_array[1].gsub(/[^\d]/,''))
     if user.nil?
-      puts "no user #{transaction_array[2]}"
+      puts "no user #{transaction_array[1]}"
       next
     end
-    project = Project.find_by_campaign_id(transaction_array[4].gsub(/[^\d]/,''))
+    project = Project.find_by_campaign_id(transaction_array[2].gsub(/[^\d]/,''))
     if project.nil?
-      puts "no project #{transaction_array[4]}"
+      puts "no project #{transaction_array[2]}"
       next
     end
-    date = transaction_array[6].sub(/\'/,'')
+    date = transaction_array[3].sub(/\'/,'')
     purchase = project.purchases.find_by_user_id(user.id)
     if purchase.nil?
-      puts "no purchase for user #{transaction_array[2]} and project #{transaction_array[4]}"
+      puts "no purchase for user #{transaction_array[1]} and project #{transaction_array[2]}"
       next
     end
     coupon = purchase.coupons.where(['start_date <= ? AND expiration_date >= ?', date, date])
     if coupon.empty?
-      puts "no coupon for user #{transaction_array[2]} and project #{transaction_array[4]} and date #{date}"
+      puts "no coupon for user #{transaction_array[1]} and project #{transaction_array[2]} and date #{date}"
     else
       coupon.first.update_attribute(:used, true)
     end

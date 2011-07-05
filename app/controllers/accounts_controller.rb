@@ -20,7 +20,7 @@ class AccountsController < ApplicationController
       @monday = Date.today.beginning_of_week
     elsif session[:cogster].nil? && current_user.admin?
       @community_requests = CommunityRequest.all
-      @inactives = Business.where(['active = ?', false])
+      @inactives = Business.where('active IS NULL')
     else
       @purchases = current_user.purchases.includes([{ :project => :business }, :coupons])
     end

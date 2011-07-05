@@ -35,6 +35,7 @@ Cogster::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   config.action_mailer.default_url_options = { :host => 'cogster.littleredbrick.net' }
+  config.action_mailer.delivery_method = :test
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 

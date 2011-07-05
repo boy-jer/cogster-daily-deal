@@ -3,4 +3,4 @@
   %td.business_count="#{community.businesses.count + community.inactive_businesses.count} (#{community.businesses.count})"
   %td.user_count=community.users.count
   %td=link_to "Edit", edit_admin_community_path(community)
-  %td=button_to "Delete", admin_community_path(community)
+  %td=button_to "Delete", admin_community_path(community), :method => :delete
