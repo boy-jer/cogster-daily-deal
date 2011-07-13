@@ -135,7 +135,7 @@ File.open("#{Rails.root}/db/slim_cogster.sql") do |f|
   end
 
   lines[262].sub(/[^\(]+/,'').split('), (').each do |transaction_string|
-    transaction_array = transaction_string.split(/(\', \' /)
+    transaction_array = transaction_string.split(/\', \'/)
     user = User.find_by_user_id(transaction_array[1].gsub(/[^\d]/,''))
     if user.nil?
       puts "no user #{transaction_array[1]}"

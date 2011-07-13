@@ -5,17 +5,13 @@ gem 'rails', '3.0.7'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'pg'
-
 gem 'devise'
-
 gem 'haml'
-
 gem 'recaptcha', :require => 'recaptcha/rails'
 
 gem 'activemerchant'
-gem 'authorize-net'
+#gem 'authorize-net'
 gem 'carrierwave'
 gem 'will_paginate', '3.0.pre2'
 gem 'RedCloth'
@@ -27,9 +23,6 @@ gem 'bitly'
 # Use unicorn as the web server
  gem 'unicorn'
 
-# Deploy with Capistrano
- gem 'capistrano'
- gem 'capistrano-ext'
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
@@ -45,6 +38,9 @@ gem 'bitly'
 # and rake tasks are available in development mode:
  group :development do
    gem 'rails-footnotes', '>= 3.7'
+  # Deploy with Capistrano
+   gem 'capistrano'
+   gem 'capistrano-ext'
  end
 
  group :development, :test do
@@ -52,6 +48,7 @@ gem 'bitly'
    gem 'rspec-rails'
    gem 'factory_girl_rails', '1.1.beta1'
    gem 'autotest'
+  gem 'sqlite3-ruby', :require => 'sqlite3'
  end
 
  group :test do
