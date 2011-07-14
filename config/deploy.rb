@@ -41,6 +41,6 @@ task :replace_runner, :roles => :web do
 end
 
 task :set_cache_permissions, :roles => :app do
-  run "ln -s #{shared_path}/tmp/cache #{release_path}/tmp/cache"
+  sudo "chown #{user} -R #{release_path}/tmp/cache"
 end
 require 'capistrano/ext/multistage'
