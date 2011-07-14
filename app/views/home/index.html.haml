@@ -1,26 +1,27 @@
 -content_for :menu do
   =notice_or_alert
-#splash_body
-  %div
-    %h1 Double your money.  Triple your community impact.
+-cache do
+  #splash_body
     %div
-      %span#splash_dropdown
-        %span#region_listing
-          %ul
-            %li
-              %h2 choose your community
-              %ul
-                %li=link_to @community.name, @community
-                -@communities.each do |community|
-                  %li
-                    =link_to community.name, community
-                %span
-                  =link_to "Don't see your community?", new_community_request_path
-#splash_content
-  %div
-    #content_col_1
-      %div Pay to support a Project that enhances a merchant's locally-owned business in your community.
-    #content_col_2
-      %div By joining a Project you receive Cogster Cash you can redeem at the merchant.  You get double the cash.
-    #content_col_3
-      %div Watch your community impact rise every time you support a project.  Get your swag on.
+      %h1 Double your money.  Triple your community impact.
+      %div
+        %span#splash_dropdown
+          %span#region_listing
+            %ul
+              %li
+                %h2 choose your community
+                %ul
+                  %li=link_to @community.name, @community
+                  -@communities.each do |community|
+                    %li
+                      =link_to community.name, community
+                  %span
+                    =link_to "Don't see your community?", new_community_request_path
+  #splash_content
+    %div
+      #content_col_1
+        %div Pay to support a Project that enhances a merchant's locally-owned business in your community.
+      #content_col_2
+        %div By joining a Project you receive Cogster Cash you can redeem at the merchant.  You get double the cash.
+      #content_col_3
+        %div Watch your community impact rise every time you support a project.  Get your swag on.
