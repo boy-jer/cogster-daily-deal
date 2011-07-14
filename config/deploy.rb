@@ -40,7 +40,7 @@ task :replace_runner, :roles => :web do
   sudo "mv -f #{current_path}/script/rails.server #{current_path}/script/rails"
 end
 
-task :set_cache_permissions, :roles => :app do
+task :set_cache_permissions, :roles => :web do
   sudo "chown #{user} -R #{release_path}/tmp/cache"
 end
 require 'capistrano/ext/multistage'

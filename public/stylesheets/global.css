@@ -1428,3 +1428,8 @@ a.project:hover, a.project:visited {
   color: #000;}
 a.purchase:hover, a.purchase:visited {
   color: #008000}
+#logout {
+  background: #222;
+  color: #fff;
+  border: 0;
+}
