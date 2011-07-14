@@ -25,6 +25,7 @@ set(:unicorn_pid) { "#{current_path}/tmp/pids/unicorn.pid" }
 
 after :deploy, :remove_test_files
 after :deploy, :replace_runner
+after :deploy, :set_cache_permissions
 
 
 desc "Remove test files" 
@@ -39,4 +40,7 @@ task :replace_runner, :roles => :web do
   sudo "mv -f #{current_path}/script/rails.server #{current_path}/script/rails"
 end
 
+task :set_cache_permissions, :roles => :app do
+  run "ln -s #{shared_path}/tmp/cache #{release_path}/tmp/cache"
+end
 require 'capistrano/ext/multistage'
