@@ -23,13 +23,6 @@ describe InformationController do
     end
   end
 
-  describe "GET 'local'" do
-    it "should be successful" do
-      get 'local'
-      response.should be_success
-    end
-  end
-
   describe "GET 'swag'" do
     it "should be successful" do
       get 'swag'

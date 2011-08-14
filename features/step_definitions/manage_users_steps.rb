@@ -1,6 +1,6 @@
 Given /^someone has signed up and said he has a business$/ do
   @user = Factory.create(:merchant)
-  @user.business.update_attribute(:active, false)
+  @user.business.update_attribute(:active, nil)
 end
 
 Then /^I see a reminder of the business request$/ do

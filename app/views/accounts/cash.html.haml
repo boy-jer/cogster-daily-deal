@@ -33,14 +33,6 @@
     %br
       %strong TO:
       %span#end_date=@coupon.expiration_date.strftime("%b %d")
-  / <div id="fineprint">Not valid with other promotions or offers unless authorized by merchant</div>
-  /
-    <div id="sign_off">
-    <div id="p1">Official Use:</div>
-    <div id="p2">Amount Used:<div class="line"></div></div>
-    <div id="p3">Date:<div class="line"></div></div>
-    <div id="p4">Init:<div class="line"></div></div>
-    </div>
   .clear
     %div
       =link_to "Go Back", account_path, :id => "button_1", :class => "button hide_print"

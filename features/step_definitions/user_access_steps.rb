@@ -27,10 +27,10 @@ Then /^I should be taken to a form to request a community$/ do
 end
 
 Given /^I don't have a user account$/ do
-  true
+  User.find_by_first_name("Steve").should be_nil
 end
 
-When /^I register( and confirm)?( as a merchant)?$/ do |confirm, merchant|
+When /^I register( without confirming)?( as a merchant)?$/ do |confirm, merchant|
   visit merchant.blank?? "register" : "register?business=true"
   fill_in "First Name", :with => "Steve"
   fill_in "Last Name", :with => "Bisbee"
@@ -42,7 +42,7 @@ When /^I register( and confirm)?( as a merchant)?$/ do |confirm, merchant|
     fill_in "Description", :with => "Where The Grove Eats"
   end
   click_button "Sign Up"
-  if confirm
+  unless confirm
     User.last.confirm! 
     User.last.increment!(:sign_in_count)
   end

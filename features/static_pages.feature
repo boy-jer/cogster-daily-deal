@@ -18,7 +18,5 @@ Feature: Static pages
     Then I see "contact form"
     When I click "How it Works"
     Then I see "How Cogster Works"
-    When I click "About Local"
-    Then I see "Cogster is all about locally-owned businesses"
     When I click "swag"
     Then I see "Swag"

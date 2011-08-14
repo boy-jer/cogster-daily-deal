@@ -36,8 +36,8 @@ Feature: Purchase a Cogster project
   Scenario: Review purchases
     Given I am logged in
     And I just checked my email
-    When I have made two purchases
-    Then I get two purchase confirmation emails
+    When I have made a purchase
+    Then I get a purchase confirmation email
     When I visit my account page
     Then I should see a list of all the purchases I have made
     And I should see links to print Cogster Cash for any current spending periods

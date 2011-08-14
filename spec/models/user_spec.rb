@@ -3,7 +3,7 @@ require 'spec_helper'
 describe User do
   let(:user) { User.new }
   let(:completed_project) { mock_model(Project, :accepting_purchases? => false)}
-  let(:open_project) { mock_model(Project, :max_amount => 50, :accepting_purchases? => true)}
+  let(:open_project) { mock_model(Project, :amount => 50, :accepting_purchases? => true)}
   its(:address) { should_not be_nil }
   
   describe "has a name" do

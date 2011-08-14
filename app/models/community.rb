@@ -12,6 +12,9 @@ class Community < ActiveRecord::Base
 
   validates_presence_of :name
   validates_uniqueness_of :name
+  validate :event_dates_in_order
+
+  mount_uploader :image, IconUploader
 
   def earnings_levels
     @earnings_levels ||= users.select(:earnings).map(&:earnings).uniq.sort
@@ -40,6 +43,17 @@ class Community < ActiveRecord::Base
   end
 
   protected
+
+    def event_dates_in_order
+      if event_start_date
+        errors.add(:event_completion_date, 'must be set if the event start date has been') unless event_completion_date
+      elsif event_completion_date
+        errors.add(:event_start_date, 'must be set if the event completion date has been')
+      end
+      if event_start_date && event_completion_date
+        errors.add(:base, 'event dates must be in order') unless event_completion_date > event_start_date
+      end
+    end
 
     def send_request_feedback
       community_request = CommunityRequest.find(community_request_id)

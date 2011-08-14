@@ -13,7 +13,7 @@ Cogster::Application.configure do
   config.action_dispatch.x_sendfile_header = "X-Sendfile"
 
   # For nginx:
-  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
+   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
 
   # If you have no front-end server that supports something like X-Sendfile,
   # just comment this out and Rails will serve the files
@@ -51,9 +51,9 @@ Cogster::Application.configure do
 
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :production #remember to switch to test for sandbox
-    ActiveMerchant::Billing::LinkpointGateway.pem_file = File.read(File.dirname(__FILE__) + '/../1909010267.pem')
+    ActiveMerchant::Billing::LinkpointGateway.pem_file = File.read(File.dirname(__FILE__) + '/../1001281717.pem')
     ::GATEWAY = ActiveMerchant::Billing::LinkpointGateway.new(
-    :login => '1234567890')
+    :login => '1001281717')
     #::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
     #  :login => '2v76SvvM5b',
     #  :password => '46SkhMf927AyXt2L',

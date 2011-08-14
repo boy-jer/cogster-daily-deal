@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110616211939) do
+ActiveRecord::Schema.define(:version => 20110814011410) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line_1"
@@ -54,8 +54,10 @@ ActiveRecord::Schema.define(:version => 20110616211939) do
     t.string   "state"
     t.boolean  "active"
     t.string   "description"
-    t.integer  "impact",       :default => 0
+    t.integer  "impact",                :default => 0
     t.integer  "community_id"
+    t.date     "event_start_date"
+    t.date     "event_completion_date"
   end
 
   create_table "community_requests", :force => true do |t|
@@ -114,11 +116,9 @@ ActiveRecord::Schema.define(:version => 20110616211939) do
   create_table "projects", :force => true do |t|
     t.integer  "business_id"
     t.string   "name"
-    t.decimal  "min_amount"
-    t.integer  "max_amount"
+    t.decimal  "amount"
     t.integer  "goal",                             :default => 0
     t.date     "success_date"
-    t.date     "expiration_date"
     t.text     "reason",            :limit => 255
     t.boolean  "active"
     t.datetime "created_at"

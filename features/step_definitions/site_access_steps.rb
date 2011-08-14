@@ -52,3 +52,7 @@ end
 Then /^I should be able to log in with the new password$/ do
   pending # express the regexp above with the code you wish you had
 end  
+
+Then /^I take a look-see$/ do
+  save_and_open_page
+end

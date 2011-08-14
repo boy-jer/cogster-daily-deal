@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
 
   def may_make_purchase_for?(project)
     project.accepting_purchases? &&
-    purchases_of(project) < project.max_amount
+    purchases_of(project) < project.amount
   end
 
   def name

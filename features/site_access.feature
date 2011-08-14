@@ -16,7 +16,7 @@ Feature: Site access
 
   Scenario: Confirm account
     Given I don't have an account
-    When I register
+    When I register without confirming
     Then I receive an email to confirm
     When I open the confirmation email
     Then I should see "Welcome to Cogster! Activate your account right now." in the email subject

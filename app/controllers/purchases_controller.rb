@@ -3,7 +3,7 @@ class PurchasesController < ApplicationController
   before_filter :find_business, :find_community
 
   def create
-    @purchase = current_user.purchases.build(params[:purchase])
+    @purchase = current_user.purchases.build(params[:purchase].merge(:amount => @project.amount))
     @purchase.customer_ip = request.remote_ip
     @purchase.type = params[:purchase][:type]
     @purchase.project = @project
@@ -32,7 +32,6 @@ class PurchasesController < ApplicationController
   end
 
   def populate_form
-    @purchase.amount ||= @project.min_amount
     if current_user
       @purchase.first_name, @purchase.last_name = current_user.first_name, current_user.last_name
     end

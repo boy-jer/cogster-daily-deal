@@ -11,7 +11,6 @@ gem 'haml'
 gem 'recaptcha', :require => 'recaptcha/rails'
 
 gem 'activemerchant'
-#gem 'authorize-net'
 gem 'carrierwave'
 gem 'will_paginate', '3.0.pre2'
 gem 'RedCloth'
@@ -19,7 +18,6 @@ gem 'whenever', :require => false
 gem 'barby'
 gem 'cancan'
 gem 'rmagick'
-gem 'bitly'
 # Use unicorn as the web server
  gem 'unicorn'
 

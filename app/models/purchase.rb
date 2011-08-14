@@ -12,13 +12,13 @@ class Purchase < ActiveRecord::Base
   has_many :paypal_responses
   accepts_nested_attributes_for :user
 
-  #before_create :process_with_active_merchant
-  after_create :create_coupons, :save_paypal_response, :increment_project_and_user#, :send_email 
+  before_create :process_with_active_merchant
+  after_create :create_coupons, :save_paypal_response, :increment_project_and_user, :send_email 
 
   attr_protected :customer_ip, :status, :error_message, :updated_at, :created_at
   validates_numericality_of :amount, :greater_than => 0
   #validates_acceptance_of :terms, :on => :create
-  #validate                  :validate_card, :on => :create
+  validate                  :validate_card, :on => :create
   delegate :redemption_schedule, :to => :project
   delegate :abbr_name, :cogster_id, :address, :to => :user
 

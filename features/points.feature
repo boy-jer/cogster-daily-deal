@@ -12,11 +12,6 @@ Feature: Having points
     When I go to the account page
     Then I see my swag rating based on my purchases
 
-  Scenario: Seeing points
-    When I go to my community page
-    Then I see my swag rating based on my purchases
-    And I see a change to the swag meter for the community
-
   Scenario: Seeing points at a business
     When I go to the business page for BJ's
     Then I see my name at the top of the Our Cogs list

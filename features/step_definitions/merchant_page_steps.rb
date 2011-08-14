@@ -18,9 +18,8 @@ end
 When /^I create a project$/ do
   fill_in "Name", :with => "New Pac-Man"
   fill_in "Goal", :with => "300"
-  fill_in "Target Completion Date", :with => Date.today + 30
   fill_in "Description", :with => "Because everybody loves Pac-Man"
-  select "50", :from => "Maximum Individual Purchase"
+  select "50", :from => "Purchase Amount"
   select ProjectOption.first.description.to_s, :from => "Timetable"
   check "project_terms"
   click_button "Create"

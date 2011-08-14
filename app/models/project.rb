@@ -3,6 +3,8 @@ class Project < ActiveRecord::Base
   belongs_to :business
   validates_acceptance_of :terms
 
+  PURCHASE_AMOUNT_OPTIONS = [10, 15, 20, 25, 30, 50, 75, 100]
+
   has_many :purchases do
     def sorted
       sort_by{|p| [p.abbr_name, p.created_at] }
@@ -12,7 +14,7 @@ class Project < ActiveRecord::Base
   has_many :redemptions
   delegate :redemption_schedule, :redemption_period, :redemption_total, :to => :project_option
   delegate :community, :to => :business
-  validates_presence_of :expiration_date, :business_id, :name, :max_amount, :goal, :project_option_id
+  validates_presence_of :business_id, :name, :amount, :goal, :project_option_id
   validates_length_of :reason, :maximum => 500
   validates_numericality_of :goal, :greater_than => 0
 
@@ -21,19 +23,15 @@ class Project < ActiveRecord::Base
   end
 
   def max_for(user = nil)
-    [(max_amount - (user ? user.purchases_of(self) : 0)), goal - funded].min
+    [(amount - (user ? user.purchases_of(self) : 0)), goal - funded].min
   end
 
   def max_redemption
-    max_amount * redemption_total
-  end
-
-  def min_amount
-    super || 10
+    amount * redemption_total
   end
 
   def min_redemption_amount(period)
-    min_amount * redemption_percentage(period)
+    amount * redemption_percentage(period)
   end
 
   def no_goal?
@@ -52,12 +50,16 @@ class Project < ActiveRecord::Base
     percent_funded - percent_funded_by(user)
   end
 
-  def redemption_percentage(period)
-    project_option.redemption_percentage(period) 
+  def purchase_start_date
+    community.event_start_date
   end
 
-  def steps_for(user)
-    min_amount.step(max_for(user), 10)
+  def purchase_completion_date
+    community.event_completion_date
+  end
+
+  def redemption_percentage(period)
+    project_option.redemption_percentage(period) 
   end
 
   def top_supporters

@@ -9,18 +9,18 @@
       .purchase_select
         .header
           .counter 1
-          %h3 Select the Amount "You Pay" to Fund this Project
+          %h3 The Amount "You Pay" to Fund this Project
         #box_top
           .left
             .box_side
               %h4 YOU PAY
-              =f.select :amount, options_for_select(purchase_options(@project), purchase_selection(@project)), {}, :class => "dropdown text"
+              =number_to_currency(@project.amount)
           .equal 
           .right
             .box_side
               %h4 YOU GET
               #investment_amount_received.amount_received
-                =number_to_currency(@project.min_amount * @project.redemption_total)
+                =number_to_currency(@project.amount * @project.redemption_total)
               %div
                 .below_amount_received in Cogster Cash
           .clear
@@ -34,7 +34,7 @@
                 =render :partial => 'return_rate', :collection => @project.redemption_schedule
                 %tr
                   %td#investment_amount_received_lower.non_return_rate_period
-                    %span=number_to_currency(@project.min_amount * @project.redemption_total) 
+                    %span=number_to_currency(@project.amount * @project.redemption_total) 
                   %td.description
                     %span TOTAL
           .purchase_description
@@ -63,10 +63,6 @@
     %div
       #purchase_text
         %h5 Support the Project:
-        %p 
-          Choose the amount you wish to pay to support this project.  The minimum you can pay is 
-          ="#{number_to_currency(@project.min_amount, :precision => 0)}."
-          The maximum amount appears as the last choice on the dropdown menu.  Maximum payment amounts may differ between merchants.
         %h5 Double Your Money:
         %p Notice the amounts that appear in the boxes, based on the amount you select from the dropdown.  When you pay, you will receive Cogster Cash in your account corresponding to the timing and amounts in these boxes.  Timing and amounts may differ between merchants.
         %h5 Access Your Cogster Cash:
@@ -80,4 +76,4 @@
       -if user_signed_in?
         .purchase_amount_box
           Your Credit Card Will Be Charged:
-          #amount_charged_to_user=number_to_currency @project.min_amount
+          #amount_charged_to_user=number_to_currency @project.amount

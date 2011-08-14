@@ -786,13 +786,15 @@ a.button span{
 #splash_body div #splash_dropdown #region_listing ul ul li a h2{
   font-style:normal;line-height:40px;font-size:20px;height:40px;cursor:pointer;color:#999;background:none !important}
 #splash_body div h1{
-  background-image:url("/images/slogan_bg.png");background-repeat:no-repeat;text-indent:-9999px;display:inline;float:left;margin-right:10px;width:550px;margin-top:65px;height:105px}
+  font-family: "Arial Rounded MT Bold"; font-size: 3em; text-transform: uppercase; display:inline;float:left;margin: 65px 10px 0 0 ;width:550px;}
+#splash_body div h2#subtitle {
+  font-family: "Arial Rounded MT Bold"; font-size: 2em; display: inline; float:left; text-transform: uppercase; width:550px }
 * html #splash_body div h1{
   overflow-x:hidden}
 #splash_body div h2{
   color:#000;text-shadow:#fff 1px 1px 1px}
 #splash_body div div{
-  display:inline;float:left;margin-right:0;width:390px;width:390px;height:230px;background-image:url("/images/coghouse.png")}
+  display:inline;float:right;margin-right:0;width:390px;width:390px;height:230px;background-image:url("/images/coghouse.png")}
 * html #splash_body div div{
   overflow-x:hidden}
 #splash_body div div span{

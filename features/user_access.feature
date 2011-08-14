@@ -16,11 +16,6 @@ Feature: Site access
     Then I should be taken to the community page
     And I see "Susquehanna Valley"
 
-  Scenario: Request a community
-    When I go to the front page
-    And I want a community that isn't listed
-    Then I should be taken to a form to request a community
-
   Scenario: Create an account
     Given I am not logged in
     When I go to the front page

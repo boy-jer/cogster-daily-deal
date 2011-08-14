@@ -42,7 +42,7 @@ module ApplicationHelper
       end
     elsif params[:filter]
       capture_haml do
-        haml_tag :h3, "#{params[:filter].sub(/^.*-/,'').capitalize}"
+        haml_tag :h3, @businesses.first.business_option.category
       end
     end
   end

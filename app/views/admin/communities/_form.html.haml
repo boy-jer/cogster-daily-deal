@@ -12,3 +12,9 @@
   .field
     =form.label :active, :class => "required"
     =form.check_box :active
+  .field
+    =form.label :event_start_date, "Event Start Date", :title => "The date on which every offer in this community will begin."
+    =form.text_field :event_start_date, :class => "datepicker text"
+  .field
+    =form.label :event_completion_date, "Event Completion Date", :title => "The date on which every offer in this community will finish."
+    =form.text_field :event_completion_date, :class => "datepicker text"

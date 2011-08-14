@@ -11,16 +11,12 @@
         =f.text_field :goal, :class => "text"
         %em (Ex: 1000)
       .field
-        =f.label :expiration_date, "Target Completion Date", :title => "Let Cogsters know when you would like to reach the goal. Don't worry, you can change this at any time."
-        =f.text_field :expiration_date, :class => "datepicker text"
-        %br/
-      .field
         =f.label :reason, "Description", :title => "Let your supporters know how you will use the money you raise to improve your business."
         =f.text_area :reason
         %em (Limit 500 characters)
       .field
-        =f.label :max_amount, "Maximum Individual Purchase", :title => "This is the maximum dollar amount you will accept from any one purchaser in this project"
-        =f.select :max_amount, options_for_select((10.step(990, 10).to_a), @project.max_amount.to_i)
+        =f.label :amount, "Purchase Amount", :title => "This is the dollar amount you will accept from a purchaser in this project"
+        =f.select :amount, options_for_select(Project::PURCHASE_AMOUNT_OPTIONS, @project.amount.to_i)
   %fieldset
     %legend Supporter Purchase Options
     .legend_field_set

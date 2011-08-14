@@ -49,7 +49,7 @@ Cogster::Application.routes.draw do
   end
 
   controller :information do
-    %w(merchant_agreement member_purchase_agreement terms faq privacy local swag contact how_it_works).each do |page|
+    %w(merchant_agreement member_purchase_agreement terms faq privacy swag contact how_it_works).each do |page|
       get page, :as => page
     end
   end
