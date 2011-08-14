@@ -1,6 +1,0 @@
-dem_req_rate	req_rate_www.cogster.com	con_rate_www.cogster.com	min_rep_rate_www.cogster.com	avg_rep_rate_www.cogster.com	max_rep_rate_www.cogster.com	stddev_rep_rate_www.cogster.com	resp_time_www.cogster.com	net_io_www.cogster.com	errors_www.cogster.com	req_rate_cogsterproduction.littleredbrick.net	con_rate_cogsterproduction.littleredbrick.net	min_rep_rate_cogsterproduction.littleredbrick.net	avg_rep_rate_cogsterproduction.littleredbrick.net	max_rep_rate_cogsterproduction.littleredbrick.net	stddev_rep_rate_cogsterproduction.littleredbrick.net	resp_time_cogsterproduction.littleredbrick.net	net_io_cogsterproduction.littleredbrick.net	errors_cogsterproduction.littleredbrick.net
-100	49.5	9.7	16.6	42.4	63.8	8.5	1234.0	349.7	16.59336631849	68.8	9.7	0.0	64.3	95.0	12.4	683.4	391.5	6.86342627556415
-300	8.1	29.1	0.0	2.4	24.4	5.6	2622.4	19.9	1223.77450980392	3.3	29.1	0.0	1.7	30.6	5.8	363.4	10.3	1779.35943060498
-500	0.6	47.6	0.0	0.0	0.6	0.1	2802.8	0.4	125000	1.9	47.6	0.0	0.7	7.0	2.0	277.0	4.0	7575.75757575758
-700	2.1	65.4	0.0	0.2	2.4	0.6	2339.2	1.4	41666.6666666667	1.1	65.4	0.0	0.3	4.8	1.2	206.5	2.0	20833.3333333333
-900	1.3	82.6	0.0	0.1	1.2	0.3	2608.9	0.9	83333.3333333333	0.0	82.6	0.0	0.0	0.0	0.0	0.0	0.0	101

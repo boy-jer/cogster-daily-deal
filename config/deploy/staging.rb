@@ -1,6 +1,7 @@
 role :web, domain                          
 role :app, domain                          
 role :db, domain, :primary => true 
+set :rails_env, :staging
 set :stage, :staging
 set :deploy_to, "/srv/www/cogster/staging"
 

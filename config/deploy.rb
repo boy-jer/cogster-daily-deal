@@ -18,7 +18,6 @@ ssh_options[:paranoid]    = false
 ssh_options[:forward_agent] = true
 default_run_options[:pty] = true
 
-set :rails_env, :production
 set :unicorn_binary, "/usr/bin/unicorn"
 set(:unicorn_config) { "#{current_path}/config/unicorn.rb" }
 set(:unicorn_pid) { "#{current_path}/tmp/pids/unicorn.pid" }
