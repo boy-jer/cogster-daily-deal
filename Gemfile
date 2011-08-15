@@ -18,6 +18,7 @@ gem 'whenever', :require => false
 gem 'barby'
 gem 'cancan'
 gem 'rmagick'
+gem 'bitly'
 # Use unicorn as the web server
  gem 'unicorn'
 

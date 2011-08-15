@@ -59,6 +59,7 @@ Cogster::Application.routes.draw do
   end
 
   root :to => "home#index"
+  match '/foo' => 'home#foo'
   match '/account' => "accounts#show", :as => 'user_root'
   # The priority is based upon order of creation:
   # first created -> highest priority.

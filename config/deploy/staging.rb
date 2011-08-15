@@ -7,7 +7,8 @@ set :deploy_to, "/srv/www/cogster/staging"
 
 namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do
-    sudo "/etc/init.d/unicorn start /etc/unicorn/cogster_staging.conf"
+    sudo "/usr/local/bin/unicorn_rails -c config/unicorn.rb -E staging -D"
+    #sudo "/etc/init.d/unicorn start /etc/unicorn/cogster_staging.conf"
     #run "cd #{current_path} && #{try_sudo} #{unicorn_binary} -c #{unicorn_config} -E #{rails_env} -D"
   end
   task :stop, :roles => :app, :except => { :no_release => true } do

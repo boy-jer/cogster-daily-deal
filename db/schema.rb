@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(:version => 20110814011410) do
   create_table "project_options", :force => true do |t|
     t.string  "description"
     t.boolean "active"
-    t.text    "redemption_schedule", :limit => 255
+    t.text    "redemption_schedule"#, :limit => 255
     t.integer "campaign_id"
   end
 
@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(:version => 20110814011410) do
     t.decimal  "amount"
     t.integer  "goal",                             :default => 0
     t.date     "success_date"
-    t.text     "reason",            :limit => 255
+    t.text     "reason"#,            :limit => 255
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
