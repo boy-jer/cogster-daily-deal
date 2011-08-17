@@ -12,6 +12,7 @@ class Business < ActiveRecord::Base
   has_one :current_project, :class_name => 'Project', :conditions => { :active => true }
   delegate :supporters, :top_supporters, :accepting_purchases?, :to => :current_project
   delegate :name, :to => :community, :prefix => true
+  delegate :redemption_start, :to => :community
   delegate :phone, :to => :address
   attr_accessor :deletion_explanation, :closed_days
   before_save :mark_website_for_removal

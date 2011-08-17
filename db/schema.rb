@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110814011410) do
+ActiveRecord::Schema.define(:version => 20110817031503) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line_1"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20110814011410) do
     t.integer  "community_id"
     t.date     "event_start_date"
     t.date     "event_completion_date"
+    t.date     "redemption_start"
   end
 
   create_table "community_requests", :force => true do |t|
@@ -109,7 +110,7 @@ ActiveRecord::Schema.define(:version => 20110814011410) do
   create_table "project_options", :force => true do |t|
     t.string  "description"
     t.boolean "active"
-    t.text    "redemption_schedule"#, :limit => 255
+    t.text    "redemption_schedule", :limit => 255
     t.integer "campaign_id"
   end
 
@@ -119,7 +120,7 @@ ActiveRecord::Schema.define(:version => 20110814011410) do
     t.decimal  "amount"
     t.integer  "goal",                             :default => 0
     t.date     "success_date"
-    t.text     "reason"#,            :limit => 255
+    t.text     "reason",            :limit => 255
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"

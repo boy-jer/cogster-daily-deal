@@ -117,6 +117,11 @@ module ApplicationHelper
     end
   end
 
+  def event_dates(community)
+    "#{community.event_start_date.strftime("%B %e")} - 
+     #{community.event_completion_date.strftime("%B %e, %Y")}" unless community.event_start_date.nil?
+  end
+
   def featured_tag(business)
     image_tag('images8/featured_overlay.png', :class => "featured_business_img") if business.featured?
   end

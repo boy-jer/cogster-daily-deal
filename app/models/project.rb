@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
   has_many :supporters, :through => :purchases, :source => :user, :uniq => true
   has_many :redemptions
   delegate :redemption_schedule, :redemption_period, :redemption_total, :to => :project_option
-  delegate :community, :to => :business
+  delegate :community, :redemption_start, :to => :business
   validates_presence_of :business_id, :name, :amount, :goal, :project_option_id
   validates_length_of :reason, :maximum => 500
   validates_numericality_of :goal, :greater_than => 0

@@ -22,7 +22,7 @@ class Purchase < ActiveRecord::Base
   delegate :redemption_schedule, :to => :project
   delegate :abbr_name, :cogster_id, :address, :to => :user
 
-  attr_accessor :type, :expiration_year, :expiration_month, :card_number, :security_code, :first_name, :last_name
+  attr_accessor :type, :expiration_year, :expiration_month, :card_number, :security_code, :first_name, :last_name, :redemption_start
 
   def self.check_for_expiring_coupons
     includes(:coupons, :user).each do |purchase|
@@ -43,7 +43,11 @@ class Purchase < ActiveRecord::Base
   end
 
   def current_coupon
-    coupons.detect{|c| c.current? } 
+    if redemption_start
+      coupons.first
+    else
+      coupons.detect{|c| c.current? } 
+    end
   end
 
   protected
@@ -53,7 +57,7 @@ class Purchase < ActiveRecord::Base
     end
 
     def create_coupons
-      start = created_at.to_date
+      start = redemption_start
       redemption_schedule.each do |period|
         coupon_amount = period[:percentage] * amount / 100
         coupons.create(:start_date => start, :amount => coupon_amount, :expiration_date => start + period[:duration] - 1)

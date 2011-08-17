@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe PurchasesController do
-  let(:community) { mock_model(Community) }
+  let(:start_date) { Date.today + 7 }
+  let(:community) { mock_model(Community, :redemption_start => start_date) }
   let(:project)   { mock_model(Project, :accepting_purchases? => true, :amount => 10)}
   before :each do
     Business.should_receive(:find).with(:business_id) { mock_model(Business, :community => community, :current_project => project, :name => 'Biz')}
@@ -11,7 +12,7 @@ describe PurchasesController do
   describe "POST create" do
     before :each do
       @purchase = Purchase.new
-      @user.purchases.should_receive(:build).with({ 'some' => :params, 'amount' => 10}) { @purchase }
+      @user.purchases.should_receive(:build).with({ 'some' => :params, 'amount' => 10, 'redemption_start' => start_date }) { @purchase }
       
     end
 

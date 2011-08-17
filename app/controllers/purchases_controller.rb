@@ -3,7 +3,7 @@ class PurchasesController < ApplicationController
   before_filter :find_business, :find_community
 
   def create
-    @purchase = current_user.purchases.build(params[:purchase].merge(:amount => @project.amount))
+    @purchase = current_user.purchases.build(params[:purchase].merge(:amount => @project.amount, :redemption_start => @community.redemption_start))
     @purchase.customer_ip = request.remote_ip
     @purchase.type = params[:purchase][:type]
     @purchase.project = @project

@@ -39,5 +39,3 @@
     %ol.top_cogs
       =render :partial => "shared/cog", :collection => @business.top_supporters
     .clear
-    =render "shared/personal_swag" if user_signed_in?
-    =link_to "What is swag?", swag_path, :id => "smaller" 

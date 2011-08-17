@@ -13,7 +13,6 @@ Feature: Switch role
     Then I see a "User View" button
     When I press "User View"
     Then I should see links to print Cogster Cash for any current spending periods
-    And I see my swag rating
     But I do not see my current project
     And I see a "Merchant View" button
 
@@ -24,6 +23,5 @@ Feature: Switch role
     Then I see a "User View" button
     When I press "User View"
     Then I should see links to print Cogster Cash for any current spending periods
-    And I see my swag rating
     And I see a "Admin View" button
 

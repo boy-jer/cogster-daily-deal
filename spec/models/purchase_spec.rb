@@ -38,12 +38,13 @@ describe Purchase do
       @purchase.should_receive(:redemption_schedule).and_return schedule
       @purchase.should_receive(:process_with_active_merchant).and_return true
       @purchase.should_receive(:save_paypal_response).and_return true
+      @purchase.should_receive(:redemption_start).and_return Date.today + 3
       @purchase.stub_chain(:project, :increment_self_and_community!).and_return true
     end
 
     it "creates its own coupons" do
-      params_1 = { :start_date => Date.today, :amount => 75.0, :expiration_date => Date.today + 6 }
-      params_2 = { :start_date => Date.today + 7, :amount => 50.0, :expiration_date => Date.today + 13 }
+      params_1 = { :start_date => Date.today + 3, :amount => 75, :expiration_date => Date.today + 9 }
+      params_2 = { :start_date => Date.today + 10, :amount => 50, :expiration_date => Date.today + 16 }
       @purchase.coupons.should_receive(:create).with(params_1)
       @purchase.coupons.should_receive(:create).with(params_2) 
       @purchase.should_receive(:send_email).and_return true
