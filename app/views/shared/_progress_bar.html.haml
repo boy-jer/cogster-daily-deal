@@ -7,11 +7,6 @@
     %strong="#{project.percent_funded}%"
     %br/
     %span FUNDED
--if social
-  .progress_share
-    %span Share This:
-    =link_to image_tag('buttons/share-facebook.png', :alt => "Share this business on Facebook"), facebook_path(project.business), :title => "Share this Business on Facebook", :class => 'new_window', :target => '_blank'
-    =link_to image_tag('buttons/share-twitter.png', :alt => "Share this business on Twitter"), twitter_path(project.business), :title => "Share this Business on Twitter", :class => 'new_window', :target => '_blank'
 .progress_data_container
   %table
     %tfoot
@@ -24,7 +19,7 @@
         %td#supporters=project.supporters.count 
         %td#funding=number_to_currency(project.funded, :precision => 0)
         %td=number_to_currency(project.goal, :precision => 0)
-  -if project.percent_funded < 100 && social != true && false
+  -if project.percent_funded < 100 && social != true 
     .progress_data
-      %strong=link_to "Fund This Project", new_business_purchase_url(project.business, :protocol => 'https')
+      %strong=link_to "Support >", new_business_purchase_url(business, :protocol => 'https')
   .clear

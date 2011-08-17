@@ -1,29 +1,18 @@
 =form_for [@business, @project] do |f|
   =error_messages_for @project
   %fieldset
-    %legend Project Details
     .legend_field_set
-      .field
-        =f.label :name, "Name your project"
-        =f.text_field :name, :class => "text"
       .field
         =f.label :goal, "Goal ($)", :title => "How much money do you need to accomplish the project?"
         =f.text_field :goal, :class => "text"
         %em (Ex: 1000)
       .field
-        =f.label :reason, "Description", :title => "Let your supporters know how you will use the money you raise to improve your business."
-        =f.text_area :reason
-        %em (Limit 500 characters)
-      .field
         =f.label :amount, "Purchase Amount", :title => "This is the dollar amount you will accept from a purchaser in this project"
         =f.select :amount, options_for_select(Project::PURCHASE_AMOUNT_OPTIONS, @project.amount.to_i)
   %fieldset
-    %legend Supporter Purchase Options
     .legend_field_set
-      %strong Timetable
-      %p This is where you set up the schedule on which your supporters can use their Cogster Cash
       .field
-        =f.label :project_option_id, "Timetable"
+        =f.label :project_option_id, "Choose Your Visits"
         =f.select :project_option_id, @project_options
       -if @project.new_record?
         .field

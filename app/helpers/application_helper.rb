@@ -118,8 +118,10 @@ module ApplicationHelper
   end
 
   def event_dates(community)
-    "#{community.event_start_date.strftime("%B %e")} - 
-     #{community.event_completion_date.strftime("%B %e, %Y")}" unless community.event_start_date.nil?
+    unless community.event_start_date.nil?
+      content_tag :h3, "#{community.event_start_date.strftime("%B %e")} - 
+      #{community.event_completion_date.strftime("%B %e, %Y")}" 
+    end
   end
 
   def featured_tag(business)

@@ -5,7 +5,7 @@
   .business_listing_details
     =link_to business_image(business), business
     .description
-      =link_to render(:partial => 'shared/progress_bar', :locals => { :project => business.current_project }), business 
+      =link_to render(:partial => 'shared/progress_bar', :locals => { :project => business.current_project, :business => business }), business 
       -if business.current_project.accepting_purchases?
         %div
           %span.project.left

@@ -387,8 +387,15 @@ h1#title a{
   height:60px;display:block}
 .seo_hide{
   text-indent:-9999px}
-#business_region_list h2,#business_purchase_list h2{
+#business_purchase_list h2{
   background:url("/images/community_header.png");width:380px;height:75px}
+#business_region_list h2 {
+  color: #000;
+}
+#business_region_list h2 span {
+  font-size: 150%;
+  color: #000;
+}
 #business_region_list div.controls,#business_purchase_list div.controls{
   font-size:13px;color:#53535b;border-bottom:solid 1px #d8d8d9}
 #business_region_list div.controls span,#business_purchase_list div.controls span{

@@ -6,14 +6,17 @@
   .main.full
     #business_details.business
       %h2=@business.name
-      %h3=@business.current_project.name 
+      %span.project.left
+        -if @business.current_project.persisted?
+          ="You Pay: $#{@business.current_project.amount.to_i} | You Get: "
+          =link_to "$#{@business.current_project.max_redemption.to_i}", @business, :class => 'purchase'
       =render :partial => "shared/progress_bar", :locals => { :project => @business.current_project, :social => true }
       .project_details
         #biz_logo_img.img_container{:style => "height: 150px; width: 150px;"}
           =link_to_if false, image_tag(@business.image_url, :alt => @business.current_project.name), new_business_purchase_url(@business, :protocol => 'https')
-        %h3 Project Details
-        %p=@business.current_project.reason 
-        =conditional_purchase_link("Support This Project", :class => "right", :id => "support")
+        %h3 Business Details
+        %p=@business.description
+        =conditional_purchase_link("Support >", :class => "right", :id => "support")
       .clear
       .column
         .contact
@@ -30,12 +33,5 @@
               -@business.hours.each do |day|
                 %dt{ :class => day.weekday }=day.weekday
                 %dd{ :class => day.weekday }=day
-      .steeple
-        %h4 Business Details
-        %p=@business.description
   #rightbar
     %h3#double_money.seo_hide=conditional_purchase_link("Double Your Money", {}, "We did it!") 
-    %h3.seo_hide.our_cogs Our Cogs
-    %ol.top_cogs
-      =render :partial => "shared/cog", :collection => @business.top_supporters
-    .clear

@@ -3,7 +3,6 @@ require 'spec_helper'
 describe Project do
   
   it { should have_errors_on(:goal) }
-  it { should have_errors_on(:name) }
   it { should have_errors_on(:business_id) }
   it { should have_errors_on(:amount) }
   it { should have_errors_on(:project_option_id) }

@@ -16,11 +16,9 @@ Then /^I (do not )?see details of my current project$/ do |negate|
 end
 
 When /^I create a project$/ do
-  fill_in "Name", :with => "New Pac-Man"
   fill_in "Goal", :with => "300"
-  fill_in "Description", :with => "Because everybody loves Pac-Man"
   select "50", :from => "Purchase Amount"
-  select ProjectOption.first.description.to_s, :from => "Timetable"
+  select ProjectOption.first.description.to_s, :from => "Choose Your Visits"
   check "project_terms"
   click_button "Create"
 end

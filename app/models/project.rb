@@ -14,7 +14,7 @@ class Project < ActiveRecord::Base
   has_many :redemptions
   delegate :redemption_schedule, :redemption_period, :redemption_total, :to => :project_option
   delegate :community, :redemption_start, :to => :business
-  validates_presence_of :business_id, :name, :amount, :goal, :project_option_id
+  validates_presence_of :business_id, :amount, :goal, :project_option_id
   validates_length_of :reason, :maximum => 500
   validates_numericality_of :goal, :greater_than => 0
 

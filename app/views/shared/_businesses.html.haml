@@ -2,7 +2,7 @@
 .main.full
   #business_region_list
     %h2="Buy Local #{content_tag(:span, @community.name)}".html_safe 
-    %h3=event_dates(@community)
+    =event_dates(@community)
     %h4 Double Your Money. Support Local Business.
     =business_search_title
     #business_controls
