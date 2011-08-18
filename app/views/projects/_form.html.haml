@@ -3,17 +3,17 @@
   %fieldset
     .legend_field_set
       .field
-        =f.label :goal, "Goal ($)", :title => "How much money do you need to accomplish the project?"
-        =f.text_field :goal, :class => "text"
-        %em (Ex: 1000)
+        =f.label :project_option_id, "Choose Your Visits"
+        =f.select :project_option_id, @project_options
       .field
         =f.label :amount, "Purchase Amount", :title => "This is the dollar amount you will accept from a purchaser in this project"
         =f.select :amount, options_for_select(Project::PURCHASE_AMOUNT_OPTIONS, @project.amount.to_i)
+      .field
+        =f.label :goal, "Maximum Goal ($)", :title => "How much money do you need to accomplish the project?"
+        =f.text_field :goal, :class => "text"
+        %em (Ex: 1000)
   %fieldset
     .legend_field_set
-      .field
-        =f.label :project_option_id, "Choose Your Visits"
-        =f.select :project_option_id, @project_options
       -if @project.new_record?
         .field
           =f.label :terms, "I agree to the #{link_to 'Cogster Merchant Project Agreement', merchant_agreement_path, :class => 'new_window'}".html_safe

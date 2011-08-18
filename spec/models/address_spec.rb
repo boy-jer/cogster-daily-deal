@@ -2,9 +2,6 @@ require 'spec_helper'
 
 describe Address do
 
-  it { should have_errors_on(:line_1) }
-  it { should have_errors_on(:city) }
-
   before :each do
     @address = Factory.build(:address)
   end

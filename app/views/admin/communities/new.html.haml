@@ -4,7 +4,7 @@
   .main.narrow
     %h2 New Community
 
-    =form_for @community, :url => admin_communities_path do |f|
+    =form_for @community, :url => admin_communities_path, :html => { :multipart => true } do |f|
       -if @community_request
         =render :partial => 'community_request', :locals => { :f => f }
       =render :partial => 'form', :object => f

@@ -4,7 +4,7 @@
   .main.narrow
     %h2 Edit Community
     =error_messages_for @community
-    =form_for @community, :url => admin_community_path(@community) do |f|
+    =form_for @community, :url => admin_community_path(@community), :html => { :multipart => true } do |f|
       =render :partial => 'form', :object => f
     .field
       =submit_tag "Add Community", :class => "submit", :id => "submit"
