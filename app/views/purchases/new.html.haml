@@ -18,9 +18,8 @@
           .equal 
           .right
             .box_side
-              %h4 YOU GET
-              #investment_amount_received.amount_received
-                =number_to_currency(@project.amount * @project.redemption_total)
+              %h4 YOU GET                    
+              #investment_amount_received.amount_received=number_to_currency(@project.max_redemption)
               %div
                 .below_amount_received in Cogster Cash
           .clear
@@ -34,7 +33,7 @@
                 =render :partial => 'return_rate', :collection => @project.redemption_schedule
                 %tr
                   %td#investment_amount_received_lower.non_return_rate_period
-                    %span=number_to_currency(@project.amount * @project.redemption_total) 
+                    %span=number_to_currency(@project.max_redemption) 
                   %td.description
                     %span TOTAL
           .purchase_description

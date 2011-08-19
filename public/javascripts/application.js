@@ -85,37 +85,6 @@ $(document).ready(function() {
     $(this).children('strong').css('color', '#53535B');
   }); 
         
-  if($('.return_rate_period')) { 
-    var redemption_ratios = [];
-    var redemption_amounts = $('.return_rate_period')
-    var purchase = $('#purchase_amount').val();
-    var initial = $($('#purchase_amount').children()[0]).val();
-    var ratio = purchase / initial;
-    redemption_amounts.each(function(index) {
-      var num = $(redemption_amounts[index]).html().replace(/[^0-9]/g,'');
-      redemption_ratios.push(ratio * parseInt(num) / purchase / 100);
-    })
-    var redemption_total = redemption_ratios.reduce(function(a, b) {
-      return a + b;}, 0);
-  }
-
-  $('#purchase_amount').change(function() {
-    change_on_purchase();
-  });
-  var change_on_purchase = function() {
-    var amount = $('#purchase_amount').val();
-    var total_return = amount * redemption_total;
-    $('#investment_amount_received').html('$' + total_return + '.00');
-    $('#investment_amount_received_lower').html('<span>$' + total_return + '.00</span>');
-    $('#amount_charged_to_user').html('$' + parseInt(amount) + '.00');
-
-    $('.return_rate_period').each(function(index) {
-      var amt = total_return * redemption_ratios[index] / redemption_total; 
-      $(this).html('$' + amt + '.00');
-    });
-  };
-  change_on_purchase();
-
   $('#print_cash').click(function() {
     window.print();
     $('button_1').css('display', 'none');
