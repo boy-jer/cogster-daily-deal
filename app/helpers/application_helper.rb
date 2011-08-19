@@ -40,7 +40,7 @@ module ApplicationHelper
       capture_haml do
         haml_tag :h3, "Search for #{params[:search]}"
       end
-    elsif params[:filter]
+    elsif params[:filter] && params[:filter] != 'all'
       capture_haml do
         haml_tag :h3, @businesses.first.business_option.category
       end

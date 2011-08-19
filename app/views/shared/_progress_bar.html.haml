@@ -21,5 +21,4 @@
         %td=number_to_currency(project.goal, :precision => 0)
   -if project.percent_funded < 100 && social != true 
     .progress_data
-      %strong=link_to "Support >", new_business_purchase_url(business, :protocol => 'https')
   .clear
