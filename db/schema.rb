@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110817031503) do
+ActiveRecord::Schema.define(:version => 20110825230408) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line_1"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(:version => 20110817031503) do
     t.string   "addressable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "location_id"
   end
 
   create_table "business_options", :force => true do |t|
@@ -43,7 +42,6 @@ ActiveRecord::Schema.define(:version => 20110817031503) do
     t.boolean  "featured",                          :default => false
     t.string   "image"
     t.string   "email"
-    t.integer  "business_id"
   end
 
   create_table "communities", :force => true do |t|
@@ -55,10 +53,10 @@ ActiveRecord::Schema.define(:version => 20110817031503) do
     t.boolean  "active"
     t.string   "description"
     t.integer  "impact",                :default => 0
-    t.integer  "community_id"
     t.date     "event_start_date"
     t.date     "event_completion_date"
     t.date     "redemption_start"
+    t.string   "image"
   end
 
   create_table "community_requests", :force => true do |t|
@@ -111,7 +109,6 @@ ActiveRecord::Schema.define(:version => 20110817031503) do
     t.string  "description"
     t.boolean "active"
     t.text    "redemption_schedule", :limit => 255
-    t.integer "campaign_id"
   end
 
   create_table "projects", :force => true do |t|
@@ -126,7 +123,6 @@ ActiveRecord::Schema.define(:version => 20110817031503) do
     t.datetime "updated_at"
     t.integer  "project_option_id"
     t.integer  "funded",                           :default => 0
-    t.integer  "campaign_id"
   end
 
   create_table "purchases", :force => true do |t|
@@ -137,7 +133,6 @@ ActiveRecord::Schema.define(:version => 20110817031503) do
     t.datetime "updated_at"
     t.string   "customer_ip"
     t.string   "error_message"
-    t.integer  "investment_id"
   end
 
   create_table "users", :force => true do |t|
@@ -163,7 +158,6 @@ ActiveRecord::Schema.define(:version => 20110817031503) do
     t.string   "role"
     t.integer  "community_id"
     t.string   "cogster_id"
-    t.integer  "user_id"
     t.integer  "earnings",                            :default => 0
   end
 

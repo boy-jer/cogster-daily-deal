@@ -19,6 +19,9 @@
     =form.label :event_completion_date, "Event Completion Date", :title => "The date on which every offer in this community will finish."
     =form.text_field :event_completion_date, :class => "datepicker text"
   .field
+    =form.label :redemption_start, "Event Redemption Start Date", :title => "The date on which merchants will begin to accept redemptions for this event.."
+    =form.text_field :event_completion_date, :class => "datepicker text"
+  .field
     =form.label :image, "Community Logo"
     =form.file_field :image
     =image_tag @community.image_url

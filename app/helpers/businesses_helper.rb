@@ -1,17 +1,5 @@
 module BusinessesHelper
 
-  def conditional_purchase_link(name, options, alt = nil)
-    link_to_if(purchase_possible?, name, new_business_purchase_url(@business, :protocol => 'https'), options) do 
-      content_tag(:span, alt, :class => current_user_involved?) if alt 
-    end
-  end
-
-  def current_user_involved?
-    if current_user && current_user.made_purchase_for?(@business.current_project)
-      'supported'
-    end
-  end
-
   def dt_dd_address(business)
     if business.address.present?
       content_tag(:dt, 'Address') + 
@@ -41,14 +29,6 @@ module BusinessesHelper
   def other_community_title(business_counter)
     if business_counter > 0 && @businesses[0...business_counter].map{|b| b.community.name }.uniq == [community_name] && @businesses[business_counter].community.name != community_name
       content_tag(:h3, "Other Businesses")
-    end
-  end
-
-  def purchase_possible?
-    if current_user
-      current_user.may_make_purchase_for?(@business.current_project)
-    else
-      @business.accepting_purchases?
     end
   end
 

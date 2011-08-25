@@ -71,6 +71,12 @@ module ApplicationHelper
     end
   end
 
+  def conditional_purchase_link(name, business, options, alt = nil)
+    link_to_if(purchase_possible?(business), name, new_business_purchase_url(business, :protocol => 'https'), options) do 
+      content_tag(:span, alt, :class => current_user_involved?(business)) if alt 
+    end
+  end
+
   def controller_index_link
     link_to(controller_title, controller_index_path)
   end
@@ -88,6 +94,12 @@ module ApplicationHelper
       link_to community.name, community
     else
       "Choose a community"
+    end
+  end
+
+  def current_user_involved?(business)
+    if current_user && current_user.made_purchase_for?(business.current_project)
+      'supported'
     end
   end
 
@@ -198,6 +210,14 @@ module ApplicationHelper
 
   def number_of(collection, word)
     collection.count > 1 ? "#{collection.count} #{word.pluralize}" : word
+  end
+
+  def purchase_possible?(business)
+    if current_user
+      current_user.may_make_purchase_for?(business.current_project)
+    else
+      business.accepting_purchases?
+    end
   end
 
 end

@@ -2,4 +2,4 @@
   %td.return_rate_period=redemption_amount(@project, return_rate_counter)
   %td.description
     in Cogster Cash from 
-    =redemption_schedule(@project, return_rate_counter)
+    =redemption_schedule(@project, @community.redemption_start, return_rate_counter)

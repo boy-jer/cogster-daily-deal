@@ -1424,8 +1424,8 @@ table#business_hours .centered input {
   vertical-align: middle;
   top: 0;
 }
-#support {
-  background: url(/images/buttons/support-this-project.png) no-repeat top left;text-indent:-9999em;border:none;height: 45px;width: 270px;}
+#support, .support {
+  background: url(/images/buttons/support.png) no-repeat top left;text-indent:-9999em;border:none;height: 45px;width: 120px;}
 #breadcrumbs { float: left; }
 .supported {
   background: url(/images/button/thankyou.png) no-repeat top left;text-indent:-9999em;border:none;height:45px;width:270px;}

@@ -12,8 +12,8 @@ module PurchasesHelper
     number_to_currency(project.min_redemption_amount(period) / 100.0)
   end
 
-  def redemption_schedule(project, period)
-    start, finish = project.redemption_period(period)
+  def redemption_schedule(project, redemption_start, period)
+    start, finish = project.redemption_period(period, redemption_start)
     "#{start.strftime("%b %d")} to #{finish.strftime("%b %d")}"
   end
 end

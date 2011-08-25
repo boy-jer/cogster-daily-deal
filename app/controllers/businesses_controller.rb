@@ -1,5 +1,4 @@
 class BusinessesController < ApplicationController
-  after_filter :find_community
   before_filter :find_merchant_business, :only => [:edit, :edit_logo, :update]
   skip_before_filter :authenticate_user!
 
@@ -23,6 +22,7 @@ class BusinessesController < ApplicationController
     if cannot? :read, @business
       redirect_to root_path, :notice => "Sorry, that business is not currently active."
     end
+    find_community
   end
 
   def update

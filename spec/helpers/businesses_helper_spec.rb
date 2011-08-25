@@ -10,7 +10,7 @@ describe BusinessesHelper do
 
     it "renders link to purchase if user may make purchase" do
       helper.stub(:purchase_possible?).and_return true
-      helper.conditional_purchase_link('text', {}).should ==
+      helper.conditional_purchase_link('text', @business, {}).should ==
         link_to('text', new_business_purchase_url(@business, :protocol => 'https'), {})
     end
 
@@ -20,12 +20,12 @@ describe BusinessesHelper do
       end
       it "renders span if text given" do
         helper.stub(:current_user_involved?).and_return 'supported'
-        helper.conditional_purchase_link('text', {}, 'alt text').should == 
+        helper.conditional_purchase_link('text', @business, {}, 'alt text').should == 
           content_tag(:span, 'alt text', :class => 'supported')
       end
 
       it "renders nothing if no text given" do
-        helper.conditional_purchase_link('text', {}).should be_nil
+        helper.conditional_purchase_link('text', @business, {}).should be_nil
       end
     end
   end
@@ -34,7 +34,7 @@ describe BusinessesHelper do
 
     it "returns nil if no current user" do
       helper.stub(:current_user).and_return nil
-      helper.current_user_involved?.should be_nil
+      helper.current_user_involved?(Business.new).should be_nil
     end
 
     describe "if current user" do
@@ -45,11 +45,11 @@ describe BusinessesHelper do
 
       it "returns 'supported' if user made purchase" do
         user.should_receive(:made_purchase_for?).with(:project).and_return true 
-        helper.current_user_involved?.should == 'supported'
+        helper.current_user_involved?(@business).should == 'supported'
       end
       it "returns nil if user made no purchase" do
         user.should_receive(:made_purchase_for?).with(:project).and_return false
-        helper.current_user_involved?.should be_nil
+        helper.current_user_involved?(@business).should be_nil
       end
     end
   end
@@ -75,12 +75,12 @@ describe BusinessesHelper do
       end
       it "returns true if user may make purchase" do
         user.should_receive(:may_make_purchase_for?).with(:project) { true }
-        helper.purchase_possible?.should be_true
+        helper.purchase_possible?(@business).should be_true
       end
         
       it "returns false if user may not" do
         user.should_receive(:may_make_purchase_for?).with(:project) { false}
-        helper.purchase_possible?.should be_false
+        helper.purchase_possible?(@business).should be_false
       end
     end
 
@@ -91,12 +91,12 @@ describe BusinessesHelper do
       end
       it "returns true if business is accepting purchases" do
         @business.should_receive(:accepting_purchases?).and_return true
-        helper.purchase_possible?.should be_true 
+        helper.purchase_possible?(@business).should be_true 
       end
 
       it "returns false otherwise" do
         @business.should_receive(:accepting_purchases?).and_return false
-        helper.purchase_possible?.should be_false
+        helper.purchase_possible?(@business).should be_false
       end
     end
   end

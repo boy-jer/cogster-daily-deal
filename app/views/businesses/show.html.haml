@@ -1,7 +1,7 @@
 -content_for :title do
   ="Cogster - #{@business.name}"
 -content_for :menu do
-  =breadcrumbs [link_to(@business.community.name, @business.community), @business.name]
+  =breadcrumbs [link_to(@community.name, @community), @business.name]
 #content
   .main.full
     #business_details.business
@@ -16,7 +16,7 @@
           =link_to_if false, image_tag(@business.image_url, :alt => @business.current_project.name), new_business_purchase_url(@business, :protocol => 'https')
         %h3 Business Details
         %p=@business.description
-        =conditional_purchase_link("Support >", :class => "right", :id => "support")
+        =conditional_purchase_link("Support", @business, :class => "right", :id => "support")
       .clear
       .column
         .contact
@@ -34,4 +34,5 @@
                 %dt{ :class => day.weekday }=day.weekday
                 %dd{ :class => day.weekday }=day
   #rightbar
-    %h3#double_money.seo_hide=conditional_purchase_link("Double Your Money", {}, "We did it!") 
+    %h3#double_money.seo_hide=conditional_purchase_link("Double Your Money", @business, {}, "We did it!") 
+    =image_tag @community.image_url

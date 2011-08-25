@@ -30,9 +30,9 @@ class ProjectOption < ActiveRecord::Base
     redemption_schedule[n][:percentage]
   end
 
-  def redemption_period(n)
+  def redemption_period(n, redemption_start)
     wait = redemption_schedule[0...n].sum{|period| period[:duration] }
-    start = Date.today + wait 
+    start = redemption_start + wait 
     finish = start + redemption_schedule[n][:duration] - 1
     [start, finish]
   end

@@ -14,7 +14,7 @@ class Community < ActiveRecord::Base
   validates_uniqueness_of :name
   validate :event_dates_in_order
 
-  mount_uploader :image, IconUploader
+  mount_uploader :image, CommunityIconUploader
 
   def earnings_levels
     @earnings_levels ||= users.select(:earnings).map(&:earnings).uniq.sort
