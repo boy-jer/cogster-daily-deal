@@ -490,6 +490,8 @@ div.text_right{
   margin:5px;width:150px;text-align:center !important;font-weight:bold;font-size:20px;color:#9b9da5;height:40px;line-height:40px;border:1px solid #616161}
 .amount_received{
   color: green; font-size: 47px; font-weight: bold; margin-bottom: -10px}
+#payment {
+  font-size: 30px; font-weight: bold; padding-top:15px; }
 .purchase_select .below_amount_received{
   font-size:10px;margin-bottom:10px}
 .purchase_select .purchase_values{
