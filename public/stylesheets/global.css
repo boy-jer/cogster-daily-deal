@@ -1426,10 +1426,10 @@ table#business_hours .centered input {
   vertical-align: middle;
   top: 0;
 }
-#support, .support {
+#support, #businesses a.support {
   background: url(/images/buttons/support.png) no-repeat top left;text-indent:-9999em;border:none;height: 45px;width: 120px;}
 #breadcrumbs { float: left; }
-.supported {
+a.supported {
   background: url(/images/button/thankyou.png) no-repeat top left;text-indent:-9999em;border:none;height:45px;width:270px;}
 .project {
   font-weight: bold; font-size: 14px; color: #000;}
