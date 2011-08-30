@@ -96,6 +96,7 @@ class Purchase < ActiveRecord::Base
     def purchase_options 
       {
         :ip => customer_ip,
+        :order_id => '',
         :billing_address => {
           :name =>  user.name,
           :line1 => address.line_1,

@@ -9,7 +9,7 @@
       %span.project.left
         -if @business.current_project.persisted?
           ="You Pay: $#{@business.current_project.amount.to_i} | You Get: "
-          =link_to "$#{@business.current_project.max_redemption.to_i}", @business, :class => 'purchase'
+          =link_to_if purchase_possible?(@business), "$#{@business.current_project.max_redemption.to_i}", new_business_purchase_url(@business, :protocol => 'https'), :class => 'purchase'
       =render :partial => "shared/progress_bar", :locals => { :project => @business.current_project, :social => true }
       .project_details
         #biz_logo_img.img_container{:style => "height: 150px; width: 150px;"}

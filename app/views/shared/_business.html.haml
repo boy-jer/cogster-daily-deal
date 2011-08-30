@@ -11,6 +11,6 @@
           %span.project.left
             ="You Pay: $#{business.current_project.amount.to_i} | You Get: "
             =link_to "$#{business.current_project.max_redemption.to_i}", business, :class => 'purchase'
-      =conditional_purchase_link("Support", business, :class => "support right")
+      =link_to "Support", business, :class => "support right"
       =edit_business_link_if_allowed(business)
       

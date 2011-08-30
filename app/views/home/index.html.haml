@@ -1,18 +1,18 @@
 -content_for :menu do
   =notice_or_alert
--cache do
-  #splash_body
+-#cache do
+#splash_body
+  %div
+    %h1 Buy Local Events
     %div
-      %h1 Buy Local Events
-      %div
-        %span#splash_dropdown
-          %span#region_listing
-            %ul
-              %li
-                %h2 choose your community
-                %ul
-                  %li=link_to @community.name, @community
-                  -@communities.each do |community|
-                    %li
-                      =link_to community.name, community
-      %h2#subtitle Double Your Money.<br> Support Local Business.
+      %span#splash_dropdown
+        %span#region_listing
+          %ul
+            %li
+              %h2 choose your community
+              %ul
+                %li=link_to @community.name, @community
+                -@communities.each do |community|
+                  %li
+                    =link_to community.name, community
+    %h2#subtitle Double Your Money.<br> Support Local Business.
